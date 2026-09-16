@@ -1,0 +1,784 @@
+{
+  "_readme": "Source of truth for www.makingminds.org. index.html and resources.html render from this file (assets/site.js). Dates are ISO (YYYY-MM-DD); times are 24h; week numbers and weekday labels are computed. Reading entries: {mm: chapter} for course-book chapters, or {tag, cite, url, linkText, note} where cite/note may contain <i>…</i>; {html} for anything irregular; optional label (e.g. 'Of interest:').",
+  "course": {
+    "code": "Phil 133",
+    "title": "Making Minds",
+    "subtitle": "A Constructive Introduction to the Computational Theory of Mind",
+    "term": "Fall 2026",
+    "institution": "UCLA",
+    "timezone": "America/Los_Angeles",
+    "instructor": {
+      "name": "Gabriel Greenberg",
+      "title": "Professor",
+      "officeHours": "TBA"
+    },
+    "ta": {
+      "name": "Paul Talma",
+      "officeHours": "TBA"
+    },
+    "lecture": {
+      "days": "Tue & Thu",
+      "time": "12:30–1:45pm",
+      "start": "12:30",
+      "end": "13:45",
+      "room": "Public Affairs 1222"
+    },
+    "sections": {
+      "day": "Wed",
+      "times": [
+        "9:00–9:50",
+        "10:00–10:50"
+      ],
+      "room": "TBA"
+    },
+    "book": {
+      "title": "Making Minds",
+      "abbrev": "MM",
+      "pdf": "uploads/9/3/9/1/9391709/_mm_11.20.25.pdf",
+      "drive": "https://drive.google.com/open?id=1NMxOsDw2Yuk8NDLCZ3lGyh6GOVc_Fa7n",
+      "note": "The short MM chapters are also the lecture handouts."
+    },
+    "app": {
+      "label": "course app",
+      "url": "https://making-minds.pages.dev"
+    },
+    "homework": {
+      "count": 6,
+      "dueTime": "23:59",
+      "dueLabel": "11:59pm",
+      "summary": "Due Sundays 11:59pm (HW6 on Fri 12/4)"
+    },
+    "calendar": {
+      "weekOneMonday": "2026-09-28",
+      "instructionStart": "2026-09-24",
+      "instructionEnd": "2026-12-04",
+      "finalsWeek": "12/7–11"
+    }
+  },
+  "units": [
+    {
+      "n": 1,
+      "name": "Computation"
+    },
+    {
+      "n": 2,
+      "name": "Levels"
+    },
+    {
+      "n": 3,
+      "name": "Cognition"
+    }
+  ],
+  "schedule": [
+    {
+      "type": "lesson",
+      "date": "2026-09-24",
+      "unit": 1,
+      "topic": "The Cognition–Body Problem",
+      "read": [
+        {
+          "mm": "The Cognition-Body Problem"
+        },
+        {
+          "mm": "What is a Computer?"
+        },
+        {
+          "cite": "Syllabus (this page) and",
+          "url": "policies.html",
+          "linkText": "Course Policies",
+          "note": "."
+        }
+      ]
+    },
+    {
+      "type": "lesson",
+      "date": "2026-09-29",
+      "unit": 1,
+      "topic": "Logic Gates & Combinatorial Circuits",
+      "read": [
+        {
+          "mm": "Logic Gates & Combinatorial Circuits"
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "C",
+          "cite": "Hillis (1999) <i>The Pattern on the Stone</i>,",
+          "url": "https://drive.google.com/open?id=1RPbL8ybUm5VWZPpNcPHHFwSFZ3yHdRda",
+          "linkText": "\"Preface: Magic in the Stone,\" Ch. 1: \"Nuts and Bolts,\" Ch. 2: \"Universal Building Blocks\"",
+          "note": "(through p. 30)"
+        },
+        {
+          "tag": "C",
+          "cite": "Edelman (2008) <i>Computing the Brain</i>,",
+          "url": "https://drive.google.com/open?id=1sxAVP_pAoTYNonJ8uIsbtIo6411rZ7Hy",
+          "linkText": "Ch. 3: \"Computing Brains\"",
+          "note": "pp. 37–44, 50–58"
+        }
+      ]
+    },
+    {
+      "type": "lesson",
+      "date": "2026-10-01",
+      "unit": 1,
+      "topic": "Functions & Representations",
+      "read": [
+        {
+          "mm": "Functions"
+        },
+        {
+          "mm": "Systems of Representation"
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "T",
+          "cite": "Petzold (2000) <i>Code</i>,",
+          "url": "https://drive.google.com/file/d/1arv47PXSskC1bb5qyiPG4p0_-hgqXMm9/view?usp=sharing",
+          "linkText": "Ch. 7: \"Our Ten Digits\" and Ch. 8: \"Alternatives to Ten\""
+        },
+        {
+          "tag": "T",
+          "cite": "Redwoods Department of Mathematics (2007)",
+          "url": "https://drive.google.com/open?id=1296AaOewJgoyHtKsT3CuSVNxdJKv8r71",
+          "linkText": "\"Introduction to Functions\""
+        },
+        {
+          "tag": "C",
+          "cite": "Edelman (2008) <i>Computing the Brain</i>,",
+          "url": "https://drive.google.com/file/d/1cRAWk0cey5cCN7MKpoSYXLTSBLliwlI3/view?usp=sharing",
+          "linkText": "Ch. 2: \"Computing Minds\"",
+          "note": "pp. 13–25"
+        },
+        {
+          "tag": "C",
+          "cite": "Gallistel and King (2009) <i>Memory and the Computational Brain</i>, Ch. 3: \"Functions\""
+        }
+      ]
+    },
+    {
+      "type": "hw",
+      "date": "2026-10-04",
+      "n": 1,
+      "title": "Basics: Circuits, Functions, and Representations",
+      "covers": "9/24–10/1"
+    },
+    {
+      "type": "lesson",
+      "date": "2026-10-06",
+      "unit": 1,
+      "topic": "Computation with Combinatorial Circuits (CCs)",
+      "read": [
+        {
+          "mm": "Defining Computation"
+        },
+        {
+          "mm": "Computation as a 3-way Relation"
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "C",
+          "cite": "Crane (2003) <i>The Mechanical Mind</i>, Ch. 3:",
+          "url": "https://drive.google.com/open?id=14l6EWqePzyUs1PY5ADuOCxqguZJJBks3",
+          "linkText": "\"Computers and Thought\"",
+          "note": "pp. 83–114 only (skim 92–99)"
+        },
+        {
+          "tag": "T*",
+          "cite": "Cummins (1991) <i>Meaning and Mental Representations</i>, Ch. 8:",
+          "url": "https://drive.google.com/open?id=1Jeg7NYG9fe0jTj_QnrReCEce2PokaVY8",
+          "linkText": "\"Interpretational Semantics\"",
+          "note": "(excerpt)"
+        }
+      ]
+    },
+    {
+      "type": "lesson",
+      "date": "2026-10-08",
+      "unit": 1,
+      "topic": "The Story of Binary +1 (CC)",
+      "read": [
+        {
+          "mm": "Functional Abstraction"
+        },
+        {
+          "mm": "Functional Composition"
+        },
+        {
+          "mm": "The Story of Binary Successor"
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "T",
+          "cite": "Petzold (2000) <i>Code</i>, Ch. 12:",
+          "url": "https://drive.google.com/open?id=1BqucMDzyoHivULllfqN848lDui1grlYM",
+          "linkText": "\"A Binary Adding Machine\""
+        },
+        {
+          "tag": "C",
+          "cite": "Dixon (2017)",
+          "url": "https://www.theatlantic.com/technology/archive/2017/03/aristotle-computer/518697/",
+          "linkText": "\"How Aristotle created the computer\""
+        }
+      ]
+    },
+    {
+      "type": "lesson",
+      "date": "2026-10-13",
+      "unit": 1,
+      "topic": "Natural and Artificial Computers",
+      "read": [
+        {
+          "mm": "Introducing Turbots"
+        },
+        {
+          "mm": "Real and Ideal Computers"
+        },
+        {
+          "mm": "Natural and Artificial Computers"
+        },
+        {
+          "tag": "C*",
+          "cite": "Craik (1943) <i>The Nature of Explanation</i>, Ch. 5:",
+          "url": "https://drive.google.com/open?id=1zi8KVoJw27f477lZVA1e-ilkteoyHjQG",
+          "linkText": "\"Hypothesis on the Nature of Thought\""
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "C",
+          "cite": "Pinker (1997) <i>How the Mind Works</i>, Ch. 2:",
+          "url": "https://drive.google.com/open?id=1YQQDDUViY4zvTxS8CZ5pt1FXvpVxhBw6",
+          "linkText": "\"Thinking Machines\"",
+          "note": "(excerpt)"
+        },
+        {
+          "tag": "C",
+          "cite": "Lande (2019)",
+          "url": "https://aeon.co/essays/your-brain-probably-is-a-computer-whatever-that-means",
+          "linkText": "\"Do you compute?\"",
+          "note": "(written by a former student from this class!)"
+        }
+      ]
+    },
+    {
+      "type": "lesson",
+      "date": "2026-10-15",
+      "unit": 1,
+      "topic": "The Computational Theory of Mind",
+      "read": [
+        {
+          "mm": "The Computational Theory of Mind"
+        },
+        {
+          "mm": "Lessons and Limits of Computation with Combinatorial Circuits"
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "C",
+          "cite": "McLaughlin (2004)",
+          "url": "https://drive.google.com/open?id=151EVdPah83hgcdz-HNTsvdofI1bCBlTH",
+          "linkText": "\"Computationalism, Connectionism, and the Philosophy of Mind\"",
+          "note": "— pages 135–141 only"
+        },
+        {
+          "cite": "Haugeland, <i>Semantic Engines</i>"
+        },
+        {
+          "tag": "C",
+          "cite": "Ravenscroft (2005) <i>Philosophy of Mind</i>, Ch. 6:",
+          "url": "https://drive.google.com/file/d/1yXD53x7iixkigQOXOSHl27z9kVdJdt5D/view?usp=sharing",
+          "linkText": "\"The Computational Theory of Mind\""
+        },
+        {
+          "tag": "C",
+          "cite": "Johnson-Laird (1988) \"How Should the Mind Be Studied?\" <span class=\"dim\">[PDF to come]</span>"
+        }
+      ]
+    },
+    {
+      "type": "hw",
+      "date": "2026-10-18",
+      "n": 2,
+      "title": "Computing with CCs",
+      "covers": "10/6–10/15"
+    },
+    {
+      "type": "lesson",
+      "date": "2026-10-20",
+      "unit": 2,
+      "topic": "Memory and Sequential Circuits (SCs)",
+      "read": [
+        {
+          "mm": "Memory"
+        },
+        {
+          "mm": "Circuit Memory"
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "C",
+          "cite": "Braitenberg (1986) <i>Vehicles: Experiments in Synthetic Psychology</i>, Ch. 5:",
+          "url": "https://drive.google.com/file/d/1EMPzs3PZsf7j0RV-LamOulTjOzAUlPBm/view?usp=sharing",
+          "linkText": "\"Vehicles\""
+        }
+      ]
+    },
+    {
+      "type": "lesson",
+      "date": "2026-10-22",
+      "unit": 2,
+      "topic": "Computing in Time",
+      "read": [
+        {
+          "mm": "Machines in Time: Sequential Circuits"
+        },
+        {
+          "mm": "Computing in Time"
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "T",
+          "cite": "Neso Academy (2015)",
+          "url": "https://www.youtube.com/watch?v=SzV4l0_1MCQ",
+          "linkText": "\"Comparison between Combinational and Sequential Circuits\"",
+          "note": "[video]"
+        },
+        {
+          "tag": "T",
+          "cite": "Neso Academy (2015)",
+          "url": "https://www.youtube.com/watch?v=AaN72s5WfOM",
+          "linkText": "\"Introduction to Sequential Circuits\"",
+          "note": "[video]"
+        }
+      ]
+    },
+    {
+      "type": "hw",
+      "date": "2026-10-25",
+      "n": 3,
+      "title": "Computing with SCs",
+      "covers": "10/20–10/22",
+      "note": "doubles as midterm prep"
+    },
+    {
+      "type": "lesson",
+      "date": "2026-10-27",
+      "unit": 2,
+      "topic": "Circuits and States",
+      "read": [
+        {
+          "mm": "Computational Power"
+        },
+        {
+          "mm": "The Method of State Description"
+        }
+      ]
+    },
+    {
+      "type": "exam",
+      "date": "2026-10-29",
+      "title": "Midterm",
+      "start": "12:30",
+      "end": "13:45",
+      "where": "in class",
+      "note": "Covers Unit 1 and sequential circuits, through Circuits and States (10/27)."
+    },
+    {
+      "type": "lesson",
+      "date": "2026-11-03",
+      "unit": 2,
+      "topic": "State Abstraction",
+      "read": [
+        {
+          "mm": "State Abstraction"
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "C*",
+          "cite": "Putnam (1967) \"The Nature of Mental States\" —",
+          "links": [
+            {
+              "url": "uploads/9/3/9/1/9391709/putnam_1967__22the_nature_of_mental_states_22__excerpt_.pdf",
+              "text": "excerpt"
+            },
+            {
+              "url": "https://drive.google.com/open?id=1WhlRhZ86ZQxuDA_WMD1ePi1K_doxtvzM",
+              "text": "full paper"
+            }
+          ],
+          "note": "(if you already read Putnam (1960) <a href=\"https://drive.google.com/open?id=16IF-WfkRaGJU94OKp7R0wkeFtVed-iXA\">\"Minds and Machines\"</a>, that will work)"
+        },
+        {
+          "tag": "C*",
+          "cite": "Putnam (1975) \"Philosophy and Our Mental Life\" —",
+          "links": [
+            {
+              "url": "https://drive.google.com/open?id=1qjPt8S5A2W1-LPr-583XyYwgmzddkDjK",
+              "text": "excerpt"
+            },
+            {
+              "url": "https://drive.google.com/open?id=1S1761US_9d5til5gD9vEKkCrYDdBbrI7",
+              "text": "full paper"
+            }
+          ]
+        },
+        {
+          "tag": "T",
+          "cite": "Patterson and Hennessy (2018)",
+          "url": "https://drive.google.com/open?id=124_gfCSidNeieFUxptfsnw7jhe3PqjUh",
+          "linkText": "\"Finite State Machines\""
+        }
+      ]
+    },
+    {
+      "type": "lesson",
+      "date": "2026-11-05",
+      "unit": 2,
+      "topic": "Finite State Machines (FSMs) & the Algorithm Concept",
+      "read": [
+        {
+          "mm": "Finite State Machines"
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "C",
+          "cite": "Hillis (1999)",
+          "url": "https://drive.google.com/open?id=10gOtWpC48rqn5t1ekmS_-QKCdElDbPEr",
+          "linkText": "<i>The Pattern on the Stone</i>",
+          "note": "— pages 30–38"
+        },
+        {
+          "tag": "T",
+          "cite": "Gkasdrogkas (2019)",
+          "url": "https://levelup.gitconnected.com/an-example-based-introduction-to-finite-state-machines-f908858e450f",
+          "linkText": "\"An Example-based Introduction to Finite State Machines\"",
+          "note": "(skip NFAs)"
+        },
+        {
+          "tag": "C",
+          "cite": "Review the discussion of algorithms from the Crane reading for Lesson 4."
+        }
+      ]
+    },
+    {
+      "type": "hw",
+      "date": "2026-11-08",
+      "n": 4,
+      "title": "Computing with FSMs",
+      "covers": "10/27–11/5"
+    },
+    {
+      "type": "lesson",
+      "date": "2026-11-10",
+      "unit": 2,
+      "topic": "Levels of Abstraction",
+      "read": [
+        {
+          "mm": "Levels of Abstraction"
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "C*",
+          "cite": "Marr (1982)",
+          "url": "https://drive.google.com/open?id=1SL6zVIdBabBGny_3i7lZaG_AS0qqy9UW",
+          "linkText": "\"Understanding Complex Information-Processing Systems\""
+        }
+      ]
+    },
+    {
+      "type": "holiday",
+      "date": "2026-11-11",
+      "title": "Veterans Day — no sections this week"
+    },
+    {
+      "type": "lesson",
+      "date": "2026-11-12",
+      "unit": 3,
+      "topic": "Turing Machines (TMs)",
+      "read": [
+        {
+          "mm": "Turing Machines"
+        },
+        {
+          "mm": "Turing Machine Abstraction and Composition"
+        }
+      ],
+      "recommended": [
+        {
+          "cite": "Gallistel and King (2009) <i>Memory and the Computational Brain</i>, Preface"
+        },
+        {
+          "tag": "T*",
+          "cite": "Turing (1936)",
+          "url": "https://drive.google.com/open?id=1fu8kNnp_xiKNdc7_dLo9CWaCmTxtJhgX",
+          "linkText": "\"On Computable Numbers, with an Application to the Entscheidungsproblem\"",
+          "note": "(excerpt)"
+        },
+        {
+          "tag": "T",
+          "cite": "Boolos, Burgess, and Jeffrey (2007) <i>Computability and Logic</i>, Ch. 3:",
+          "url": "https://drive.google.com/open?id=1pyOJNa10ZBrG6VscRpWlvSA-06GexbjA",
+          "linkText": "\"Turing Computability\""
+        },
+        {
+          "label": "Of interest:",
+          "cite": "<i>The Imitation Game</i> (2014) — a Hollywood biopic about Alan Turing"
+        },
+        {
+          "label": "Of interest:",
+          "links": [
+            {
+              "url": "https://www.youtube.com/watch?v=FTSAiF9AHN4",
+              "text": "LEGO Turing Machine"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=vo8izCKHiF0",
+              "text": "Wood Turing Machine"
+            }
+          ],
+          "note": "[videos]"
+        }
+      ]
+    },
+    {
+      "type": "lesson",
+      "date": "2026-11-17",
+      "unit": 3,
+      "topic": "Recursive Algorithms for TM Computation",
+      "read": [
+        {
+          "mm": "Recursion"
+        },
+        {
+          "mm": "Binary Turing Machines"
+        },
+        {
+          "mm": "Exploring the Mathematical Tree"
+        },
+        {
+          "tag": "C*",
+          "cite": "Chomsky (1957)",
+          "url": "uploads/9/3/9/1/9391709/chomsky_1957__syntactic_structures__-_selections.pdf",
+          "linkText": "\"An Elementary Linguistic Theory\"",
+          "note": "(excerpt from <i>Syntactic Structures</i>)"
+        }
+      ],
+      "recommended": [
+        {
+          "cite": "Hillis (1999) <i>The Pattern on the Stone</i>,",
+          "url": "https://drive.google.com/open?id=1mn4BeXzdAF7QcwoC8bqHwQZoqLcmUJrX",
+          "linkText": "\"Programming\""
+        },
+        {
+          "cite": "Miller, Galanter, and Pribram (1960) \"The Unit of Analysis,\" from <i>Plans and the Structure of Behavior</i>"
+        }
+      ]
+    },
+    {
+      "type": "lesson",
+      "date": "2026-11-19",
+      "unit": 3,
+      "topic": "Navigation as Computation in Physical Space",
+      "read": [
+        {
+          "mm": "Computational Navigation"
+        },
+        {
+          "mm": "The Desert Ant"
+        },
+        {
+          "mm": "Physical Cognition"
+        },
+        {
+          "cite": "Goldman (2012)",
+          "url": "https://drive.google.com/open?id=18IA1HM9zWMlGT51Zgbv3BpDrKmOFS0Zj",
+          "linkText": "\"Desert Ants are Better at Trigonometry than Most High-School Students\""
+        }
+      ],
+      "recommended": [
+        {
+          "cite": "Gallistel (1998)",
+          "url": "https://drive.google.com/open?id=19YEsPipuRYIkRtJwNNojM4EcUgy2Ex-b",
+          "linkText": "\"Insect Navigation: Brains as Symbol-Processing Organs\""
+        },
+        {
+          "cite": "Collett et al. (2025)",
+          "url": "uploads/9/3/9/1/9391709/neuroethology_of_ant_navigation.pdf",
+          "linkText": "\"The Neuroethology of Ant Navigation\""
+        }
+      ]
+    },
+    {
+      "type": "hw",
+      "date": "2026-11-22",
+      "n": 5,
+      "title": "Computing with TMs",
+      "covers": "11/10–11/17"
+    },
+    {
+      "type": "lesson",
+      "date": "2026-11-24",
+      "unit": 3,
+      "topic": "Machines & Programs",
+      "read": [
+        {
+          "mm": "Machines and Programs"
+        },
+        {
+          "tag": "C*",
+          "cite": "Pylyshyn (1980)",
+          "url": "https://drive.google.com/open?id=1PebGe4VIKLBXcns2lPMa58u0freAjsdT",
+          "linkText": "\"Computation and Cognition: Issues in the Foundations of Cognitive Science\"",
+          "note": "— sections 1–6"
+        }
+      ]
+    },
+    {
+      "type": "holiday",
+      "date": "2026-11-26",
+      "title": "Thanksgiving — no class"
+    },
+    {
+      "type": "lesson",
+      "date": "2026-12-01",
+      "unit": 3,
+      "topic": "The Universal Machine",
+      "read": [
+        {
+          "mm": "The Universal Machine"
+        },
+        {
+          "tag": "C*",
+          "cite": "Pylyshyn (1980)",
+          "url": "https://drive.google.com/open?id=1PebGe4VIKLBXcns2lPMa58u0freAjsdT",
+          "linkText": "\"Computation and Cognition: Issues in the Foundations of Cognitive Science\"",
+          "note": "— sections 7–11"
+        }
+      ]
+    },
+    {
+      "type": "lesson",
+      "date": "2026-12-03",
+      "unit": 3,
+      "topic": "Computation & Consciousness",
+      "read": [
+        {
+          "mm": "Cognitive Architecture"
+        },
+        {
+          "mm": "Computation as Consciousness"
+        },
+        {
+          "mm": "CTM: The Long View"
+        },
+        {
+          "tag": "C",
+          "cite": "Baars (1988)",
+          "url": "https://drive.google.com/open?id=1U8PZeLlK08iQ3aKpzatC72zFLzjMLRjn",
+          "linkText": "\"The Global Workspace Theory of Consciousness\""
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "C",
+          "cite": "Lau and Rosenthal (2011)",
+          "url": "https://www.davidrosenthal.org/DR-Lau-TICS.pdf",
+          "linkText": "\"Empirical Support for Higher-Order Theories of Conscious Awareness\""
+        },
+        {
+          "cite": "McDermott (2007)",
+          "url": "http://www.cs.yale.edu/homes/dvm/papers/conscioushb.pdf",
+          "linkText": "\"Artificial Intelligence and Consciousness\""
+        },
+        {
+          "tag": "C/T",
+          "cite": "Aaronson (2013)",
+          "url": "https://www.scottaaronson.com/papers/philos.pdf",
+          "linkText": "\"Why Philosophers Should Care About Complexity Theory\""
+        }
+      ]
+    },
+    {
+      "type": "hw",
+      "date": "2026-12-04",
+      "n": 6,
+      "title": "Navigation with Turbots",
+      "covers": "11/19–12/3",
+      "note": "last day of instruction"
+    },
+    {
+      "type": "exam",
+      "date": "2026-12-09",
+      "title": "Final exam",
+      "start": "15:00",
+      "end": "18:00",
+      "where": "Public Affairs 1222",
+      "note": "Registrar's exam slot."
+    }
+  ],
+  "resources": {
+    "Course book": [
+      {
+        "kind": "PDF",
+        "url": "uploads/9/3/9/1/9391709/_mm_11.20.25.pdf",
+        "title": "<i>Making Minds</i> (MM)",
+        "note": "course book · <a href=\"https://drive.google.com/open?id=1NMxOsDw2Yuk8NDLCZ3lGyh6GOVc_Fa7n\" target=\"_blank\" rel=\"noopener\">current version on Google Drive</a>"
+      }
+    ],
+    "Books": [
+      {
+        "kind": "Drive",
+        "url": "https://drive.google.com/open?id=1VstnBxBNtFMs7GOcqKvYeq0JmABcXyLs",
+        "title": "Clark (2001) <i>Mindware</i>"
+      },
+      {
+        "kind": "PDF",
+        "url": "uploads/9/3/9/1/9391709/crane_2003__22the_mechanical_mind_23.pdf",
+        "title": "Crane (2003) <i>The Mechanical Mind</i>"
+      },
+      {
+        "kind": "PDF",
+        "url": "uploads/9/3/9/1/9391709/edelman_2008__22computing_the_mind_23.pdf",
+        "title": "Edelman (2008) <i>Computing the Mind</i>"
+      },
+      {
+        "kind": "PDF",
+        "url": "uploads/9/3/9/1/9391709/pinker_1997__22how_the_mind_works_23.pdf",
+        "title": "Pinker (1997) <i>How the Mind Works</i>"
+      },
+      {
+        "kind": "PDF",
+        "url": "uploads/9/3/9/1/9391709/ravenscroft_2005__22philosophy_of_mind_23.pdf",
+        "title": "Ravenscroft (2005) <i>Philosophy of Mind</i>"
+      }
+    ],
+    "Articles": [
+      {
+        "kind": "PDF",
+        "url": "uploads/9/3/9/1/9391709/clark_1.pdf",
+        "title": "Clark (2001) \"Meat Machines\"",
+        "note": "from <i>Mindware</i>"
+      },
+      {
+        "kind": "PDF",
+        "url": "uploads/9/3/9/1/9391709/goldman_2012__22desert_ants_are_better_at_trigonometry_than_most_high_school_students_23.pdf",
+        "title": "Goldman (2012) \"Desert Ants are Better at Trigonometry than Most High School Students\""
+      },
+      {
+        "kind": "PDF",
+        "url": "uploads/9/3/9/1/9391709/ravenscroft_2005__22the_computational_theory_of_mind_23.pdf",
+        "title": "Ravenscroft (2005) \"The Computational Theory of Mind\"",
+        "note": "ch. 6 of <i>Philosophy of Mind</i>"
+      }
+    ]
+  }
+}

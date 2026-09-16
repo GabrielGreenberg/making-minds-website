@@ -1,0 +1,234 @@
+/* Making Minds · Phil 133 — renders the site from data/course.json.
+   index.html: hero meta, course facts, the "up next" box, the schedule.
+   resources.html: the resource lists.  policies.html: a few bound values.
+   Dates in the JSON are ISO (YYYY-MM-DD); weekday labels and UCLA week
+   numbers are computed here. Times are local to course.timezone. */
+(function () {
+  'use strict';
+
+  // ---------- helpers ----------
+  var DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function dateLabel(iso) {           // "2026-09-24" -> "Thu 9/24"
+    var p = iso.split('-').map(Number);
+    var d = new Date(p[0], p[1] - 1, p[2], 12);
+    return DOW[d.getDay()] + ' ' + p[1] + '/' + p[2];
+  }
+  function longDate(iso) {            // "2026-10-29" -> "Thursday, October 29"
+    var p = iso.split('-').map(Number);
+    return new Date(p[0], p[1] - 1, p[2], 12).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  }
+  function ampm(t) {                  // "13:45" -> "1:45pm"
+    var h = +t.slice(0, 2), m = t.slice(3);
+    return ((h + 11) % 12 + 1) + ':' + m + (h < 12 ? 'am' : 'pm');
+  }
+  function timeRange(a, b) { return ampm(a).replace(/[ap]m$/, '') + '–' + ampm(b); }
+  function weekOf(iso, mondayOfWeek1) {
+    var d = new Date(iso + 'T12:00:00'), w1 = new Date(mondayOfWeek1 + 'T12:00:00');
+    var n = Math.floor((d - w1) / (7 * 864e5)) + 1;
+    return n < 1 ? '0' : (n > 10 ? 'F' : String(n));
+  }
+  function link(url, text) {
+    var ext = /^https?:/.test(url);
+    return '<a href="' + esc(url) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + text + '</a>';
+  }
+  var WORDS = ['zero','one','two','three','four','five','six','seven','eight','nine','ten'];
+  function words(n) { var w = WORDS[n]; return w ? w.charAt(0).toUpperCase() + w.slice(1) : String(n); }
+  function tag(t) {
+    var cls = /C/.test(t) && /T/.test(t) ? 'ct' : (/^C/.test(t) ? 'c' : 't');
+    return '<span class="tag ' + cls + '">' + esc(t) + '</span>';
+  }
+  // One reading entry -> inline HTML.
+  function reading(r) {
+    if (r.mm) return '<span class="mm">MM</span>' + esc(r.mm);
+    if (r.html) return r.html;
+    if (r.text) return r.text;
+    var parts = [];
+    if (r.label) parts.push('<span class="dim">' + esc(r.label) + '</span>');
+    if (r.tag) parts.push(tag(r.tag));
+    if (r.cite) parts.push(r.cite);
+    if (r.url) parts.push(link(r.url, r.linkText || r.url));
+    if (r.links) parts.push(r.links.map(function (l) { return link(l.url, l.text); }).join(' · '));
+    if (r.note) parts.push(r.note);
+    return parts.join(' ');
+  }
+  function ul(items) { return '<ul>' + items.map(function (r) { return '<li>' + reading(r) + '</li>'; }).join('') + '</ul>'; }
+
+  // Current time in the course timezone as "YYYY-MM-DDTHH:MM" (compares as a string).
+  function nowIn(tz) {
+    var p = {};
+    new Intl.DateTimeFormat('en-US', { timeZone: tz, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })
+      .formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+    return p.year + '-' + p.month + '-' + p.day + 'T' + (p.hour === '24' ? '00' : p.hour) + ':' + p.minute;
+  }
+
+  // Derived fields on schedule entries: id, end/due datetime, labels.
+  function prepare(data) {
+    var c = data.course, lessonNo = 0, hwNo = 0;
+    data.schedule.forEach(function (x) {
+      x.d = dateLabel(x.date);
+      x.wk = weekOf(x.date, c.calendar.weekOneMonday);
+      if (x.type === 'lesson') { x.id = 'l' + (++lessonNo); x.endAt = x.date + 'T' + (x.end || c.lecture.end); }
+      else if (x.type === 'exam') { x.id = x.title.toLowerCase().replace(/[^a-z]+/g, '-').replace(/-$/, ''); x.endAt = x.date + 'T' + x.end; }
+      else if (x.type === 'hw') { x.id = 'hw' + (x.n || ++hwNo); x.dueAt = x.date + 'T' + (x.dueTime || c.homework.dueTime); }
+    });
+    return data;
+  }
+
+  // ---------- home page ----------
+  function renderFacts(c) {
+    var el = document.getElementById('facts');
+    if (!el) return;
+    var sec = c.sections;
+    var facts = [
+      ['Lecture', '<b>' + esc(c.lecture.days) + ' ' + esc(c.lecture.time) + '</b><br>' + esc(c.lecture.room)],
+      ['Sections', esc(sec.day) + ' ' + sec.times.map(esc).join(' and ') + '<br><em>room ' + esc(sec.room) + '</em>'],
+      ['Instructor', esc(c.instructor.title + ' ' + c.instructor.name) + '<br>office hours <em>' + esc(c.instructor.officeHours) + '</em>'],
+      ['TA', esc(c.ta.name) + '<br>office hours <em>' + esc(c.ta.officeHours) + '</em>'],
+      ['Course book', '<b>' + esc(c.book.title) + '</b> (' + esc(c.book.abbrev) + ') — ' + link(c.book.pdf, 'PDF') + ' · ' + link(c.book.drive, 'current version') + '<br>' + esc(c.book.note)],
+      ['Homework', words(c.homework.count) + ' problem sets, in the ' + link(c.app.url, c.app.label) + '<br>' + esc(c.homework.summary)],
+    ];
+    var exams = window.__course.schedule.filter(function (x) { return x.type === 'exam'; });
+    facts.push(['Exams', exams.map(function (x) {
+      return esc(x.title.replace(/ exam$/, '')) + ' <b>' + esc(x.d) + (x.title === 'Final exam' ? ', ' + esc(timeRange(x.start, x.end)) : '') + '</b>, ' + esc(x.where);
+    }).join('<br>')]);
+    facts.push(['Policies', 'Grading, group work, late work, and more:<br>' + link('policies.html', 'Course Policies')]);
+    el.innerHTML = facts.map(function (f) { return '<div class="fact"><div class="k">' + f[0] + '</div><div class="v">' + f[1] + '</div></div>'; }).join('');
+  }
+
+  function renderHeroMeta(c) {
+    var el = document.getElementById('hero-meta');
+    if (!el) return;
+    el.innerHTML = esc(c.code) + ' · ' + esc(c.term) + ' · ' + esc(c.institution) + '<br>' +
+      esc(c.instructor.title + ' ' + c.instructor.name) + ' · TA ' + esc(c.ta.name) + '<br>' +
+      esc(c.lecture.days) + ' ' + esc(c.lecture.time) + ' · ' + esc(c.lecture.room);
+  }
+
+  function renderSchedule(data) {
+    var el = document.getElementById('schedule');
+    if (!el) return;
+    var cols = '<colgroup><col class="c-wk"><col class="c-date"><col class="c-topic"><col></colgroup>';
+    var html = ['<table class="sched sched-head" aria-hidden="true">' + cols + '<thead><tr><th>Wk</th><th>Date</th><th>Topic</th><th>Readings</th></tr></thead></table>'];
+    var units = {};
+    data.units.forEach(function (u) { units[u.n] = u; });
+    // group entries into unit blocks: an entry belongs to the current unit until the next lesson with a new unit
+    var blocks = [], cur = null;
+    data.schedule.forEach(function (x) {
+      if (x.type === 'lesson' && (!cur || cur.unit !== x.unit)) { cur = { unit: x.unit, rows: [] }; blocks.push(cur); }
+      if (!cur) { cur = { unit: x.unit || 1, rows: [] }; blocks.push(cur); }
+      cur.rows.push(x);
+    });
+    blocks.forEach(function (b) {
+      var u = units[b.unit] || { n: b.unit, name: '' };
+      var rows = ['<tr class="unit" style="--uc:var(--u' + u.n + ')"><td colspan="4"><span class="un">Unit ' + u.n + '</span><span class="ut">' + esc(u.name) + '</span></td></tr>'];
+      var lastWk = null;
+      b.rows.forEach(function (x) {
+        var wk = x.wk === lastWk ? '' : x.wk; if (wk) lastWk = x.wk;
+        var wkTd = '<td class="wk mono">' + wk + '</td><td class="date mono">' + esc(x.d) + '</td>';
+        if (x.type === 'lesson') {
+          var cell = '<div class="rg read"><span class="rl">Read</span>' + ul(x.read || []) + '</div>';
+          if (x.recommended && x.recommended.length) {
+            cell += '<details class="rec"><summary>Recommended reading <span class="n">(' + x.recommended.length + ')</span></summary>' + ul(x.recommended) + '</details>';
+          }
+          rows.push('<tr class="u' + x.unit + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.topic) + '</td><td class="readings">' + cell + '</td></tr>');
+        } else if (x.type === 'hw') {
+          var note = esc(data.course.homework.dueLabel) + ' · covers ' + esc(x.covers) + (x.note ? ' · ' + esc(x.note) : '');
+          rows.push('<tr class="hw" id="' + x.id + '">' + wkTd + '<td class="topic">HW' + x.n + ' due<span class="sub">' + esc(x.title) + '</span></td><td class="readings"><span class="note">' + note + '</span></td></tr>');
+        } else if (x.type === 'exam') {
+          var sub = x.where === 'in class' ? 'in class, ' + timeRange(x.start, x.end) : timeRange(x.start, x.end) + ' · ' + x.where;
+          rows.push('<tr class="exam" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.title) + '<span class="sub">' + esc(sub) + '</span></td><td class="readings"><span class="note">' + esc(x.note || '') + '</span></td></tr>');
+        } else if (x.type === 'holiday') {
+          rows.push('<tr class="holiday">' + wkTd + '<td class="topic">' + esc(x.title) + '</td><td class="readings"></td></tr>');
+        }
+      });
+      html.push('<div class="tablewrap schedwrap"><table class="sched">' + cols + '<tbody>' + rows.join('') + '</tbody></table></div>');
+    });
+    el.innerHTML = html.join('');
+  }
+
+  function renderNext(data) {
+    var box = document.getElementById('next');
+    if (!box) return;
+    var c = data.course, now = nowIn(c.timezone), today = now.slice(0, 10);
+    var next = null, due = null;
+    data.schedule.forEach(function (x) {
+      if (!next && x.endAt && x.endAt > now) next = x;
+      if (!due && x.dueAt && x.dueAt > now) due = x;
+    });
+    function line(label, x, mainHtml, detailHtml) {
+      return '<div class="nx"><span class="chip">' + esc(label) + '</span><div class="nx-body">' +
+        '<a class="nx-main" href="#' + x.id + '"><span class="mono nx-date">' + esc(x.d) + '</span> ' + mainHtml + '</a>' +
+        (detailHtml ? '<div class="nx-detail">' + detailHtml + '</div>' : '') + '</div></div>';
+    }
+    var html = '';
+    if (!next && !due) {
+      html = '<div class="nx-done">' + esc(c.term) + ' · the quarter is over — thanks for a great course.</div>';
+    } else {
+      if (next) {
+        var isExam = next.type === 'exam', isToday = next.date === today;
+        var label = isExam ? (isToday ? 'Today' : 'Next up') : (isToday ? 'Today’s class' : 'Next class');
+        if (isExam) {
+          var sub = next.where === 'in class' ? 'in class, ' + timeRange(next.start, next.end) : timeRange(next.start, next.end) + ' · ' + next.where;
+          html += line(label, next, esc(next.title) + ' <span class="dim">· ' + esc(sub) + '</span>', esc(next.note || ''));
+        } else {
+          var items = (next.read || []).map(reading).join(' <span class="sep">·</span> ');
+          html += line(label, next, esc(next.topic), items ? '<span class="rl">Read</span> ' + items : '');
+        }
+      }
+      if (due) html += line('Next due', due, 'HW' + due.n + ' due <span class="dim">· ' + esc(c.homework.dueLabel) + '</span>', '');
+    }
+    box.innerHTML = html;
+    box.hidden = false;
+  }
+
+  // ---------- resources page ----------
+  function renderResources(data) {
+    var el = document.getElementById('resources');
+    if (!el) return;
+    var html = '';
+    Object.keys(data.resources).forEach(function (heading) {
+      html += '<h2>' + esc(heading) + '</h2><ul>' + data.resources[heading].map(function (r) {
+        return '<li><span class="tag file">' + esc(r.kind) + '</span>' + link(r.url, r.title) + (r.note ? '<span class="rnote">' + r.note + '</span>' : '') + '</li>';
+      }).join('') + '</ul>';
+    });
+    el.innerHTML = html;
+  }
+
+  // ---------- simple bindings (policies page) ----------
+  // <span data-course="midterm.long"></span>, <a data-course-href="app.url">
+  function bindValues(data) {
+    var c = data.course, exams = {};
+    data.schedule.forEach(function (x) { if (x.type === 'exam') exams[x.title === 'Midterm' ? 'midterm' : 'final'] = x; });
+    var values = {
+      'app.url': c.app.url, 'app.label': c.app.label,
+      'book.title': c.book.title, 'book.abbrev': c.book.abbrev,
+      'midterm.long': exams.midterm ? longDate(exams.midterm.date) : '', 'midterm.note': exams.midterm ? exams.midterm.note : '',
+      'final.long': exams.final ? longDate(exams.final.date) + ', ' + timeRange(exams.final.start, exams.final.end) : '',
+      'final.where': exams.final ? exams.final.where : '',
+      'homework.count': c.homework.count
+    };
+    document.querySelectorAll('[data-course]').forEach(function (el) { var v = values[el.getAttribute('data-course')]; if (v != null) el.textContent = v; });
+    document.querySelectorAll('[data-course-href]').forEach(function (el) { var v = values[el.getAttribute('data-course-href')]; if (v != null) el.setAttribute('href', v); });
+  }
+
+  // ---------- go ----------
+  var here = location.pathname.replace(/[^/]*$/, '');
+  fetch(here + 'data/course.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (data) {
+      window.__course = prepare(data);
+      renderHeroMeta(data.course);
+      renderFacts(data.course);
+      renderSchedule(data);
+      renderNext(data);
+      renderResources(data);
+      bindValues(data);
+      // a #hash link to a row rendered after load
+      if (location.hash) { var t = document.querySelector(location.hash); if (t) t.scrollIntoView(); }
+    })
+    .catch(function (err) {
+      var el = document.getElementById('schedule') || document.getElementById('resources');
+      if (el) el.innerHTML = '<p class="dim">Couldn’t load <code>data/course.json</code> (' + esc(err.message) + '). ' +
+        'If you opened this file directly from disk, serve the folder over http instead (e.g. <code>python3 -m http.server</code>), or view it at www.makingminds.org.</p>';
+    });
+})();
