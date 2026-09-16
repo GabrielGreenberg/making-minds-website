@@ -1,6 +1,6 @@
-/* "Up next" box. Copies the next lecture/exam row and the next homework row
-   out of the schedule table, so they look exactly like the schedule. Uses
-   Los Angeles time; a class stays "next" until it ends (the row's data-end,
+/* "Up next" box: two compact lines built from the schedule table — the next
+   lecture/exam (with its required readings) and the next homework deadline.
+   Los Angeles time; a class stays "next" until it ends (the row's data-end:
    1:45pm for lectures, 6pm for the final), then the box rolls over. */
 (function () {
   var box = document.getElementById('next');
@@ -29,61 +29,66 @@
   var next = firstAfter('tr[data-end]', 'data-end');
   var due = firstAfter('tr[data-due]', 'data-due');
 
-  function labelRow(text, href) {
-    var tr = document.createElement('tr');
-    tr.className = 'lbl';
-    var td = document.createElement('td');
-    td.colSpan = 4;
+  function text(el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; }
+  // Topic cell text without its .sub line.
+  function topicOf(tr) {
+    var td = tr.querySelector('td.topic'), out = '';
+    td.childNodes.forEach(function (n) {
+      if (n.nodeType === 3) out += n.textContent;
+      else if (n.nodeType === 1 && !n.classList.contains('sub')) out += n.textContent;
+    });
+    return out.replace(/\s+/g, ' ').trim();
+  }
+  function line(label, tr, mainText, detailHtml) {
+    var row = document.createElement('div');
+    row.className = 'nx';
     var chip = document.createElement('span');
     chip.className = 'chip';
-    chip.textContent = text;
-    td.appendChild(chip);
-    if (href) {
-      var a = document.createElement('a');
-      a.href = href;
-      a.className = 'jump';
-      a.textContent = 'show in schedule ↓';
-      td.appendChild(a);
+    chip.textContent = label;
+    var body = document.createElement('div');
+    body.className = 'nx-body';
+    var a = document.createElement('a');
+    a.className = 'nx-main';
+    if (tr && tr.id) a.href = '#' + tr.id;
+    a.innerHTML = '<span class="mono nx-date">' + text(tr.querySelector('td.date')) + '</span> ' + mainText;
+    body.appendChild(a);
+    if (detailHtml) {
+      var d = document.createElement('div');
+      d.className = 'nx-detail';
+      d.innerHTML = detailHtml;
+      body.appendChild(d);
     }
-    tr.appendChild(td);
-    return tr;
-  }
-  function copyRow(tr) {
-    var c = tr.cloneNode(true);
-    c.removeAttribute('id');
-    return c;
-  }
-  // The homework reminder is just "HW1 due · 11:59pm": no title, no coverage note.
-  function copyDueRow(tr) {
-    var c = copyRow(tr);
-    var sub = c.querySelector('td.topic .sub');
-    if (sub) sub.parentNode.removeChild(sub);
-    var note = c.querySelector('td.readings');
-    if (note) note.textContent = (note.textContent.split('\u00b7')[0] || '').trim();
-    return c;
+    row.appendChild(chip);
+    row.appendChild(body);
+    return row;
   }
 
-  var table = document.createElement('table');
-  table.className = 'sched';
-  var tbody = document.createElement('tbody');
-
+  box.innerHTML = '';
   if (!next && !due) {
-    tbody.appendChild(labelRow('Fall 2026 · the quarter is over — thanks for a great course'));
+    var done = document.createElement('div');
+    done.className = 'nx-done';
+    done.textContent = 'Fall 2026 · the quarter is over — thanks for a great course.';
+    box.appendChild(done);
   } else {
     if (next) {
       var isExam = next.getAttribute('data-kind') === 'exam';
       var isToday = next.getAttribute('data-end').slice(0, 10) === today;
       var label = isExam ? (isToday ? 'Today' : 'Next up') : (isToday ? 'Today’s class' : 'Next class');
-      tbody.appendChild(labelRow(label, next.id ? '#' + next.id : null));
-      tbody.appendChild(copyRow(next));
+      var main = topicOf(next), detail = '';
+      if (isExam) {
+        var sub = text(next.querySelector('td.topic .sub'));
+        if (sub) main += ' <span class="dim">· ' + sub + '</span>';
+        detail = text(next.querySelector('td.readings'));
+      } else {
+        var items = [];
+        next.querySelectorAll('.rg.read li').forEach(function (li) { items.push(li.innerHTML.trim()); });
+        if (items.length) detail = '<span class="rl">Read</span> ' + items.join(' <span class="sep">·</span> ');
+      }
+      box.appendChild(line(label, next, main, detail));
     }
     if (due) {
-      tbody.appendChild(labelRow('Next due', due.id ? '#' + due.id : null));
-      tbody.appendChild(copyDueRow(due));
+      box.appendChild(line('Next due', due, topicOf(due) + ' <span class="dim">· 11:59pm</span>', ''));
     }
   }
-  table.appendChild(tbody);
-  box.innerHTML = '';
-  box.appendChild(table);
   box.hidden = false;
 })();
