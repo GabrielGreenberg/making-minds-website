@@ -85,7 +85,7 @@
       ['Sections', esc(sec.day) + ' ' + sec.times.map(esc).join(' and ') + '<br><em>room ' + esc(sec.room) + '</em>'],
       ['Instructor', esc(c.instructor.title + ' ' + c.instructor.name) + '<br>office hours <em>' + esc(c.instructor.officeHours) + '</em>'],
       ['TA', esc(c.ta.name) + '<br>office hours <em>' + esc(c.ta.officeHours) + '</em>'],
-      ['Course book', '<b>' + esc(c.book.title) + '</b> (' + esc(c.book.abbrev) + ') — ' + link(c.book.pdf, 'PDF') + ' · ' + link(c.book.drive, 'current version') + '<br>' + esc(c.book.note)],
+      ['Course book', '<b>' + esc(c.book.title) + '</b> (' + esc(c.book.abbrev) + ') — ' + link(c.book.pdf, 'PDF') + (c.book.drive ? ' · ' + link(c.book.drive, 'current version') : '') + '<br>' + esc(c.book.note)],
       ['Homework', words(c.homework.count) + ' problem sets, in the ' + link(c.app.url, c.app.label) + '<br>' + esc(c.homework.summary)],
     ];
     var exams = window.__course.schedule.filter(function (x) { return x.type === 'exam'; });

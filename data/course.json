@@ -35,8 +35,7 @@
       "title": "Making Minds",
       "abbrev": "MM",
       "pdf": "book/making-minds.pdf",
-      "drive": "https://drive.google.com/open?id=1NMxOsDw2Yuk8NDLCZ3lGyh6GOVc_Fa7n",
-      "note": "The short MM chapters are also the lecture handouts."
+      "note": "The short MM chapters are also the lecture handouts. The PDF at this link is always the current build."
     },
     "app": {
       "label": "course app",
@@ -729,9 +728,9 @@
     "Course book": [
       {
         "kind": "PDF",
-        "url": "uploads/9/3/9/1/9391709/_mm_11.20.25.pdf",
+        "url": "book/making-minds.pdf",
         "title": "<i>Making Minds</i> (MM)",
-        "note": "course book · <a href=\"https://drive.google.com/open?id=1NMxOsDw2Yuk8NDLCZ3lGyh6GOVc_Fa7n\" target=\"_blank\" rel=\"noopener\">current version on Google Drive</a>"
+        "note": "course book — always the current build"
       }
     ],
     "Books": [
