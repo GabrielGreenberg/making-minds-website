@@ -156,13 +156,15 @@ tr.u2 td.topic { box-shadow: inset 3px 0 0 var(--u2); }
 tr.u3 td.topic { box-shadow: inset 3px 0 0 var(--u3); }
 tr.holiday td { color: var(--hol); }
 tr.holiday td.topic { font-style: italic; font-weight: 400; }
-tr.exam, tr.exam td { background: var(--exam-soft); }
-tr.exam td.topic { font-weight: 600; color: var(--exam); }
-tr.exam td.readings, tr.exam td.date, tr.exam td.wk { color: var(--exam); }
-tr.hw, tr.hw td { background: var(--hw-soft); }
-tr.hw td.topic { color: var(--hw); font-weight: 600; }
+/* Homework and exam rows: the tint starts at the divider bar, so the week and
+   date cells read like every other row. */
+tr.exam td.topic, tr.exam td.readings { background: var(--exam-soft); }
+tr.exam td.topic { font-weight: 600; color: var(--exam); box-shadow: inset 3px 0 0 var(--exam); }
+tr.exam td.readings { color: var(--exam); }
+tr.hw td.topic, tr.hw td.readings { background: var(--hw-soft); }
+tr.hw td.topic { color: var(--hw); font-weight: 600; box-shadow: inset 3px 0 0 var(--hw); }
 tr.hw td.topic .sub { color: var(--hw); opacity: .85; }
-tr.hw td.wk, tr.hw td.date, tr.hw td.readings { color: var(--hw); }
+tr.hw td.readings { color: var(--hw); }
 .sub { display: block; font-size: 12.5px; color: var(--ink-3); margin-top: 2px; font-weight: 400; }
 tr:target td { outline: 2px solid var(--accent); outline-offset: -2px; }
 
@@ -252,6 +254,11 @@ footer.page { padding-block: 14px 40px; border-top: 1px solid var(--line); color
   table.sched tr.u1 td.topic { border-left-color: var(--u1); }
   table.sched tr.u2 td.topic { border-left-color: var(--u2); }
   table.sched tr.u3 td.topic { border-left-color: var(--u3); }
+  table.sched tr.hw, table.sched tr.exam { background: var(--hw-soft); }
+  table.sched tr.exam { background: var(--exam-soft); }
+  table.sched tr.hw td, table.sched tr.exam td { background: transparent; }
+  table.sched tr.hw td.topic { border-left-color: var(--hw); }
+  table.sched tr.exam td.topic { border-left-color: var(--exam); }
   table.sched td.readings { margin-top: 6px; }
   table.sched tr.unit td { padding: 7px 12px; margin: 0 -12px; }
   .rg { grid-template-columns: 1fr; gap: 2px; }
