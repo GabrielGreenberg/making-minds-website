@@ -260,6 +260,11 @@
           "page": 48
         },
         {
+          "mm": "Craik’s computational theory of mind",
+          "n": 13,
+          "page": 49
+        },
+        {
           "mm": "Artificial and Natural Computers",
           "n": 14,
           "page": 52
@@ -440,6 +445,11 @@
           "mm": "State Abstraction",
           "n": 23,
           "page": 87
+        },
+        {
+          "mm": "The Concept of Abstraction",
+          "n": 24,
+          "page": 92
         }
       ],
       "recommended": [
@@ -490,6 +500,11 @@
           "mm": "Finite State Machines",
           "n": 25,
           "page": 100
+        },
+        {
+          "mm": "What is an Algorithm?",
+          "n": 26,
+          "page": 105
         }
       ],
       "recommended": [
@@ -506,10 +521,6 @@
           "url": "https://levelup.gitconnected.com/an-example-based-introduction-to-finite-state-machines-f908858e450f",
           "linkText": "\"An Example-based Introduction to Finite State Machines\"",
           "note": "(skip NFAs)"
-        },
-        {
-          "tag": "C",
-          "cite": "Review the discussion of algorithms from the Crane reading for Lesson 4."
         }
       ]
     },
@@ -558,9 +569,9 @@
           "page": 115
         },
         {
-          "mm": "Turing Machine Abstraction and Composition",
-          "n": 31,
-          "page": 133
+          "mm": "Computing with Turing Machines",
+          "n": 29,
+          "page": 123
         }
       ],
       "recommended": [
@@ -610,6 +621,11 @@
           "mm": "Recursion",
           "n": 30,
           "page": 127
+        },
+        {
+          "mm": "Turing Machine Abstraction and Composition",
+          "n": 31,
+          "page": 133
         },
         {
           "mm": "Binary Turing Machines",
