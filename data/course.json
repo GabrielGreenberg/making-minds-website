@@ -76,10 +76,14 @@
       "topic": "The Cognition–Body Problem",
       "read": [
         {
-          "mm": "The Cognition-Body Problem"
+          "mm": "The Cognition-Body Problem",
+          "n": 1,
+          "page": 6
         },
         {
-          "mm": "What is a Computer?"
+          "mm": "What is a computer?",
+          "n": 2,
+          "page": 10
         },
         {
           "cite": "Syllabus (this page) and",
@@ -96,7 +100,9 @@
       "topic": "Logic Gates & Combinatorial Circuits",
       "read": [
         {
-          "mm": "Logic Gates & Combinatorial Circuits"
+          "mm": "Logic Gates & Combinatorial Circuits",
+          "n": 3,
+          "page": 14
         }
       ],
       "recommended": [
@@ -123,10 +129,14 @@
       "topic": "Functions & Representations",
       "read": [
         {
-          "mm": "Functions"
+          "mm": "Functions",
+          "n": 4,
+          "page": 19
         },
         {
-          "mm": "Systems of Representation"
+          "mm": "Systems of Representation",
+          "n": 5,
+          "page": 24
         }
       ],
       "recommended": [
@@ -169,10 +179,14 @@
       "topic": "Computation with Combinatorial Circuits (CCs)",
       "read": [
         {
-          "mm": "Defining Computation"
+          "mm": "Defining Computation",
+          "n": 6,
+          "page": 30
         },
         {
-          "mm": "Computation as a 3-way Relation"
+          "mm": "Computation as a 3-way Relation",
+          "n": 7,
+          "page": 37
         }
       ],
       "recommended": [
@@ -199,13 +213,19 @@
       "topic": "The Story of Binary +1 (CC)",
       "read": [
         {
-          "mm": "Functional Abstraction"
+          "mm": "Functional Abstraction",
+          "n": 8,
+          "page": 38
         },
         {
-          "mm": "Functional Composition"
+          "mm": "Function Composition",
+          "n": 9,
+          "page": 39
         },
         {
-          "mm": "The Story of Binary Successor"
+          "mm": "The Story of Binary Successor",
+          "n": 10,
+          "page": 42
         }
       ],
       "recommended": [
@@ -230,13 +250,19 @@
       "topic": "Natural and Artificial Computers",
       "read": [
         {
-          "mm": "Introducing Turbots"
+          "mm": "Introducing Turbots",
+          "n": 11,
+          "page": 45
         },
         {
-          "mm": "Real and Ideal Computers"
+          "mm": "Real and Ideal Computers",
+          "n": 12,
+          "page": 48
         },
         {
-          "mm": "Natural and Artificial Computers"
+          "mm": "Artificial and Natural Computers",
+          "n": 14,
+          "page": 52
         },
         {
           "tag": "C*",
@@ -269,10 +295,14 @@
       "topic": "The Computational Theory of Mind",
       "read": [
         {
-          "mm": "The Computational Theory of Mind"
+          "mm": "The Computational Theory of Mind",
+          "n": 15,
+          "page": 56
         },
         {
-          "mm": "Lessons and Limits of Computation with Combinatorial Circuits"
+          "mm": "Lessons and Limits of Combinatorial Computation",
+          "n": 16,
+          "page": 58
         }
       ],
       "recommended": [
@@ -312,10 +342,14 @@
       "topic": "Memory and Sequential Circuits (SCs)",
       "read": [
         {
-          "mm": "Memory"
+          "mm": "Memory",
+          "n": 17,
+          "page": 62
         },
         {
-          "mm": "Circuit Memory"
+          "mm": "Physical Memory",
+          "n": 18,
+          "page": 63
         }
       ],
       "recommended": [
@@ -334,10 +368,14 @@
       "topic": "Computing in Time",
       "read": [
         {
-          "mm": "Machines in Time: Sequential Circuits"
+          "mm": "Machines in Time: Sequential Circuits",
+          "n": 19,
+          "page": 67
         },
         {
-          "mm": "Computing in Time"
+          "mm": "Computing in Time",
+          "n": 20,
+          "page": 72
         }
       ],
       "recommended": [
@@ -372,10 +410,14 @@
       "topic": "Circuits and States",
       "read": [
         {
-          "mm": "Computational Power"
+          "mm": "Computational Power",
+          "n": 21,
+          "page": 77
         },
         {
-          "mm": "The Method of State Description"
+          "mm": "The Method of State Analysis",
+          "n": 22,
+          "page": 82
         }
       ]
     },
@@ -395,7 +437,9 @@
       "topic": "State Abstraction",
       "read": [
         {
-          "mm": "State Abstraction"
+          "mm": "State Abstraction",
+          "n": 23,
+          "page": 87
         }
       ],
       "recommended": [
@@ -443,7 +487,9 @@
       "topic": "Finite State Machines (FSMs) & the Algorithm Concept",
       "read": [
         {
-          "mm": "Finite State Machines"
+          "mm": "Finite State Machines",
+          "n": 25,
+          "page": 100
         }
       ],
       "recommended": [
@@ -481,7 +527,9 @@
       "topic": "Levels of Abstraction",
       "read": [
         {
-          "mm": "Levels of Abstraction"
+          "mm": "Levels of Abstraction",
+          "n": 27,
+          "page": 108
         }
       ],
       "recommended": [
@@ -505,10 +553,14 @@
       "topic": "Turing Machines (TMs)",
       "read": [
         {
-          "mm": "Turing Machines"
+          "mm": "Turing Machines",
+          "n": 28,
+          "page": 115
         },
         {
-          "mm": "Turing Machine Abstraction and Composition"
+          "mm": "Turing Machine Abstraction and Composition",
+          "n": 31,
+          "page": 133
         }
       ],
       "recommended": [
@@ -555,13 +607,19 @@
       "topic": "Recursive Algorithms for TM Computation",
       "read": [
         {
-          "mm": "Recursion"
+          "mm": "Recursion",
+          "n": 30,
+          "page": 127
         },
         {
-          "mm": "Binary Turing Machines"
+          "mm": "Binary Turing Machines",
+          "n": 32,
+          "page": 136
         },
         {
-          "mm": "Exploring the Mathematical Tree"
+          "mm": "The Mathematical Tree",
+          "n": 33,
+          "page": 138
         },
         {
           "tag": "C*",
@@ -589,13 +647,19 @@
       "topic": "Navigation as Computation in Physical Space",
       "read": [
         {
-          "mm": "Computational Navigation"
+          "mm": "Computational Navigation",
+          "n": 34,
+          "page": 141
         },
         {
-          "mm": "The Desert Ant"
+          "mm": "The Desert Ant",
+          "n": 35,
+          "page": 144
         },
         {
-          "mm": "Physical Cognition"
+          "mm": "Physical Cognition",
+          "n": 36,
+          "page": 149
         },
         {
           "cite": "Goldman (2012)",
@@ -630,7 +694,9 @@
       "topic": "Machines & Programs",
       "read": [
         {
-          "mm": "Machines and Programs"
+          "mm": "Machines and Programs",
+          "n": 37,
+          "page": 159
         },
         {
           "tag": "C*",
@@ -653,7 +719,9 @@
       "topic": "The Universal Machine",
       "read": [
         {
-          "mm": "The Universal Machine"
+          "mm": "The Universal Machine",
+          "n": 38,
+          "page": 163
         },
         {
           "tag": "C*",
@@ -671,13 +739,19 @@
       "topic": "Computation & Consciousness",
       "read": [
         {
-          "mm": "Cognitive Architecture"
+          "mm": "Cognitive Architecture",
+          "n": 39,
+          "page": 169
         },
         {
-          "mm": "Computation as Consciousness"
+          "mm": "Computation as Consciousness",
+          "n": 40,
+          "page": 172
         },
         {
-          "mm": "CTM: The Long View"
+          "mm": "Computational Theory of Mind: The Long View",
+          "n": 41,
+          "page": 175
         },
         {
           "tag": "C",

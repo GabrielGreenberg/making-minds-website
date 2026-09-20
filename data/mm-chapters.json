@@ -1,0 +1,210 @@
+{
+ "generated_from": "MM.key table of contents",
+ "chapters": [
+  {
+   "n": 1,
+   "title": "The Cognition-Body Problem",
+   "page": 6
+  },
+  {
+   "n": 2,
+   "title": "What is a computer?",
+   "page": 10
+  },
+  {
+   "n": 3,
+   "title": "Logic Gates & Combinatorial Circuits",
+   "page": 14
+  },
+  {
+   "n": 4,
+   "title": "Functions",
+   "page": 19
+  },
+  {
+   "n": 5,
+   "title": "Systems of Representation",
+   "page": 24
+  },
+  {
+   "n": 6,
+   "title": "Defining Computation",
+   "page": 30
+  },
+  {
+   "n": 7,
+   "title": "Computation as a 3-way Relation",
+   "page": 37
+  },
+  {
+   "n": 8,
+   "title": "Functional Abstraction",
+   "page": 38
+  },
+  {
+   "n": 9,
+   "title": "Function Composition",
+   "page": 39
+  },
+  {
+   "n": 10,
+   "title": "The Story of Binary Successor",
+   "page": 42
+  },
+  {
+   "n": 11,
+   "title": "Introducing Turbots",
+   "page": 45
+  },
+  {
+   "n": 12,
+   "title": "Real and Ideal Computers",
+   "page": 48
+  },
+  {
+   "n": 13,
+   "title": "Craik’s computational theory of mind",
+   "page": 49
+  },
+  {
+   "n": 14,
+   "title": "Artificial and Natural Computers",
+   "page": 52
+  },
+  {
+   "n": 15,
+   "title": "The Computational Theory of Mind",
+   "page": 56
+  },
+  {
+   "n": 16,
+   "title": "Lessons and Limits of Combinatorial Computation",
+   "page": 58
+  },
+  {
+   "n": 17,
+   "title": "Memory",
+   "page": 62
+  },
+  {
+   "n": 18,
+   "title": "Physical Memory",
+   "page": 63
+  },
+  {
+   "n": 19,
+   "title": "Machines in Time: Sequential Circuits",
+   "page": 67
+  },
+  {
+   "n": 20,
+   "title": "Computing in Time",
+   "page": 72
+  },
+  {
+   "n": 21,
+   "title": "Computational Power",
+   "page": 77
+  },
+  {
+   "n": 22,
+   "title": "The Method of State Analysis",
+   "page": 82
+  },
+  {
+   "n": 23,
+   "title": "State Abstraction",
+   "page": 87
+  },
+  {
+   "n": 24,
+   "title": "The Concept of Abstraction",
+   "page": 92
+  },
+  {
+   "n": 25,
+   "title": "Finite State Machines",
+   "page": 100
+  },
+  {
+   "n": 26,
+   "title": "What is an Algorithm?",
+   "page": 105
+  },
+  {
+   "n": 27,
+   "title": "Levels of Abstraction",
+   "page": 108
+  },
+  {
+   "n": 28,
+   "title": "Turing Machines",
+   "page": 115
+  },
+  {
+   "n": 29,
+   "title": "Computing with Turing Machines",
+   "page": 123
+  },
+  {
+   "n": 30,
+   "title": "Recursion",
+   "page": 127
+  },
+  {
+   "n": 31,
+   "title": "Turing Machine Abstraction and Composition",
+   "page": 133
+  },
+  {
+   "n": 32,
+   "title": "Binary Turing Machines",
+   "page": 136
+  },
+  {
+   "n": 33,
+   "title": "The Mathematical Tree",
+   "page": 138
+  },
+  {
+   "n": 34,
+   "title": "Computational Navigation",
+   "page": 141
+  },
+  {
+   "n": 35,
+   "title": "The Desert Ant",
+   "page": 144
+  },
+  {
+   "n": 36,
+   "title": "Physical Cognition",
+   "page": 149
+  },
+  {
+   "n": 37,
+   "title": "Machines and Programs",
+   "page": 159
+  },
+  {
+   "n": 38,
+   "title": "The Universal Machine",
+   "page": 163
+  },
+  {
+   "n": 39,
+   "title": "Cognitive Architecture",
+   "page": 169
+  },
+  {
+   "n": 40,
+   "title": "Computation as Consciousness",
+   "page": 172
+  },
+  {
+   "n": 41,
+   "title": "Computational Theory of Mind: The Long View",
+   "page": 175
+  }
+ ]
+}
