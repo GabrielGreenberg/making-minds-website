@@ -85,7 +85,7 @@
       ['Sections', esc(sec.day) + ' ' + sec.times.map(esc).join(' and ') + '<br><em>room ' + esc(sec.room) + '</em>'],
       ['Instructor', esc(c.instructor.title + ' ' + c.instructor.name) + '<br>office hours <em>' + esc(c.instructor.officeHours) + '</em>'],
       ['TA', esc(c.ta.name) + '<br>office hours <em>' + esc(c.ta.officeHours) + '</em>'],
-      ['Course book', '<b>' + esc(c.book.title) + '</b> (' + esc(c.book.abbrev) + ') — ' + link(c.book.pdf, 'PDF') + (c.book.drive ? ' · ' + link(c.book.drive, 'current version') : '') + '<br>' + esc(c.book.note)],
+      ['Course book', '<b>' + esc(c.book.title) + '</b> (' + esc(c.book.abbrev) + ') — ' + link(c.book.pdf, 'PDF') + (c.book.drive ? ' · ' + link(c.book.drive, 'current version') : '') + (c.book.note ? ' <span class="dim">· ' + esc(c.book.note) + '</span>' : '')],
       ['Homework', words(c.homework.count) + ' problem sets, in the ' + link(c.app.url, c.app.label) + '<br>' + esc(c.homework.summary)],
     ];
     var exams = window.__course.schedule.filter(function (x) { return x.type === 'exam'; });
@@ -201,7 +201,7 @@
     data.schedule.forEach(function (x) { if (x.type === 'exam') exams[x.title === 'Midterm' ? 'midterm' : 'final'] = x; });
     var values = {
       'app.url': c.app.url, 'app.label': c.app.label,
-      'book.title': c.book.title, 'book.abbrev': c.book.abbrev,
+      'book.title': c.book.title, 'book.abbrev': c.book.abbrev, 'book.pdf': c.book.pdf,
       'midterm.long': exams.midterm ? longDate(exams.midterm.date) : '', 'midterm.note': exams.midterm ? exams.midterm.note : '',
       'final.long': exams.final ? longDate(exams.final.date) + ', ' + timeRange(exams.final.start, exams.final.end) : '',
       'final.where': exams.final ? exams.final.where : '',
