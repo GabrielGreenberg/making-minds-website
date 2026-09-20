@@ -40,7 +40,7 @@
   }
   // One reading entry -> inline HTML.
   function reading(r) {
-    if (r.mm) return '<span class="mm">MM</span>' + esc(r.mm);
+    if (r.mm) return '<span class="mm">MM' + (r.n ? ' ' + r.n : '') + '</span>' + esc(r.mm);
     if (r.html) return r.html;
     if (r.text) return r.text;
     var parts = [];
