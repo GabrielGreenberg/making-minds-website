@@ -159,6 +159,13 @@
         },
         {
           "html": "Syllabus (this page) and <a href=\"policies.html\">Course Policies</a>"
+        },
+        {
+          "tag": "C*",
+          "cite": "Descartes (1637) <i>Discourse on the Method</i>, Part V —",
+          "url": "https://archive.org/details/philosophicalwor01desc/page/115",
+          "linkText": "the automaton passage",
+          "note": "(Haldane &amp; Ross trans., vol. 1 pp. 115–118: from “And this will not seem strange…” to the end of Part V)"
         }
       ]
     },
@@ -172,16 +179,16 @@
           "mm": "Logic Gates & Combinatorial Circuits",
           "n": 3,
           "page": 14
-        }
-      ],
-      "recommended": [
+        },
         {
           "tag": "C",
           "cite": "Hillis (1999) <i>The Pattern on the Stone</i>,",
           "url": "https://drive.google.com/open?id=1RPbL8ybUm5VWZPpNcPHHFwSFZ3yHdRda",
           "linkText": "\"Preface: Magic in the Stone,\" Ch. 1: \"Nuts and Bolts,\" Ch. 2: \"Universal Building Blocks\"",
           "note": "(through p. 30)"
-        },
+        }
+      ],
+      "recommended": [
         {
           "tag": "C",
           "cite": "Edelman (2008) <i>Computing the Brain</i>,",
@@ -256,6 +263,12 @@
           "mm": "Computation as a 3-way Relation",
           "n": 7,
           "page": 37
+        },
+        {
+          "tag": "C*",
+          "cite": "Minsky (1965)",
+          "url": "https://www.mit.edu/~dxh/marvin/web.media.mit.edu/~minsky/papers/MatterMindModels.txt",
+          "linkText": "“Matter, Mind and Models”"
         }
       ],
       "recommended": [
@@ -450,6 +463,13 @@
           "mm": "Computing in Time",
           "n": 20,
           "page": 72
+        },
+        {
+          "tag": "T*",
+          "cite": "Moore (1956)",
+          "url": "https://www.cs.cmu.edu/~cdm/resources/Moore1956-gedanken-experiments.pdf",
+          "linkText": "“Gedanken-Experiments on Sequential Machines”",
+          "note": "— §§1–5 (stop at §6)"
         }
       ],
       "recommended": [
@@ -519,6 +539,21 @@
           "mm": "The Concept of Abstraction",
           "n": 24,
           "page": 92
+        },
+        {
+          "tag": "C*",
+          "cite": "Putnam (1975) \"Philosophy and Our Mental Life\" —",
+          "links": [
+            {
+              "url": "https://drive.google.com/open?id=1qjPt8S5A2W1-LPr-583XyYwgmzddkDjK",
+              "text": "excerpt"
+            },
+            {
+              "url": "https://drive.google.com/open?id=1S1761US_9d5til5gD9vEKkCrYDdBbrI7",
+              "text": "full paper"
+            }
+          ],
+          "note": "(read for the peg-and-board argument about the explanatory utility of abstraction)"
         }
       ],
       "recommended": [
@@ -536,20 +571,6 @@
             }
           ],
           "note": "(if you already read Putnam (1960) <a href=\"https://drive.google.com/open?id=16IF-WfkRaGJU94OKp7R0wkeFtVed-iXA\">\"Minds and Machines\"</a>, that will work)"
-        },
-        {
-          "tag": "C*",
-          "cite": "Putnam (1975) \"Philosophy and Our Mental Life\" —",
-          "links": [
-            {
-              "url": "https://drive.google.com/open?id=1qjPt8S5A2W1-LPr-583XyYwgmzddkDjK",
-              "text": "excerpt"
-            },
-            {
-              "url": "https://drive.google.com/open?id=1S1761US_9d5til5gD9vEKkCrYDdBbrI7",
-              "text": "full paper"
-            }
-          ]
         },
         {
           "tag": "T",
@@ -574,6 +595,13 @@
           "mm": "What is an Algorithm?",
           "n": 26,
           "page": 105
+        },
+        {
+          "tag": "C*",
+          "cite": "Chomsky (1957)",
+          "url": "uploads/9/3/9/1/9391709/chomsky_1957__syntactic_structures__-_selections.pdf",
+          "linkText": "\"An Elementary Linguistic Theory\"",
+          "note": "(<i>Syntactic Structures</i> ch. 3 — read for the finite-state model of English in §3.1)"
         }
       ],
       "recommended": [
@@ -610,16 +638,23 @@
           "mm": "Levels of Abstraction",
           "n": 27,
           "page": 108
-        }
-      ],
-      "recommended": [
+        },
         {
           "tag": "C*",
           "cite": "Marr (1982)",
           "url": "https://drive.google.com/open?id=1SL6zVIdBabBGny_3i7lZaG_AS0qqy9UW",
-          "linkText": "\"Understanding Complex Information-Processing Systems\""
+          "linkText": "\"Understanding Complex Information-Processing Systems\"",
+          "note": "— <i>Vision</i> ch. 1, §1.2"
+        },
+        {
+          "tag": "C*",
+          "cite": "Newell (1982)",
+          "url": "http://cs.uns.edu.ar/~grs/InteligenciaArtificial/Allen%20Newell%20-%20The%20knowledge%20level.pdf",
+          "linkText": "“The Knowledge Level”",
+          "note": "— §§1 and 3 (pp. 87–88, 94–100)"
         }
-      ]
+      ],
+      "recommended": []
     },
     {
       "type": "holiday",
@@ -641,6 +676,13 @@
           "mm": "Computing with Turing Machines",
           "n": 29,
           "page": 123
+        },
+        {
+          "tag": "C/T",
+          "cite": "Fitch and Friederici (2012)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3367694/",
+          "linkText": "“Artificial grammar learning meets formal language theory: an overview”",
+          "note": "— §§1–3"
         }
       ],
       "recommended": [
@@ -705,13 +747,6 @@
           "mm": "The Mathematical Tree",
           "n": 33,
           "page": 138
-        },
-        {
-          "tag": "C*",
-          "cite": "Chomsky (1957)",
-          "url": "uploads/9/3/9/1/9391709/chomsky_1957__syntactic_structures__-_selections.pdf",
-          "linkText": "\"An Elementary Linguistic Theory\"",
-          "note": "(excerpt from <i>Syntactic Structures</i>)"
         }
       ],
       "recommended": [
@@ -785,6 +820,22 @@
         },
         {
           "tag": "C*",
+          "cite": "Lovelace (1843)",
+          "url": "https://www.fourmilab.ch/babbage/sketch.html",
+          "linkText": "Note G",
+          "note": "to Menabrea’s “Sketch of the Analytical Engine” (read past the Bernoulli table rather than through it)"
+        },
+        {
+          "tag": "C",
+          "cite": "Colburn (1999)",
+          "url": "https://cse.buffalo.edu/~rapaport/Papers/Papers.by.Others/colburn99.pdf",
+          "linkText": "“Software, Abstraction, and Ontology”",
+          "note": "— §§1–4"
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "C*",
           "cite": "Pylyshyn (1980)",
           "url": "https://drive.google.com/open?id=1PebGe4VIKLBXcns2lPMa58u0freAjsdT",
           "linkText": "\"Computation and Cognition: Issues in the Foundations of Cognitive Science\"",
@@ -808,6 +859,15 @@
           "n": 38,
           "page": 163
         },
+        {
+          "tag": "C*",
+          "cite": "Turing (1950)",
+          "url": "https://www.cs.mcgill.ca/~dprecup/courses/AI/Materials/turing1950.pdf",
+          "linkText": "“Computing Machinery and Intelligence”",
+          "note": "— §§1–5"
+        }
+      ],
+      "recommended": [
         {
           "tag": "C*",
           "cite": "Pylyshyn (1980)",
@@ -839,13 +899,20 @@
           "page": 175
         },
         {
+          "tag": "C*",
+          "cite": "Turing (1950)",
+          "url": "https://www.cs.mcgill.ca/~dprecup/courses/AI/Materials/turing1950.pdf",
+          "linkText": "“Computing Machinery and Intelligence”",
+          "note": "— §§6–7"
+        }
+      ],
+      "recommended": [
+        {
           "tag": "C",
           "cite": "Baars (1988)",
           "url": "https://drive.google.com/open?id=1U8PZeLlK08iQ3aKpzatC72zFLzjMLRjn",
           "linkText": "\"The Global Workspace Theory of Consciousness\""
-        }
-      ],
-      "recommended": [
+        },
         {
           "tag": "C",
           "cite": "Lau and Rosenthal (2011)",
