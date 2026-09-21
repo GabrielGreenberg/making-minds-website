@@ -55,8 +55,14 @@
     var rr = window.__course && window.__course.course.readings && window.__course.course.readings.reader;
     var here = rr && r.id && (r.file || (r.url && !/^https?:/.test(r.url)) || (r.links || []).some(function (l) { return !/^https?:/.test(l.url); }))
       ? rr + '#' + r.id + (r.filePage ? '/p' + r.filePage : '') : null;
-    // the entry's own link goes to the reader when the reading is hosted here; named extra links (e.g. "full paper") stay put
-    function rl(url, text) { return here && (!/^https?:/.test(url) || (r.file && url === r.url)) ? link(here, text) : link(url, text); }
+    // the entry's own link (or its first local link) opens the reader when the reading is hosted here;
+    // further local links (e.g. "full paper" beside an excerpt) and outside links stay as they are
+    var sent = false;
+    function rl(url, text) {
+      var local = !/^https?:/.test(url);
+      if (here && !sent && (local || (r.file && url === r.url))) { sent = true; return link(here, text); }
+      return link(url, text);
+    }
     var parts = [];
     if (r.label) parts.push('<span class="dim">' + esc(r.label) + '</span>');
     if (r.tag) parts.push(tag(r.tag));

@@ -166,6 +166,8 @@
         {
           "tag": "C*",
           "cite": "Descartes (1637) <i>Discourse on the Method</i>, Part V —",
+          "id": "descartes-1637",
+          "file": "reader/files/descartes-1637-discourse-v-automaton.pdf",
           "url": "https://archive.org/details/philosophicalwor01desc/page/115",
           "linkText": "the automaton passage",
           "note": "(Haldane &amp; Ross trans., vol. 1 pp. 115–118: from “And this will not seem strange…” to the end of Part V)"
@@ -186,6 +188,8 @@
         {
           "tag": "C",
           "cite": "Hillis (1999) <i>The Pattern on the Stone</i>,",
+          "id": "hillis-1999-ch1-2",
+          "file": "reader/files/hillis-1999-preface-ch1-2.pdf",
           "url": "https://drive.google.com/open?id=1RPbL8ybUm5VWZPpNcPHHFwSFZ3yHdRda",
           "linkText": "\"Preface: Magic in the Stone,\" Ch. 1: \"Nuts and Bolts,\" Ch. 2: \"Universal Building Blocks\"",
           "note": "(through p. 30)"
@@ -225,12 +229,16 @@
         {
           "tag": "T",
           "cite": "Petzold (2000) <i>Code</i>,",
+          "id": "petzold-2000-ch7-8",
+          "file": "reader/files/petzold-2000-ch7-8.pdf",
           "url": "https://drive.google.com/file/d/1arv47PXSskC1bb5qyiPG4p0_-hgqXMm9/view?usp=sharing",
           "linkText": "Ch. 7: \"Our Ten Digits\" and Ch. 8: \"Alternatives to Ten\""
         },
         {
           "tag": "T",
           "cite": "Redwoods Department of Mathematics (2007)",
+          "id": "redwoods-2007",
+          "file": "reader/files/redwoods-2007-functions.pdf",
           "url": "https://drive.google.com/open?id=1296AaOewJgoyHtKsT3CuSVNxdJKv8r71",
           "linkText": "\"Introduction to Functions\""
         },
@@ -276,6 +284,8 @@
         {
           "tag": "C*",
           "cite": "Minsky (1965)",
+          "id": "minsky-1965",
+          "file": "reader/files/minsky-1965.pdf",
           "url": "https://www.mit.edu/~dxh/marvin/web.media.mit.edu/~minsky/papers/MatterMindModels.txt",
           "linkText": "“Matter, Mind and Models”"
         }
@@ -285,8 +295,8 @@
           "tag": "C",
           "cite": "Crane (2003) <i>The Mechanical Mind</i>, Ch. 3:",
           "id": "crane-2003",
-          "file": "uploads/9/3/9/1/9391709/crane_2003__22the_mechanical_mind_23.pdf",
-          "filePage": 96,
+          "file": "reader/files/crane-2003-ch3.pdf",
+          "filePage": 3,
           "url": "https://drive.google.com/open?id=14l6EWqePzyUs1PY5ADuOCxqguZJJBks3",
           "linkText": "\"Computers and Thought\"",
           "note": "pp. 83–114 only (skim 92–99)"
@@ -294,6 +304,8 @@
         {
           "tag": "T*",
           "cite": "Cummins (1991) <i>Meaning and Mental Representations</i>, Ch. 8:",
+          "id": "cummins-1991",
+          "file": "reader/files/cummins-1991-ch8.pdf",
           "url": "https://drive.google.com/open?id=1Jeg7NYG9fe0jTj_QnrReCEce2PokaVY8",
           "linkText": "\"Interpretational Semantics\"",
           "note": "(excerpt)"
@@ -326,6 +338,8 @@
         {
           "tag": "T",
           "cite": "Petzold (2000) <i>Code</i>, Ch. 12:",
+          "id": "petzold-2000-ch12",
+          "file": "reader/files/petzold-2000-ch12.pdf",
           "url": "https://drive.google.com/open?id=1BqucMDzyoHivULllfqN848lDui1grlYM",
           "linkText": "\"A Binary Adding Machine\""
         },
@@ -366,6 +380,8 @@
         {
           "tag": "C*",
           "cite": "Craik (1943) <i>The Nature of Explanation</i>, Ch. 5:",
+          "id": "craik-1943",
+          "file": "reader/files/craik-1943-ch5.pdf",
           "url": "https://drive.google.com/open?id=1zi8KVoJw27f477lZVA1e-ilkteoyHjQG",
           "linkText": "\"Hypothesis on the Nature of Thought\""
         }
@@ -375,8 +391,7 @@
           "tag": "C",
           "cite": "Pinker (1997) <i>How the Mind Works</i>, Ch. 2:",
           "id": "pinker-1997",
-          "file": "uploads/9/3/9/1/9391709/pinker_1997__22how_the_mind_works_23.pdf",
-          "filePage": 73,
+          "file": "reader/files/pinker-1997-ch2.pdf",
           "url": "https://drive.google.com/open?id=1YQQDDUViY4zvTxS8CZ5pt1FXvpVxhBw6",
           "linkText": "\"Thinking Machines\"",
           "note": "(excerpt)"
@@ -411,6 +426,8 @@
         {
           "tag": "C",
           "cite": "McLaughlin (2004)",
+          "id": "mclaughlin-2004",
+          "file": "reader/files/mclaughlin-2004.pdf",
           "url": "https://drive.google.com/open?id=151EVdPah83hgcdz-HNTsvdofI1bCBlTH",
           "linkText": "\"Computationalism, Connectionism, and the Philosophy of Mind\"",
           "note": "— pages 135–141 only"
@@ -459,9 +476,11 @@
       "recommended": [
         {
           "tag": "C",
-          "cite": "Braitenberg (1986) <i>Vehicles: Experiments in Synthetic Psychology</i>, Ch. 5:",
+          "cite": "Braitenberg (1984) <i>Vehicles: Experiments in Synthetic Psychology</i>,",
+          "id": "braitenberg-1984",
+          "file": "reader/files/braitenberg-vehicles-ch5.pdf",
           "url": "https://drive.google.com/file/d/1EMPzs3PZsf7j0RV-LamOulTjOzAUlPBm/view?usp=sharing",
-          "linkText": "\"Vehicles\""
+          "linkText": "\"Vehicle 5: Logic\""
         }
       ]
     },
@@ -484,6 +503,8 @@
         {
           "tag": "T*",
           "cite": "Moore (1956)",
+          "id": "moore-1956",
+          "file": "reader/files/moore-1956.pdf",
           "url": "https://www.cs.cmu.edu/~cdm/resources/Moore1956-gedanken-experiments.pdf",
           "linkText": "“Gedanken-Experiments on Sequential Machines”",
           "note": "— §§1–5 (stop at §6)"
@@ -560,13 +581,15 @@
         {
           "tag": "C*",
           "cite": "Putnam (1975) \"Philosophy and Our Mental Life\" —",
+          "id": "putnam-1975",
+          "file": "reader/files/putnam-1975-excerpt.pdf",
           "links": [
             {
-              "url": "https://drive.google.com/open?id=1qjPt8S5A2W1-LPr-583XyYwgmzddkDjK",
+              "url": "reader/files/putnam-1975-excerpt.pdf",
               "text": "excerpt"
             },
             {
-              "url": "https://drive.google.com/open?id=1S1761US_9d5til5gD9vEKkCrYDdBbrI7",
+              "url": "reader/files/putnam-1975.pdf",
               "text": "full paper"
             }
           ],
@@ -585,15 +608,17 @@
               "text": "excerpt"
             },
             {
-              "url": "https://drive.google.com/open?id=1WhlRhZ86ZQxuDA_WMD1ePi1K_doxtvzM",
+              "url": "reader/files/putnam-1967.pdf",
               "text": "full paper"
             }
           ],
-          "note": "(if you already read Putnam (1960) <a href=\"https://drive.google.com/open?id=16IF-WfkRaGJU94OKp7R0wkeFtVed-iXA\">\"Minds and Machines\"</a>, that will work)"
+          "note": "(if you already read Putnam (1960) <a href=\"reader/files/putnam-1960.pdf\">\"Minds and Machines\"</a>, that will work)"
         },
         {
           "tag": "T",
           "cite": "Patterson and Hennessy (2018)",
+          "id": "patterson-hennessy-2018",
+          "file": "reader/files/patterson-hennessy-2018-fsm.pdf",
           "url": "https://drive.google.com/open?id=124_gfCSidNeieFUxptfsnw7jhe3PqjUh",
           "linkText": "\"Finite State Machines\""
         }
@@ -619,8 +644,8 @@
           "tag": "C*",
           "cite": "Chomsky (1957)",
           "id": "chomsky-1957",
-          "file": "uploads/9/3/9/1/9391709/chomsky_1957__syntactic_structures__-_selections.pdf",
-          "url": "uploads/9/3/9/1/9391709/chomsky_1957__syntactic_structures__-_selections.pdf",
+          "file": "reader/files/chomsky-1957-ch3.pdf",
+          "url": "reader/files/chomsky-1957-ch3.pdf",
           "linkText": "\"An Elementary Linguistic Theory\"",
           "note": "(<i>Syntactic Structures</i> ch. 3 — read for the finite-state model of English in §3.1)"
         }
@@ -629,6 +654,8 @@
         {
           "tag": "C",
           "cite": "Hillis (1999)",
+          "id": "hillis-1999-pp30-38",
+          "file": "reader/files/hillis-1999-pp30-38.pdf",
           "url": "https://drive.google.com/open?id=10gOtWpC48rqn5t1ekmS_-QKCdElDbPEr",
           "linkText": "<i>The Pattern on the Stone</i>",
           "note": "— pages 30–38"
@@ -663,6 +690,8 @@
         {
           "tag": "C*",
           "cite": "Marr (1982)",
+          "id": "marr-1982",
+          "file": "reader/files/marr-1982-vision-ch1.pdf",
           "url": "https://drive.google.com/open?id=1SL6zVIdBabBGny_3i7lZaG_AS0qqy9UW",
           "linkText": "\"Understanding Complex Information-Processing Systems\"",
           "note": "— <i>Vision</i> ch. 1, §1.2"
@@ -670,6 +699,8 @@
         {
           "tag": "C*",
           "cite": "Newell (1982)",
+          "id": "newell-1982",
+          "file": "reader/files/newell-1982.pdf",
           "url": "http://cs.uns.edu.ar/~grs/InteligenciaArtificial/Allen%20Newell%20-%20The%20knowledge%20level.pdf",
           "linkText": "“The Knowledge Level”",
           "note": "— §§1 and 3 (pp. 87–88, 94–100)"
@@ -713,6 +744,8 @@
         {
           "tag": "T*",
           "cite": "Turing (1936)",
+          "id": "turing-1936",
+          "file": "reader/files/turing-1936-excerpt.pdf",
           "url": "https://drive.google.com/open?id=1fu8kNnp_xiKNdc7_dLo9CWaCmTxtJhgX",
           "linkText": "\"On Computable Numbers, with an Application to the Entscheidungsproblem\"",
           "note": "(excerpt)"
@@ -720,6 +753,8 @@
         {
           "tag": "T",
           "cite": "Boolos, Burgess, and Jeffrey (2007) <i>Computability and Logic</i>, Ch. 3:",
+          "id": "boolos-burgess-jeffrey-2007",
+          "file": "reader/files/boolos-burgess-jeffrey-2007-ch3.pdf",
           "url": "https://drive.google.com/open?id=1pyOJNa10ZBrG6VscRpWlvSA-06GexbjA",
           "linkText": "\"Turing Computability\""
         },
@@ -773,6 +808,8 @@
       "recommended": [
         {
           "cite": "Hillis (1999) <i>The Pattern on the Stone</i>,",
+          "id": "hillis-1999-programming",
+          "file": "reader/files/hillis-1999-programming.pdf",
           "url": "https://drive.google.com/open?id=1mn4BeXzdAF7QcwoC8bqHwQZoqLcmUJrX",
           "linkText": "\"Programming\""
         },
@@ -813,6 +850,8 @@
       "recommended": [
         {
           "cite": "Gallistel (1998)",
+          "id": "gallistel-1998",
+          "file": "reader/files/gallistel-1998.pdf",
           "url": "https://drive.google.com/open?id=19YEsPipuRYIkRtJwNNojM4EcUgy2Ex-b",
           "linkText": "\"Insect Navigation: Brains as Symbol-Processing Organs\""
         },
@@ -846,6 +885,8 @@
         {
           "tag": "C*",
           "cite": "Lovelace (1843)",
+          "id": "lovelace-1843",
+          "file": "reader/files/lovelace-1843-note-g.pdf",
           "url": "https://www.fourmilab.ch/babbage/sketch.html",
           "linkText": "Note G",
           "note": "to Menabrea’s “Sketch of the Analytical Engine” (read past the Bernoulli table rather than through it)"
@@ -853,6 +894,8 @@
         {
           "tag": "C",
           "cite": "Colburn (1999)",
+          "id": "colburn-1999",
+          "file": "reader/files/colburn-1999.pdf",
           "url": "https://cse.buffalo.edu/~rapaport/Papers/Papers.by.Others/colburn99.pdf",
           "linkText": "“Software, Abstraction, and Ontology”",
           "note": "— §§1–4"
@@ -862,6 +905,8 @@
         {
           "tag": "C*",
           "cite": "Pylyshyn (1980)",
+          "id": "pylyshyn-1980",
+          "file": "reader/files/pylyshyn-1980.pdf",
           "url": "https://drive.google.com/open?id=1PebGe4VIKLBXcns2lPMa58u0freAjsdT",
           "linkText": "\"Computation and Cognition: Issues in the Foundations of Cognitive Science\"",
           "note": "— sections 1–6"
@@ -887,6 +932,8 @@
         {
           "tag": "C*",
           "cite": "Turing (1950)",
+          "id": "turing-1950",
+          "file": "reader/files/turing-1950.pdf",
           "url": "https://www.cs.mcgill.ca/~dprecup/courses/AI/Materials/turing1950.pdf",
           "linkText": "“Computing Machinery and Intelligence”",
           "note": "— §§1–5"
@@ -896,6 +943,8 @@
         {
           "tag": "C*",
           "cite": "Pylyshyn (1980)",
+          "id": "pylyshyn-1980",
+          "file": "reader/files/pylyshyn-1980.pdf",
           "url": "https://drive.google.com/open?id=1PebGe4VIKLBXcns2lPMa58u0freAjsdT",
           "linkText": "\"Computation and Cognition: Issues in the Foundations of Cognitive Science\"",
           "note": "— sections 7–11"
@@ -926,6 +975,8 @@
         {
           "tag": "C*",
           "cite": "Turing (1950)",
+          "id": "turing-1950",
+          "file": "reader/files/turing-1950.pdf",
           "url": "https://www.cs.mcgill.ca/~dprecup/courses/AI/Materials/turing1950.pdf",
           "linkText": "“Computing Machinery and Intelligence”",
           "note": "— §§6–7"
@@ -935,23 +986,31 @@
         {
           "tag": "C",
           "cite": "Baars (1988)",
+          "id": "baars-1988",
+          "file": "reader/files/baars-1988.pdf",
           "url": "https://drive.google.com/open?id=1U8PZeLlK08iQ3aKpzatC72zFLzjMLRjn",
           "linkText": "\"The Global Workspace Theory of Consciousness\""
         },
         {
           "tag": "C",
           "cite": "Lau and Rosenthal (2011)",
+          "id": "lau-rosenthal-2011",
+          "file": "reader/files/lau-rosenthal-2011.pdf",
           "url": "https://www.davidrosenthal.org/DR-Lau-TICS.pdf",
           "linkText": "\"Empirical Support for Higher-Order Theories of Conscious Awareness\""
         },
         {
           "cite": "McDermott (2007)",
+          "id": "mcdermott-2007",
+          "file": "reader/files/mcdermott-2007.pdf",
           "url": "http://www.cs.yale.edu/homes/dvm/papers/conscioushb.pdf",
           "linkText": "\"Artificial Intelligence and Consciousness\""
         },
         {
           "tag": "C/T",
           "cite": "Aaronson (2013)",
+          "id": "aaronson-2013",
+          "file": "reader/files/aaronson-2013.pdf",
           "url": "https://www.scottaaronson.com/papers/philos.pdf",
           "linkText": "\"Why Philosophers Should Care About Complexity Theory\""
         }
@@ -986,8 +1045,8 @@
     ],
     "Books": [
       {
-        "kind": "Drive",
-        "url": "https://drive.google.com/open?id=1VstnBxBNtFMs7GOcqKvYeq0JmABcXyLs",
+        "kind": "PDF",
+        "url": "reader/files/clark-2001-mindware.pdf",
         "title": "Clark (2001) <i>Mindware</i>"
       },
       {

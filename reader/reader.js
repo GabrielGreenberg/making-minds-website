@@ -75,6 +75,11 @@ function extLinks(r) {
   (r.links || []).forEach((l) => { if (l.url && isExt(l.url)) out.push({ url: l.url, text: strip(l.text || ''), named: true }); });
   return out;
 }
+// local links other than the one shown in the viewer ("full paper" beside an excerpt)
+function moreFiles(r) {
+  const f = fileOf(r);
+  return (r.links || []).filter((l) => l.url && !isExt(l.url) && l.url !== f).map((l) => ({ url: l.url, text: strip(l.text || 'PDF') }));
+}
 function truncate(s, n) { s = String(s).replace(/[,\s]+$/, ''); return s.length > n ? s.slice(0, n - 1).replace(/\s+\S*$/, '') + '…' : s; }
 function keyOf(r) {
   if (r.id) return r.id;
@@ -114,6 +119,8 @@ function addAssignment(r, lesson, required) {
   const a = { r, lesson, required, file: fileOf(r), page: r.filePage || null, key };
   w.assignments.push(a);
   if (a.file && !w.file) w.file = a.file;
+  w.more = w.more || [];
+  moreFiles(r).forEach((m) => { if (!w.more.some((x) => x.url === m.url)) w.more.push(m); });
   if (r.tag && w.tags.indexOf(r.tag) < 0) w.tags.push(r.tag);
   return a;
 }
@@ -297,6 +304,7 @@ function cardHtml(w, ctx) {
   }
   h += '<div class="rd-actions">';
   if (w.file) h += '<a class="primary" href="../' + esc(w.file) + '" download>Download PDF</a>';
+  (w.more || []).forEach((m) => { h += '<a href="../' + esc(m.url) + '" download>' + esc(m.text) + ' <span class="sub">PDF ↓</span></a>'; });
   // one "Open" button per outside link: a lone unnamed link is "Open on <host>", several are told apart by their text
   w.ext.forEach((l) => {
     const text = (w.ext.length === 1 && !l.named) || !l.text ? 'Open on ' + esc(host(l.url)) : esc(truncate(l.text, 44)) + ' <span class="sub">' + esc(host(l.url)) + '</span>';
