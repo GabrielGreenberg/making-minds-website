@@ -13,9 +13,14 @@
 <link rel="stylesheet" href="reader.css">
 </head>
 <body class="rb">
-<header class="topbar rb-top">
+<header class="topbar">
+  <div class="rb-topinner">
+    <a class="brand" href="../index.html">Making Minds<span class="course">Phil 133</span></a>
+    <nav aria-label="Site"><a href="../index.html">Schedule</a><a href="../policies.html">Policies</a><a href="../resources.html">Resources</a><a href="./" aria-current=page>Course book</a><a class="ext" href="https://making-minds.pages.dev" target="_blank" rel="noopener">Course app</a></nav>
+  </div>
+</header>
+<div class="rb-top">
   <button class="rb-menu" id="menu" type="button" aria-label="Contents" aria-controls="side" aria-expanded="false"><span></span><span></span><span></span></button>
-  <a class="brand" href="#contents">Making Minds<span class="course">Course book</span></a>
   <nav class="rb-crumb" id="crumb" aria-label="Position"></nav>
   <div class="rb-tools">
     <span class="rb-pageno mono" id="pageno"></span>
@@ -28,9 +33,8 @@
         <option value="2">200%</option>
       </select>
     </label>
-    <a class="rb-site" href="../index.html">Course site</a>
   </div>
-</header>
+</div>
 
 <div class="rb-body">
   <div class="rb-backdrop" id="backdrop"></div>

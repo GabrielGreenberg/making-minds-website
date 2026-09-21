@@ -24,7 +24,7 @@ let byId = {};
 let cur = null;               // {doc, pdf, scale, pw, ph, pages:[{i, p, el, pdfPage, renderedScale, rendering, task}], gen}
 let gen = 0;
 let zoom = +store.get('zoom', 1) || 1;
-let progress = store.get('progress', {});
+let lastCurId = null;         // which document the sidebar last marked current (chevron auto-open resets on change)
 let observer = null;
 let searchIndex = null, searchLoading = null;
 let hl = null;                // {page, y, tokens}: what to highlight once that page renders (after a search click)
@@ -48,6 +48,15 @@ function buildModel(m) {
 const chapterByN = (n) => docs.find((d) => d.kind === 'ch' && d.n === n);
 const docByPage = (p) => docs.find((d) => p >= d.filePages[0] && p <= d.filePages[1]);
 function hashFor(d) { return d.kind === 'ch' ? '#ch' + d.n : '#' + d.id; }
+// the last changelog entry as "ch. 4, 7", "problem sets", "front matter" …
+function lastUpdate() {
+  const last = (M.changelog || []).slice(-1)[0];
+  if (!last) return null;
+  const parts = [];
+  if (last.chapters && last.chapters.length) parts.push('ch. ' + last.chapters.join(', '));
+  (last.other || []).forEach((o) => { if (o === 'ps') parts.push('problem sets'); });   // the cover's date changes every build: not news
+  return parts.length ? { date: last.date, what: parts.join(' · ') } : null;
+}
 function fmtDate(iso) { const p = iso.split('-').map(Number); return new Date(p[0], p[1] - 1, p[2], 12).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); }
 
 // ---------------------------------------------------------------- sidebar
@@ -56,46 +65,58 @@ function buildToc() {
   const front = byId.front;
   if (front) h += '<a class="front" href="#front" data-id="front">Front matter <span class="dim">· cover, contents</span></a>';
   M.units.forEach((u) => {
-    h += '<div class="unit" style="--uc:var(--u' + u.n + ')"><span class="un">Unit ' + u.n + '</span><span class="ut">' + esc(u.name) + '</span></div><ol>';
+    h += '<div class="unit" style="--uc:var(--u' + u.n + ')"><button class="tog" type="button" aria-expanded="true" aria-label="Fold unit ' + u.n + '"></button><span class="un">Unit ' + u.n + '</span><span class="ut">' + esc(u.name) + '</span></div><ol>';
     u.chapters.forEach((n) => { const d = chapterByN(n); if (d) h += tocItem(d, 'var(--u' + u.n + ')'); });
     h += '</ol>';
   });
   if (byId.ps) h += '<ol class="ps">' + tocItem(byId.ps, 'var(--accent)') + '</ol>';
   el.toc.innerHTML = h;
-  let foot = '<a href="' + esc(M.wholeBook) + '" target="_blank" rel="noopener">Download the whole book (PDF)</a>' +
-    '<a href="../index.html">Course site: schedule &amp; policies</a>';
-  const last = (M.changelog || []).slice(-1)[0];
-  if (last && last.chapters && last.chapters.length) foot += '<span class="new">Updated <b>' + esc(fmtDate(last.date)) + '</b> · ch. ' + last.chapters.join(', ') + '</span>';
+  let foot = '<a href="' + esc(M.wholeBook) + '" target="_blank" rel="noopener">Download the whole book (PDF)</a>';
+  const upd = lastUpdate();
+  if (upd) foot += '<span class="new">Updated <b>' + esc(fmtDate(upd.date)) + '</b> · ' + esc(upd.what) + '</span>';
   el.sidefoot.innerHTML = foot;
-  updateProgressBars();
 }
 function tocItem(d, color) {
   const n = d.kind === 'ch' ? d.n : (d.kind === 'ps' ? 'PS' : '');
-  let h = '<li class="ch" data-id="' + esc(d.id) + '" style="--uc:' + color + '"><a href="' + hashFor(d) + '"><span class="n">' + n + '</span><span class="t">' + esc(d.title) + '</span><span class="bar"><i></i></span></a>';
-  if (d.sections.length) {
+  const has = d.sections.length > 0;
+  let h = '<li class="ch" data-id="' + esc(d.id) + '" style="--uc:' + color + '"><div class="row">' +
+    '<button class="tog' + (has ? '' : ' none') + '" type="button" aria-expanded="false" aria-label="Show sections of ' + esc(d.label) + '"' + (has ? '' : ' tabindex="-1"') + '></button>' +
+    '<a href="' + hashFor(d) + '"><span class="n">' + n + '</span><span class="t">' + esc(d.title) + '</span></a></div>';
+  if (has) {
     h += '<div class="secs">' + d.sections.map((s, i) => '<a href="#p' + s.page + ',' + Math.round(s.y) + '" data-sec="' + i + '"' + (s.l === 3 ? ' class="l3"' : '') + '>' + esc(s.title) + '</a>').join('') + '</div>';
   }
   return h + '</li>';
 }
-function updateProgressBars() {
-  el.toc.querySelectorAll('.ch').forEach((li) => {
-    const d = byId[li.dataset.id]; if (!d) return;
-    const max = progress[d.id];
-    const bar = li.querySelector('.bar i');
-    if (max && bar) { const span = d.pages[1] - d.pages[0] + 1; bar.style.width = Math.round(100 * Math.min(1, (max - d.pages[0] + 1) / span)) + '%'; li.classList.add('read'); }
-  });
+// a chapter's sections show when it is the current chapter (unless folded shut) or was folded open by hand
+function secsVisible(li) { return li.classList.contains('open') || (li.classList.contains('cur') && !li.classList.contains('closed')); }
+function syncTogs() {
+  el.toc.querySelectorAll('.ch').forEach((li) => { const t = li.querySelector('.tog'); if (t) t.setAttribute('aria-expanded', secsVisible(li) ? 'true' : 'false'); });
+}
+function toggleChapter(li) {
+  if (secsVisible(li)) { li.classList.remove('open'); if (li.classList.contains('cur')) li.classList.add('closed'); }
+  else { li.classList.add('open'); li.classList.remove('closed'); }
+  syncTogs();
+}
+function toggleUnit(unitEl) {
+  const closed = unitEl.classList.toggle('closed');
+  unitEl.querySelector('.tog').setAttribute('aria-expanded', closed ? 'false' : 'true');
 }
 function markCurrent(d, secIndex) {
   el.toc.querySelectorAll('.cur').forEach((x) => x.classList.remove('cur'));
-  if (!d) return;
+  if ((d && d.id) !== lastCurId) {           // a new chapter: its sections unfold, hand-folded states of others are kept
+    el.toc.querySelectorAll('.ch.closed').forEach((x) => x.classList.remove('closed'));
+    lastCurId = d ? d.id : null;
+  }
+  if (!d) { syncTogs(); return; }
   const li = el.toc.querySelector('[data-id="' + CSS.escape(d.id) + '"]');
-  if (!li) return;
+  if (!li) { syncTogs(); return; }
   li.classList.add('cur');
+  syncTogs();
   if (secIndex != null) { const a = li.querySelector('[data-sec="' + secIndex + '"]'); if (a) { a.classList.add('cur'); keepInView(a); } }
-  else keepInView(li.querySelector('a'));
+  else keepInView(li.querySelector('.row a') || li);
 }
 function keepInView(node) {
-  if (!node || el.results.hidden === false) return;
+  if (!node || el.results.hidden === false || node.offsetParent === null) return;
   const r = node.getBoundingClientRect(), s = el.side.getBoundingClientRect();
   if (r.top < s.top + 70 || r.bottom > s.bottom - 20) node.scrollIntoView({ block: 'center' });
 }
@@ -115,9 +136,9 @@ function showLanding() {
   h += '<a class="contents" href="#" data-act="contents">Contents</a>';
   h += '<a href="' + esc(M.wholeBook) + '" target="_blank" rel="noopener">Download PDF</a>';
   el.actions.innerHTML = h;
-  const lastLog = (M.changelog || []).slice(-1)[0];
+  const upd = lastUpdate();
   el.updated.innerHTML = 'Book pages 1–' + M.bookPages + (M.problemSets ? ' · problem sets ' + M.problemSets.pages[0] + '–' + M.problemSets.pages[1] : '') +
-    (lastLog && lastLog.chapters && lastLog.chapters.length ? ' · <b>updated ' + esc(fmtDate(lastLog.date)) + '</b>: ' + (lastLog.chapters.length === 1 ? 'chapter ' : 'chapters ') + lastLog.chapters.join(', ') : '');
+    (upd ? ' · <b>updated ' + esc(fmtDate(upd.date)) + '</b>: ' + esc(upd.what) : '');
   el.crumb.innerHTML = '<span class="cur">Contents</span>';
   el.pageno.textContent = '';
   document.title = 'Making Minds · Read';
@@ -261,7 +282,6 @@ function trackPosition() {
     curPage = page.p;
     el.pageno.textContent = 'p. ' + page.p + ' of ' + (d.kind === 'ps' ? M.totalPages : M.bookPages);
     if (page.p >= d.pages[0]) {
-      if (!progress[d.id] || page.p > progress[d.id]) { progress[d.id] = page.p; store.set('progress', progress); updateProgressBars(); }
       store.set('lastPos', { id: d.id, page: page.p });
       history.replaceState(null, '', '#p' + page.p);
     } else history.replaceState(null, '', hashFor(d));
@@ -397,6 +417,8 @@ function wire() {
   el.backdrop.addEventListener('click', () => openSide(false));
   el.actions.addEventListener('click', (e) => { const a = e.target.closest('a[data-act="contents"]'); if (a) { e.preventDefault(); openSide(true); } });
   el.toc.addEventListener('click', (e) => {
+    const t = e.target.closest('button.tog');
+    if (t) { e.preventDefault(); const u = t.closest('.unit'); if (u) toggleUnit(u); else { const li = t.closest('.ch'); if (li) toggleChapter(li); } return; }
     const a = e.target.closest('a'); if (!a) return;
     if (a.getAttribute('href') === location.hash) { e.preventDefault(); route(); }   // same target: re-scroll
   });
