@@ -32,6 +32,8 @@
     var ext = /^https?:/.test(url);
     return '<a href="' + esc(url) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + text + '</a>';
   }
+  // Dim a "TBA" inside otherwise real text ("Tue 2–3pm, location TBA").
+  function tba(t) { return esc(t).replace(/\bTBA\b/g, '<em>TBA</em>'); }
   var WORDS = ['zero','one','two','three','four','five','six','seven','eight','nine','ten'];
   function words(n) { var w = WORDS[n]; return w ? w.charAt(0).toUpperCase() + w.slice(1) : String(n); }
   function tag(t) {
@@ -86,9 +88,11 @@
     var sec = c.sections;
     var facts = [
       ['Lecture', '<b>' + esc(c.lecture.days) + ' ' + esc(c.lecture.time) + '</b><br>' + esc(c.lecture.room)],
-      ['Sections', esc(sec.day) + ' ' + sec.times.map(esc).join(' and ') + '<br><em>room ' + esc(sec.room) + '</em>'],
-      ['Instructor', esc(c.instructor.title + ' ' + c.instructor.name) + (c.instructor.email ? '<br>' + link('mailto:' + c.instructor.email, c.instructor.email) : '') + '<br>office hours <em>' + esc(c.instructor.officeHours) + '</em>'],
-      ['TA', esc(c.ta.name) + (c.ta.email ? '<br>' + link('mailto:' + c.ta.email, c.ta.email) : '') + '<br>office hours <em>' + esc(c.ta.officeHours) + '</em>'],
+      ['Sections', esc(sec.day) + ' · ' + tba(sec.room) + (sec.list || []).map(function (x) {
+        return '<br>' + esc(x.id) + ' ' + esc(x.time) +
+          (x.classNumber ? ' <span class="dim">· ' + esc(x.classNumber) + '</span>' : ''); }).join('')],
+      ['Instructor', esc(c.instructor.title + ' ' + c.instructor.name) + (c.instructor.email ? '<br>' + link('mailto:' + c.instructor.email, c.instructor.email) : '') + '<br>office hours ' + tba(c.instructor.officeHours)],
+      ['TA', esc(c.ta.name) + (c.ta.email ? '<br>' + link('mailto:' + c.ta.email, c.ta.email) : '') + '<br>office hours ' + tba(c.ta.officeHours)],
       ['Course book', '<b>' + esc(c.book.title) + '</b> (' + esc(c.book.abbrev) + ') — ' + (c.book.reader ? link(c.book.reader, 'online') + ' · ' : '') + link(c.book.pdf, 'PDF') + (c.book.drive ? ' · ' + link(c.book.drive, 'current version') : '') + (c.book.note ? ' <span class="dim">· ' + esc(c.book.note) + '</span>' : '')],
       ['Homework', words(c.homework.count) + ' problem sets, in the ' + link(c.app.url, c.app.label) + '<br>' + esc(c.homework.summary)],
     ];

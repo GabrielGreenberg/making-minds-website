@@ -10,7 +10,7 @@
     "instructor": {
       "name": "Gabriel Greenberg",
       "title": "Professor",
-      "officeHours": "TBA",
+      "officeHours": "Tue 2–3pm, location TBA",
       "email": "ggreenberg@humnet.ucla.edu"
     },
     "ta": {
@@ -27,11 +27,19 @@
     },
     "sections": {
       "day": "Wed",
-      "times": [
-        "9:00–9:50",
-        "10:00–10:50"
-      ],
-      "room": "TBA"
+      "room": "Rolfe 3126",
+      "list": [
+        {
+          "id": "1A",
+          "time": "9:00–9:50am",
+          "classNumber": "312-522-201"
+        },
+        {
+          "id": "1B",
+          "time": "10:00–10:50am",
+          "classNumber": "312-522-202"
+        }
+      ]
     },
     "book": {
       "title": "Making Minds",
