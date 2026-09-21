@@ -89,8 +89,7 @@
     var facts = [
       ['Lecture', '<b>' + esc(c.lecture.days) + ' ' + esc(c.lecture.time) + '</b><br>' + esc(c.lecture.room)],
       ['Sections', esc(sec.day) + ' · ' + tba(sec.room) + (sec.list || []).map(function (x) {
-        return '<br>' + esc(x.id) + ' ' + esc(x.time) +
-          (x.classNumber ? ' <span class="dim">· ' + esc(x.classNumber) + '</span>' : ''); }).join('')],
+        return '<br>' + esc(x.id) + ' ' + esc(x.time); }).join('')],
       ['Instructor', esc(c.instructor.title + ' ' + c.instructor.name) + (c.instructor.email ? '<br>' + link('mailto:' + c.instructor.email, c.instructor.email) : '') + '<br>office hours ' + tba(c.instructor.officeHours)],
       ['TA', esc(c.ta.name) + (c.ta.email ? '<br>' + link('mailto:' + c.ta.email, c.ta.email) : '') + '<br>office hours ' + tba(c.ta.officeHours)],
       ['Course book', '<b>' + esc(c.book.title) + '</b> (' + esc(c.book.abbrev) + ') — ' + (c.book.reader ? link(c.book.reader, 'online') + ' · ' : '') + link(c.book.pdf, 'PDF') + (c.book.drive ? ' · ' + link(c.book.drive, 'current version') : '') + (c.book.note ? ' <span class="dim">· ' + esc(c.book.note) + '</span>' : '')],

@@ -107,7 +107,7 @@ main > section:first-child, main > .withtoc:first-child { margin-top: 0; }
 .next { background: var(--lav-soft); border: 1px solid var(--lav-line); padding: 4px 16px; }
 .nx { display: grid; grid-template-columns: 104px 1fr; gap: 12px; align-items: start; padding: 9px 0; border-bottom: 1px solid var(--lav-line); font-size: 13.5px; line-height: 1.45; }
 .nx:last-child { border-bottom: 0; }
-.nx .chip { display: inline-block; justify-self: start; background: var(--hw-soft); color: var(--hw); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; padding: 2px 8px; margin-top: 1px; white-space: nowrap; }
+.nx .chip { display: inline-block; justify-self: start; color: var(--ink-2); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; margin-top: 2px; white-space: nowrap; }
 .nx-body { min-width: 0; }
 .nx-main { color: var(--ink); font-weight: 600; text-decoration: none; }
 .nx-main:hover { color: var(--accent); }
