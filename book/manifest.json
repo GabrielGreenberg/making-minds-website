@@ -1,14 +1,14 @@
 {
- "built": "2026-09-21T05:54:03Z",
+ "built": "2026-09-21T16:20:54Z",
  "pageSize": [
   1460,
   1888
  ],
  "bookPages": 179,
- "totalPages": 199,
+ "totalPages": 193,
  "wholeBook": "making-minds.pdf",
  "cover": "thumbs/cover.jpg",
- "coverHash": "3e7774ccf525",
+ "coverHash": "9770d7e3dd9b",
  "front": {
   "id": "front",
   "title": "Front matter",
@@ -18,7 +18,7 @@
    4
   ],
   "pageHashes": [
-   "3e7774ccf525",
+   "9770d7e3dd9b",
    "2f440cd7fe5c",
    "6c0918931ab0",
    "d6ecad242bf7"
@@ -2069,7 +2069,7 @@
   "file": "ch/ps-problem-sets.pdf",
   "pages": [
    180,
-   199
+   193
   ],
   "sections": [
    {
@@ -2088,44 +2088,19 @@
     "y": 85.2
    },
    {
-    "title": "HW3. Computing with SCs",
+    "title": "HW4. Computing with FSMs",
     "page": 187,
     "y": 85.2
    },
    {
-    "title": "HW4. Computing with FSMs",
-    "page": 188,
-    "y": 85.2
-   },
-   {
     "title": "HW5. Computing with TMs",
-    "page": 192,
+    "page": 191,
     "y": 85.2
    },
    {
     "title": "HW6. Navigation with Turbots",
-    "page": 194,
+    "page": 193,
     "y": 85.2
-   },
-   {
-    "title": "HW7. Final Project",
-    "page": 195,
-    "y": 85.2
-   },
-   {
-    "title": "The Limits of SCs",
-    "page": 197,
-    "y": 85.7
-   },
-   {
-    "title": "Recursive Multiplication",
-    "page": 198,
-    "y": 86.2
-   },
-   {
-    "title": "Extra Problems",
-    "page": 199,
-    "y": 86.2
    }
   ],
   "pageHashes": [
@@ -2136,20 +2111,33 @@
    "db0844406a96",
    "a49ad4752394",
    "590079ceca0c",
-   "b21279411614",
-   "4ca61cdbb7f6",
-   "d45d6ae45759",
-   "bc8145970d3d",
-   "816c42ac0e07",
-   "b9f09637bb6a",
-   "e0146c30be60",
-   "16b69a4b9eb3",
-   "65f2350adcc0",
-   "58f24efbf8d6",
-   "756e9d9bb70e",
-   "360e86c6102e",
-   "b37b5f22365c"
+   "80a7dcf184f1",
+   "4c19021b5aa7",
+   "babc86a2c81e",
+   "ab5247d4d6e4",
+   "3628b0eaef52",
+   "3f7d0de64001",
+   "42fab71d091d"
   ]
  },
- "changelog": []
+ "changelog": [
+  {
+   "date": "2026-09-21",
+   "chapters": [],
+   "other": [
+    "front",
+    "ps"
+   ],
+   "pages": [
+    1,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193
+   ]
+  }
+ ]
 }
