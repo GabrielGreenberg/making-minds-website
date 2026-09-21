@@ -148,7 +148,7 @@
           rows.push('<tr class="holiday">' + wkTd + '<td class="topic">' + esc(x.title) + '</td><td class="readings"></td></tr>');
         }
       });
-      html.push('<div class="tablewrap schedwrap"><table class="sched">' + cols + '<tbody>' + rows.join('') + '</tbody></table></div>');
+      html.push('<div class="tablewrap schedwrap"><table class="sched" style="--uc:var(--u' + u.n + ')">' + cols + '<tbody>' + rows.join('') + '</tbody></table></div>');
     });
     el.innerHTML = html.join('');
   }

@@ -161,10 +161,10 @@ tr.holiday td.topic { font-style: italic; font-weight: 400; }
 /* Homework and exam rows: the tint starts at the divider bar, so the week and
    date cells read like every other row. */
 tr.exam td.topic, tr.exam td.readings { background: var(--exam-soft); }
-tr.exam td.topic { font-weight: 600; color: var(--exam); box-shadow: inset 3px 0 0 var(--exam); }
+tr.exam td.topic { font-weight: 600; color: var(--exam); box-shadow: inset 3px 0 0 var(--uc, var(--u1)); }
 tr.exam td.readings { color: var(--exam); }
 tr.hw td.topic, tr.hw td.readings { background: var(--hw-soft); }
-tr.hw td.topic { color: var(--hw); font-weight: 600; box-shadow: inset 3px 0 0 var(--hw); }
+tr.hw td.topic { color: var(--hw); font-weight: 600; box-shadow: inset 3px 0 0 var(--uc, var(--u1)); }
 tr.hw td.topic .sub { color: var(--hw); opacity: .85; }
 tr.hw td.readings { color: var(--hw); }
 .sub { display: block; font-size: 12.5px; color: var(--ink-3); margin-top: 2px; font-weight: 400; }
@@ -275,8 +275,8 @@ footer.page { padding-block: 14px 40px; border-top: 1px solid var(--line); color
   table.sched tr.hw, table.sched tr.exam { background: var(--hw-soft); }
   table.sched tr.exam { background: var(--exam-soft); }
   table.sched tr.hw td, table.sched tr.exam td { background: transparent; }
-  table.sched tr.hw td.topic { border-left-color: var(--hw); }
-  table.sched tr.exam td.topic { border-left-color: var(--exam); }
+  table.sched tr.hw td.topic { border-left-color: var(--uc, var(--u1)); }
+  table.sched tr.exam td.topic { border-left-color: var(--uc, var(--u1)); }
   table.sched td.readings { margin-top: 6px; }
   table.sched tr.unit td { padding: 7px 12px; margin: 0 -12px; }
   .rg { grid-template-columns: 1fr; gap: 2px; }
