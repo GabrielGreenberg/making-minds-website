@@ -40,12 +40,14 @@
     var cls = /C/.test(t) && /T/.test(t) ? 'ct' : (/^C/.test(t) ? 'c' : 't');
     return '<span class="tag ' + cls + '">' + esc(t) + '</span>';
   }
-  // One reading entry -> inline HTML.
-  function reading(r) {
+  // One reading entry -> inline HTML. bare: chapter number without the "MM" prefix
+  // (the schedule's Making Minds column, where the header already names the book).
+  function reading(r, bare) {
     if (r.mm) {   // course-book chapter: the title links into the web reader by chapter number
       var bk = window.__course && window.__course.course.book, rd = bk && bk.reader;
       var t = rd && r.n ? '<a class="mmlink" href="' + esc(rd + '#ch' + r.n) + '">' + esc(r.mm) + '</a>' : esc(r.mm);
-      return '<span class="mm">MM' + (r.n ? ' ' + r.n : '') + '</span><span class="mmt">' + t + '</span>';
+      var pre = bare ? (r.n ? String(r.n) : '') : 'MM' + (r.n ? ' ' + r.n : '');
+      return '<span class="mm">' + pre + '</span><span class="mmt">' + t + '</span>';
     }
     if (r.html) return r.html;
     if (r.text) return r.text;
@@ -58,7 +60,7 @@
     if (r.note) parts.push(r.note);
     return parts.join(' ');
   }
-  function ul(items) { return '<ul class="rlist">' + items.map(function (r) { return '<li>' + reading(r) + '</li>'; }).join('') + '</ul>'; }
+  function ul(items, bare) { return '<ul class="rlist">' + items.map(function (r) { return '<li>' + reading(r, bare) + '</li>'; }).join('') + '</ul>'; }
 
   // Current time in the course timezone as "YYYY-MM-DDTHH:MM" (compares as a string).
   function nowIn(tz) {
@@ -139,7 +141,7 @@
           if (x.recommended && x.recommended.length) {
             ext += '<details class="rec"><summary>Recommended <span class="n">(' + x.recommended.length + ')</span></summary>' + ul(x.recommended) + '</details>';
           }
-          rows.push('<tr class="u' + x.unit + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.topic) + '</td><td class="readings mmcol">' + (mm.length ? ul(mm) : '') + '</td><td class="readings extcol">' + ext + '</td></tr>');
+          rows.push('<tr class="u' + x.unit + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.topic) + '</td><td class="readings mmcol">' + (mm.length ? ul(mm, true) : '') + '</td><td class="readings extcol">' + ext + '</td></tr>');
         } else if (x.type === 'hw') {
           var note = esc(data.course.homework.dueLabel) + ' · covers ' + esc(x.covers) + (x.note ? ' · ' + esc(x.note) : '');
           rows.push('<tr class="hw" id="' + x.id + '">' + wkTd + '<td class="topic">HW' + x.n + ' due<span class="sub">' + esc(x.title) + '</span></td><td class="readings" colspan="2"><span class="note">' + note + '</span></td></tr>');

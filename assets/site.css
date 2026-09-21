@@ -174,9 +174,9 @@ tr:target td { outline: 2px solid var(--accent); outline-offset: -2px; }
 /* reading lists inside a cell */
 ul.rlist { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; }
 ul.rlist li { line-height: 1.45; }
-/* course-book column: chapter numbers in a fixed-width slot so titles (and their wrapped lines) line up */
-.mmcol li { display: grid; grid-template-columns: 40px 1fr; column-gap: 4px; }
-.mmcol .mm { margin-right: 0; }
+/* course-book column: chapter numbers right-aligned in a fixed slot so titles (and their wrapped lines) line up */
+.mmcol li { display: grid; grid-template-columns: 20px 1fr; column-gap: 8px; }
+.mmcol .mm { margin-right: 0; text-align: right; }
 .rl { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
 .note { display: block; }
 
