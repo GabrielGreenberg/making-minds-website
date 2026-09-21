@@ -158,10 +158,7 @@
           "page": 10
         },
         {
-          "cite": "Syllabus (this page) and",
-          "url": "policies.html",
-          "linkText": "Course Policies",
-          "note": "."
+          "html": "Syllabus (this page) and <a href=\"policies.html\">Course Policies</a>"
         }
       ]
     },

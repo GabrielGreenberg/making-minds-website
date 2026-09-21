@@ -45,7 +45,7 @@
     if (r.mm) {   // course-book chapter: the title links into the web reader by chapter number
       var bk = window.__course && window.__course.course.book, rd = bk && bk.reader;
       var t = rd && r.n ? '<a class="mmlink" href="' + esc(rd + '#ch' + r.n) + '">' + esc(r.mm) + '</a>' : esc(r.mm);
-      return '<span class="mm">MM' + (r.n ? ' ' + r.n : '') + '</span>' + t;
+      return '<span class="mm">MM' + (r.n ? ' ' + r.n : '') + '</span><span class="mmt">' + t + '</span>';
     }
     if (r.html) return r.html;
     if (r.text) return r.text;
@@ -58,7 +58,7 @@
     if (r.note) parts.push(r.note);
     return parts.join(' ');
   }
-  function ul(items) { return '<ul>' + items.map(function (r) { return '<li>' + reading(r) + '</li>'; }).join('') + '</ul>'; }
+  function ul(items) { return '<ul class="rlist">' + items.map(function (r) { return '<li>' + reading(r) + '</li>'; }).join('') + '</ul>'; }
 
   // Current time in the course timezone as "YYYY-MM-DDTHH:MM" (compares as a string).
   function nowIn(tz) {
@@ -114,8 +114,8 @@
   function renderSchedule(data) {
     var el = document.getElementById('schedule');
     if (!el) return;
-    var cols = '<colgroup><col class="c-wk"><col class="c-date"><col class="c-topic"><col></colgroup>';
-    var html = ['<table class="sched sched-head" aria-hidden="true">' + cols + '<thead><tr><th>Wk</th><th>Date</th><th>Topic</th><th>Readings</th></tr></thead></table>'];
+    var cols = '<colgroup><col class="c-wk"><col class="c-date"><col class="c-topic"><col class="c-mm"><col class="c-ext"></colgroup>';
+    var html = ['<table class="sched sched-head" aria-hidden="true">' + cols + '<thead><tr><th>Wk</th><th>Date</th><th>Topic</th><th>Making Minds</th><th>Other readings</th></tr></thead></table>'];
     var units = {};
     data.units.forEach(function (u) { units[u.n] = u; });
     // group entries into unit blocks: an entry belongs to the current unit until the next lesson with a new unit
@@ -127,25 +127,27 @@
     });
     blocks.forEach(function (b) {
       var u = units[b.unit] || { n: b.unit, name: '' };
-      var rows = ['<tr class="unit" style="--uc:var(--u' + u.n + ')"><td colspan="4"><span class="un">Unit ' + u.n + '</span><span class="ut">' + esc(u.name) + '</span></td></tr>'];
+      var rows = ['<tr class="unit" style="--uc:var(--u' + u.n + ')"><td colspan="5"><span class="un">Unit ' + u.n + '</span><span class="ut">' + esc(u.name) + '</span></td></tr>'];
       var lastWk = null;
       b.rows.forEach(function (x) {
         var wk = x.wk === lastWk ? '' : x.wk; if (wk) lastWk = x.wk;
         var wkTd = '<td class="wk mono">' + wk + '</td><td class="date mono">' + esc(x.d) + '</td>';
         if (x.type === 'lesson') {
-          var cell = '<div class="rg read"><span class="rl">Read</span>' + ul(x.read || []) + '</div>';
+          // course-book chapters in one column, everything else (required, then folded recommended) in the next
+          var mm = (x.read || []).filter(function (r) { return r.mm; }), other = (x.read || []).filter(function (r) { return !r.mm; });
+          var ext = other.length ? ul(other) : '';
           if (x.recommended && x.recommended.length) {
-            cell += '<details class="rec"><summary>Recommended reading <span class="n">(' + x.recommended.length + ')</span></summary>' + ul(x.recommended) + '</details>';
+            ext += '<details class="rec"><summary>Recommended <span class="n">(' + x.recommended.length + ')</span></summary>' + ul(x.recommended) + '</details>';
           }
-          rows.push('<tr class="u' + x.unit + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.topic) + '</td><td class="readings">' + cell + '</td></tr>');
+          rows.push('<tr class="u' + x.unit + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.topic) + '</td><td class="readings mmcol">' + (mm.length ? ul(mm) : '') + '</td><td class="readings extcol">' + ext + '</td></tr>');
         } else if (x.type === 'hw') {
           var note = esc(data.course.homework.dueLabel) + ' · covers ' + esc(x.covers) + (x.note ? ' · ' + esc(x.note) : '');
-          rows.push('<tr class="hw" id="' + x.id + '">' + wkTd + '<td class="topic">HW' + x.n + ' due<span class="sub">' + esc(x.title) + '</span></td><td class="readings"><span class="note">' + note + '</span></td></tr>');
+          rows.push('<tr class="hw" id="' + x.id + '">' + wkTd + '<td class="topic">HW' + x.n + ' due<span class="sub">' + esc(x.title) + '</span></td><td class="readings" colspan="2"><span class="note">' + note + '</span></td></tr>');
         } else if (x.type === 'exam') {
           var sub = x.where === 'in class' ? 'in class, ' + timeRange(x.start, x.end) : timeRange(x.start, x.end) + ' · ' + x.where;
-          rows.push('<tr class="exam" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.title) + '<span class="sub">' + esc(sub) + '</span></td><td class="readings"><span class="note">' + esc(x.note || '') + '</span></td></tr>');
+          rows.push('<tr class="exam" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.title) + '<span class="sub">' + esc(sub) + '</span></td><td class="readings" colspan="2"><span class="note">' + esc(x.note || '') + '</span></td></tr>');
         } else if (x.type === 'holiday') {
-          rows.push('<tr class="holiday">' + wkTd + '<td class="topic">' + esc(x.title) + '</td><td class="readings"></td></tr>');
+          rows.push('<tr class="holiday">' + wkTd + '<td class="topic">' + esc(x.title) + '</td><td class="readings" colspan="2"></td></tr>');
         }
       });
       html.push('<div class="tablewrap schedwrap"><table class="sched" style="--uc:var(--u' + u.n + ')">' + cols + '<tbody>' + rows.join('') + '</tbody></table></div>');

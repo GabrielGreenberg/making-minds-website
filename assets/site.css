@@ -44,7 +44,7 @@ body {
   font-size: 15px;
   line-height: 1.5;
 }
-.page { max-width: 960px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+.page { max-width: 1080px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
 main.page { padding-block: 30px 40px; }
 h1, h2, h3 { font-family: "IBM Plex Serif", Georgia, "Times New Roman", serif; text-wrap: balance; margin: 0; }
 h1 { font-size: 34px; font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; }
@@ -137,10 +137,11 @@ a.mmlink:hover { color: var(--accent); border-bottom: 1px solid var(--accent); }
 .tablewrap.narrow { max-width: 420px; }
 .schedwrap + .schedwrap { margin-top: 22px; }
 table { border-collapse: collapse; width: 100%; }
-table.sched { min-width: 720px; table-layout: fixed; }
+table.sched { min-width: 800px; table-layout: fixed; }
 col.c-wk { width: 44px; }
 col.c-date { width: 100px; }
-col.c-topic { width: 30%; }
+col.c-topic { width: 23%; }
+col.c-mm { width: 34%; }   /* course-book chapters; the "other readings" column takes the rest */
 .sched-head { background: transparent; margin-bottom: 2px; }
 .sched-head th { border: 0; padding: 4px 12px 6px; }
 th { text-align: left; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; padding: 10px 12px; border-bottom: 1px solid var(--line-2); }
@@ -170,26 +171,29 @@ tr.hw td.readings { color: var(--hw); }
 .sub { display: block; font-size: 12.5px; color: var(--ink-3); margin-top: 2px; font-weight: 400; }
 tr:target td { outline: 2px solid var(--accent); outline-offset: -2px; }
 
-/* reading groups inside a cell */
-.rg { display: grid; grid-template-columns: 52px 1fr; gap: 10px; }
-.rl { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; padding-top: 3px; }
-.rg ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; }
-.rg li { line-height: 1.45; }
+/* reading lists inside a cell */
+ul.rlist { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; }
+ul.rlist li { line-height: 1.45; }
+/* course-book column: chapter numbers in a fixed-width slot so titles (and their wrapped lines) line up */
+.mmcol li { display: grid; grid-template-columns: 40px 1fr; column-gap: 4px; }
+.mmcol .mm { margin-right: 0; }
+.rl { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
 .note { display: block; }
 
-/* recommended readings: folded by default */
-details.rec { margin: 7px 0 0 62px; }
+/* recommended readings: a quiet toggle under the other readings, folded by default */
+details.rec { margin: 0; }
+ul.rlist + details.rec { margin-top: 6px; }
 details.rec summary {
-  display: inline-flex; align-items: center; gap: 7px; cursor: pointer; list-style: none;
-  font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
-  color: var(--ink-2); background: var(--surface-2); border: 1px solid var(--line); padding: 3px 9px 3px 7px;
+  display: inline-flex; align-items: center; gap: 5px; cursor: pointer; list-style: none;
+  font-size: 12.5px; color: var(--ink-3); padding: 1px 0;
 }
 details.rec summary::-webkit-details-marker { display: none; }
-details.rec summary::before { content: ""; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid var(--ink-3); transition: transform .15s; }
-details.rec[open] summary::before { transform: rotate(180deg); }
-details.rec summary:hover { color: var(--accent); border-color: var(--line-2); }
-details.rec summary .n { font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--ink-3); }
-details.rec ul { margin: 8px 0 2px; padding: 0 0 0 10px; list-style: none; display: grid; gap: 4px; border-left: 2px solid var(--line); }
+details.rec summary::before { content: ""; width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 5px solid var(--ink-3); opacity: .8; transition: transform .15s; }
+details.rec[open] summary::before { transform: rotate(90deg); }
+details.rec summary:hover { color: var(--accent); }
+details.rec summary:hover::before { border-left-color: var(--accent); }
+details.rec summary .n { color: var(--ink-3); }
+details.rec ul { margin: 6px 0 2px; padding: 0 0 0 10px; list-style: none; display: grid; gap: 4px; border-left: 2px solid var(--line); }
 details.rec li { line-height: 1.45; }
 
 /* ---------- Prose pages (policies) ---------- */
@@ -279,8 +283,7 @@ footer.page { padding-block: 14px 40px; border-top: 1px solid var(--line); color
   table.sched tr.exam td.topic { border-left-color: var(--uc, var(--u1)); }
   table.sched td.readings { margin-top: 6px; }
   table.sched tr.unit td { padding: 7px 12px; margin: 0 -12px; }
-  .rg { grid-template-columns: 1fr; gap: 2px; }
-  details.rec { margin-left: 0; }
+  table.sched td.readings + td.readings { margin-top: 4px; }
   .topbar nav { gap: 4px 14px; }
 }
 
