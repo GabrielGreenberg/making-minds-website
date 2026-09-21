@@ -40,7 +40,11 @@
   }
   // One reading entry -> inline HTML.
   function reading(r) {
-    if (r.mm) return '<span class="mm">MM' + (r.n ? ' ' + r.n : '') + '</span>' + esc(r.mm);
+    if (r.mm) {   // course-book chapter: the title links into the web reader by chapter number
+      var bk = window.__course && window.__course.course.book, rd = bk && bk.reader;
+      var t = rd && r.n ? '<a class="mmlink" href="' + esc(rd + '#ch' + r.n) + '">' + esc(r.mm) + '</a>' : esc(r.mm);
+      return '<span class="mm">MM' + (r.n ? ' ' + r.n : '') + '</span>' + t;
+    }
     if (r.html) return r.html;
     if (r.text) return r.text;
     var parts = [];
@@ -85,7 +89,7 @@
       ['Sections', esc(sec.day) + ' ' + sec.times.map(esc).join(' and ') + '<br><em>room ' + esc(sec.room) + '</em>'],
       ['Instructor', esc(c.instructor.title + ' ' + c.instructor.name) + '<br>office hours <em>' + esc(c.instructor.officeHours) + '</em>'],
       ['TA', esc(c.ta.name) + '<br>office hours <em>' + esc(c.ta.officeHours) + '</em>'],
-      ['Course book', '<b>' + esc(c.book.title) + '</b> (' + esc(c.book.abbrev) + ') — ' + link(c.book.pdf, 'PDF') + (c.book.drive ? ' · ' + link(c.book.drive, 'current version') : '') + (c.book.note ? ' <span class="dim">· ' + esc(c.book.note) + '</span>' : '')],
+      ['Course book', '<b>' + esc(c.book.title) + '</b> (' + esc(c.book.abbrev) + ') — ' + (c.book.reader ? link(c.book.reader, 'online') + ' · ' : '') + link(c.book.pdf, 'PDF') + (c.book.drive ? ' · ' + link(c.book.drive, 'current version') : '') + (c.book.note ? ' <span class="dim">· ' + esc(c.book.note) + '</span>' : '')],
       ['Homework', words(c.homework.count) + ' problem sets, in the ' + link(c.app.url, c.app.label) + '<br>' + esc(c.homework.summary)],
     ];
     var exams = window.__course.schedule.filter(function (x) { return x.type === 'exam'; });
@@ -201,7 +205,7 @@
     data.schedule.forEach(function (x) { if (x.type === 'exam') exams[x.title === 'Midterm' ? 'midterm' : 'final'] = x; });
     var values = {
       'app.url': c.app.url, 'app.label': c.app.label,
-      'book.title': c.book.title, 'book.abbrev': c.book.abbrev, 'book.pdf': c.book.pdf,
+      'book.title': c.book.title, 'book.abbrev': c.book.abbrev, 'book.pdf': c.book.pdf, 'book.reader': c.book.reader || c.book.pdf,
       'midterm.long': exams.midterm ? longDate(exams.midterm.date) : '', 'midterm.note': exams.midterm ? exams.midterm.note : '',
       'final.long': exams.final ? longDate(exams.final.date) + ', ' + timeRange(exams.final.start, exams.final.end) : '',
       'final.where': exams.final ? exams.final.where : '',

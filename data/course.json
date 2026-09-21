@@ -35,6 +35,7 @@
       "title": "Making Minds",
       "abbrev": "MM",
       "pdf": "book/making-minds.pdf",
+      "reader": "book/",
       "note": ""
     },
     "app": {

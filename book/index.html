@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Making Minds · Read</title>
+<meta name="description" content="Making Minds — a constructive introduction to the computational theory of mind (Gabriel Greenberg). Read the course book online, chapter by chapter, with search.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23081633'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='17' fill='%23fff'%3EMM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="reader.css">
+</head>
+<body class="rb">
+<header class="topbar rb-top">
+  <button class="rb-menu" id="menu" type="button" aria-label="Contents" aria-controls="side" aria-expanded="false"><span></span><span></span><span></span></button>
+  <a class="brand" href="#contents">Making Minds<span class="course">Course book</span></a>
+  <nav class="rb-crumb" id="crumb" aria-label="Position"></nav>
+  <div class="rb-tools">
+    <span class="rb-pageno mono" id="pageno"></span>
+    <label class="rb-zoom"><span class="vh">Zoom</span>
+      <select id="zoom" aria-label="Zoom">
+        <option value="0.75">75%</option>
+        <option value="1" selected>Fit width</option>
+        <option value="1.25">125%</option>
+        <option value="1.5">150%</option>
+        <option value="2">200%</option>
+      </select>
+    </label>
+    <a class="rb-site" href="../index.html">Course site</a>
+  </div>
+</header>
+
+<div class="rb-body">
+  <div class="rb-backdrop" id="backdrop"></div>
+  <aside class="rb-side" id="side" aria-label="Contents and search">
+    <form class="rb-search" id="searchform" role="search" autocomplete="off">
+      <input type="search" id="q" placeholder="Search the book" aria-label="Search the book" spellcheck="false">
+      <button type="button" id="qclear" aria-label="Clear search" hidden>×</button>
+    </form>
+    <nav class="rb-toc" id="toc" aria-label="Contents"></nav>
+    <div class="rb-results" id="results" hidden></div>
+    <div class="rb-sidefoot" id="sidefoot"></div>
+  </aside>
+
+  <main class="rb-main" id="main" tabindex="-1">
+    <section class="rb-landing" id="landing" hidden>
+      <div class="rb-cover"><img id="coverimg" alt="Making Minds — cover" decoding="async"></div>
+      <div class="rb-actions" id="actions"></div>
+      <p class="rb-updated" id="updated"></p>
+    </section>
+    <section class="rb-doc" id="doc" hidden>
+      <div class="rb-pages" id="pages"></div>
+      <nav class="rb-chapnav" id="chapnav" aria-label="Previous and next chapter"></nav>
+    </section>
+    <p class="rb-status" id="status" hidden></p>
+  </main>
+</div>
+<script type="module" src="reader.js"></script>
+</body>
+</html>

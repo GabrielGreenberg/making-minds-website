@@ -1,0 +1,1 @@
+pdfjs-dist 4.10.38 — legacy/build/pdf.min.mjs + legacy/build/pdf.worker.min.mjs (Apache-2.0). Pinned; the legacy build keeps older Safari/Chrome working.
