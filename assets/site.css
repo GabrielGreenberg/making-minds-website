@@ -214,6 +214,22 @@ table.plain td.num { text-align: right; width: 80px; }
 .scale div span { color: var(--ink-3); }
 .scale div b { color: var(--ink); }
 
+/* ---------- Grade calculator (policies page) ---------- */
+.calc { border: 1px solid var(--lav-line); background: var(--lav-soft); padding: 14px 16px; margin: 16px 0; max-width: 560px; }
+.calc-head { font-weight: 600; color: var(--accent); font-size: 14px; }
+.calc-note { font-size: 13px; color: var(--ink-2); margin: 6px 0 0; }
+.calc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(102px, 1fr)); gap: 9px 10px; margin: 12px 0 0; }
+.calc-f { display: grid; gap: 3px; }
+.calc-f span { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+.calc-f input { width: 100%; font-family: inherit; font-size: 14px; padding: 5px 7px; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink); }
+.calc-f input:focus-visible, .calc-eval input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.calc-eval { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-2); margin-top: 11px; cursor: pointer; }
+.calc-out { display: flex; gap: 30px; align-items: baseline; margin-top: 13px; padding-top: 11px; border-top: 1px solid var(--lav-line); }
+.calc-k { display: block; font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 2px; }
+.calc-num { font-size: 27px; font-weight: 600; color: var(--ink); }
+.calc-ltr { font-family: "IBM Plex Serif", Georgia, serif; font-size: 27px; font-weight: 700; color: var(--accent); }
+@media print { .calc { break-inside: avoid; } }
+
 /* ---------- Resources ---------- */
 .reslist h2 { margin-top: 26px; }
 .reslist h2:first-child { margin-top: 0; }

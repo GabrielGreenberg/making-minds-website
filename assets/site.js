@@ -87,8 +87,8 @@
     var facts = [
       ['Lecture', '<b>' + esc(c.lecture.days) + ' ' + esc(c.lecture.time) + '</b><br>' + esc(c.lecture.room)],
       ['Sections', esc(sec.day) + ' ' + sec.times.map(esc).join(' and ') + '<br><em>room ' + esc(sec.room) + '</em>'],
-      ['Instructor', esc(c.instructor.title + ' ' + c.instructor.name) + '<br>office hours <em>' + esc(c.instructor.officeHours) + '</em>'],
-      ['TA', esc(c.ta.name) + '<br>office hours <em>' + esc(c.ta.officeHours) + '</em>'],
+      ['Instructor', esc(c.instructor.title + ' ' + c.instructor.name) + (c.instructor.email ? '<br>' + link('mailto:' + c.instructor.email, c.instructor.email) : '') + '<br>office hours <em>' + esc(c.instructor.officeHours) + '</em>'],
+      ['TA', esc(c.ta.name) + (c.ta.email ? '<br>' + link('mailto:' + c.ta.email, c.ta.email) : '') + '<br>office hours <em>' + esc(c.ta.officeHours) + '</em>'],
       ['Course book', '<b>' + esc(c.book.title) + '</b> (' + esc(c.book.abbrev) + ') — ' + (c.book.reader ? link(c.book.reader, 'online') + ' · ' : '') + link(c.book.pdf, 'PDF') + (c.book.drive ? ' · ' + link(c.book.drive, 'current version') : '') + (c.book.note ? ' <span class="dim">· ' + esc(c.book.note) + '</span>' : '')],
       ['Homework', words(c.homework.count) + ' problem sets, in the ' + link(c.app.url, c.app.label) + '<br>' + esc(c.homework.summary)],
     ];
@@ -209,10 +209,78 @@
       'midterm.long': exams.midterm ? longDate(exams.midterm.date) : '', 'midterm.note': exams.midterm ? exams.midterm.note : '',
       'final.long': exams.final ? longDate(exams.final.date) + ', ' + timeRange(exams.final.start, exams.final.end) : '',
       'final.where': exams.final ? exams.final.where : '',
-      'homework.count': c.homework.count
+      'homework.count': c.homework.count,
+      'instructor.title': c.instructor.title, 'instructor.name': c.instructor.name,
+      'instructor.email': c.instructor.email || '',
+      'instructor.mailto': c.instructor.email ? 'mailto:' + c.instructor.email : '',
+      'ta.name': c.ta.name, 'ta.email': c.ta.email || '',
+      'ta.mailto': c.ta.email ? 'mailto:' + c.ta.email : ''
     };
     document.querySelectorAll('[data-course]').forEach(function (el) { var v = values[el.getAttribute('data-course')]; if (v != null) el.textContent = v; });
     document.querySelectorAll('[data-course-href]').forEach(function (el) { var v = values[el.getAttribute('data-course-href')]; if (v != null) el.setAttribute('href', v); });
+  }
+
+  // ---------- Grade calculator (policies page) ----------
+  function gradeCalc(data) {
+    var el = document.getElementById('calc'); if (!el) return;
+    var g = data && data.course && data.course.grading;
+    var bonus = g ? g.bonus   : +el.getAttribute('data-bonus');
+    var n     = g ? g.hwCount : +el.getAttribute('data-hw');
+    var w     = g ? [g.weights.problemSets, g.weights.midterm, g.weights.final, g.weights.participation]
+                  : el.getAttribute('data-weights').split(',').map(Number);
+    var scale = (g && g.scale) || [[93,'A'],[90,'A\u2212'],[87,'B+'],[83,'B'],[80,'B\u2212'],[77,'C+'],
+                                   [73,'C'],[70,'C\u2212'],[67,'D+'],[63,'D'],[60,'D\u2212'],[0,'F']];
+    var fields = [], i;
+    for (i = 1; i <= n; i++) fields.push({ id: 'hw' + i, label: 'HW ' + i });
+    fields.push({ id: 'mid', label: 'Midterm' });
+    fields.push({ id: 'fin', label: 'Final' });
+    fields.push({ id: 'part', label: 'Particip.', value: 95 });
+
+    el.querySelector('.calc-grid').innerHTML = fields.map(function (f) {
+      return '<label class="calc-f" for="c-' + f.id + '"><span>' + esc(f.label) + '</span>' +
+             '<input class="mono" id="c-' + f.id + '" type="number" min="0" max="110" step="0.1" inputmode="decimal"' +
+             (f.value != null ? ' value="' + f.value + '"' : '') + '></label>';
+    }).join('');
+
+    var numEl = el.querySelector('#calc-num'), ltrEl = el.querySelector('#calc-ltr'),
+        basisEl = el.querySelector('#calc-basis'), evalBox = el.querySelector('#c-eval');
+
+    function val(id) { var v = parseFloat(el.querySelector('#c-' + id).value); return isFinite(v) ? v : null; }
+
+    function run() {
+      var hw = [], k, v;
+      for (k = 1; k <= n; k++) { v = val('hw' + k); if (v != null) hw.push(v); }
+      var parts = [];
+      if (hw.length) parts.push([w[0], hw.reduce(function (a, b) { return a + b; }, 0) / hw.length]);
+      var m = val('mid'), f = val('fin'), p = val('part');
+      if (m != null) parts.push([w[1], m]);
+      if (f != null) parts.push([w[2], f]);
+      if (p != null) parts.push([w[3], p]);
+
+      // participation alone is a prefilled default, not a result worth showing
+      var graded = hw.length || m != null || f != null;
+      var tw = parts.reduce(function (a, x) { return a + x[0]; }, 0);
+      if (!graded || !tw) { numEl.textContent = '\u2014'; ltrEl.textContent = '\u2014';
+                 basisEl.textContent = 'Enter at least one problem-set or exam grade.'; return; }
+
+      var total = parts.reduce(function (a, x) { return a + x[0] * x[1]; }, 0) / tw;
+      if (evalBox && evalBox.checked) total += bonus;
+      total = Math.round(total * 10) / 10;
+      numEl.textContent = total.toFixed(1);
+
+      var L = scale[scale.length - 1][1];
+      for (k = 0; k < scale.length; k++) { if (total >= scale[k][0]) { L = scale[k][1]; break; } }
+      ltrEl.textContent = L;
+
+      var pct = Math.round(tw);
+      basisEl.textContent = (hw.length === n && m != null && f != null && p != null)
+        ? 'Everything entered \u2014 this is the whole course grade.'
+        : 'Based on the ' + pct + '% of the course grade you have filled in, projected as if the rest went the same way.';
+    }
+
+    el.addEventListener('input', run);
+    el.addEventListener('change', run);
+    run();
   }
 
   // ---------- go ----------
@@ -227,10 +295,12 @@
       renderNext(data);
       renderResources(data);
       bindValues(data);
+      gradeCalc(data);
       // a #hash link to a row rendered after load
       if (location.hash) { var t = document.querySelector(location.hash); if (t) t.scrollIntoView(); }
     })
     .catch(function (err) {
+      gradeCalc(null);
       var el = document.getElementById('schedule') || document.getElementById('resources');
       if (el) el.innerHTML = '<p class="dim">Couldn’t load <code>data/course.json</code> (' + esc(err.message) + '). ' +
         'If you opened this file directly from disk, serve the folder over http instead (e.g. <code>python3 -m http.server</code>), or view it at www.makingminds.org.</p>';

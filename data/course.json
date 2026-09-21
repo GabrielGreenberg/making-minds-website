@@ -10,11 +10,13 @@
     "instructor": {
       "name": "Gabriel Greenberg",
       "title": "Professor",
-      "officeHours": "TBA"
+      "officeHours": "TBA",
+      "email": "ggreenberg@humnet.ucla.edu"
     },
     "ta": {
       "name": "Paul Talma",
-      "officeHours": "TBA"
+      "officeHours": "TBA",
+      "email": "ptalma@humnet.ucla.edu"
     },
     "lecture": {
       "days": "Tue & Thu",
@@ -53,6 +55,67 @@
       "instructionStart": "2026-09-24",
       "instructionEnd": "2026-12-04",
       "finalsWeek": "12/7–11"
+    },
+    "grading": {
+      "base": 40,
+      "bonus": 1,
+      "hwCount": 6,
+      "weights": {
+        "problemSets": 55,
+        "midterm": 15,
+        "final": 25,
+        "participation": 5
+      },
+      "scale": [
+        [
+          93,
+          "A"
+        ],
+        [
+          90,
+          "A−"
+        ],
+        [
+          87,
+          "B+"
+        ],
+        [
+          83,
+          "B"
+        ],
+        [
+          80,
+          "B−"
+        ],
+        [
+          77,
+          "C+"
+        ],
+        [
+          73,
+          "C"
+        ],
+        [
+          70,
+          "C−"
+        ],
+        [
+          67,
+          "D+"
+        ],
+        [
+          63,
+          "D"
+        ],
+        [
+          60,
+          "D−"
+        ],
+        [
+          0,
+          "F"
+        ]
+      ]
     }
   },
   "units": [
