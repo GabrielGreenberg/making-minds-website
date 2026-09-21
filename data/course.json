@@ -1,5 +1,5 @@
 {
-  "_readme": "Source of truth for www.makingminds.org. index.html and resources.html render from this file (assets/site.js). Dates are ISO (YYYY-MM-DD); times are 24h; week numbers and weekday labels are computed. Reading entries: {mm: chapter} for course-book chapters, or {tag, cite, url, linkText, note} where cite/note may contain <i>…</i>; {html} for anything irregular; optional label (e.g. 'Of interest:').",
+  "_readme": "Source of truth for www.makingminds.org. index.html renders from this file (assets/site.js); so does the readings reader at reader/ (reader/reader.js). Dates are ISO (YYYY-MM-DD); times are 24h; week numbers and weekday labels are computed. Reading entries: {mm: chapter} for course-book chapters, or {tag, cite, url, linkText, note} where cite/note may contain <i>…</i>; {html} for anything irregular; optional label (e.g. 'Of interest:'). Outside readings: optional id (stable key, e.g. 'turing-1950'), file (a PDF on this site, shown in reader/) and filePage (page of that file to open at).",
   "course": {
     "code": "Phil 133",
     "title": "Making Minds",
@@ -47,6 +47,9 @@
       "pdf": "book/making-minds.pdf",
       "reader": "book/",
       "note": ""
+    },
+    "readings": {
+      "reader": "reader/"
     },
     "app": {
       "label": "course app",
@@ -191,7 +194,10 @@
       "recommended": [
         {
           "tag": "C",
-          "cite": "Edelman (2008) <i>Computing the Brain</i>,",
+          "cite": "Edelman (2008) <i>Computing the Mind</i>,",
+          "id": "edelman-2008",
+          "file": "uploads/9/3/9/1/9391709/edelman_2008__22computing_the_mind_23.pdf",
+          "filePage": 52,
           "url": "https://drive.google.com/open?id=1sxAVP_pAoTYNonJ8uIsbtIo6411rZ7Hy",
           "linkText": "Ch. 3: \"Computing Brains\"",
           "note": "pp. 37–44, 50–58"
@@ -230,7 +236,10 @@
         },
         {
           "tag": "C",
-          "cite": "Edelman (2008) <i>Computing the Brain</i>,",
+          "cite": "Edelman (2008) <i>Computing the Mind</i>,",
+          "id": "edelman-2008",
+          "file": "uploads/9/3/9/1/9391709/edelman_2008__22computing_the_mind_23.pdf",
+          "filePage": 28,
           "url": "https://drive.google.com/file/d/1cRAWk0cey5cCN7MKpoSYXLTSBLliwlI3/view?usp=sharing",
           "linkText": "Ch. 2: \"Computing Minds\"",
           "note": "pp. 13–25"
@@ -275,6 +284,9 @@
         {
           "tag": "C",
           "cite": "Crane (2003) <i>The Mechanical Mind</i>, Ch. 3:",
+          "id": "crane-2003",
+          "file": "uploads/9/3/9/1/9391709/crane_2003__22the_mechanical_mind_23.pdf",
+          "filePage": 96,
           "url": "https://drive.google.com/open?id=14l6EWqePzyUs1PY5ADuOCxqguZJJBks3",
           "linkText": "\"Computers and Thought\"",
           "note": "pp. 83–114 only (skim 92–99)"
@@ -362,6 +374,9 @@
         {
           "tag": "C",
           "cite": "Pinker (1997) <i>How the Mind Works</i>, Ch. 2:",
+          "id": "pinker-1997",
+          "file": "uploads/9/3/9/1/9391709/pinker_1997__22how_the_mind_works_23.pdf",
+          "filePage": 73,
           "url": "https://drive.google.com/open?id=1YQQDDUViY4zvTxS8CZ5pt1FXvpVxhBw6",
           "linkText": "\"Thinking Machines\"",
           "note": "(excerpt)"
@@ -406,6 +421,8 @@
         {
           "tag": "C",
           "cite": "Ravenscroft (2005) <i>Philosophy of Mind</i>, Ch. 6:",
+          "id": "ravenscroft-2005",
+          "file": "uploads/9/3/9/1/9391709/ravenscroft_2005__22the_computational_theory_of_mind_23.pdf",
           "url": "https://drive.google.com/file/d/1yXD53x7iixkigQOXOSHl27z9kVdJdt5D/view?usp=sharing",
           "linkText": "\"The Computational Theory of Mind\""
         },
@@ -560,6 +577,8 @@
         {
           "tag": "C*",
           "cite": "Putnam (1967) \"The Nature of Mental States\" —",
+          "id": "putnam-1967",
+          "file": "uploads/9/3/9/1/9391709/putnam_1967__22the_nature_of_mental_states_22__excerpt_.pdf",
           "links": [
             {
               "url": "uploads/9/3/9/1/9391709/putnam_1967__22the_nature_of_mental_states_22__excerpt_.pdf",
@@ -599,6 +618,8 @@
         {
           "tag": "C*",
           "cite": "Chomsky (1957)",
+          "id": "chomsky-1957",
+          "file": "uploads/9/3/9/1/9391709/chomsky_1957__syntactic_structures__-_selections.pdf",
           "url": "uploads/9/3/9/1/9391709/chomsky_1957__syntactic_structures__-_selections.pdf",
           "linkText": "\"An Elementary Linguistic Theory\"",
           "note": "(<i>Syntactic Structures</i> ch. 3 — read for the finite-state model of English in §3.1)"
@@ -783,6 +804,8 @@
         },
         {
           "cite": "Goldman (2012)",
+          "id": "goldman-2012",
+          "file": "uploads/9/3/9/1/9391709/goldman_2012__22desert_ants_are_better_at_trigonometry_than_most_high_school_students_23.pdf",
           "url": "https://drive.google.com/open?id=18IA1HM9zWMlGT51Zgbv3BpDrKmOFS0Zj",
           "linkText": "\"Desert Ants are Better at Trigonometry than Most High-School Students\""
         }
@@ -795,6 +818,8 @@
         },
         {
           "cite": "Collett et al. (2025)",
+          "id": "collett-2025",
+          "file": "uploads/9/3/9/1/9391709/neuroethology_of_ant_navigation.pdf",
           "url": "uploads/9/3/9/1/9391709/neuroethology_of_ant_navigation.pdf",
           "linkText": "\"The Neuroethology of Ant Navigation\""
         }

@@ -3,28 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Making Minds · Read</title>
-<meta name="description" content="Making Minds — a constructive introduction to the computational theory of mind (Gabriel Greenberg). Read the course book online, chapter by chapter, with search.">
+<title>Making Minds · Reader</title>
+<meta name="description" content="The outside readings for Phil 133 (Making Minds, UCLA), in one place: read the PDFs here, sorted by due date or by author.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23081633'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='17' fill='%23fff'%3EMM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../book/reader.css">
 <link rel="stylesheet" href="reader.css">
 </head>
-<body class="rb">
+<body class="rb rd">
 <header class="topbar">
   <div class="rb-topinner">
     <a class="brand" href="../index.html">Making Minds<span class="course">Phil 133</span></a>
-    <nav aria-label="Site"><a href="../index.html">Schedule</a><a href="../policies.html">Policies</a><a href="../reader/">Reader</a><a href="./" aria-current=page>Course book</a><a class="ext" href="https://making-minds.pages.dev" target="_blank" rel="noopener">Course app</a></nav>
+    <nav aria-label="Site"><a href="../index.html">Schedule</a><a href="../policies.html">Policies</a><a href="./" aria-current=page>Reader</a><a href="../book/">Course book</a><a class="ext" href="https://making-minds.pages.dev" target="_blank" rel="noopener">Course app</a></nav>
   </div>
 </header>
 <div class="rb-top">
-  <button class="rb-menu" id="menu" type="button" aria-label="Contents" aria-controls="side" aria-expanded="false"><span></span><span></span><span></span></button>
+  <button class="rb-menu" id="menu" type="button" aria-label="Readings" aria-controls="side" aria-expanded="false"><span></span><span></span><span></span></button>
   <nav class="rb-crumb" id="crumb" aria-label="Position"></nav>
   <div class="rb-tools">
     <span class="rb-pageno mono" id="pageno"></span>
-    <label class="rb-zoom"><span class="vh">Zoom</span>
+    <label class="rb-zoom" id="zoomwrap"><span class="vh">Zoom</span>
       <select id="zoom" aria-label="Zoom">
         <option value="0.75">75%</option>
         <option value="1" selected>Fit width</option>
@@ -33,30 +34,27 @@
         <option value="2">200%</option>
       </select>
     </label>
+    <span class="rd-file" id="filelink"></span>
   </div>
 </div>
 
 <div class="rb-body">
   <div class="rb-backdrop" id="backdrop"></div>
-  <aside class="rb-side" id="side" aria-label="Contents and search">
-    <form class="rb-search" id="searchform" role="search" autocomplete="off">
-      <input type="search" id="q" placeholder="Search the book" aria-label="Search the book" spellcheck="false">
-      <button type="button" id="qclear" aria-label="Clear search" hidden>×</button>
-    </form>
-    <nav class="rb-toc" id="toc" aria-label="Contents"></nav>
-    <div class="rb-results" id="results" hidden></div>
+  <aside class="rb-side" id="side" aria-label="Readings">
+    <div class="rd-sort" role="radiogroup" aria-label="Sort readings">
+      <button type="button" class="rd-sortbtn" data-sort="date" role="radio" aria-checked="true">By due date</button>
+      <button type="button" class="rd-sortbtn" data-sort="name" role="radio" aria-checked="false">By name</button>
+    </div>
+    <nav class="rb-toc rd-list" id="list" aria-label="Readings"></nav>
     <div class="rb-sidefoot" id="sidefoot"></div>
   </aside>
 
   <main class="rb-main" id="main" tabindex="-1">
-    <section class="rb-landing" id="landing" hidden>
-      <div class="rb-cover"><img id="coverimg" alt="Making Minds — cover" decoding="async"></div>
-      <div class="rb-actions" id="actions"></div>
-      <p class="rb-updated" id="updated"></p>
-    </section>
-    <section class="rb-doc" id="doc" hidden>
+    <section class="rd-landing" id="landing" hidden></section>
+    <section class="rb-doc rd-doc" id="doc" hidden>
+      <article class="rd-card" id="card"></article>
       <div class="rb-pages" id="pages"></div>
-      <nav class="rb-chapnav" id="chapnav" aria-label="Previous and next chapter"></nav>
+      <nav class="rb-chapnav" id="chapnav" aria-label="Previous and next reading"></nav>
     </section>
     <p class="rb-status" id="status" hidden></p>
   </main>

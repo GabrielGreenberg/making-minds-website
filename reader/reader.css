@@ -1,0 +1,127 @@
+/* Making Minds · Reader (course readings). Builds on ../assets/site.css (tokens, top bar) and ../book/reader.css
+   (the reader chrome: reader bar, sidebar + main layout, pages, text layer, phone drawer). Only what differs is here. */
+
+/* ---------- reader bar ---------- */
+.rd .rb-crumb .ttl { color: var(--ink-3); font-weight: 400; }
+.rd .rb-crumb .ttl i { font-style: italic; }
+.rd-file a { font-size: 12.5px; color: var(--ink-2); text-decoration: none; padding: 3px 9px; border: 1px solid var(--line-2); border-radius: 4px; white-space: nowrap; }
+.rd-file a:hover { color: var(--accent); border-color: var(--accent); }
+.rb-zoom[hidden] { display: none; }
+
+/* ---------- sidebar: sort toggle ---------- */
+.rd-sort { position: sticky; top: 0; z-index: 2; background: var(--surface); padding: 12px 14px 10px; border-bottom: 1px solid var(--line); display: flex; gap: 0; }
+.rd-sortbtn { flex: 1 1 0; font: inherit; font-size: 12.5px; font-weight: 500; color: var(--ink-2); background: var(--bg); border: 1px solid var(--line-2); padding: 5px 6px; cursor: pointer; }
+.rd-sortbtn:first-child { border-radius: 6px 0 0 6px; }
+.rd-sortbtn:last-child { border-radius: 0 6px 6px 0; margin-left: -1px; }
+.rd-sortbtn:hover { color: var(--accent); }
+.rd-sortbtn[aria-checked="true"] { background: var(--lav-soft); border-color: var(--lav-line); color: var(--ink); font-weight: 600; position: relative; z-index: 1; }
+
+/* ---------- sidebar: the list ---------- */
+.rd-list { padding-bottom: 14px; }
+.rd-list .unit.closed + .ulist { display: none; }
+.rd-list .unit.bgunit { margin-top: 18px; }
+.rd-lesson { padding: 6px 0 4px; }
+.rd-lesson + .rd-lesson { border-top: 1px solid var(--line); }
+.rd-lh { display: block; padding: 5px 14px 3px 30px; text-decoration: none; color: var(--ink-2); line-height: 1.3; position: relative; }
+.rd-lh::before { content: ""; position: absolute; left: 14px; top: 9px; width: 3px; height: 14px; background: var(--uc, var(--line-2)); border-radius: 1px; }
+.rd-lh .d { display: block; font-size: 11.5px; color: var(--date); }
+.rd-lh .t { display: block; font-size: 12.5px; font-weight: 600; color: var(--ink); }
+a.rd-lh:hover .t { color: var(--accent); }
+.rd-bgh { padding-left: 14px; }
+.rd-bgh::before { display: none; }
+.rd-bgh .t { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.rd-none { padding: 2px 14px 6px 30px; font-size: 12px; color: var(--ink-3); font-style: italic; }
+.rd-list ol { list-style: none; margin: 0; padding: 0; }
+.rd-row { position: relative; }
+.rd-row > a { display: block; padding: 5px 44px 6px 30px; color: var(--ink-2); text-decoration: none; line-height: 1.35; }
+.rd-row > a:hover { color: var(--ink); background: var(--bg); }
+.rd-row.cur > a { color: var(--ink); background: var(--lav-soft); }
+.rd-row.cur > a .au { font-weight: 600; }
+.rd-row .l1 { display: block; font-size: 13.5px; }
+.rd-row .l1 .tag { font-size: 10px; padding: 0 5px; margin-right: 6px; vertical-align: 1px; }
+.rd-row .l2 { display: block; font-size: 12px; color: var(--ink-3); margin-top: 1px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.rd-row.rec > a .au { color: var(--ink-2); font-weight: 400; }
+.rd-row .av { position: absolute; right: 14px; top: 7px; font-family: "IBM Plex Mono", monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.04em; line-height: 1.5; padding: 0 5px; border-radius: 3px; pointer-events: none; }
+.rd-row .av.pdf { background: var(--accent-soft); color: var(--accent); }
+.rd-row .av.ext { background: transparent; color: var(--ink-3); font-size: 12px; padding: 0 3px; }
+.rd-row .av.none { color: var(--line-2); }
+/* recommended: a quiet fold per lesson, like the schedule's */
+.rd-rec { padding: 2px 0 2px 30px; }
+.rd-rectog { display: inline-flex; align-items: center; gap: 5px; font: inherit; font-size: 12px; color: var(--ink-3); background: none; border: 0; padding: 3px 0; cursor: pointer; }
+.rd-rectog::before { content: ""; width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 5px solid var(--ink-3); opacity: .8; transition: transform .15s; }
+.rd-rec.open .rd-rectog::before { transform: rotate(90deg); }
+.rd-rectog:hover { color: var(--accent); }
+.rd-rectog:hover::before { border-left-color: var(--accent); }
+.rd-reclist { display: none; margin: 2px 0 2px -30px !important; border-left: 0; }
+.rd-rec.open .rd-reclist { display: block; }
+.rd-reclist .rd-row > a { padding-left: 42px; }
+.rd-reclist .rd-row .l1 { font-size: 13px; }
+/* A–Z mode */
+.rd-az { padding-top: 4px; }
+.rd-letter { padding: 12px 14px 3px 30px; font-size: 11px; letter-spacing: 0.1em; color: var(--ink-3); font-weight: 700; border-top: 1px solid var(--line); margin-top: 6px; }
+.rd-letter:first-child { border-top: 0; margin-top: 0; }
+.rd-row .whens { display: inline-block; margin-left: 6px; vertical-align: 1px; }
+.rd-row .when { display: inline-block; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--date); margin-right: 5px; }
+.rd-row .when.rec { color: var(--ink-3); }
+.rd-list .rb-sidefoot i { font-style: italic; }
+
+/* ---------- main: landing ---------- */
+.rd-landing { max-width: 720px; margin: 0 auto; padding: 36px 24px 60px; }
+.rd-landing h1 { font-size: 30px; }
+.rd-landing .lede { font-size: 15px; color: var(--ink-2); margin: 12px 0 0; }
+.rd-cont { margin: 18px 0 0; }
+.rd-cont a { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 500; text-decoration: none; border: 1px solid var(--lav-line); background: var(--lav-soft); color: var(--ink); }
+.rd-cont a:hover { border-color: var(--accent); color: var(--accent); }
+.rd-cont a .sub { font-weight: 400; opacity: .8; }
+.rd-next { margin-top: 24px; background: var(--lav-soft); border: 1px solid var(--lav-line); padding: 12px 16px 14px; display: grid; grid-template-columns: 104px 1fr; gap: 12px; align-items: start; font-size: 13.5px; }
+.rd-next .chip { color: var(--ink-2); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; margin-top: 3px; white-space: nowrap; }
+.rd-next .nx-main { color: var(--ink); font-weight: 600; text-decoration: none; }
+.rd-next .nx-main:hover { color: var(--accent); }
+.rd-next .nx-date { font-weight: 400; color: var(--date); margin-right: 4px; }
+.rd-nextlist { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 5px; font-size: 13.5px; }
+.rd-nextlist a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px dotted var(--line-2); }
+.rd-nextlist a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.rd-nextlist .part { color: var(--ink-3); font-size: 12.5px; }
+.rd-nextrec { margin-top: 6px; font-size: 12.5px; color: var(--ink-3); }
+.rd-next .rd-none { padding: 4px 0 0; }
+.rd-stats { margin: 22px 0 0; font-size: 12.5px; color: var(--ink-3); }
+.rd-stats b { color: var(--ink-2); font-weight: 600; }
+
+/* ---------- main: the reading card ---------- */
+.rd-doc { padding: 22px 16px 40px; }
+.rd-card { max-width: var(--rb-page-max); margin: 0 auto 18px; background: var(--surface); border: 1px solid var(--line); padding: 18px 22px 16px; font-size: 14px; }
+.rd-head h1 { font-size: 24px; font-weight: 600; margin: 4px 0 0; }
+.rd-tags .tag { font-size: 10.5px; }
+.rd-title { font-family: "IBM Plex Serif", Georgia, serif; font-size: 17px; color: var(--ink-2); margin-top: 2px; }
+.rd-title i { font-style: italic; }
+.rd-asg { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 12px; }
+.rd-asg li { line-height: 1.45; }
+.rd-asg .when { font-size: 12.5px; color: var(--ink-3); }
+.rd-asg .when .d { color: var(--date); text-decoration: none; }
+.rd-asg .when .d:hover { text-decoration: underline; }
+.rd-asg .when .t { color: var(--ink-2); font-weight: 500; }
+.rd-asg .req { font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin-left: 6px; }
+.rd-asg .req.rec { color: var(--ink-3); }
+.rd-asg .what { color: var(--ink-2); }
+.rd-asg .what .goto { margin-left: 6px; font-size: 12.5px; white-space: nowrap; }
+.rd-asg.bg .when .t { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+.rd-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.rd-actions a { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 500; text-decoration: none; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink); }
+.rd-actions a:hover { border-color: var(--accent); color: var(--accent); }
+.rd-actions a.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.rd-actions a.primary:hover { background: var(--accent-2); border-color: var(--accent-2); color: #fff; }
+.rd-actions a .sub { font-weight: 400; color: inherit; opacity: .7; font-size: 12px; }
+.rd-nofile { margin: 12px 0 0; color: var(--ink-3); font-size: 12.5px; }
+.rd .rb-chapnav { margin-top: 26px; }
+
+/* ---------- small screens ---------- */
+@media (max-width: 900px) {
+  .rd-file { display: none; }
+  .rd-landing { padding: 24px 16px 40px; }
+  .rd-next { grid-template-columns: 1fr; gap: 4px; }
+  .rd-card { padding: 14px 14px 12px; }
+  .rd-head h1 { font-size: 21px; }
+}
+@media print {
+  .rd-card { border: 0; }
+}
