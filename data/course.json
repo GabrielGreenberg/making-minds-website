@@ -290,15 +290,24 @@
         },
         {
           "tag": "C*",
-          "cite": "Minsky (1965)",
-          "id": "minsky-1965",
-          "file": "reader/files/minsky-1965.pdf",
-          "url": "https://www.mit.edu/~dxh/marvin/web.media.mit.edu/~minsky/papers/MatterMindModels.txt",
-          "linkText": "“Matter, Mind and Models”",
-          "short": "Minsky (1965), “Matter, Mind and Models”"
+          "cite": "Haugeland (1981)",
+          "id": "haugeland-1981-excerpt",
+          "file": "reader/files/haugeland-1981-excerpt.pdf",
+          "linkText": "“Semantic Engines: An Introduction to Mind Design”",
+          "note": "— §§I, VI, and VII (“Cognitive Science,” “Semantics,” “Interpretation and Truth”)",
+          "short": "Haugeland (1981), “Semantic Engines,” §§I, VI, and VII"
         }
       ],
       "recommended": [
+        {
+          "tag": "C*",
+          "cite": "Haugeland (1981)",
+          "id": "haugeland-1981",
+          "file": "reader/files/haugeland-1981.pdf",
+          "linkText": "“Semantic Engines: An Introduction to Mind Design”",
+          "note": "— the full paper",
+          "short": "Haugeland (1981), “Semantic Engines,” full paper"
+        },
         {
           "tag": "C",
           "cite": "Crane (2003) <i>The Mechanical Mind</i>, Ch. 3:",
@@ -449,8 +458,13 @@
           "short": "McLaughlin (2004), “Computationalism, Connectionism, and the Philosophy of Mind,” excerpt"
         },
         {
-          "cite": "Haugeland, <i>Semantic Engines</i>",
-          "short": "Haugeland, “Semantic Engines”"
+          "tag": "C*",
+          "cite": "Haugeland (1981)",
+          "id": "haugeland-1981",
+          "file": "reader/files/haugeland-1981.pdf",
+          "linkText": "“Semantic Engines: An Introduction to Mind Design”",
+          "note": "— the full paper",
+          "short": "Haugeland (1981), “Semantic Engines”"
         },
         {
           "tag": "C",
