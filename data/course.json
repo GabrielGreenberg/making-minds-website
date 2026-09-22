@@ -442,6 +442,14 @@
           "mm": "Lessons and Limits of Combinatorial Computation",
           "n": 16,
           "page": 58
+        },
+        {
+          "tag": "C",
+          "cite": "Pinker (1997) <i>How the Mind Works</i>, excerpts from Ch. 1, “Standard Equipment,” and Ch. 2, “Thinking Machines”",
+          "id": "pinker-1997-ctm",
+          "file": "reader/files/pinker-1997-ctm-excerpt.pdf",
+          "note": "— pp. 24–27 and 64–69",
+          "short": "Pinker (1997), “Standard Equipment” and “Thinking Machines,” excerpts"
         }
       ],
       "recommended": [
