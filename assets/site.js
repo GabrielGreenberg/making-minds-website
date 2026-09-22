@@ -28,9 +28,20 @@
     var n = Math.floor((d - w1) / (7 * 864e5)) + 1;
     return n < 1 ? '0' : (n > 10 ? 'F' : String(n));
   }
+  // Where a link opens. Outside sites: a new tab. The Reader and the course book: one named tab each, so the
+  // syllabus stays put and every further reading reuses that tab instead of piling up new ones. (Same-origin, so no
+  // rel=noopener — it would stop the browser from finding the existing tab by name.) PDFs and other pages: as usual.
+  function tabAttr(url) {
+    if (/^https?:/.test(url)) return ' target="_blank" rel="noopener"';
+    var c = window.__course && window.__course.course, u = String(url).split('#')[0];
+    if (/\.pdf$/i.test(u)) return '';
+    var rr = c && c.readings && c.readings.reader, br = c && c.book && c.book.reader;
+    if (rr && u.indexOf(rr) === 0) return ' target="mm-reader"';
+    if (br && u.indexOf(br) === 0) return ' target="mm-book"';
+    return '';
+  }
   function link(url, text) {
-    var ext = /^https?:/.test(url);
-    return '<a href="' + esc(url) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + text + '</a>';
+    return '<a href="' + esc(url) + '"' + tabAttr(url) + '>' + text + '</a>';
   }
   // Dim a "TBA" inside otherwise real text ("Tue 2–3pm, location TBA").
   function tba(t) { return esc(t).replace(/\bTBA\b/g, '<em>TBA</em>'); }
@@ -45,7 +56,7 @@
   function reading(r, bare) {
     if (r.mm) {   // course-book chapter: the title links into the web reader by chapter number
       var bk = window.__course && window.__course.course.book, rd = bk && bk.reader;
-      var t = rd && r.n ? '<a class="mmlink" href="' + esc(rd + '#ch' + r.n) + '">' + esc(r.mm) + '</a>' : esc(r.mm);
+      var t = rd && r.n ? '<a class="mmlink" href="' + esc(rd + '#ch' + r.n) + '"' + tabAttr(rd + '#ch' + r.n) + '>' + esc(r.mm) + '</a>' : esc(r.mm);
       var pre = bare ? (r.n ? String(r.n) : '') : 'MM' + (r.n ? ' ' + r.n : '');
       return '<span class="mm">' + pre + '</span><span class="mmt">' + t + '</span>';
     }
@@ -69,7 +80,7 @@
     if (r.short) {   // compact form for the syllabus: author (year) + the assigned titles; the full citation lives in the Reader
       var to = here || (r.url && /^https?:/.test(r.url) ? r.url : null) || ((r.links || [])[0] || {}).url || null;
       var out = to && /^https?:/.test(to);
-      parts.push(to ? '<a class="rdlink' + (out ? ' out' : '') + '" href="' + esc(to) + '"' + (out ? ' target="_blank" rel="noopener"' : '') + '>' + r.short + '</a>' : r.short);
+      parts.push(to ? '<a class="rdlink' + (out ? ' out' : '') + '" href="' + esc(to) + '"' + tabAttr(to) + '>' + r.short + '</a>' : r.short);
       return parts.join(' ');
     }
     if (r.cite) parts.push(r.cite);
