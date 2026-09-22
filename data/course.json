@@ -732,6 +732,8 @@
         {
           "tag": "C/T",
           "cite": "Fitch and Friederici (2012)",
+          "id": "fitch-friederici-2012",
+          "file": "reader/files/fitch-friederici-2012.pdf",
           "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3367694/",
           "linkText": "“Artificial grammar learning meets formal language theory: an overview”",
           "note": "— §§1–3"
