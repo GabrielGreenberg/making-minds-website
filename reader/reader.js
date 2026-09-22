@@ -192,7 +192,7 @@ function buildList() {
         lastUnit = L.unit; const u = units[L.unit] || { n: L.unit, name: '' };
         h += '<div class="unit" style="--uc:var(--u' + u.n + ')"><button class="tog" type="button" aria-expanded="true" aria-label="Fold unit ' + u.n + '"></button><span class="un">Unit ' + u.n + '</span><span class="ut">' + esc(u.name) + '</span></div><div class="ulist">';
       }
-      h += '<div class="rd-lesson" id="side-' + L.id + '" style="--uc:var(--u' + L.unit + ')"><a class="rd-lh" href="../index.html#' + L.id + '" title="This lesson on the schedule"><span class="d mono">' + esc(L.d) + '</span><span class="t">' + esc(L.topic) + '</span></a>';
+      h += '<div class="rd-lesson" id="side-' + L.id + '" style="--uc:var(--u' + L.unit + ')"><a class="rd-lh" href="../index.html#' + L.id + '" title="This lesson on the syllabus"><span class="d mono">' + esc(L.d) + '</span><span class="t">' + esc(L.topic) + '</span></a>';
       if (!L.required.length && !L.recommended.length) h += '<div class="rd-none">no outside reading</div>';
       if (L.required.length) h += '<ol>' + L.required.map((a) => rowHtml(byKey[a.key], a)).join('') + '</ol>';
       if (L.recommended.length) {
@@ -227,7 +227,7 @@ function buildList() {
   el.list.innerHTML = h;
   document.querySelectorAll('.rd-sortbtn').forEach((b) => b.setAttribute('aria-checked', b.dataset.sort === sort ? 'true' : 'false'));
   const book = D.course.book;
-  el.sidefoot.innerHTML = '<a href="../index.html">Schedule</a>' + (book && book.reader ? '<a href="../' + esc(book.reader) + '">Course book · <i>' + esc(book.title) + '</i></a>' : '') +
+  el.sidefoot.innerHTML = '<a href="../index.html">Syllabus</a>' + (book && book.reader ? '<a href="../' + esc(book.reader) + '">Course book · <i>' + esc(book.title) + '</i></a>' : '') +
     '<span class="new">Readings marked <b>PDF</b> open here; the rest open where they live.</span>';
   if (cur) markCurrent(cur.work);
 }
@@ -264,7 +264,7 @@ function showLanding() {
   const now = nowIn(D.course.timezone);
   const next = lessons.find((L) => L.endAt > now);
   let h = '<h1>Reader</h1><p class="lede">The outside readings for the course, in one place. Readings we host open right here; the rest link to where they live. ' +
-    'Sort the list by <b>due date</b> to follow the schedule, or by <b>name</b> to find an author. Chapters of <i>' + esc(D.course.book.title) + '</i> are in the <a href="../' + esc(D.course.book.reader || D.course.book.pdf) + '">course book</a>.</p>';
+    'Sort the list by <b>due date</b> to follow the syllabus, or by <b>name</b> to find an author. Chapters of <i>' + esc(D.course.book.title) + '</i> are in the <a href="../' + esc(D.course.book.reader || D.course.book.pdf) + '">course book</a>.</p>';
   const last = store.get('last', null);
   if (last && byKey[last.key] && byKey[last.key].file) {
     const w = byKey[last.key];
@@ -278,7 +278,7 @@ function showLanding() {
     if (next.recommended.length) h += '<div class="rd-nextrec">+ ' + next.recommended.length + ' recommended</div>';
     h += '</div></section>';
   }
-  h += '<p class="rd-stats">' + assigned.length + ' readings on the schedule · <b>' + here + '</b> open here · ' + out + ' link out' + (none ? ' · ' + none + ' without a link yet' : '') + '</p>';
+  h += '<p class="rd-stats">' + assigned.length + ' readings on the syllabus · <b>' + here + '</b> open here · ' + out + ' link out' + (none ? ' · ' + none + ' without a link yet' : '') + '</p>';
   el.landing.innerHTML = h;
   el.crumb.innerHTML = '<span class="cur">Readings</span>';
   el.pageno.textContent = ''; el.filelink.innerHTML = ''; el.zoomwrap.hidden = true;
@@ -294,7 +294,7 @@ function cardHtml(w, ctx) {
   if (w.assignments.length) {
     h += '<ul class="rd-asg">' + w.assignments.map((a) => {
       const L = a.lesson;
-      return '<li' + (ctx && ctx.a === a ? ' class="cur"' : '') + '><div class="when"><a class="mono d" href="../index.html#' + L.id + '" title="On the schedule">' + esc(L.d) + '</a> <span class="t">' + esc(L.topic) + '</span> <span class="req' + (a.required ? '' : ' rec') + '">' + (a.required ? 'required' : 'recommended') + '</span></div>' +
+      return '<li' + (ctx && ctx.a === a ? ' class="cur"' : '') + '><div class="when"><a class="mono d" href="../index.html#' + L.id + '" title="On the syllabus">' + esc(L.d) + '</a> <span class="t">' + esc(L.topic) + '</span> <span class="req' + (a.required ? '' : ' rec') + '">' + (a.required ? 'required' : 'recommended') + '</span></div>' +
         '<div class="what">' + (a.r.label ? '<span class="dim">' + esc(a.r.label) + '</span> ' : '') + partHtml(a.r, true) +
         (a.page && w.file ? ' <a class="goto" href="' + hashFor(w.key, a.page) + '">open at p. ' + a.page + ' ↓</a>' : '') + '</div></li>';
     }).join('') + '</ul>';

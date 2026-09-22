@@ -1,5 +1,5 @@
 /* Making Minds · Phil 133 — renders the site from data/course.json.
-   index.html: hero meta, course facts, the "up next" box, the schedule.
+   index.html: hero meta, course facts, the "up next" box, the syllabus table.
    policies.html: a few bound values.  (resources.html now redirects to reader/, which renders the readings itself.)
    Dates in the JSON are ISO (YYYY-MM-DD); weekday labels and UCLA week
    numbers are computed here. Times are local to course.timezone. */
@@ -41,7 +41,7 @@
     return '<span class="tag ' + cls + '">' + esc(t) + '</span>';
   }
   // One reading entry -> inline HTML. bare: chapter number without the "MM" prefix
-  // (the schedule's Making Minds column, where the header already names the book).
+  // (the syllabus's Making Minds column, where the header already names the book).
   function reading(r, bare) {
     if (r.mm) {   // course-book chapter: the title links into the web reader by chapter number
       var bk = window.__course && window.__course.course.book, rd = bk && bk.reader;
@@ -66,6 +66,12 @@
     var parts = [];
     if (r.label) parts.push('<span class="dim">' + esc(r.label) + '</span>');
     if (r.tag) parts.push(tag(r.tag));
+    if (r.short) {   // compact form for the syllabus: author (year) + the assigned titles; the full citation lives in the Reader
+      var to = here || (r.url && /^https?:/.test(r.url) ? r.url : null) || ((r.links || [])[0] || {}).url || null;
+      var out = to && /^https?:/.test(to);
+      parts.push(to ? '<a class="rdlink' + (out ? ' out' : '') + '" href="' + esc(to) + '"' + (out ? ' target="_blank" rel="noopener"' : '') + '>' + r.short + '</a>' : r.short);
+      return parts.join(' ');
+    }
     if (r.cite) parts.push(r.cite);
     if (r.url) parts.push(rl(r.url, r.linkText || r.url));
     else if (here && r.linkText) parts.push(link(here, r.linkText));
@@ -130,7 +136,7 @@
     var el = document.getElementById('schedule');
     if (!el) return;
     var cols = '<colgroup><col class="c-wk"><col class="c-date"><col class="c-topic"><col class="c-mm"><col class="c-ext"></colgroup>';
-    var html = ['<table class="sched sched-head" aria-hidden="true">' + cols + '<thead><tr><th>Wk</th><th>Date</th><th>Topic</th><th>Making Minds</th><th>Other readings</th></tr></thead></table>'];
+    var html = ['<table class="sched sched-head" aria-hidden="true">' + cols + '<thead><tr><th>Wk</th><th>Date</th><th>Topic</th><th>Making Minds readings</th><th>Outside readings</th></tr></thead></table>'];
     var units = {};
     data.units.forEach(function (u) { units[u.n] = u; });
     // group entries into unit blocks: an entry belongs to the current unit until the next lesson with a new unit
@@ -195,7 +201,7 @@
           var sub = next.where === 'in class' ? 'in class, ' + timeRange(next.start, next.end) : timeRange(next.start, next.end) + ' · ' + next.where;
           html += line(label, next, esc(next.title) + ' <span class="dim">· ' + esc(sub) + '</span>', esc(next.note || ''));
         } else {
-          var items = (next.read || []).map(reading).join(' <span class="sep">·</span> ');
+          var items = (next.read || []).map(function (r) { return reading(r); }).join(' <span class="sep">·</span> ');
           html += line(label, next, esc(next.topic), items ? '<span class="rl">Read</span> ' + items : '');
         }
       }
