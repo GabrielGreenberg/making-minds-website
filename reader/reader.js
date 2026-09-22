@@ -8,7 +8,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '../book/pdfjs/pdf.worker.min.mjs';
 
 const $ = (id) => document.getElementById(id);
 const el = { main: $('main'), side: $('side'), backdrop: $('backdrop'), menu: $('menu'), crumb: $('crumb'), pageno: $('pageno'),
-  zoom: $('zoom'), zoomwrap: $('zoomwrap'), filelink: $('filelink'), list: $('list'), sidefoot: $('sidefoot'),
+  zoom: $('zoom'), zoomwrap: $('zoomwrap'), filelink: $('filelink'), list: $('list'), sidefoot: $('sidefoot'), sort: $('sort'),
   landing: $('landing'), doc: $('doc'), card: $('card'), pages: $('pages'), chapnav: $('chapnav'), status: $('status') };
 const PAGE_MAX = 1000;
 const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -37,6 +37,7 @@ let bg = [];                  // background sections from `resources`
 let rows = { date: [], name: [] };   // sidebar order per sort mode: [{key, page}]
 let az = [];                  // the works with assignments, A–Z by first author
 let sort = store.get('sort', 'date') === 'name' ? 'name' : 'date';
+let tab = store.get('tab', 'readings') === 'background' ? 'background' : 'readings';   // sidebar panel: the course readings, or the background texts
 let zoom = +store.get('zoom', 1) || 1;
 let cur = null;               // {work, pdf, pages:[…], gen, scale, pw}
 let gen = 0;
@@ -171,7 +172,7 @@ function buildModel(data) {
 // ---------------------------------------------------------------- sidebar
 function hashFor(key, page) { return '#' + key + (page ? '/p' + page : ''); }
 function avail(w) { return w.file ? '<span class="av pdf" title="Read here">PDF</span>' : (w.ext.length ? '<span class="av ext" title="Opens elsewhere">↗</span>' : '<span class="av none" title="No link yet">–</span>'); }
-function tagHtml(t) { if (!t) return ''; const cls = /C/.test(t) && /T/.test(t) ? 'ct' : (/^C/.test(t) ? 'c' : 't'); return '<span class="tag ' + cls + '">' + esc(t) + '</span>'; }
+function tagHtml() { return ''; }   // the C / T / C* tags are kept in the JSON but no longer shown (Gabriel, 9/22)
 // one sidebar row: a specific assignment (date mode) or the work as a whole (name mode, background)
 function rowHtml(w, a, extra, rec) {
   const tags = a ? tagHtml(a.r.tag) : w.tags.map(tagHtml).join('');
@@ -183,7 +184,16 @@ function rowHtml(w, a, extra, rec) {
 }
 function buildList() {
   let h = '';
-  if (sort === 'date') {
+  document.querySelectorAll('.rd-tab').forEach((b) => b.setAttribute('aria-selected', b.dataset.tab === tab ? 'true' : 'false'));
+  el.sort.hidden = tab !== 'readings';
+  if (tab === 'background') {
+    // the background texts (from `resources`), one list per heading
+    bg.forEach((s) => {
+      h += '<div class="rd-lesson rd-bg"><div class="rd-lh rd-bgh"><span class="t">' + esc(s.heading) + '</span></div><ol>' +
+        s.items.map((w) => rowHtml(w, null, '')).join('') + '</ol></div>';
+    });
+    if (!bg.length) h += '<div class="rd-none">No background texts yet.</div>';
+  } else if (sort === 'date') {
     const units = {}; D.units.forEach((u) => { units[u.n] = u; });
     let lastUnit = null;
     lessons.forEach((L) => {
@@ -192,11 +202,11 @@ function buildList() {
         lastUnit = L.unit; const u = units[L.unit] || { n: L.unit, name: '' };
         h += '<div class="unit" style="--uc:var(--u' + u.n + ')"><button class="tog" type="button" aria-expanded="true" aria-label="Fold unit ' + u.n + '"></button><span class="un">Unit ' + u.n + '</span><span class="ut">' + esc(u.name) + '</span></div><div class="ulist">';
       }
-      h += '<div class="rd-lesson" id="side-' + L.id + '" style="--uc:var(--u' + L.unit + ')"><a class="rd-lh" href="../index.html#' + L.id + '" title="This lesson on the syllabus"><span class="d mono">' + esc(L.d) + '</span><span class="t">' + esc(L.topic) + '</span></a>';
+      h += '<div class="rd-lesson" id="side-' + L.id + '" style="--uc:var(--u' + L.unit + ')"><div class="rd-lh"><span class="d mono">' + esc(L.d) + '</span><span class="t">' + esc(L.topic) + '</span></div>';
       if (!L.required.length && !L.recommended.length) h += '<div class="rd-none">no outside reading</div>';
       if (L.required.length) h += '<ol>' + L.required.map((a) => rowHtml(byKey[a.key], a)).join('') + '</ol>';
       if (L.recommended.length) {
-        h += '<div class="rd-rec"><button class="rd-rectog" type="button" aria-expanded="false">Recommended <span class="n">(' + L.recommended.length + ')</span></button><ol class="rd-reclist">' + L.recommended.map((a) => rowHtml(byKey[a.key], a)).join('') + '</ol></div>';
+        h += '<div class="rd-rec"><button class="rd-rectog" type="button" aria-expanded="false">Recommended</button><ol class="rd-reclist">' + L.recommended.map((a) => rowHtml(byKey[a.key], a)).join('') + '</ol></div>';
       }
       h += '</div>';
     });
@@ -215,15 +225,6 @@ function buildList() {
     });
     h += '</ol>';
   }
-  // background texts
-  if (bg.length) {
-    h += '<div class="unit bgunit" style="--uc:var(--accent)"><button class="tog" type="button" aria-expanded="true" aria-label="Fold background"></button><span class="un">Background</span><span class="ut">Further reading</span></div><div class="ulist">';
-    bg.forEach((s) => {
-      h += '<div class="rd-lesson"><div class="rd-lh rd-bgh"><span class="t">' + esc(s.heading) + '</span></div><ol>' +
-        s.items.map((w) => rowHtml(w, null, '')).join('') + '</ol></div>';
-    });
-    h += '</div>';
-  }
   el.list.innerHTML = h;
   document.querySelectorAll('.rd-sortbtn').forEach((b) => b.setAttribute('aria-checked', b.dataset.sort === sort ? 'true' : 'false'));
   const book = D.course.book;
@@ -234,6 +235,8 @@ function buildList() {
 function markCurrent(w) {
   el.list.querySelectorAll('.cur').forEach((x) => x.classList.remove('cur'));
   if (!w) return;
+  const want = w.assignments.length ? 'readings' : 'background';
+  if (tab !== want) { tab = want; store.set('tab', want); buildList(); return; }   // buildList calls markCurrent again
   let first = null;
   el.list.querySelectorAll('.rd-row[data-key="' + CSS.escape(w.key) + '"]').forEach((li) => {
     li.classList.add('cur'); if (!first) first = li;
@@ -252,6 +255,10 @@ function setSort(s) {
   sort = s; store.set('sort', s); buildList();
   if (cur) { cur.row = null; chapNav(cur.work); }
 }
+function setTab(t) {
+  if (t !== 'readings' && t !== 'background') return;
+  tab = t; store.set('tab', t); buildList();
+}
 
 // ---------------------------------------------------------------- landing
 function showLanding() {
@@ -263,8 +270,7 @@ function showLanding() {
     out = assigned.filter((w) => !w.file && w.ext.length).length, none = assigned.length - here - out;
   const now = nowIn(D.course.timezone);
   const next = lessons.find((L) => L.endAt > now);
-  let h = '<h1>Reader</h1><p class="lede">The outside readings for the course, in one place. Readings we host open right here; the rest link to where they live. ' +
-    'Sort the list by <b>due date</b> to follow the syllabus, or by <b>name</b> to find an author. Chapters of <i>' + esc(D.course.book.title) + '</i> are in the <a href="../' + esc(D.course.book.reader || D.course.book.pdf) + '">course book</a>.</p>';
+  let h = '<h1>Reader</h1><p class="lede">All of the outside readings for the course are available here. Chapters of <i>' + esc(D.course.book.title) + '</i> are in the <a href="../' + esc(D.course.book.reader || D.course.book.pdf) + '">course book</a>.</p>';
   const last = store.get('last', null);
   if (last && byKey[last.key] && byKey[last.key].file) {
     const w = byKey[last.key];
@@ -275,7 +281,7 @@ function showLanding() {
       '<div class="nx-body"><a class="nx-main" href="../index.html#' + next.id + '"><span class="mono nx-date">' + esc(next.d) + '</span> ' + esc(next.topic) + '</a>';
     if (next.required.length) h += '<ul class="rd-nextlist">' + next.required.map((a) => '<li>' + tagHtml(a.r.tag) + '<a href="' + hashFor(a.key, a.page) + '">' + esc(byKey[a.key].label) + '</a> <span class="part">' + partHtml(a.r, false) + '</span></li>').join('') + '</ul>';
     else h += '<div class="rd-none">No outside reading — just the course book.</div>';
-    if (next.recommended.length) h += '<div class="rd-nextrec">+ ' + next.recommended.length + ' recommended</div>';
+    if (next.recommended.length) h += '<div class="rd-nextrec">+ recommended reading</div>';
     h += '</div></section>';
   }
   h += '<p class="rd-stats">' + assigned.length + ' readings on the syllabus · <b>' + here + '</b> open here · ' + out + ' link out' + (none ? ' · ' + none + ' without a link yet' : '') + '</p>';
@@ -497,6 +503,7 @@ function wire() {
   el.menu.addEventListener('click', () => openSide(!el.side.classList.contains('open')));
   el.backdrop.addEventListener('click', () => openSide(false));
   document.querySelectorAll('.rd-sortbtn').forEach((b) => b.addEventListener('click', () => setSort(b.dataset.sort)));
+  document.querySelectorAll('.rd-tab').forEach((b) => b.addEventListener('click', () => setTab(b.dataset.tab)));
   el.list.addEventListener('click', (e) => {
     const t = e.target.closest('button.tog');
     if (t) { e.preventDefault(); const u = t.closest('.unit'); const closed = u.classList.toggle('closed'); t.setAttribute('aria-expanded', closed ? 'false' : 'true'); return; }

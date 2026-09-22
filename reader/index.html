@@ -41,7 +41,11 @@
 <div class="rb-body">
   <div class="rb-backdrop" id="backdrop"></div>
   <aside class="rb-side" id="side" aria-label="Readings">
-    <div class="rd-sort" role="radiogroup" aria-label="Sort readings">
+    <div class="rd-tabs" role="tablist" aria-label="Sidebar">
+      <button type="button" class="rd-tab" data-tab="readings" role="tab" aria-selected="true">Readings</button>
+      <button type="button" class="rd-tab" data-tab="background" role="tab" aria-selected="false">Background</button>
+    </div>
+    <div class="rd-sort" id="sort" role="radiogroup" aria-label="Sort readings">
       <button type="button" class="rd-sortbtn" data-sort="date" role="radio" aria-checked="true">By due date</button>
       <button type="button" class="rd-sortbtn" data-sort="name" role="radio" aria-checked="false">By name</button>
     </div>

@@ -84,7 +84,7 @@ main > section:first-child, main > .withtoc:first-child { margin-top: 0; }
 }
 .hero-text {
   position: absolute; top: 50%; right: clamp(16px, 4vw, 40px); transform: translateY(-50%);
-  max-width: 58%; display: grid; gap: 10px; justify-items: end; text-align: right;
+  max-width: 58%; display: grid; gap: 10px; justify-items: center; text-align: center;   /* centered block, parked at the right */
 }
 .hero h1 { font-size: clamp(38px, 5.4vw, 62px); font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.05; text-shadow: 0 2px 18px rgba(0,0,0,.45); }
 .hero .tagline { font-family: "IBM Plex Serif", Georgia, serif; font-size: clamp(16px, 1.9vw, 20px); font-weight: 600; color: var(--accent-2); margin: 0; max-width: 34ch; text-shadow: 0 1px 12px rgba(0,0,0,.5); }
@@ -175,6 +175,10 @@ tr:target td { outline: 2px solid var(--accent); outline-offset: -2px; }
 /* reading lists inside a cell */
 ul.rlist { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; }
 ul.rlist li { line-height: 1.45; }
+/* outside readings: a small square marks each item (the C/T tag chips are no longer shown) */
+.extcol ul.rlist li { position: relative; padding-left: 16px; }
+.extcol ul.rlist li::before { content: ""; position: absolute; left: 1px; top: 7px; width: 5px; height: 5px; background: var(--ink-3); opacity: .7; }
+.extcol details.rec ul { padding-left: 8px; }
 /* course-book column: chapter numbers right-aligned in a fixed slot so titles (and their wrapped lines) line up */
 .mmcol li { display: grid; grid-template-columns: 20px 1fr; column-gap: 8px; }
 .mmcol .mm { margin-right: 0; text-align: right; }

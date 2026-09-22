@@ -65,7 +65,7 @@
     }
     var parts = [];
     if (r.label) parts.push('<span class="dim">' + esc(r.label) + '</span>');
-    if (r.tag) parts.push(tag(r.tag));
+    // r.tag (C / T / C* …) is kept in the JSON but no longer shown (Gabriel, 9/22)
     if (r.short) {   // compact form for the syllabus: author (year) + the assigned titles; the full citation lives in the Reader
       var to = here || (r.url && /^https?:/.test(r.url) ? r.url : null) || ((r.links || [])[0] || {}).url || null;
       var out = to && /^https?:/.test(to);
@@ -158,7 +158,7 @@
           var mm = (x.read || []).filter(function (r) { return r.mm; }), other = (x.read || []).filter(function (r) { return !r.mm; });
           var ext = other.length ? ul(other) : '';
           if (x.recommended && x.recommended.length) {
-            ext += '<details class="rec"><summary>Recommended <span class="n">(' + x.recommended.length + ')</span></summary>' + ul(x.recommended) + '</details>';
+            ext += '<details class="rec"><summary>Recommended</summary>' + ul(x.recommended) + '</details>';
           }
           rows.push('<tr class="u' + x.unit + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.topic) + '</td><td class="readings mmcol">' + (mm.length ? ul(mm, true) : '') + '</td><td class="readings extcol">' + ext + '</td></tr>');
         } else if (x.type === 'hw') {

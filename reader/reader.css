@@ -8,8 +8,14 @@
 .rd-file a:hover { color: var(--accent); border-color: var(--accent); }
 .rb-zoom[hidden] { display: none; }
 
-/* ---------- sidebar: sort toggle ---------- */
-.rd-sort { position: sticky; top: 0; z-index: 2; background: var(--surface); padding: 12px 14px 10px; border-bottom: 1px solid var(--line); display: flex; gap: 0; }
+/* ---------- sidebar: Readings | Background headings, then the sort toggle ---------- */
+.rd-tabs { display: flex; gap: 18px; padding: 12px 14px 0; background: var(--surface); }
+.rd-tab { font: inherit; font-family: "IBM Plex Serif", Georgia, serif; font-size: 15px; font-weight: 600; color: var(--ink-3); background: none; border: 0; border-bottom: 2px solid transparent; padding: 2px 0 6px; cursor: pointer; }
+.rd-tab:hover { color: var(--accent); }
+.rd-tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.rd-sort { position: sticky; top: 0; z-index: 2; background: var(--surface); padding: 10px 14px 10px; border-bottom: 1px solid var(--line); display: flex; gap: 0; }
+.rd-sort[hidden] { display: none; }
+.rd-bg { margin-top: 6px; }
 .rd-sortbtn { flex: 1 1 0; font: inherit; font-size: 12.5px; font-weight: 500; color: var(--ink-2); background: var(--bg); border: 1px solid var(--line-2); padding: 5px 6px; cursor: pointer; }
 .rd-sortbtn:first-child { border-radius: 6px 0 0 6px; }
 .rd-sortbtn:last-child { border-radius: 0 6px 6px 0; margin-left: -1px; }
@@ -26,7 +32,6 @@
 .rd-lh::before { content: ""; position: absolute; left: 14px; top: 9px; width: 3px; height: 14px; background: var(--uc, var(--line-2)); border-radius: 1px; }
 .rd-lh .d { display: block; font-size: 11.5px; color: var(--date); }
 .rd-lh .t { display: block; font-size: 12.5px; font-weight: 600; color: var(--ink); }
-a.rd-lh:hover .t { color: var(--accent); }
 .rd-bgh { padding-left: 14px; }
 .rd-bgh::before { display: none; }
 .rd-bgh .t { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
