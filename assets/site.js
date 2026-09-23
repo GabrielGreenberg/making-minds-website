@@ -212,8 +212,11 @@
           var sub = next.where === 'in class' ? 'in class, ' + timeRange(next.start, next.end) : timeRange(next.start, next.end) + ' · ' + next.where;
           html += line(label, next, esc(next.title) + ' <span class="dim">· ' + esc(sub) + '</span>', esc(next.note || ''));
         } else {
-          var items = (next.read || []).map(function (r) { return reading(r); }).join(' <span class="sep">·</span> ');
-          html += line(label, next, esc(next.topic), items ? '<span class="rl">Read</span> ' + items : '');
+          // the readings as two columns, like the syllabus table: course-book chapters | outside readings
+          var rd = next.read || [];
+          var mmR = rd.filter(function (r) { return r.mm; }), outR = rd.filter(function (r) { return !r.mm; });
+          var cols = (mmR.length ? '<div class="mmcol">' + ul(mmR, true) + '</div>' : '') + (outR.length ? '<div class="extcol">' + ul(outR) + '</div>' : '');
+          html += line(label, next, esc(next.topic), cols ? '<span class="rl">Read</span><div class="nx-reads' + (mmR.length && outR.length ? '' : ' one') + '">' + cols + '</div>' : '');
         }
       }
       if (due) html += line('Next due', due, 'HW' + due.n + ' due <span class="dim">· ' + esc(c.homework.dueLabel) + '</span>', '');
