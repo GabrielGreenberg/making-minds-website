@@ -349,6 +349,16 @@
           "mm": "The Story of Binary Successor",
           "n": 10,
           "page": 42
+        },
+        {
+          "mm": "Lessons from Binary Successor",
+          "n": 11,
+          "page": 45
+        },
+        {
+          "mm": "Real and Ideal Computers",
+          "n": 12,
+          "page": 46
         }
       ],
       "recommended": [
@@ -374,27 +384,17 @@
       "type": "lesson",
       "date": "2026-10-13",
       "unit": 1,
-      "topic": "Natural and Artificial Computers",
+      "topic": "Embodied Computation",
       "read": [
         {
           "mm": "Introducing Turbots",
-          "n": 11,
-          "page": 45
-        },
-        {
-          "mm": "Real and Ideal Computers",
-          "n": 12,
-          "page": 48
-        },
-        {
-          "mm": "Craik’s computational theory of mind",
           "n": 13,
-          "page": 49
+          "page": 47
         },
         {
-          "mm": "Artificial and Natural Computers",
+          "mm": "Thought as symbol processing",
           "n": 14,
-          "page": 52
+          "page": 50
         },
         {
           "tag": "C*",
@@ -434,14 +434,14 @@
       "topic": "The Computational Theory of Mind",
       "read": [
         {
-          "mm": "The Computational Theory of Mind",
+          "mm": "Artificial and Natural Computers",
           "n": 15,
-          "page": 56
+          "page": 53
         },
         {
-          "mm": "Lessons and Limits of Combinatorial Computation",
+          "mm": "The Computational Theory of Mind",
           "n": 16,
-          "page": 58
+          "page": 57
         },
         {
           "tag": "C",
