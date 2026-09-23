@@ -114,7 +114,8 @@ main > section:first-child, main > .withtoc:first-child { margin-top: 0; }
 .nx-date { font-weight: 400; color: var(--date); margin-right: 4px; }
 .nx-main .dim { font-weight: 400; }
 .nx-detail { color: var(--ink-2); font-size: 13px; margin-top: 2px; }
-.nx-detail .rl { display: block; padding: 0; margin: 5px 0 3px; }
+.nx-detail .rl { float: left; padding: 0; margin: 3px 14px 0 0; }   /* READ sits to the left of the reading columns */
+.nx-reads { margin-top: 4px; }
 .nx-reads { display: grid; grid-template-columns: minmax(0, auto) minmax(0, 1fr); column-gap: 48px; }   /* MM chapters (as wide as they need) | outside readings */
 .nx-reads.one { grid-template-columns: minmax(0, 1fr); }
 .nx-detail .sep { color: var(--ink-3); margin: 0 2px; }
