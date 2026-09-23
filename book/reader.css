@@ -5,9 +5,11 @@ html { scroll-behavior: auto; }
 body.rb { margin: 0; height: 100vh; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; background: var(--surface-2); }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-/* ---------- site top bar (same markup and styles as the rest of the site, full width, no hero) ---------- */
+/* ---------- site top bar: same markup, styles and column as the rest of the site (no hero), so the name and menu
+   stay put when you move between the syllabus and the readers; the reader bar and panes below use the full width ---------- */
 .topbar { flex: none; position: relative; z-index: 31; }
-.topbar .rb-topinner { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px; padding: 12px 18px; }
+.topbar .rb-topinner { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px;
+  max-width: var(--page-max, 1080px); margin-inline: auto; padding: 12px clamp(16px, 4vw, 40px); }
 /* ---------- reader bar: contents button (phones), breadcrumb, page, zoom ---------- */
 .rb-top { flex: none; display: flex; align-items: center; gap: 14px; padding: 0 18px; height: var(--rb-top-h); background: var(--surface); border-bottom: 1px solid var(--line); position: relative; z-index: 30; }
 .rb-menu { display: none; flex: none; width: 34px; height: 34px; margin-left: -8px; padding: 8px 7px; border: 0; background: none; cursor: pointer; flex-direction: column; justify-content: space-between; }
@@ -131,7 +133,6 @@ body.rb { margin: 0; height: 100vh; height: 100dvh; display: flex; flex-directio
 
 /* ---------- small screens ---------- */
 @media (max-width: 900px) {
-  .topbar .rb-topinner { padding: 10px 12px; }
   .rb-top { gap: 10px; padding: 0 12px; }
   .rb-menu { display: flex; }
   .rb-pageno { display: none; }

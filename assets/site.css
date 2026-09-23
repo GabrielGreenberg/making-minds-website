@@ -30,6 +30,7 @@
   --u1: #24678D;
   --u2: #C255B9;
   --u3: #F5A623;
+  --page-max: 1080px;         /* the site column: syllabus, policies, and the top bar of the two readers */
   color-scheme: light;
 }
 
@@ -44,7 +45,7 @@ body {
   font-size: 15px;
   line-height: 1.5;
 }
-.page { max-width: 1080px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+.page { max-width: var(--page-max); margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
 main.page { padding-block: 30px 40px; }
 h1, h2, h3 { font-family: "IBM Plex Serif", Georgia, "Times New Roman", serif; text-wrap: balance; margin: 0; }
 h1 { font-size: 34px; font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; }
