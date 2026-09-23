@@ -167,11 +167,21 @@
           "tag": "C*",
           "cite": "Descartes (1637) <i>Discourse on the Method</i>, Part V —",
           "id": "descartes-1637",
-          "file": "reader/files/descartes-1637-discourse-v-automaton.pdf",
+          "file": "reader/files/descartes-1637-limits-of-automata.pdf",
           "url": "https://archive.org/details/philosophicalwor01desc/page/115",
           "linkText": "the automaton passage",
-          "note": "(Cress trans., pp. 31–33: from “This will in no way seem strange…” to the end of Part Five)",
+          "note": "(Haldane & Ross trans., pp. 115–116: from “And this will not seem strange…” to “…as our reason causes us to act”)",
           "short": "Descartes (1637), <i>Discourse on the Method</i>, excerpt"
+        },
+        {
+          "tag": "C*",
+          "cite": "Leibniz (1714) <i>The Monadology</i>,",
+          "id": "leibniz-1714",
+          "file": "reader/files/leibniz-1714-windmill.pdf",
+          "url": "https://archive.org/details/themonadology00leibuoft/page/227",
+          "linkText": "§17: the mill argument",
+          "note": "(Latta trans., pp. 227–229)",
+          "short": "Leibniz (1714), <i>The Monadology</i>, §17"
         }
       ]
     },
