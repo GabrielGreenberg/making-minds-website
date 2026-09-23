@@ -182,7 +182,11 @@ ul.rlist li { line-height: 1.45; }
 /* outside readings: a small square marks each item (the C/T tag chips are no longer shown) */
 .extcol ul.rlist li { position: relative; padding-left: 16px; }
 .extcol ul.rlist li::before { content: ""; position: absolute; left: 1px; top: 7px; width: 5px; height: 5px; background: var(--ink-3); opacity: .7; }
-.extcol details.rec ul { padding-left: 8px; }
+/* the Recommended toggle uses the same geometry as a reading line: triangle in the square's slot, label at the text indent;
+   the opened list nests one step in, its squares under the word "Recommended" and its rule under the triangle */
+.extcol details.rec summary { position: relative; padding-left: 16px; }
+.extcol details.rec summary::before { position: absolute; left: 1px; top: 50%; margin-top: -4px; }
+.extcol details.rec ul { margin-left: 3px; padding-left: 10px; }
 /* course-book column: chapter numbers right-aligned in a fixed slot so titles (and their wrapped lines) line up */
 .mmcol li { display: grid; grid-template-columns: 20px 1fr; column-gap: 8px; }
 .mmcol .mm { margin-right: 0; text-align: right; }
