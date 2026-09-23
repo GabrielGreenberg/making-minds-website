@@ -958,10 +958,10 @@
           "tag": "C*",
           "cite": "Lovelace (1843)",
           "id": "lovelace-1843",
-          "file": "reader/files/lovelace-1843-note-g.pdf",
+          "file": "reader/files/lovelace-1843-powers-of-the-engine.pdf",
           "url": "https://www.fourmilab.ch/babbage/sketch.html",
           "linkText": "Note G",
-          "note": "to Menabrea’s “Sketch of the Analytical Engine” (read past the Bernoulli table rather than through it)",
+          "note": "to Menabrea’s “Sketch of the Analytical Engine” (1843 text, pp. 722–731; read past the Bernoulli table rather than through it)",
           "short": "Lovelace (1843), Note G on the Analytical Engine"
         },
         {
