@@ -1,5 +1,5 @@
 {
- "built": "2026-09-21T16:20:54Z",
+ "built": "2026-09-23T04:34:45Z",
  "pageSize": [
   1460,
   1888
@@ -8,7 +8,7 @@
  "totalPages": 193,
  "wholeBook": "making-minds.pdf",
  "cover": "thumbs/cover.jpg",
- "coverHash": "9770d7e3dd9b",
+ "coverHash": "390cd3b7875d",
  "front": {
   "id": "front",
   "title": "Front matter",
@@ -18,9 +18,9 @@
    4
   ],
   "pageHashes": [
-   "9770d7e3dd9b",
-   "2f440cd7fe5c",
-   "6c0918931ab0",
+   "390cd3b7875d",
+   "c44b79bd9160",
+   "eff1818c7505",
    "d6ecad242bf7"
   ]
  },
@@ -617,61 +617,29 @@
    ]
   },
   {
-   "id": "1765342",
+   "id": "2025664",
    "n": 11,
-   "slug": "introducing-turbots",
-   "title": "Introducing Turbots",
+   "slug": "lessons-from-binary-successor",
+   "title": "Lessons from Binary Successor",
    "unit": 1,
    "pages": [
     45,
-    47
+    45
    ],
-   "file": "ch/11-introducing-turbots.pdf",
+   "file": "ch/11-lessons-from-binary-successor.pdf",
    "filePages": [
     45,
-    47
+    45
    ],
    "sections": [
     {
-     "title": "Embodied Computation",
+     "title": "Fundamental lessons about the nature of computation",
      "page": 45,
-     "y": 161.7
-    },
-    {
-     "title": "Turbots",
-     "page": 45,
-     "y": 606.7
-    },
-    {
-     "title": "Environment",
-     "page": 45,
-     "y": 1244.7
-    },
-    {
-     "title": "Progression of time",
-     "page": 46,
-     "y": 385.2
-    },
-    {
-     "title": "Input: perception",
-     "page": 46,
-     "y": 681.0
-    },
-    {
-     "title": "Output: action",
-     "page": 46,
-     "y": 1061.0
-    },
-    {
-     "title": "A Simple Example",
-     "page": 47,
-     "y": 85.2
+     "y": 185.7
     }
    ],
    "pageHashes": [
-    "fd5be884834d",
-    "a6b389e20449",
-    "7e7ff7bdebcd"
+    "920d8ba917a3"
    ]
   },
   {
@@ -681,168 +649,199 @@
    "title": "Real and Ideal Computers",
    "unit": 1,
    "pages": [
-    48,
-    48
+    46,
+    46
    ],
    "file": "ch/12-real-and-ideal-computers.pdf",
    "filePages": [
-    48,
-    48
+    46,
+    46
    ],
    "sections": [],
    "pageHashes": [
-    "d312010c66fd"
+    "ae8bc8d45351"
+   ]
+  },
+  {
+   "id": "1765342",
+   "n": 13,
+   "slug": "introducing-turbots",
+   "title": "Introducing Turbots",
+   "unit": 1,
+   "pages": [
+    47,
+    49
+   ],
+   "file": "ch/13-introducing-turbots.pdf",
+   "filePages": [
+    47,
+    49
+   ],
+   "sections": [
+    {
+     "title": "Embodied Computation",
+     "page": 47,
+     "y": 161.7
+    },
+    {
+     "title": "Turbots",
+     "page": 47,
+     "y": 606.7
+    },
+    {
+     "title": "Environment",
+     "page": 47,
+     "y": 1244.7
+    },
+    {
+     "title": "Progression of time",
+     "page": 48,
+     "y": 385.2
+    },
+    {
+     "title": "Input: perception",
+     "page": 48,
+     "y": 681.0
+    },
+    {
+     "title": "Output: action",
+     "page": 48,
+     "y": 1061.0
+    },
+    {
+     "title": "A Simple Example",
+     "page": 49,
+     "y": 85.2
+    }
+   ],
+   "pageHashes": [
+    "85d47cff63d8",
+    "52ba0ab517e1",
+    "1c3092e5acf0"
    ]
   },
   {
    "id": "2042295",
-   "n": 13,
-   "slug": "craiks-computational-theory-of-mind",
-   "title": "Craik’s computational theory of mind",
+   "n": 14,
+   "slug": "thought-as-symbol-processing",
+   "title": "Thought as symbol processing",
    "unit": 1,
    "pages": [
-    49,
-    51
+    50,
+    52
    ],
-   "file": "ch/13-craiks-computational-theory-of-mind.pdf",
+   "file": "ch/14-thought-as-symbol-processing.pdf",
    "filePages": [
-    49,
-    51
+    50,
+    52
    ],
    "sections": [
     {
      "title": "Craik’s Hypothesis on the Nature of Cognition",
-     "page": 49,
+     "page": 50,
      "y": 185.2
     },
     {
      "title": "Physical Models of Reality",
-     "page": 49,
+     "page": 50,
      "y": 695.0
     },
     {
      "title": "Thought as a Model of Reality",
-     "page": 49,
+     "page": 50,
      "y": 1225.0
     },
     {
      "title": "Symbolic Models of Reality",
-     "page": 50,
+     "page": 51,
      "y": 85.2
     },
     {
      "title": "Mind as Input/Output Machine",
-     "page": 51,
+     "page": 52,
      "y": 85.2
     }
    ],
    "pageHashes": [
-    "d6ca72781581",
+    "0c62d8709e19",
     "f5648a90dc8a",
-    "51a624cd0829"
+    "c3cdb264bb7b"
    ]
   },
   {
    "id": "304206",
-   "n": 14,
+   "n": 15,
    "slug": "artificial-and-natural-computers",
    "title": "Artificial and Natural Computers",
    "unit": 1,
    "pages": [
-    52,
-    55
+    53,
+    56
    ],
-   "file": "ch/14-artificial-and-natural-computers.pdf",
+   "file": "ch/15-artificial-and-natural-computers.pdf",
    "filePages": [
-    52,
-    55
+    53,
+    56
    ],
    "sections": [
     {
      "title": "The Invention of Computers",
-     "page": 52,
+     "page": 53,
      "y": 161.7
     },
     {
      "title": "Computer Science vs Nature",
-     "page": 53,
+     "page": 54,
      "y": 86.0
     },
     {
      "title": "Computer Science vs Cognitive Science",
-     "page": 53,
+     "page": 54,
      "y": 784.0
     },
     {
      "title": "Making Minds",
-     "page": 53,
+     "page": 54,
      "y": 1566.6
     },
     {
      "title": "Artificial and Natural Computers",
-     "page": 54,
+     "page": 55,
      "y": 86.3
     },
     {
      "title": "Original vs Derived Intentionality",
-     "page": 55,
+     "page": 56,
      "y": 85.7
     }
    ],
    "pageHashes": [
-    "9013364be844",
-    "985ad80992db",
-    "d1045af6a525",
-    "ded82cd51740"
+    "b68015f326fb",
+    "53ecdeed92c8",
+    "be030b44a5ce",
+    "f8828f798d7f"
    ]
   },
   {
    "id": "311599",
-   "n": 15,
+   "n": 16,
    "slug": "the-computational-theory-of-mind",
    "title": "The Computational Theory of Mind",
    "unit": 1,
    "pages": [
-    56,
-    57
+    57,
+    59
    ],
-   "file": "ch/15-the-computational-theory-of-mind.pdf",
+   "file": "ch/16-the-computational-theory-of-mind.pdf",
    "filePages": [
-    56,
-    57
+    57,
+    59
    ],
    "sections": [
     {
      "title": "CTM Defined",
-     "page": 56,
+     "page": 57,
      "y": 151.8
-    }
-   ],
-   "pageHashes": [
-    "a4e645ab9016",
-    "4512e0f77b7b"
-   ]
-  },
-  {
-   "id": "2025664",
-   "n": 16,
-   "slug": "lessons-and-limits-of-combinatorial-computation",
-   "title": "Lessons and Limits of Combinatorial Computation",
-   "unit": 1,
-   "pages": [
-    58,
-    59
-   ],
-   "file": "ch/16-lessons-and-limits-of-combinatorial-computation.pdf",
-   "filePages": [
-    58,
-    59
-   ],
-   "sections": [
-    {
-     "title": "5 Fundamental Lessons of CC computation",
-     "page": 58,
-     "y": 185.7
     },
     {
      "title": "Computation beyond Combinatorial Circuits",
@@ -851,7 +850,8 @@
     }
    ],
    "pageHashes": [
-    "5f807631b6e7",
+    "766c57a67d99",
+    "6fb7b7e7cdcc",
     "7a3ae352959f"
    ]
   },
@@ -2137,6 +2137,39 @@
     191,
     192,
     193
+   ]
+  },
+  {
+   "date": "2026-09-23",
+   "chapters": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+   ],
+   "other": [
+    "front"
+   ],
+   "pages": [
+    1,
+    2,
+    3,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59
    ]
   }
  ]
