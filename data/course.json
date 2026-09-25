@@ -1,5 +1,5 @@
 {
-  "_readme": "Source of truth for www.makingminds.org. index.html renders from this file (assets/site.js); so does the readings reader at reader/ (reader/reader.js). Dates are ISO (YYYY-MM-DD); times are 24h; week numbers and weekday labels are computed. Reading entries: {mm: chapter} for course-book chapters, or {tag, cite, url, linkText, note} where cite/note may contain <i>…</i>; {html} for anything irregular; optional label (e.g. 'Of interest:'). Outside readings: optional id (stable key, e.g. 'turing-1950'), file (a PDF on this site, shown in reader/) and filePage (page of that file to open at).",
+  "_readme": "Source of truth for www.makingminds.org. index.html renders from this file (assets/site.js); so does the readings reader at reader/ (reader/reader.js). Dates are ISO (YYYY-MM-DD); times are 24h; week numbers and weekday labels are computed. Reading entries: {mm: chapter} for course-book chapters, or {tag, cite, url, linkText, note} where cite/note may contain <i>…</i>; {html} for anything irregular; optional label (e.g. 'Of interest:'). Outside readings: optional id (stable key, e.g. 'turing-1950'), file (a PDF on this site, shown in reader/) and filePage (page of that file to open at). An excerpt may carry full: {url, text} — the full text it is taken from (a PDF on this site or an outside URL); the Reader shows it as a button beside Download.",
   "course": {
     "code": "Phil 133",
     "title": "Making Minds",
@@ -15,7 +15,7 @@
     },
     "ta": {
       "name": "Paul Talma",
-      "officeHours": "TBA",
+      "officeHours": "Tue 1:50–3:50pm, Dodd 394",
       "email": "ptalma@humnet.ucla.edu"
     },
     "lecture": {
@@ -163,20 +163,28 @@
           "cite": "Descartes (1637) <i>Discourse on the Method</i>, Part V —",
           "id": "descartes-1637",
           "file": "reader/files/descartes-1637-limits-of-automata.pdf",
-          "url": "https://archive.org/details/philosophicalwor01desc/page/115",
+          "url": "reader/files/descartes-1637-limits-of-automata.pdf",
           "linkText": "the automaton passage",
           "note": "(Haldane & Ross trans., pp. 115–116: from “And this will not seem strange…” to “…as our reason causes us to act”)",
-          "short": "Descartes (1637), <i>Discourse on the Method</i>, excerpt"
+          "short": "Descartes (1637), <i>Discourse on the Method</i>, excerpt",
+          "full": {
+            "url": "https://archive.org/details/philosophicalwor01desc/page/115",
+            "text": "full text (Haldane & Ross, 1911)"
+          }
         },
         {
           "tag": "C*",
           "cite": "Leibniz (1714) <i>The Monadology</i>,",
           "id": "leibniz-1714",
           "file": "reader/files/leibniz-1714-windmill.pdf",
-          "url": "https://archive.org/details/themonadology00leibuoft/page/227",
+          "url": "reader/files/leibniz-1714-windmill.pdf",
           "linkText": "§17: the mill argument",
           "note": "(Latta trans., pp. 227–229)",
-          "short": "Leibniz (1714), <i>The Monadology</i>, §17"
+          "short": "Leibniz (1714), <i>The Monadology</i>, §17",
+          "full": {
+            "url": "https://archive.org/details/themonadology00leibuoft/page/227",
+            "text": "full text (Latta, 1898)"
+          }
         }
       ]
     },
@@ -201,10 +209,14 @@
           "cite": "Hillis (1999) <i>The Pattern on the Stone</i>,",
           "id": "hillis-1999-ch1-2",
           "file": "reader/files/hillis-1999-preface-ch1-2.pdf",
-          "url": "https://drive.google.com/open?id=1RPbL8ybUm5VWZPpNcPHHFwSFZ3yHdRda",
+          "url": "reader/files/hillis-1999-preface-ch1-2.pdf",
           "linkText": "\"Preface: Magic in the Stone,\" Ch. 1: \"Nuts and Bolts,\" Ch. 2: \"Universal Building Blocks\"",
           "note": "(through p. 30)",
-          "short": "Hillis (1999), “Magic in the Stone,” “Nuts and Bolts,” and “Universal Building Blocks”"
+          "short": "Hillis (1999), “Magic in the Stone,” “Nuts and Bolts,” and “Universal Building Blocks”",
+          "full": {
+            "url": "https://archive.org/details/patternonstone0000unse",
+            "text": "full book, borrowable"
+          }
         }
       ],
       "recommended": [
@@ -214,7 +226,7 @@
           "id": "edelman-2008",
           "file": "uploads/9/3/9/1/9391709/edelman_2008__22computing_the_mind_23.pdf",
           "filePage": 52,
-          "url": "https://drive.google.com/open?id=1sxAVP_pAoTYNonJ8uIsbtIo6411rZ7Hy",
+          "url": "uploads/9/3/9/1/9391709/edelman_2008__22computing_the_mind_23.pdf",
           "linkText": "Ch. 3: \"Computing Brains\"",
           "note": "pp. 37–44, 50–58",
           "short": "Edelman (2008), “Computing Brains,” excerpts"
@@ -244,7 +256,7 @@
           "cite": "Petzold (2000) <i>Code</i>,",
           "id": "petzold-2000-ch7-8",
           "file": "reader/files/petzold-2000-ch7-8.pdf",
-          "url": "https://drive.google.com/file/d/1arv47PXSskC1bb5qyiPG4p0_-hgqXMm9/view?usp=sharing",
+          "url": "reader/files/petzold-2000-ch7-8.pdf",
           "linkText": "Ch. 7: \"Our Ten Digits\" and Ch. 8: \"Alternatives to Ten\"",
           "short": "Petzold (2000), “Our Ten Digits” and “Alternatives to Ten”"
         },
@@ -253,7 +265,7 @@
           "cite": "Redwoods Department of Mathematics (2007)",
           "id": "redwoods-2007",
           "file": "reader/files/redwoods-2007-functions.pdf",
-          "url": "https://drive.google.com/open?id=1296AaOewJgoyHtKsT3CuSVNxdJKv8r71",
+          "url": "reader/files/redwoods-2007-functions.pdf",
           "linkText": "\"Introduction to Functions\"",
           "short": "Redwoods Dept. of Mathematics (2007), “Introduction to Functions”"
         },
@@ -263,7 +275,7 @@
           "id": "edelman-2008",
           "file": "uploads/9/3/9/1/9391709/edelman_2008__22computing_the_mind_23.pdf",
           "filePage": 28,
-          "url": "https://drive.google.com/file/d/1cRAWk0cey5cCN7MKpoSYXLTSBLliwlI3/view?usp=sharing",
+          "url": "uploads/9/3/9/1/9391709/edelman_2008__22computing_the_mind_23.pdf",
           "linkText": "Ch. 2: \"Computing Minds\"",
           "note": "pp. 13–25",
           "short": "Edelman (2008), “Computing Minds,” excerpt"
@@ -304,7 +316,11 @@
           "id": "haugeland-1981-excerpt",
           "file": "reader/files/haugeland-1981-excerpt.pdf",
           "note": "— §§I, VI, and VII (“Cognitive Science,” “Semantics,” “Interpretation and Truth”)",
-          "short": "Haugeland (1981), “Semantic Engines,” §§I, VI, and VII"
+          "short": "Haugeland (1981), “Semantic Engines,” §§I, VI, and VII",
+          "full": {
+            "url": "reader/files/haugeland-1981.pdf",
+            "text": "full paper"
+          }
         }
       ],
       "recommended": [
@@ -322,20 +338,28 @@
           "id": "crane-2003",
           "file": "reader/files/crane-2003-ch3.pdf",
           "filePage": 3,
-          "url": "https://drive.google.com/open?id=14l6EWqePzyUs1PY5ADuOCxqguZJJBks3",
+          "url": "reader/files/crane-2003-ch3.pdf",
           "linkText": "\"Computers and Thought\"",
           "note": "pp. 83–114 only (skim 92–99)",
-          "short": "Crane (2003), “Computers and Thought,” excerpts"
+          "short": "Crane (2003), “Computers and Thought,” excerpts",
+          "full": {
+            "url": "uploads/9/3/9/1/9391709/crane_2003__22the_mechanical_mind_23.pdf",
+            "text": "full book"
+          }
         },
         {
           "tag": "T*",
           "cite": "Cummins (1991) <i>Meaning and Mental Representations</i>, Ch. 8:",
           "id": "cummins-1991",
           "file": "reader/files/cummins-1991-ch8.pdf",
-          "url": "https://drive.google.com/open?id=1Jeg7NYG9fe0jTj_QnrReCEce2PokaVY8",
+          "url": "reader/files/cummins-1991-ch8.pdf",
           "linkText": "\"Interpretational Semantics\"",
           "note": "(excerpt)",
-          "short": "Cummins (1991), “Interpretational Semantics,” excerpt"
+          "short": "Cummins (1991), “Interpretational Semantics,” excerpt",
+          "full": {
+            "url": "https://archive.org/details/meaningmentalrep0000cumm",
+            "text": "full book, borrowable"
+          }
         }
       ]
     },
@@ -377,7 +401,7 @@
           "cite": "Petzold (2000) <i>Code</i>, Ch. 12:",
           "id": "petzold-2000-ch12",
           "file": "reader/files/petzold-2000-ch12.pdf",
-          "url": "https://drive.google.com/open?id=1BqucMDzyoHivULllfqN848lDui1grlYM",
+          "url": "reader/files/petzold-2000-ch12.pdf",
           "linkText": "\"A Binary Adding Machine\"",
           "short": "Petzold (2000), “A Binary Adding Machine”"
         },
@@ -411,9 +435,13 @@
           "cite": "Craik (1943) <i>The Nature of Explanation</i>, Ch. 5:",
           "id": "craik-1943",
           "file": "reader/files/craik-1943-ch5.pdf",
-          "url": "https://drive.google.com/open?id=1zi8KVoJw27f477lZVA1e-ilkteoyHjQG",
+          "url": "reader/files/craik-1943-ch5.pdf",
           "linkText": "\"Hypothesis on the Nature of Thought\"",
-          "short": "Craik (1943), “Hypothesis on the Nature of Thought”"
+          "short": "Craik (1943), “Hypothesis on the Nature of Thought”",
+          "full": {
+            "url": "https://archive.org/details/natureofexplanat0000crai",
+            "text": "full book (1952 printing), borrowable"
+          }
         }
       ],
       "recommended": [
@@ -422,10 +450,14 @@
           "cite": "Pinker (1997) <i>How the Mind Works</i>, Ch. 2:",
           "id": "pinker-1997",
           "file": "reader/files/pinker-1997-ch2.pdf",
-          "url": "https://drive.google.com/open?id=1YQQDDUViY4zvTxS8CZ5pt1FXvpVxhBw6",
+          "url": "reader/files/pinker-1997-ch2.pdf",
           "linkText": "\"Thinking Machines\"",
           "note": "(excerpt)",
-          "short": "Pinker (1997), “Thinking Machines,” excerpt"
+          "short": "Pinker (1997), “Thinking Machines,” excerpt",
+          "full": {
+            "url": "uploads/9/3/9/1/9391709/pinker_1997__22how_the_mind_works_23.pdf",
+            "text": "full book"
+          }
         },
         {
           "tag": "C",
@@ -459,7 +491,11 @@
           "id": "pinker-1997-ctm",
           "file": "reader/files/pinker-1997-ctm-excerpt.pdf",
           "note": "— pp. 24–27 and 64–69",
-          "short": "Pinker (1997), “Standard Equipment” and “Thinking Machines,” excerpts"
+          "short": "Pinker (1997), “Standard Equipment” and “Thinking Machines,” excerpts",
+          "full": {
+            "url": "uploads/9/3/9/1/9391709/pinker_1997__22how_the_mind_works_23.pdf",
+            "text": "full book"
+          }
         }
       ],
       "recommended": [
@@ -468,7 +504,7 @@
           "cite": "McLaughlin (2004)",
           "id": "mclaughlin-2004",
           "file": "reader/files/mclaughlin-2004.pdf",
-          "url": "https://drive.google.com/open?id=151EVdPah83hgcdz-HNTsvdofI1bCBlTH",
+          "url": "reader/files/mclaughlin-2004.pdf",
           "linkText": "\"Computationalism, Connectionism, and the Philosophy of Mind\"",
           "note": "— pages 135–141 only",
           "short": "McLaughlin (2004), “Computationalism, Connectionism, and the Philosophy of Mind,” excerpt"
@@ -486,9 +522,13 @@
           "cite": "Ravenscroft (2005) <i>Philosophy of Mind</i>, Ch. 6:",
           "id": "ravenscroft-2005",
           "file": "uploads/9/3/9/1/9391709/ravenscroft_2005__22the_computational_theory_of_mind_23.pdf",
-          "url": "https://drive.google.com/file/d/1yXD53x7iixkigQOXOSHl27z9kVdJdt5D/view?usp=sharing",
+          "url": "uploads/9/3/9/1/9391709/ravenscroft_2005__22the_computational_theory_of_mind_23.pdf",
           "linkText": "\"The Computational Theory of Mind\"",
-          "short": "Ravenscroft (2005), “The Computational Theory of Mind”"
+          "short": "Ravenscroft (2005), “The Computational Theory of Mind”",
+          "full": {
+            "url": "uploads/9/3/9/1/9391709/ravenscroft_2005__22philosophy_of_mind_23.pdf",
+            "text": "full book"
+          }
         },
         {
           "tag": "C",
@@ -527,7 +567,7 @@
           "cite": "Braitenberg (1984) <i>Vehicles: Experiments in Synthetic Psychology</i>,",
           "id": "braitenberg-1984",
           "file": "reader/files/braitenberg-vehicles-ch5.pdf",
-          "url": "https://drive.google.com/file/d/1EMPzs3PZsf7j0RV-LamOulTjOzAUlPBm/view?usp=sharing",
+          "url": "reader/files/braitenberg-vehicles-ch5.pdf",
           "linkText": "\"Vehicle 5: Logic\"",
           "short": "Braitenberg (1984), “Vehicle 5: Logic”"
         }
@@ -673,9 +713,13 @@
           "cite": "Patterson and Hennessy (2018)",
           "id": "patterson-hennessy-2018",
           "file": "reader/files/patterson-hennessy-2018-fsm.pdf",
-          "url": "https://drive.google.com/open?id=124_gfCSidNeieFUxptfsnw7jhe3PqjUh",
+          "url": "reader/files/patterson-hennessy-2018-fsm.pdf",
           "linkText": "\"Finite State Machines\"",
-          "short": "Patterson and Hennessy (2018), “Finite State Machines”"
+          "short": "Patterson and Hennessy (2018), “Finite State Machines”",
+          "full": {
+            "url": "https://archive.org/details/computerorganiza0000patt_d1r6",
+            "text": "full book (5th ed., 2014), borrowable"
+          }
         }
       ]
     },
@@ -702,7 +746,7 @@
           "file": "reader/files/chomsky-1957-ch3.pdf",
           "url": "reader/files/chomsky-1957-ch3.pdf",
           "linkText": "\"An Elementary Linguistic Theory\"",
-          "note": "(<i>Syntactic Structures</i> ch. 3 — read for the finite-state model of English in §3.1)",
+          "note": "(<i>Syntactic Structures</i> ch. 3, pp. 18–25 — the whole chapter)",
           "short": "Chomsky (1957), “An Elementary Linguistic Theory”"
         }
       ],
@@ -712,10 +756,14 @@
           "cite": "Hillis (1999)",
           "id": "hillis-1999-pp30-38",
           "file": "reader/files/hillis-1999-pp30-38.pdf",
-          "url": "https://drive.google.com/open?id=10gOtWpC48rqn5t1ekmS_-QKCdElDbPEr",
+          "url": "reader/files/hillis-1999-pp30-38.pdf",
           "linkText": "<i>The Pattern on the Stone</i>",
           "note": "— pages 30–38",
-          "short": "Hillis (1999), <i>The Pattern on the Stone</i>, excerpt"
+          "short": "Hillis (1999), <i>The Pattern on the Stone</i>, excerpt",
+          "full": {
+            "url": "https://archive.org/details/patternonstone0000unse",
+            "text": "full book, borrowable"
+          }
         },
         {
           "tag": "T",
@@ -750,7 +798,7 @@
           "cite": "Marr (1982)",
           "id": "marr-1982",
           "file": "reader/files/marr-1982-vision-ch1.pdf",
-          "url": "https://drive.google.com/open?id=1SL6zVIdBabBGny_3i7lZaG_AS0qqy9UW",
+          "url": "reader/files/marr-1982-vision-ch1.pdf",
           "linkText": "\"Understanding Complex Information-Processing Systems\"",
           "note": "— <i>Vision</i> ch. 1, §1.2",
           "short": "Marr (1982), “Understanding Complex Information-Processing Systems”"
@@ -759,14 +807,29 @@
           "tag": "C*",
           "cite": "Newell (1982)",
           "id": "newell-1982",
-          "file": "reader/files/newell-1982.pdf",
-          "url": "http://cs.uns.edu.ar/~grs/InteligenciaArtificial/Allen%20Newell%20-%20The%20knowledge%20level.pdf",
+          "file": "reader/files/newell-1982-excerpt.pdf",
+          "url": "reader/files/newell-1982-excerpt.pdf",
           "linkText": "“The Knowledge Level”",
           "note": "— §§1 and 3 (pp. 87–88, 94–100)",
-          "short": "Newell (1982), “The Knowledge Level,” §§1 and 3"
+          "short": "Newell (1982), “The Knowledge Level,” §§1 and 3",
+          "full": {
+            "url": "reader/files/newell-1982.pdf",
+            "text": "full paper"
+          }
         }
       ],
-      "recommended": []
+      "recommended": [
+        {
+          "tag": "C*",
+          "cite": "Newell (1982)",
+          "id": "newell-1982-full",
+          "file": "reader/files/newell-1982.pdf",
+          "url": "reader/files/newell-1982.pdf",
+          "linkText": "“The Knowledge Level”",
+          "note": "— the full paper",
+          "short": "Newell (1982), “The Knowledge Level,” full paper"
+        }
+      ]
     },
     {
       "type": "holiday",
@@ -793,14 +856,28 @@
           "tag": "C/T",
           "cite": "Fitch and Friederici (2012)",
           "id": "fitch-friederici-2012",
-          "file": "reader/files/fitch-friederici-2012.pdf",
-          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3367694/",
+          "file": "reader/files/fitch-friederici-2012-excerpt.pdf",
+          "url": "reader/files/fitch-friederici-2012-excerpt.pdf",
           "linkText": "“Artificial grammar learning meets formal language theory: an overview”",
           "note": "— §§1–3",
-          "short": "Fitch and Friederici (2012), “Artificial Grammar Learning Meets Formal Language Theory,” §§1–3"
+          "short": "Fitch and Friederici (2012), “Artificial Grammar Learning Meets Formal Language Theory,” §§1–3",
+          "full": {
+            "url": "reader/files/fitch-friederici-2012.pdf",
+            "text": "full paper"
+          }
         }
       ],
       "recommended": [
+        {
+          "tag": "C/T",
+          "cite": "Fitch and Friederici (2012)",
+          "id": "fitch-friederici-2012-full",
+          "file": "reader/files/fitch-friederici-2012.pdf",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3367694/",
+          "linkText": "“Artificial grammar learning meets formal language theory: an overview”",
+          "note": "— the full paper",
+          "short": "Fitch and Friederici (2012), “Artificial Grammar Learning Meets Formal Language Theory,” full paper"
+        },
         {
           "cite": "Gallistel and King (2009) <i>Memory and the Computational Brain</i>, Preface",
           "short": "Gallistel and King (2009), preface"
@@ -810,17 +887,21 @@
           "cite": "Turing (1936)",
           "id": "turing-1936",
           "file": "reader/files/turing-1936-excerpt.pdf",
-          "url": "https://drive.google.com/open?id=1fu8kNnp_xiKNdc7_dLo9CWaCmTxtJhgX",
+          "url": "reader/files/turing-1936-excerpt.pdf",
           "linkText": "\"On Computable Numbers, with an Application to the Entscheidungsproblem\"",
           "note": "(excerpt)",
-          "short": "Turing (1936), “On Computable Numbers,” excerpt"
+          "short": "Turing (1936), “On Computable Numbers,” excerpt",
+          "full": {
+            "url": "https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf",
+            "text": "full paper"
+          }
         },
         {
           "tag": "T",
           "cite": "Boolos, Burgess, and Jeffrey (2007) <i>Computability and Logic</i>, Ch. 3:",
           "id": "boolos-burgess-jeffrey-2007",
           "file": "reader/files/boolos-burgess-jeffrey-2007-ch3.pdf",
-          "url": "https://drive.google.com/open?id=1pyOJNa10ZBrG6VscRpWlvSA-06GexbjA",
+          "url": "reader/files/boolos-burgess-jeffrey-2007-ch3.pdf",
           "linkText": "\"Turing Computability\"",
           "short": "Boolos, Burgess, and Jeffrey (2007), “Turing Computability”"
         },
@@ -877,9 +958,13 @@
           "cite": "Hillis (1999) <i>The Pattern on the Stone</i>,",
           "id": "hillis-1999-programming",
           "file": "reader/files/hillis-1999-programming.pdf",
-          "url": "https://drive.google.com/open?id=1mn4BeXzdAF7QcwoC8bqHwQZoqLcmUJrX",
+          "url": "reader/files/hillis-1999-programming.pdf",
           "linkText": "\"Programming\"",
-          "short": "Hillis (1999), “Programming”"
+          "short": "Hillis (1999), “Programming”",
+          "full": {
+            "url": "https://archive.org/details/patternonstone0000unse",
+            "text": "full book, borrowable"
+          }
         },
         {
           "cite": "Miller, Galanter, and Pribram (1960) \"The Unit of Analysis,\" from <i>Plans and the Structure of Behavior</i>",
@@ -911,8 +996,8 @@
         {
           "cite": "Goldman (2012)",
           "id": "goldman-2012",
-          "file": "uploads/9/3/9/1/9391709/goldman_2012__22desert_ants_are_better_at_trigonometry_than_most_high_school_students_23.pdf",
-          "url": "https://drive.google.com/open?id=18IA1HM9zWMlGT51Zgbv3BpDrKmOFS0Zj",
+          "file": "reader/files/goldman-2012.pdf",
+          "url": "reader/files/goldman-2012.pdf",
           "linkText": "\"Desert Ants are Better at Trigonometry than Most High-School Students\"",
           "short": "Goldman (2012), “Desert Ants Are Better at Trigonometry than Most High-School Students”"
         }
@@ -922,7 +1007,7 @@
           "cite": "Gallistel (1998)",
           "id": "gallistel-1998",
           "file": "reader/files/gallistel-1998.pdf",
-          "url": "https://drive.google.com/open?id=19YEsPipuRYIkRtJwNNojM4EcUgy2Ex-b",
+          "url": "reader/files/gallistel-1998.pdf",
           "linkText": "\"Insect Navigation: Brains as Symbol-Processing Organs\"",
           "short": "Gallistel (1998), “Insect Navigation: Brains as Symbol-Processing Organs”"
         },
@@ -959,29 +1044,47 @@
           "cite": "Lovelace (1843)",
           "id": "lovelace-1843",
           "file": "reader/files/lovelace-1843-powers-of-the-engine.pdf",
-          "url": "https://www.fourmilab.ch/babbage/sketch.html",
+          "url": "reader/files/lovelace-1843-powers-of-the-engine.pdf",
           "linkText": "Note G",
           "note": "to Menabrea’s “Sketch of the Analytical Engine” (1843 text, pp. 722–731; read past the Bernoulli table rather than through it)",
-          "short": "Lovelace (1843), Note G on the Analytical Engine"
+          "short": "Lovelace (1843), Note G on the Analytical Engine",
+          "full": {
+            "url": "https://www.fourmilab.ch/babbage/sketch.html",
+            "text": "full text: the Sketch and all of the Notes"
+          }
         },
         {
           "tag": "C",
           "cite": "Colburn (1999)",
           "id": "colburn-1999",
-          "file": "reader/files/colburn-1999.pdf",
-          "url": "https://cse.buffalo.edu/~rapaport/Papers/Papers.by.Others/colburn99.pdf",
+          "file": "reader/files/colburn-1999-excerpt.pdf",
+          "url": "reader/files/colburn-1999-excerpt.pdf",
           "linkText": "“Software, Abstraction, and Ontology”",
           "note": "— §§1–4",
-          "short": "Colburn (1999), “Software, Abstraction, and Ontology,” §§1–4"
+          "short": "Colburn (1999), “Software, Abstraction, and Ontology,” §§1–4",
+          "full": {
+            "url": "reader/files/colburn-1999.pdf",
+            "text": "full paper"
+          }
         }
       ],
       "recommended": [
+        {
+          "tag": "C",
+          "cite": "Colburn (1999)",
+          "id": "colburn-1999-full",
+          "file": "reader/files/colburn-1999.pdf",
+          "url": "reader/files/colburn-1999.pdf",
+          "linkText": "“Software, Abstraction, and Ontology”",
+          "note": "— the full paper",
+          "short": "Colburn (1999), “Software, Abstraction, and Ontology,” full paper"
+        },
         {
           "tag": "C*",
           "cite": "Pylyshyn (1980)",
           "id": "pylyshyn-1980",
           "file": "reader/files/pylyshyn-1980.pdf",
-          "url": "https://drive.google.com/open?id=1PebGe4VIKLBXcns2lPMa58u0freAjsdT",
+          "url": "reader/files/pylyshyn-1980.pdf",
           "linkText": "\"Computation and Cognition: Issues in the Foundations of Cognitive Science\"",
           "note": "— sections 1–6",
           "short": "Pylyshyn (1980), “Computation and Cognition,” §§1–6"
@@ -1021,7 +1124,7 @@
           "cite": "Pylyshyn (1980)",
           "id": "pylyshyn-1980",
           "file": "reader/files/pylyshyn-1980.pdf",
-          "url": "https://drive.google.com/open?id=1PebGe4VIKLBXcns2lPMa58u0freAjsdT",
+          "url": "reader/files/pylyshyn-1980.pdf",
           "linkText": "\"Computation and Cognition: Issues in the Foundations of Cognitive Science\"",
           "note": "— sections 7–11",
           "short": "Pylyshyn (1980), “Computation and Cognition,” §§7–11"
@@ -1066,7 +1169,7 @@
           "cite": "Baars (1988)",
           "id": "baars-1988",
           "file": "reader/files/baars-1988.pdf",
-          "url": "https://drive.google.com/open?id=1U8PZeLlK08iQ3aKpzatC72zFLzjMLRjn",
+          "url": "reader/files/baars-1988.pdf",
           "linkText": "\"The Global Workspace Theory of Consciousness\"",
           "short": "Baars (1988), “The Global Workspace Theory of Consciousness”"
         },
@@ -1161,7 +1264,7 @@
       },
       {
         "kind": "PDF",
-        "url": "uploads/9/3/9/1/9391709/goldman_2012__22desert_ants_are_better_at_trigonometry_than_most_high_school_students_23.pdf",
+        "url": "reader/files/goldman-2012.pdf",
         "title": "Goldman (2012) \"Desert Ants are Better at Trigonometry than Most High School Students\""
       },
       {

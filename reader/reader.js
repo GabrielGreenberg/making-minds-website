@@ -122,6 +122,7 @@ function addAssignment(r, lesson, required) {
   if (a.file && !w.file) w.file = a.file;
   w.more = w.more || [];
   moreFiles(r).forEach((m) => { if (!w.more.some((x) => x.url === m.url)) w.more.push(m); });
+  if (r.full && r.full.url && !w.full) w.full = r.full;           // the full text an excerpt is taken from
   if (r.tag && w.tags.indexOf(r.tag) < 0) w.tags.push(r.tag);
   return a;
 }
@@ -293,6 +294,14 @@ function showLanding() {
   el.main.scrollTop = 0;
 }
 
+// the full text an excerpt comes from: another work in the Reader (read it here), a PDF on this site, or an outside page
+function fullHtml(f) {
+  const label = esc((f.text || 'full text').replace(/^\w/, (ch) => ch.toUpperCase()));
+  if (isExt(f.url)) return '<a href="' + esc(f.url) + '" target="_blank" rel="noopener" title="The full text">' + label + ' <span class="sub">' + esc(host(f.url)) + ' ↗</span></a>';
+  const fw = works.find((x) => x.file === f.url);
+  if (fw) return '<a href="' + hashFor(fw.key) + '" title="The full text, in the Reader">' + label + ' <span class="sub">read here →</span></a>';
+  return '<a href="../' + esc(f.url) + '" download title="The full text">' + label + ' <span class="sub">PDF ↓</span></a>';
+}
 // ---------------------------------------------------------------- work view
 function cardHtml(w, ctx) {
   let h = '<header class="rd-head"><div class="rd-tags">' + w.tags.map(tagHtml).join('') + (w.assignments.length ? '' : '<span class="tag file">Background</span>') + '</div>' +
@@ -311,6 +320,7 @@ function cardHtml(w, ctx) {
   h += '<div class="rd-actions">';
   if (w.file) h += '<a class="primary" href="../' + esc(w.file) + '" download>Download PDF</a>';
   (w.more || []).forEach((m) => { h += '<a href="../' + esc(m.url) + '" download>' + esc(m.text) + ' <span class="sub">PDF ↓</span></a>'; });
+  if (w.full) h += fullHtml(w.full);
   // one "Open" button per outside link: a lone unnamed link is "Open on <host>", several are told apart by their text
   w.ext.forEach((l) => {
     const text = (w.ext.length === 1 && !l.named) || !l.text ? 'Open on ' + esc(host(l.url)) : esc(truncate(l.text, 44)) + ' <span class="sub">' + esc(host(l.url)) + '</span>';

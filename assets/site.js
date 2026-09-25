@@ -87,6 +87,7 @@
     if (r.url) parts.push(rl(r.url, r.linkText || r.url));
     else if (here && r.linkText) parts.push(link(here, r.linkText));
     if (r.links) parts.push(r.links.map(function (l) { return rl(l.url, l.text); }).join(' · '));
+    if (r.full && r.full.url) parts.push(link(r.full.url, r.full.text || 'full text'));   // an excerpt's full text (short-form entries show it in the Reader instead)
     if (r.note) parts.push(r.note);
     return parts.join(' ');
   }
