@@ -91,7 +91,7 @@ main > section:first-child, main > .withtoc:first-child { margin-top: 0; }
 .hero .tagline { font-family: "IBM Plex Serif", Georgia, serif; font-size: clamp(16px, 1.9vw, 20px); font-weight: 600; color: var(--accent-2); margin: 0; max-width: 34ch; text-shadow: 0 1px 12px rgba(0,0,0,.5); }
 .hero .hero-meta { margin: 4px 0 0; font-size: 14.5px; line-height: 1.55; color: #E8ECF5; text-shadow: 0 1px 10px rgba(0,0,0,.6); }
 .hero .eyebrow { color: #C9D2E6; }
-.hero.slim .hero-img { height: 190px; object-position: 20% 34%; }
+.hero.slim .hero-img { height: 190px; object-position: 20% 31%; }   /* eyes on the strip's midline (9/24; was 34%) */
 .hero.slim .hero-text { gap: 6px; }
 .hero.slim h1 { font-size: clamp(28px, 3.6vw, 40px); text-transform: none; letter-spacing: -0.01em; }
 .hero.slim .tagline { color: #E8ECF5; font-weight: 500; font-size: 15.5px; max-width: 48ch; }
