@@ -10,14 +10,9 @@ body.rb { margin: 0; height: 100vh; height: 100dvh; display: flex; flex-directio
 .topbar { flex: none; position: relative; z-index: 31; }
 .topbar .rb-topinner { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px;
   max-width: var(--page-max, 1080px); margin-inline: auto; padding: 12px clamp(16px, 4vw, 40px); }
-/* ---------- hero band (9/24): a sliver of the home page's splash on its navy ground, the same 14px as the course
-   app's band, between the top bar and the reader bar; the image sits in the site column, placed and faded as on the
-   home page, so the glowing head lines up with the hero above the syllabus ---------- */
-.hero-band { flex: none; height: 14px; background: var(--navy, #030D24); overflow: hidden; }
-.hero-band .sliver { height: 100%; max-width: var(--page-max, 1080px); margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); box-sizing: border-box; }
-.hero-band .sliver div { height: 100%; background: url(../assets/splash.jpg) no-repeat 0 34% / 100% auto;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
-          mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); }
+/* ---------- band (9/25): the site's standard lavender band (the home page's, under the hero, and the course app's),
+   between the top bar and the reader bar - replaces the 9/24 navy strip with a sliver of the splash ---------- */
+body.rb > .band { flex: none; }
 /* ---------- reader bar: contents button (phones), breadcrumb, page, zoom ---------- */
 .rb-top { flex: none; display: flex; align-items: center; gap: 14px; padding: 0 18px; height: var(--rb-top-h); background: var(--surface); border-bottom: 1px solid var(--line); position: relative; z-index: 30; }
 .rb-menu { display: none; flex: none; width: 34px; height: 34px; margin-left: -8px; padding: 8px 7px; border: 0; background: none; cursor: pointer; flex-direction: column; justify-content: space-between; }
@@ -160,7 +155,7 @@ body.rb { margin: 0; height: 100vh; height: 100dvh; display: flex; flex-directio
   .rb-crumb .unit, .rb-crumb .unit + .sep { display: none; }
 }
 @media print {
-  .rb-side, .rb-top, .topbar, .hero-band, .rb-chapnav, .rb-actions { display: none; }
+  .rb-side, .rb-top, .topbar, .band, .rb-chapnav, .rb-actions { display: none; }
   body.rb { height: auto; overflow: visible; }
   .rb-main { overflow: visible; }
 }
