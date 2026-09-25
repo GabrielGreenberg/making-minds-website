@@ -156,11 +156,6 @@
           "page": 6
         },
         {
-          "mm": "What is a computer?",
-          "n": 2,
-          "page": 10
-        },
-        {
           "html": "Syllabus (this page) and <a href=\"policies.html\">Course Policies</a>"
         },
         {
@@ -191,6 +186,11 @@
       "unit": 1,
       "topic": "Logic Gates & Combinatorial Circuits",
       "read": [
+        {
+          "mm": "What is a computer?",
+          "n": 2,
+          "page": 10
+        },
         {
           "mm": "Logic Gates & Combinatorial Circuits",
           "n": 3,
