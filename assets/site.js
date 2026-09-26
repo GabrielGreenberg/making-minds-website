@@ -175,7 +175,7 @@
           rows.push('<tr class="u' + x.unit + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.topic) + '</td><td class="readings mmcol">' + (mm.length ? ul(mm, true) : '') + '</td><td class="readings extcol">' + ext + '</td></tr>');
         } else if (x.type === 'hw') {
           var note = esc(data.course.homework.dueLabel) + ' · covers ' + esc(x.covers) + (x.note ? ' · ' + esc(x.note) : '');
-          rows.push('<tr class="hw" id="' + x.id + '">' + wkTd + '<td class="topic">HW' + x.n + ' due<span class="sub">' + esc(x.title) + '</span></td><td class="readings" colspan="2"><span class="note">' + note + '</span></td></tr>');
+          rows.push('<tr class="hw" id="' + x.id + '">' + wkTd + '<td class="topic">' + (x.url ? '<a class="hwlink" href="' + esc(x.url) + '"' + tabAttr(x.url) + '>HW' + x.n + '</a>' : 'HW' + x.n) + ' due<span class="sub">' + esc(x.title) + '</span></td><td class="readings" colspan="2"><span class="note">' + note + '</span></td></tr>');
         } else if (x.type === 'exam') {
           var sub = x.where === 'in class' ? 'in class, ' + timeRange(x.start, x.end) : timeRange(x.start, x.end) + ' · ' + x.where;
           rows.push('<tr class="exam" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.title) + '<span class="sub">' + esc(sub) + '</span></td><td class="readings" colspan="2"><span class="note">' + esc(x.note || '') + '</span></td></tr>');
