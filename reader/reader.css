@@ -8,12 +8,14 @@
 .rd-file a:hover { color: var(--accent); border-color: var(--accent); }
 .rb-zoom[hidden] { display: none; }
 
-/* ---------- sidebar: Readings | Background headings, then the sort toggle ---------- */
-.rd-tabs { display: flex; gap: 18px; padding: 12px 14px 0; background: var(--surface); }
+/* ---------- sidebar: Readings | Background headings, then the sort toggle — one header that stays put while the
+   list scrolls under it (9/26: before, the headings scrolled away whenever the list jumped to the current reading) ---------- */
+.rd-sidehead { position: sticky; top: 0; z-index: 3; background: var(--surface); border-bottom: 1px solid var(--line); }
+.rd-tabs { display: flex; gap: 18px; padding: 12px 14px 0; }
 .rd-tab { font: inherit; font-family: "IBM Plex Serif", Georgia, serif; font-size: 15px; font-weight: 600; color: var(--ink-3); background: none; border: 0; border-bottom: 2px solid transparent; padding: 2px 0 6px; cursor: pointer; }
 .rd-tab:hover { color: var(--accent); }
 .rd-tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
-.rd-sort { position: sticky; top: 0; z-index: 2; background: var(--surface); padding: 10px 14px 10px; border-bottom: 1px solid var(--line); display: flex; gap: 0; }
+.rd-sort { padding: 10px 14px 10px; display: flex; gap: 0; }
 .rd-sort[hidden] { display: none; }
 .rd-bg { margin-top: 6px; }
 .rd-sortbtn { flex: 1 1 0; font: inherit; font-size: 12.5px; font-weight: 500; color: var(--ink-2); background: var(--bg); border: 1px solid var(--line-2); padding: 5px 6px; cursor: pointer; }
@@ -26,6 +28,8 @@
 .rd-list { padding-bottom: 14px; }
 .rd-list .unit.closed + .ulist { display: none; }
 .rd-list .unit.bgunit { margin-top: 18px; }
+.rd-list > .unit:first-child { margin-top: 0; border-top: 0; }   /* the header's own rule is enough */
+.rd-row .l2 .nb { font-weight: 600; color: var(--ink-2); }
 .rd-lesson { padding: 6px 0 4px; }
 .rd-lesson + .rd-lesson { border-top: 1px solid var(--line); }
 .rd-lh { display: block; padding: 5px 14px 3px 30px; text-decoration: none; color: var(--ink-2); line-height: 1.3; position: relative; }
@@ -91,6 +95,26 @@
 .rd-next .rd-none { padding: 4px 0 0; }
 .rd-stats { margin: 22px 0 0; font-size: 12.5px; color: var(--ink-3); }
 .rd-stats b { color: var(--ink-2); font-weight: 600; }
+/* the Background texts: books as a shelf of covers (bottoms lined up), then the articles */
+.rd-shelf { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+.rd-shelf h2 { margin-bottom: 4px; }
+.rd-shelfsub { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+.rd-shelfh { font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin: 20px 0 10px; }
+.rd-books { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 20px 18px; }
+.rd-books a { display: block; text-decoration: none; color: var(--ink); }
+.rd-books .face { height: 180px; display: flex; align-items: flex-end; justify-content: flex-start; }
+.rd-books img { display: block; max-width: 100%; max-height: 180px; width: auto; height: auto; border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(0, 0, 0, .10), 0 6px 14px rgba(0, 0, 0, .08); transition: transform .15s, box-shadow .15s; }
+.rd-books .spine { width: 110px; height: 160px; display: flex; align-items: center; justify-content: center; padding: 10px; text-align: center; background: var(--lav-soft); border: 1px solid var(--lav-line); font-family: "IBM Plex Serif", Georgia, serif; font-size: 14px; font-weight: 600; line-height: 1.25; }
+.rd-books a:hover img { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 10px 20px rgba(0, 0, 0, .10); }
+.rd-books .bt { display: block; margin-top: 10px; font-family: "IBM Plex Serif", Georgia, serif; font-size: 13.5px; font-weight: 600; line-height: 1.25; }
+.rd-books .spine i { font-style: normal; }
+.rd-books .ba { display: block; margin-top: 2px; font-size: 12px; color: var(--ink-3); }
+.rd-books a:hover .bt { color: var(--accent); }
+.rd-arts { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 13.5px; line-height: 1.4; }
+.rd-arts a { color: var(--ink-2); text-decoration: none; }
+.rd-arts a .au { color: var(--ink); font-weight: 600; }
+.rd-arts a:hover, .rd-arts a:hover .au { color: var(--accent); }
+.rd-arts .dim i { font-style: italic; }
 
 /* ---------- main: the reading card ---------- */
 .rd-doc { padding: 22px 16px 40px; }
@@ -124,6 +148,10 @@
   .rd-file { display: none; }
   .rd-landing { padding: 24px 16px 40px; }
   .rd-next { grid-template-columns: 1fr; gap: 4px; }
+  .rd-books { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 18px 14px; }
+  .rd-books .face { height: 150px; }
+  .rd-books img { max-height: 150px; }
+  .rd-books .spine { width: 96px; height: 140px; font-size: 13px; }
   .rd-card { padding: 14px 14px 12px; }
   .rd-head h1 { font-size: 21px; }
 }

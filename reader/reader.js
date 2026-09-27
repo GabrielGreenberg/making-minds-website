@@ -8,7 +8,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '../book/pdfjs/pdf.worker.min.mjs';
 
 const $ = (id) => document.getElementById(id);
 const el = { main: $('main'), side: $('side'), backdrop: $('backdrop'), menu: $('menu'), crumb: $('crumb'), pageno: $('pageno'),
-  zoom: $('zoom'), zoomwrap: $('zoomwrap'), filelink: $('filelink'), list: $('list'), sidefoot: $('sidefoot'), sort: $('sort'),
+  zoom: $('zoom'), zoomwrap: $('zoomwrap'), filelink: $('filelink'), list: $('list'), sidefoot: $('sidefoot'), sort: $('sort'), sidehead: $('sidehead'),
   landing: $('landing'), doc: $('doc'), card: $('card'), pages: $('pages'), chapnav: $('chapnav'), status: $('status') };
 const PAGE_MAX = 1000;
 const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -174,12 +174,13 @@ function buildModel(data) {
 function hashFor(key, page) { return '#' + key + (page ? '/p' + page : ''); }
 function avail(w) { return w.file ? '<span class="av pdf" title="Read here">PDF</span>' : (w.ext.length ? '<span class="av ext" title="Opens elsewhere">↗</span>' : '<span class="av none" title="No link yet">–</span>'); }
 function tagHtml() { return ''; }   // the C / T / C* tags are kept in the JSON but no longer shown (Gabriel, 9/22)
-// one sidebar row: a specific assignment (date mode) or the work as a whole (name mode, background)
-function rowHtml(w, a, extra, rec) {
+// one sidebar row: a specific assignment (date mode) or the work as a whole (name mode, background).
+// `row` = its index in rows[sort], so prev/next follow the row that was clicked; `sub` overrides the second line.
+function rowHtml(w, a, extra, rec, row, sub) {
   const tags = a ? tagHtml(a.r.tag) : w.tags.map(tagHtml).join('');
-  const sub = a ? partHtml(a.r, false) : (w.title || '');
+  if (sub == null) sub = a ? partHtml(a.r, false) : (w.title || '');
   const label = a && a.r.label ? '<span class="dim">' + esc(a.r.label) + '</span> ' : '';
-  return '<li class="rd-row' + ((a && !a.required) || rec ? ' rec' : '') + '" data-key="' + esc(w.key) + '"><a href="' + hashFor(w.key, a ? a.page : null) + '">' +
+  return '<li class="rd-row' + ((a && !a.required) || rec ? ' rec' : '') + '" data-key="' + esc(w.key) + '"' + (row != null ? ' data-row="' + row + '"' : '') + '><a href="' + hashFor(w.key, a ? a.page : null) + '">' +
     '<span class="l1">' + label + tags + '<span class="au">' + esc(w.label) + '</span>' + (extra || '') + '</span>' +
     (sub ? '<span class="l2">' + sub + '</span>' : '') + '</a>' + avail(w) + '</li>';
 }
@@ -187,11 +188,14 @@ function buildList() {
   let h = '';
   document.querySelectorAll('.rd-tab').forEach((b) => b.setAttribute('aria-selected', b.dataset.tab === tab ? 'true' : 'false'));
   el.sort.hidden = tab !== 'readings';
+  let n = 0;                                   // index into rows[sort] of the next row drawn
   if (tab === 'background') {
-    // the background texts (from `resources`), one list per heading
+    // the background texts (from `resources`), one list per heading; they sit at the end of rows[sort]
+    n = rows[sort].length - bg.reduce((k, s) => k + s.items.length, 0);
     bg.forEach((s) => {
       h += '<div class="rd-lesson rd-bg"><div class="rd-lh rd-bgh"><span class="t">' + esc(s.heading) + '</span></div><ol>' +
-        s.items.map((w) => rowHtml(w, null, '')).join('') + '</ol></div>';
+        s.items.map((w) => { const b = w.bg.find((x) => x.heading === s.heading); const t = b ? parseCite(b.it.title).restClean : '';
+          return rowHtml(w, null, '', false, n++, t || null); }).join('') + '</ol></div>';
     });
     if (!bg.length) h += '<div class="rd-none">No background texts yet.</div>';
   } else if (sort === 'date') {
@@ -205,9 +209,9 @@ function buildList() {
       }
       h += '<div class="rd-lesson" id="side-' + L.id + '" style="--uc:var(--u' + L.unit + ')"><div class="rd-lh"><span class="d mono">' + esc(L.d) + '</span><span class="t">' + esc(L.topic) + '</span></div>';
       if (!L.required.length && !L.recommended.length) h += '<div class="rd-none">no outside reading</div>';
-      if (L.required.length) h += '<ol>' + L.required.map((a) => rowHtml(byKey[a.key], a)).join('') + '</ol>';
+      if (L.required.length) h += '<ol>' + L.required.map((a) => rowHtml(byKey[a.key], a, '', false, n++)).join('') + '</ol>';
       if (L.recommended.length) {
-        h += '<div class="rd-rec"><button class="rd-rectog" type="button" aria-expanded="false">Recommended</button><ol class="rd-reclist">' + L.recommended.map((a) => rowHtml(byKey[a.key], a)).join('') + '</ol></div>';
+        h += '<div class="rd-rec"><button class="rd-rectog" type="button" aria-expanded="false">Recommended</button><ol class="rd-reclist">' + L.recommended.map((a) => rowHtml(byKey[a.key], a, '', false, n++)).join('') + '</ol></div>';
       }
       h += '</div>';
     });
@@ -215,6 +219,7 @@ function buildList() {
   } else {
     let last = '';
     h += '<ol class="rd-az">';
+    const subs = nameSubs();
     az.forEach((w) => {
       const letter = (w.sortName[0] || '').toUpperCase();
       if (letter !== last) { last = letter; h += '<li class="rd-letter" aria-hidden="true">' + esc(letter) + '</li>'; }
@@ -222,7 +227,7 @@ function buildList() {
       const seen = {};
       const dates = w.assignments.filter((a) => { if (seen[a.lesson.id]) return false; seen[a.lesson.id] = true; return true; })
         .map((a) => '<span class="when' + (a.required ? '' : ' rec') + '" title="' + (a.required ? 'Required' : 'Recommended') + ' for ' + esc(a.lesson.d) + ' · ' + esc(a.lesson.topic) + '">' + esc(shortDate(a.lesson.date)) + '</span>').join('');
-      h += rowHtml(w, null, '<span class="whens">' + dates + '</span>', !w.required);
+      h += rowHtml(w, null, '<span class="whens">' + dates + '</span>', !w.required, n++, subs[w.key]);
     });
     h += '</ol>';
   }
@@ -233,11 +238,28 @@ function buildList() {
     '<span class="new">Readings marked <b>PDF</b> open here; the rest open where they live.</span>';
   if (cur) markCurrent(cur.work);
 }
+// In name mode a work's second line is its title — but Hillis's three chapters, Petzold's two, and an excerpt beside
+// its full paper (Colburn, Newell, Fitch & Friederici) share author, year and title. Those get the assigned part instead,
+// and if that still ties or says nothing more than the title, the note leads ("§§1–4 · …" / "the full paper · …").
+function nameSubs() {
+  const out = {}, groups = {};
+  az.forEach((w) => { const k = w.label + '|' + strip(w.title); (groups[k] = groups[k] || []).push(w); });
+  Object.values(groups).filter((g) => g.length > 1).forEach((g) => {
+    const part = (w) => partHtml(w.assignments[0].r, false) || w.title || '';
+    const note = (w) => String(w.assignments[0].r.note || '').replace(/^[\s—–-]+/, '');
+    const plain = g.map((w) => strip(part(w)));
+    g.forEach((w, i) => {
+      const tied = plain.indexOf(plain[i]) !== plain.lastIndexOf(plain[i]) || plain[i] === strip(w.title);
+      out[w.key] = tied && note(w) ? '<b class="nb">' + note(w) + '</b> · ' + part(w) : part(w);
+    });
+  });
+  return out;
+}
+// the sidebar panel a work belongs to: Readings (it is on the syllabus) and/or Background (it is in `resources`)
+function inPanel(w, t) { return t === 'background' ? w.bg.length > 0 : w.assignments.length > 0; }
 function markCurrent(w) {
   el.list.querySelectorAll('.cur').forEach((x) => x.classList.remove('cur'));
   if (!w) return;
-  const want = w.assignments.length ? 'readings' : 'background';
-  if (tab !== want) { tab = want; store.set('tab', want); buildList(); return; }   // buildList calls markCurrent again
   let first = null;
   el.list.querySelectorAll('.rd-row[data-key="' + CSS.escape(w.key) + '"]').forEach((li) => {
     li.classList.add('cur'); if (!first) first = li;
@@ -248,17 +270,25 @@ function markCurrent(w) {
 function keepInView(node) {
   if (!node || node.offsetParent === null) return;
   const r = node.getBoundingClientRect(), s = el.side.getBoundingClientRect();
-  if (r.top < s.top + 70 || r.bottom > s.bottom - 20) node.scrollIntoView({ block: 'center' });
+  const top = s.top + el.sidehead.offsetHeight + 8, bottom = s.bottom - 16;
+  // scroll the sidebar itself (scrollIntoView would also nudge the page and the reading pane)
+  if (r.top < top || r.bottom > bottom) el.side.scrollTop += (r.top + r.bottom) / 2 - (top + bottom) / 2;
 }
 function openSide(on) { el.side.classList.toggle('open', on); el.backdrop.classList.toggle('on', on); el.menu.setAttribute('aria-expanded', on ? 'true' : 'false'); }
+// switching the sort or the panel keeps the open reading highlighted and in view if it is in the new list;
+// otherwise the list starts at the top
+function relist() {
+  el.side.scrollTop = 0;
+  buildList();
+}
 function setSort(s) {
   if (s !== 'date' && s !== 'name') return;
-  sort = s; store.set('sort', s); buildList();
+  sort = s; store.set('sort', s); relist();
   if (cur) { cur.row = null; chapNav(cur.work); }
 }
 function setTab(t) {
   if (t !== 'readings' && t !== 'background') return;
-  tab = t; store.set('tab', t); buildList();
+  tab = t; store.set('tab', t); relist();
 }
 
 // ---------------------------------------------------------------- landing
@@ -286,12 +316,39 @@ function showLanding() {
     h += '</div></section>';
   }
   h += '<p class="rd-stats">' + assigned.length + ' readings on the syllabus · <b>' + here + '</b> open here · ' + out + ' link out' + (none ? ' · ' + none + ' without a link yet' : '') + '</p>';
+  h += shelfHtml();
   el.landing.innerHTML = h;
   el.crumb.innerHTML = '<span class="cur">Readings</span>';
   el.pageno.textContent = ''; el.filelink.innerHTML = ''; el.zoomwrap.hidden = true;
   document.title = 'Making Minds · Reader';
   markCurrent(null);
   el.main.scrollTop = 0;
+}
+
+// the Background texts on the landing page: the books as a shelf of covers (a resource's optional `cover` image;
+// a lettered spine when there is none), then the other headings (Articles) as a short list
+function shelfHtml() {
+  if (!bg.length) return '';
+  const entry = (w, s) => { const b = w.bg.find((x) => x.heading === s.heading) || w.bg[0]; return b ? b.it : {}; };
+  const parts = (it) => { const c = parseCite(it.title || ''); return { who: c.author + (c.year ? ' (' + c.year + ')' : ''), what: c.restClean || strip(it.title) }; };
+  let h = '<section class="rd-shelf" aria-labelledby="shelf-h"><h2 id="shelf-h">Background</h2>' +
+    '<p class="rd-shelfsub">Whole books and articles to read around the course. They are also under <a href="#" data-tab="background">Background</a> in the sidebar.</p>';
+  bg.forEach((s) => {
+    if (/book/i.test(s.heading)) {
+      h += '<h3 class="rd-shelfh">' + esc(s.heading) + '</h3><ul class="rd-books">' + s.items.map((w) => {
+        const it = entry(w, s), x = parts(it);
+        const face = it.cover ? '<img src="../' + esc(it.cover) + '" alt="" loading="lazy">' : '<span class="spine"><span>' + x.what + '</span></span>';
+        return '<li><a href="' + hashFor(w.key) + '" title="' + esc(strip(x.who + ', ' + x.what)) + '"><span class="face">' + face + '</span>' +
+          '<span class="bt">' + x.what + '</span><span class="ba">' + esc(x.who) + '</span></a></li>';
+      }).join('') + '</ul>';
+    } else {
+      h += '<h3 class="rd-shelfh">' + esc(s.heading) + '</h3><ul class="rd-arts">' + s.items.map((w) => {
+        const it = entry(w, s), x = parts(it);
+        return '<li><a href="' + hashFor(w.key) + '"><span class="au">' + esc(x.who) + '</span> ' + x.what + '</a>' + (it.note ? ' <span class="dim">· ' + it.note + '</span>' : '') + '</li>';
+      }).join('') + '</ul>';
+    }
+  });
+  return h + '</section>';
 }
 
 // the full text an excerpt comes from: another work in the Reader (read it here), a PDF on this site, or an outside page
@@ -346,11 +403,16 @@ function crumbFor(w, ctx) {
   h += '<span class="cur">' + esc(w.label) + '</span>' + (w.title ? '<span class="sep">·</span><span class="ttl">' + w.title + '</span>' : '');
   el.crumb.innerHTML = h;
 }
+function showPanelFor(w) {
+  if (!inPanel(w, tab) && inPanel(w, tab === 'readings' ? 'background' : 'readings')) {
+    tab = tab === 'readings' ? 'background' : 'readings'; store.set('tab', tab); buildList();   // buildList marks it
+  } else markCurrent(w);
+}
 async function openWork(w, page, ctx) {
   const same = cur && cur.work === w;
   if (same) {          // another assignment of the same work (or a page link): keep the loaded PDF
     cur.row = ctx ? ctx.row : null;
-    el.card.innerHTML = cardHtml(w, ctx); chapNav(w); crumbFor(w, ctx); markCurrent(w);
+    el.card.innerHTML = cardHtml(w, ctx); chapNav(w); crumbFor(w, ctx); showPanelFor(w);
     if (page) scrollToPage(page); else el.main.scrollTop = 0;
     return;
   }
@@ -359,7 +421,7 @@ async function openWork(w, page, ctx) {
   curPage = null;
   el.landing.hidden = true; el.doc.hidden = false; el.status.hidden = true;
   el.pages.innerHTML = ''; el.card.innerHTML = cardHtml(w, ctx);
-  chapNav(w); crumbFor(w, ctx); markCurrent(w);
+  chapNav(w); crumbFor(w, ctx); showPanelFor(w);
   document.title = w.label + ' · Reader · Making Minds';
   el.pageno.textContent = '';
   el.filelink.innerHTML = w.file ? '<a href="../' + esc(w.file) + '" download title="Download the PDF">PDF ↓</a>' : (w.ext.length ? '<a href="' + esc(w.ext[0].url) + '" target="_blank" rel="noopener">Open ↗</a>' : '');
@@ -521,10 +583,13 @@ function wire() {
     if (rt) { e.preventDefault(); const box = rt.closest('.rd-rec'); const on = box.classList.toggle('open'); rt.setAttribute('aria-expanded', on ? 'true' : 'false'); return; }
     const a = e.target.closest('.rd-row a'); if (!a) return;
     const li = a.closest('.rd-row');
-    const all = [...el.list.querySelectorAll('.rd-row a')];
-    pendingRow = all.indexOf(a);
-    // map the sidebar's row order onto rows[sort] (same order in both modes: lessons then background)
+    pendingRow = li.dataset.row != null ? +li.dataset.row : null;
     if (a.getAttribute('href') === location.hash) { e.preventDefault(); route(); }
+  });
+  el.landing.addEventListener('click', (e) => {
+    const t = e.target.closest('a[data-tab]'); if (!t) return;
+    e.preventDefault(); setTab(t.dataset.tab);
+    if (window.innerWidth <= 900) openSide(true);
   });
   el.chapnav.addEventListener('click', (e) => { const a = e.target.closest('a[data-row]'); if (a) pendingRow = +a.dataset.row; });
   el.pages.addEventListener('mousedown', (e) => { const tl = e.target.closest('.textLayer'); if (tl) tl.classList.add('selecting'); });

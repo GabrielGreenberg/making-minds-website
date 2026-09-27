@@ -1,5 +1,5 @@
 {
-  "_readme": "Source of truth for www.makingminds.org. index.html renders from this file (assets/site.js); so does the readings reader at reader/ (reader/reader.js). Dates are ISO (YYYY-MM-DD); times are 24h; week numbers and weekday labels are computed. Reading entries: {mm: chapter} for course-book chapters, or {tag, cite, url, linkText, note} where cite/note may contain <i>…</i>; {html} for anything irregular; optional label (e.g. 'Of interest:'). Outside readings: optional id (stable key, e.g. 'turing-1950'), file (a PDF on this site, shown in reader/) and filePage (page of that file to open at). An excerpt may carry full: {url, text} — the full text it is taken from (a PDF on this site or an outside URL); the Reader shows it as a button beside Download.",
+  "_readme": "Source of truth for www.makingminds.org. index.html renders from this file (assets/site.js); so does the readings reader at reader/ (reader/reader.js). Dates are ISO (YYYY-MM-DD); times are 24h; week numbers and weekday labels are computed. Reading entries: {mm: chapter} for course-book chapters, or {tag, cite, url, linkText, note} where cite/note may contain <i>…</i>; {html} for anything irregular; optional label (e.g. 'Of interest:'). Outside readings: optional id (stable key, e.g. 'turing-1950'), file (a PDF on this site, shown in reader/) and filePage (page of that file to open at). An excerpt may carry full: {url, text} — the full text it is taken from (a PDF on this site or an outside URL); the Reader shows it as a button beside Download. Resources (the Reader's Background texts) may carry cover: an image (e.g. reader/thumbs/<name>.jpg, ~240px wide) shown on the Reader's landing shelf.",
   "course": {
     "code": "Phil 133",
     "title": "Making Minds",
@@ -1234,26 +1234,31 @@
       {
         "kind": "PDF",
         "url": "reader/files/clark-2001-mindware.pdf",
+        "cover": "reader/thumbs/clark-2001-mindware.jpg",
         "title": "Clark (2001) <i>Mindware</i>"
       },
       {
         "kind": "PDF",
         "url": "uploads/9/3/9/1/9391709/crane_2003__22the_mechanical_mind_23.pdf",
+        "cover": "reader/thumbs/crane-2003.jpg",
         "title": "Crane (2003) <i>The Mechanical Mind</i>"
       },
       {
         "kind": "PDF",
         "url": "uploads/9/3/9/1/9391709/edelman_2008__22computing_the_mind_23.pdf",
+        "cover": "reader/thumbs/edelman-2008.jpg",
         "title": "Edelman (2008) <i>Computing the Mind</i>"
       },
       {
         "kind": "PDF",
         "url": "uploads/9/3/9/1/9391709/pinker_1997__22how_the_mind_works_23.pdf",
+        "cover": "reader/thumbs/pinker-1997.jpg",
         "title": "Pinker (1997) <i>How the Mind Works</i>"
       },
       {
         "kind": "PDF",
         "url": "uploads/9/3/9/1/9391709/ravenscroft_2005__22philosophy_of_mind_23.pdf",
+        "cover": "reader/thumbs/ravenscroft-2005.jpg",
         "title": "Ravenscroft (2005) <i>Philosophy of Mind</i>"
       }
     ],
