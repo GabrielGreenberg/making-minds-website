@@ -1,5 +1,5 @@
 {
- "built": "2026-09-24T17:33:08Z",
+ "built": "2026-09-28T17:55:24Z",
  "pageSize": [
   1460,
   1888
@@ -8,7 +8,7 @@
  "totalPages": 193,
  "wholeBook": "making-minds.pdf",
  "cover": "thumbs/cover.jpg",
- "coverHash": "057ce71532f5",
+ "coverHash": "6b8f63ecd7f9",
  "front": {
   "id": "front",
   "title": "Front matter",
@@ -18,7 +18,7 @@
    4
   ],
   "pageHashes": [
-   "057ce71532f5",
+   "6b8f63ecd7f9",
    "c44b79bd9160",
    "eff1818c7505",
    "d6ecad242bf7"
@@ -2105,8 +2105,8 @@
   ],
   "pageHashes": [
    "9528683408f6",
-   "f0478b7c0ba1",
-   "b80f8d78daab",
+   "209f097da2f3",
+   "d3a6fcc9b89d",
    "d9192668e5a4",
    "db0844406a96",
    "a49ad4752394",
@@ -2188,6 +2188,19 @@
     9,
     12,
     13
+   ]
+  },
+  {
+   "date": "2026-09-28",
+   "chapters": [],
+   "other": [
+    "front",
+    "ps"
+   ],
+   "pages": [
+    1,
+    181,
+    182
    ]
   }
  ]
