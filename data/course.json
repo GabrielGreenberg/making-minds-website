@@ -195,7 +195,7 @@
       "topic": "Logic Gates & Combinatorial Circuits",
       "read": [
         {
-          "mm": "What is a computer?",
+          "mm": "What is a Computer?",
           "n": 2,
           "page": 10
         },
@@ -585,12 +585,12 @@
         {
           "mm": "Memory",
           "n": 17,
-          "page": 62
+          "page": 63
         },
         {
           "mm": "Physical Memory",
           "n": 18,
-          "page": 63
+          "page": 64
         }
       ],
       "recommended": [
@@ -614,12 +614,12 @@
         {
           "mm": "Machines in Time: Sequential Circuits",
           "n": 19,
-          "page": 67
+          "page": 68
         },
         {
           "mm": "Computing in Time",
           "n": 20,
-          "page": 72
+          "page": 73
         },
         {
           "tag": "T*",
@@ -668,12 +668,12 @@
         {
           "mm": "Computational Power",
           "n": 21,
-          "page": 77
+          "page": 78
         },
         {
           "mm": "The Method of State Analysis",
           "n": 22,
-          "page": 82
+          "page": 83
         }
       ]
     },
@@ -695,12 +695,12 @@
         {
           "mm": "State Abstraction",
           "n": 23,
-          "page": 87
+          "page": 88
         },
         {
           "mm": "The Concept of Abstraction",
           "n": 24,
-          "page": 92
+          "page": 93
         },
         {
           "tag": "C*",
@@ -764,12 +764,12 @@
         {
           "mm": "Finite State Machines",
           "n": 25,
-          "page": 100
+          "page": 101
         },
         {
           "mm": "What is an Algorithm?",
           "n": 26,
-          "page": 105
+          "page": 106
         },
         {
           "tag": "C*",
@@ -823,7 +823,7 @@
         {
           "mm": "Levels of Abstraction",
           "n": 27,
-          "page": 108
+          "page": 109
         },
         {
           "tag": "C*",
@@ -877,12 +877,12 @@
         {
           "mm": "Turing Machines",
           "n": 28,
-          "page": 115
+          "page": 116
         },
         {
           "mm": "Computing with Turing Machines",
           "n": 29,
-          "page": 123
+          "page": 124
         },
         {
           "tag": "C/T",
@@ -967,22 +967,22 @@
         {
           "mm": "Recursion",
           "n": 30,
-          "page": 127
+          "page": 128
         },
         {
           "mm": "Turing Machine Abstraction and Composition",
           "n": 31,
-          "page": 133
+          "page": 134
         },
         {
           "mm": "Binary Turing Machines",
           "n": 32,
-          "page": 136
+          "page": 137
         },
         {
           "mm": "The Mathematical Tree",
           "n": 33,
-          "page": 138
+          "page": 139
         }
       ],
       "recommended": [
@@ -1014,17 +1014,17 @@
         {
           "mm": "Computational Navigation",
           "n": 34,
-          "page": 141
+          "page": 142
         },
         {
           "mm": "The Desert Ant",
           "n": 35,
-          "page": 144
+          "page": 145
         },
         {
           "mm": "Physical Cognition",
           "n": 36,
-          "page": 149
+          "page": 150
         },
         {
           "cite": "Goldman (2012)",
@@ -1070,7 +1070,7 @@
         {
           "mm": "Machines and Programs",
           "n": 37,
-          "page": 159
+          "page": 160
         },
         {
           "tag": "C*",
@@ -1138,7 +1138,7 @@
         {
           "mm": "The Universal Machine",
           "n": 38,
-          "page": 163
+          "page": 164
         },
         {
           "tag": "C*",
@@ -1173,17 +1173,17 @@
         {
           "mm": "Cognitive Architecture",
           "n": 39,
-          "page": 169
+          "page": 170
         },
         {
           "mm": "Computation as Consciousness",
           "n": 40,
-          "page": 172
+          "page": 173
         },
         {
           "mm": "Computational Theory of Mind: The Long View",
           "n": 41,
-          "page": 175
+          "page": 176
         },
         {
           "tag": "C*",
