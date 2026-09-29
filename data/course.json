@@ -252,6 +252,20 @@
       ],
       "recommended": [
         {
+          "tag": "T*",
+          "cite": "U.S. Navy, Bureau of Ordnance (1944) <i>Basic Fire Control Mechanisms</i> (Ordnance Pamphlet 1140),",
+          "id": "navy-1944",
+          "file": "reader/files/navy-1944-fire-control-mechanisms.pdf",
+          "url": "reader/files/navy-1944-fire-control-mechanisms.pdf",
+          "linkText": "Section 1: “Basic Information” and Section 2: “Mechanical Units”",
+          "note": "(pp. 1–168) — a wartime Navy training manual on the mechanisms inside gear-driven fire-control computers; the differential (pp. 38–45) is a good place to start",
+          "short": "U.S. Navy (1944), <i>Basic Fire Control Mechanisms</i>, excerpt",
+          "full": {
+            "url": "https://archive.org/details/op1140_202408",
+            "text": "full manual"
+          }
+        },
+        {
           "tag": "T",
           "cite": "Petzold (2000) <i>Code</i>,",
           "id": "petzold-2000-ch7-8",
