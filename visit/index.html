@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Making Minds · Visitors</title>
+<meta name="description" content="Making Minds: a constructive introduction to the computational theory of mind. The syllabus, the course textbook and the course app, open to everyone.">
+<meta name="robots" content="noindex"><!-- unlisted until approved: remove this line when the page is linked from the site -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23081633'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='17' fill='%23fff'%3EMM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+/* Visitors landing page: hero, a short intro, three doors (syllabus, textbook, app). */
+.hero.visit .hero-img { height: clamp(250px, 29vw, 340px); }
+
+main.visit { padding-block: 40px 60px; }
+
+.intro { max-width: 660px; margin: 0 auto 40px; text-align: center; }
+.intro .lede {
+  font-family: "IBM Plex Serif", Georgia, serif; font-weight: 600; color: var(--ink);
+  font-size: clamp(21px, 2.4vw, 26px); line-height: 1.3; text-wrap: balance; margin: 0 0 14px;
+}
+.intro p { font-size: 16px; line-height: 1.65; color: var(--ink-2); margin: 0 0 12px; text-wrap: pretty; }
+.intro p:last-child { margin-bottom: 0; }
+.intro i { color: inherit; }
+
+.doors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.door {
+  display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line-2);
+  color: inherit; text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.door:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 14px 30px -14px rgba(70, 20, 90, .38); }
+.door:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.door .art { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--surface-2); border-bottom: 1px solid var(--line); }
+.door .art svg { display: block; width: 100%; height: 100%; }
+.door .body { flex: 1; display: flex; flex-direction: column; gap: 6px; padding: 18px 22px 20px; }
+.door h2 { font-size: 23px; color: var(--ink); margin: 0; }
+.door p { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+.door p i { color: inherit; }
+.door .go { margin-top: auto; padding-top: 12px; font-size: 14px; font-weight: 600; color: var(--accent); }
+.door:hover .go { text-decoration: underline; text-underline-offset: 3px; }
+
+/* the textbook: the live cover (regenerated with every book build), as a book on the table */
+.art.book { display: grid; place-items: center; }
+.art.book .cover { position: relative; height: 84%; aspect-ratio: 1014 / 1312; box-shadow: 0 1px 2px rgba(0,0,0,.18), 0 12px 24px -8px rgba(40,20,60,.45); border-radius: 1px 3px 3px 1px; overflow: hidden; transition: transform .18s ease; }
+.art.book img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.art.book .cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,.28), rgba(255,255,255,.14) 2.5%, rgba(0,0,0,.06) 5%, transparent 9%); }
+.door:hover .art.book .cover { transform: translateY(-2px) rotate(-1deg); }
+
+@media (max-width: 860px) {
+  .doors { grid-template-columns: minmax(0, 1fr); max-width: 480px; margin-inline: auto; gap: 20px; }
+}
+@media (max-width: 720px) {
+  main.visit { padding-block: 28px 44px; }
+  .intro { text-align: left; margin-bottom: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .door, .art.book .cover { transition: none; }
+  .door:hover, .door:hover .art.book .cover { transform: none; }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="page">
+    <a class="brand" href="../index.html">Making Minds<span class="course">Phil 133</span></a>
+  </div>
+</header>
+<div class="hero visit" aria-label="Making Minds">
+  <div class="page hero-inner">
+    <img class="hero-img" src="../assets/splash.jpg" alt="" width="1536" height="1024">
+    <div class="hero-text">
+      <h1>Making Minds</h1>
+      <p class="tagline">A Constructive Introduction to the Computational Theory of Mind</p>
+      <p class="hero-meta">Gabriel Greenberg<br>UCLA Department of Philosophy</p>
+    </div>
+  </div>
+</div>
+<div class="band"></div>
+
+<main class="page visit">
+  <section class="intro" aria-label="About the course">
+    <p class="lede">How does the human mind arise from the unthinking matter of the brain?</p>
+    <p>According to the Computational Theory of Mind, the brain is a biological computer, and cognition is its function. <i>Making Minds</i> examines this idea by building up, step by step, from the simplest mechanical parts to creatures with cognition, agency, and maybe even consciousness.</p>
+    <p>The course is taught at UCLA as Philosophy 133. Its materials are open to anyone who wants to follow along.</p>
+  </section>
+
+  <nav class="doors" aria-label="Course materials">
+
+    <a class="door" href="../index.html">
+      <div class="art" aria-hidden="true">
+        <svg viewBox="0 0 320 240" preserveAspectRatio="xMidYMid slice" font-family="IBM Plex Sans, Helvetica Neue, Arial, sans-serif">
+          <defs>
+            <filter id="sh1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#28143c" flood-opacity=".18"/></filter>
+          </defs>
+          <g transform="translate(160 22) scale(1.1) translate(-160 -20)">
+          <rect x="36" y="20" width="248" height="240" fill="#fff" stroke="#E5E5E5" filter="url(#sh1)"/>
+          <text x="52" y="45" font-family="IBM Plex Serif, Georgia, serif" font-weight="600" font-size="15" fill="#C255B9">Syllabus</text>
+          <g font-size="5.6" font-weight="600" letter-spacing=".08em" fill="#7B7B7B">
+            <text x="52" y="60">DATE</text><text x="104" y="60">TOPIC</text>
+          </g>
+          <!-- Unit 1 -->
+          <g>
+            <rect x="44" y="66" width="232" height="19" fill="#F1EEF5"/>
+            <rect x="44" y="66" width="232" height="1.8" fill="#24678D"/>
+            <text x="52" y="78.5" font-size="5.6" font-weight="700" letter-spacing=".09em" fill="#24678D">UNIT 1</text>
+            <text x="80" y="79" font-family="IBM Plex Serif, Georgia, serif" font-weight="600" font-size="10" fill="#2A2A2A">Computation</text>
+            <g font-size="7.6">
+              <text x="52" y="97.5" font-family="IBM Plex Mono, Menlo, monospace" font-size="7.2" fill="#24678D">Thu 9/24</text>
+              <rect x="97" y="85" width="2.2" height="18.5" fill="#24678D"/>
+              <text x="105" y="97.5" font-weight="500" fill="#2A2A2A">The Cognition–Body Problem</text>
+              <line x1="44" y1="103.5" x2="276" y2="103.5" stroke="#EDEDED"/>
+              <text x="52" y="116" font-family="IBM Plex Mono, Menlo, monospace" font-size="7.2" fill="#24678D">Tue 9/29</text>
+              <rect x="97" y="103.5" width="2.2" height="18.5" fill="#24678D"/>
+              <text x="105" y="116" font-weight="500" fill="#2A2A2A">Logic Gates &amp; Combinatorial Circuits</text>
+              <line x1="44" y1="122" x2="276" y2="122" stroke="#EDEDED"/>
+              <rect x="97" y="122" width="179" height="18.5" fill="#FCEBEB"/>
+              <text x="52" y="134.5" font-family="IBM Plex Mono, Menlo, monospace" font-size="7.2" fill="#24678D">Sun 10/4</text>
+              <rect x="97" y="122" width="2.2" height="18.5" fill="#24678D"/>
+              <text x="105" y="134.5" font-weight="600" fill="#C93A3A">HW1 due</text>
+            </g>
+          </g>
+          <!-- Unit 2 -->
+          <g>
+            <rect x="44" y="148" width="232" height="19" fill="#F1EEF5"/>
+            <rect x="44" y="148" width="232" height="1.8" fill="#C255B9"/>
+            <text x="52" y="160.5" font-size="5.6" font-weight="700" letter-spacing=".09em" fill="#C255B9">UNIT 2</text>
+            <text x="80" y="161" font-family="IBM Plex Serif, Georgia, serif" font-weight="600" font-size="10" fill="#2A2A2A">Levels</text>
+            <g font-size="7.6">
+              <text x="52" y="179.5" font-family="IBM Plex Mono, Menlo, monospace" font-size="7.2" fill="#24678D">Tue 10/20</text>
+              <rect x="97" y="167" width="2.2" height="18.5" fill="#C255B9"/>
+              <text x="105" y="179.5" font-weight="500" fill="#2A2A2A">Memory and Sequential Circuits</text>
+              <line x1="44" y1="185.5" x2="276" y2="185.5" stroke="#EDEDED"/>
+              <text x="52" y="198" font-family="IBM Plex Mono, Menlo, monospace" font-size="7.2" fill="#24678D">Thu 10/22</text>
+              <rect x="97" y="185.5" width="2.2" height="18.5" fill="#C255B9"/>
+              <text x="105" y="198" font-weight="500" fill="#2A2A2A">Computing in Time</text>
+            </g>
+          </g>
+          <!-- Unit 3 -->
+          <g>
+            <rect x="44" y="212" width="232" height="19" fill="#F1EEF5"/>
+            <rect x="44" y="212" width="232" height="1.8" fill="#F5A623"/>
+            <text x="52" y="224.5" font-size="5.6" font-weight="700" letter-spacing=".09em" fill="#D48A12">UNIT 3</text>
+            <text x="80" y="225" font-family="IBM Plex Serif, Georgia, serif" font-weight="600" font-size="10" fill="#2A2A2A">Cognition</text>
+            <g font-size="7.6">
+              <text x="52" y="243.5" font-family="IBM Plex Mono, Menlo, monospace" font-size="7.2" fill="#24678D">Thu 11/12</text>
+              <rect x="97" y="231" width="2.2" height="18.5" fill="#F5A623"/>
+              <text x="105" y="243.5" font-weight="500" fill="#2A2A2A">Turing Machines</text>
+            </g>
+          </g>
+          </g>
+        </svg>
+      </div>
+      <div class="body">
+        <h2>Syllabus</h2>
+        <p>The course class by class, in three units (Computation, Levels, and Cognition), with the readings for each meeting.</p>
+        <span class="go">View the syllabus →</span>
+      </div>
+    </a>
+
+    <a class="door" href="../book/">
+      <div class="art book" aria-hidden="true">
+        <span class="cover"><img src="../book/thumbs/cover.jpg" alt="" width="1014" height="1312" loading="lazy"></span>
+      </div>
+      <div class="body">
+        <h2>Course textbook</h2>
+        <p><i>Making Minds</i>, the book written for this course. Read it online, or download the whole thing as a PDF.</p>
+        <span class="go">Read the book →</span>
+      </div>
+    </a>
+
+    <a class="door" href="https://making-minds.pages.dev/#/sandbox" target="_blank" rel="noopener">
+      <div class="art" aria-hidden="true">
+        <svg viewBox="0 0 320 240" preserveAspectRatio="xMidYMid slice" font-family="IBM Plex Sans, Helvetica Neue, Arial, sans-serif">
+          <defs>
+            <filter id="sh3" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#28143c" flood-opacity=".18"/></filter>
+            <pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r=".75" fill="#C9C4D2"/></pattern>
+          </defs>
+          <!-- app window, running off the right and bottom edges -->
+          <rect x="22" y="20" width="320" height="240" fill="#fff" stroke="#D5D5D5" filter="url(#sh3)"/>
+          <rect x="22.5" y="42" width="319" height="218" fill="url(#dots)"/>
+          <text x="32" y="35" font-family="IBM Plex Serif, Georgia, serif" font-weight="700" font-size="9.5" fill="#2A2A2A">Making Minds</text>
+          <text x="102" y="34.6" font-size="5.6" font-weight="700" letter-spacing=".1em" fill="#C255B9">PHIL 133</text>
+          <text x="146" y="34.8" font-size="7.4" font-weight="600" fill="#2A2A2A">Sandbox</text>
+          <rect x="22.5" y="40" width="319" height="2.4" fill="#E2B4FF"/>
+          <!-- a circuit in the app's own drawing style: XOR = (IN1 OR IN2) AND NOT (IN1 AND IN2), shown with IN1 = 1, IN2 = 0 -->
+          <g transform="translate(44 101) scale(.55)" stroke-linejoin="round" stroke-linecap="round">
+            <!-- wires: 1 = magenta, 0 = ink -->
+            <g fill="none" stroke-width="3">
+              <path d="M40,20 H110 V10 H140" stroke="#C255B9"/>
+              <path d="M80,20 V130 H140" stroke="#C255B9"/>
+              <path d="M40,140 H100 V30 H140" stroke="#2A2A2A"/>
+              <path d="M100,140 H120 V150 H140" stroke="#2A2A2A"/>
+              <path d="M200,20 H300 V70 H330" stroke="#C255B9"/>
+              <path d="M200,140 H240" stroke="#2A2A2A"/>
+              <path d="M290,140 H310 V90 H330" stroke="#C255B9"/>
+              <path d="M390,80 H450" stroke="#C255B9"/>
+            </g>
+            <circle cx="80" cy="20" r="5" fill="#C255B9"/>
+            <circle cx="100" cy="140" r="5" fill="#2A2A2A"/>
+            <!-- inputs -->
+            <g>
+              <rect x="-15" y="10" width="14" height="20" rx="3" fill="#C255B9" stroke="#9E3F97"/>
+              <text x="-8" y="24" text-anchor="middle" font-size="10" fill="#fff">1</text>
+              <rect x="0" y="0" width="40" height="40" rx="3" fill="#fff" stroke="#2A2A2A" stroke-width="2.4"/>
+              <text x="20" y="-8" text-anchor="middle" font-size="12" letter-spacing=".04em" fill="#7B7B7B">IN1</text>
+              <text x="20" y="27" text-anchor="middle" font-size="19" font-weight="500" fill="#2A2A2A">1</text>
+              <rect x="-15" y="130" width="14" height="20" rx="3" fill="#7B7B7B" stroke="#4A4A4A"/>
+              <text x="-8" y="144" text-anchor="middle" font-size="10" fill="#fff">0</text>
+              <rect x="0" y="120" width="40" height="40" rx="3" fill="#fff" stroke="#2A2A2A" stroke-width="2.4"/>
+              <text x="20" y="112" text-anchor="middle" font-size="12" letter-spacing=".04em" fill="#7B7B7B">IN2</text>
+              <text x="20" y="147" text-anchor="middle" font-size="19" font-weight="500" fill="#2A2A2A">0</text>
+            </g>
+            <!-- OR (top), AND (bottom), NOT, final AND -->
+            <g fill="#fff" stroke="#2A2A2A" stroke-width="2.4">
+              <path d="M140,-10 H164 Q190,-7 200,20 Q190,47 164,50 H140 Q152,20 140,-10 Z"/>
+              <path d="M140,10 H145.3 M140,30 H145.3" fill="none"/>
+              <path d="M140,110 H170 A30,30 0 0 1 170,170 H140 Z"/>
+              <polygon points="240,118 290,140 240,162"/>
+              <path d="M330,50 H360 A30,30 0 0 1 360,110 H330 Z" fill="#F2E6FF" stroke="#C255B9" stroke-width="2.8"/>
+            </g>
+            <g fill="none" stroke="#2A2A2A" stroke-width="2.4">
+              <path d="M163,14 L170,27 L177,14"/>
+              <path d="M161,146 L168,133 L175,146"/>
+              <path d="M250,136.5 H261 V142.5"/>
+              <path d="M351,86 L358,73 L365,86"/>
+            </g>
+            <!-- output -->
+            <rect x="450" y="60" width="40" height="40" rx="3" fill="#fff" stroke="#2A2A2A" stroke-width="2.4"/>
+            <text x="470" y="52" text-anchor="middle" font-size="12" letter-spacing=".04em" fill="#7B7B7B">OUT1</text>
+            <text x="470" y="87" text-anchor="middle" font-size="19" font-weight="600" fill="#C255B9">1</text>
+            <!-- ports -->
+            <g fill="#2A2A2A">
+              <circle cx="40" cy="20" r="3.5"/><circle cx="40" cy="140" r="3.5"/>
+              <circle cx="140" cy="10" r="3.5"/><circle cx="140" cy="30" r="3.5"/><circle cx="200" cy="20" r="3.5"/>
+              <circle cx="140" cy="130" r="3.5"/><circle cx="140" cy="150" r="3.5"/><circle cx="200" cy="140" r="3.5"/>
+              <circle cx="240" cy="140" r="3.5"/><circle cx="290" cy="140" r="3.5"/>
+              <circle cx="330" cy="70" r="3.5"/><circle cx="330" cy="90" r="3.5"/><circle cx="390" cy="80" r="3.5"/>
+              <circle cx="450" cy="80" r="3.5"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="body">
+        <h2>Course app</h2>
+        <p>Build and run circuits, state machines, and Turing machines in your browser. No account needed.</p>
+        <span class="go">Try the app ↗</span>
+      </div>
+    </a>
+
+  </nav>
+</main>
+<footer class="page">
+  <span>Making Minds · Phil 133 · UCLA Department of Philosophy</span>
+  <span>Gabriel Greenberg</span>
+</footer>
+</body>
+</html>

@@ -18,6 +18,6 @@ Source for **www.makingminds.org** (GitHub Pages, served from the root of `main`
 
 ## Files
 
-`index.html`, `policies.html` (mostly prose, kept in the HTML), `resources.html` (now just a redirect to `reader/`), `reader/` (the Reader), `book/` (the course book: PDF, web reader, generated chapter data), `assets/site.css`, `assets/site.js`, `assets/splash.jpg`, `data/course.json`, `uploads/…` (course PDFs, paths unchanged from the old site), `.nojekyll` (so GitHub Pages serves underscore-prefixed files such as `_mm_11.20.25.pdf`), `CNAME`.
+`index.html`, `policies.html` (mostly prose, kept in the HTML), `resources.html` (now just a redirect to `reader/`), `reader/` (the Reader), `visit/` (a landing page for visitors who aren't taking the course: intro, then doors to the syllabus, the course book and the app's sandbox — **unlisted** until Gabriel approves it: nothing links to it and it carries `<meta name="robots" content="noindex">`; remove that line when it gets linked), `book/` (the course book: PDF, web reader, generated chapter data), `assets/site.css`, `assets/site.js`, `assets/splash.jpg`, `data/course.json`, `uploads/…` (course PDFs, paths unchanged from the old site), `.nojekyll` (so GitHub Pages serves underscore-prefixed files such as `_mm_11.20.25.pdf`), `CNAME`.
 
 Previewing locally: the pages fetch the JSON, so open them through a local server (`python3 -m http.server` in this folder, then http://localhost:8000/), not as `file://`.
