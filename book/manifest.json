@@ -1,5 +1,5 @@
 {
- "built": "2026-10-01T05:55:28Z",
+ "built": "2026-10-01T17:18:50Z",
  "pageSize": [
   1460,
   1888
@@ -8,7 +8,7 @@
  "totalPages": 194,
  "wholeBook": "making-minds.pdf",
  "cover": "thumbs/cover.jpg",
- "coverHash": "ef9aa7953df4",
+ "coverHash": "3b23f3c6d805",
  "front": {
   "id": "front",
   "title": "Front matter",
@@ -18,7 +18,7 @@
    4
   ],
   "pageHashes": [
-   "ef9aa7953df4",
+   "3b23f3c6d805",
    "c44b79bd9160",
    "ac75cbee1b2f",
    "c93425a52060"
@@ -292,7 +292,7 @@
     {
      "title": "The Identity of Functions",
      "page": 22,
-     "y": 1125.7
+     "y": 1195.7
     },
     {
      "title": "Functions vs Machines",
@@ -308,8 +308,8 @@
    "pageHashes": [
     "38959b46dc2a",
     "4e9805ef25c2",
-    "e236b02d0862",
-    "911657cafd25",
+    "2df76a420d0a",
+    "c1f3cd6d3731",
     "5db422f7b8c6"
    ]
   },
@@ -367,20 +367,20 @@
     {
      "title": "Decimal System",
      "page": 28,
-     "y": 181.4
+     "y": 161.4
     },
     {
      "title": "Binary System",
      "page": 28,
-     "y": 696.7
+     "y": 726.7
     },
     {
      "title": "Tally System",
      "page": 28,
-     "y": 1206.7
+     "y": 1246.7
     },
     {
-     "title": "Binary and Tally",
+     "title": "Binary and Tally as Representational Systems",
      "page": 29,
      "y": 86.7
     },
@@ -392,16 +392,16 @@
     {
      "title": "Binary Syntax",
      "page": 29,
-     "y": 1293.6
+     "y": 1333.6
     }
    ],
    "pageHashes": [
     "b25ce8bc8ccf",
     "a72e83d4406a",
-    "17ff978d0109",
-    "4acb214e370d",
-    "a0fdc7fc01aa",
-    "2862e758d81e"
+    "e26cd74b5359",
+    "948d87c9aaee",
+    "2fb847e0dc63",
+    "7104fb1d28ed"
    ]
   },
   {
@@ -2427,6 +2427,25 @@
     79,
     88,
     178
+   ]
+  },
+  {
+   "date": "2026-10-01",
+   "chapters": [
+    4,
+    5
+   ],
+   "other": [
+    "front"
+   ],
+   "pages": [
+    1,
+    21,
+    22,
+    26,
+    27,
+    28,
+    29
    ]
   }
  ]
