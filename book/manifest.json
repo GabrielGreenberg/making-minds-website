@@ -1,5 +1,5 @@
 {
- "built": "2026-09-29T18:14:39Z",
+ "built": "2026-10-01T05:55:28Z",
  "pageSize": [
   1460,
   1888
@@ -8,7 +8,7 @@
  "totalPages": 194,
  "wholeBook": "making-minds.pdf",
  "cover": "thumbs/cover.jpg",
- "coverHash": "e2dfb2460c71",
+ "coverHash": "ef9aa7953df4",
  "front": {
   "id": "front",
   "title": "Front matter",
@@ -18,7 +18,7 @@
    4
   ],
   "pageHashes": [
-   "e2dfb2460c71",
+   "ef9aa7953df4",
    "c44b79bd9160",
    "ac75cbee1b2f",
    "c93425a52060"
@@ -231,7 +231,7 @@
     }
    ],
    "pageHashes": [
-    "98277cc5d1d2",
+    "f36b581c0999",
     "70592b5eef5c",
     "f9aa3147551c",
     "ad26701a345e",
@@ -307,10 +307,10 @@
    ],
    "pageHashes": [
     "38959b46dc2a",
-    "aa05e32bab0f",
-    "eeebc1f7299c",
+    "4e9805ef25c2",
+    "e236b02d0862",
     "911657cafd25",
-    "7346f26dff82"
+    "5db422f7b8c6"
    ]
   },
   {
@@ -352,56 +352,56 @@
     {
      "title": "Mechanics of a Numeral System",
      "page": 26,
-     "y": 468.6
+     "y": 588.6
     },
     {
      "title": "Base",
-     "page": 26,
-     "y": 885.6
+     "page": 27,
+     "y": 60.7
     },
     {
      "title": "Calculating a Numeral’s Value",
-     "page": 27,
+     "page": 28,
      "y": 86.7
     },
     {
      "title": "Decimal System",
-     "page": 27,
+     "page": 28,
      "y": 181.4
     },
     {
      "title": "Binary System",
-     "page": 27,
+     "page": 28,
      "y": 696.7
     },
     {
      "title": "Tally System",
-     "page": 27,
+     "page": 28,
      "y": 1206.7
     },
     {
      "title": "Binary and Tally",
-     "page": 28,
+     "page": 29,
      "y": 86.7
     },
     {
      "title": "Tally Syntax",
-     "page": 28,
-     "y": 687.7
+     "page": 29,
+     "y": 777.7
     },
     {
      "title": "Binary Syntax",
      "page": 29,
-     "y": 107.7
+     "y": 1293.6
     }
    ],
    "pageHashes": [
     "b25ce8bc8ccf",
     "a72e83d4406a",
-    "4c45d62e06f2",
-    "e28406e28df2",
-    "7ceb6a248021",
-    "5d8b391cbfbd"
+    "17ff978d0109",
+    "4acb214e370d",
+    "a0fdc7fc01aa",
+    "2862e758d81e"
    ]
   },
   {
@@ -1071,7 +1071,7 @@
    ],
    "pageHashes": [
     "ff33bc9529f1",
-    "0391a44e1204",
+    "aa2a1ec1b2bc",
     "eabe3a31805d",
     "f06cd8fb3cb6",
     "bb4c2e7110cd"
@@ -1160,7 +1160,7 @@
     }
    ],
    "pageHashes": [
-    "f2662edc461e",
+    "cba0344fc7a4",
     "90ce48644013",
     "2ecfda8bd308",
     "61b793e3a3ff",
@@ -2061,7 +2061,7 @@
    "pageHashes": [
     "760f4eaddf4e",
     "e6a9512012bd",
-    "feb803f9e667",
+    "a7e98ef108e3",
     "5087db55d4a5",
     "bcb27947bf99"
    ]
@@ -2399,6 +2399,34 @@
     192,
     193,
     194
+   ]
+  },
+  {
+   "date": "2026-10-01",
+   "chapters": [
+    3,
+    4,
+    5,
+    21,
+    23,
+    41
+   ],
+   "other": [
+    "front"
+   ],
+   "pages": [
+    1,
+    14,
+    20,
+    21,
+    23,
+    26,
+    27,
+    28,
+    29,
+    79,
+    88,
+    178
    ]
   }
  ]
