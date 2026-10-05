@@ -15,7 +15,11 @@
     },
     "ta": {
       "name": "Paul Talma",
-      "officeHours": "Wed 11am–1pm, Dodd 394",
+      "officeHours": "Thu 1:50–3:50pm, Dodd 300C",
+      "officeHoursNote": {
+        "text": "Week of Oct 12 only: Thu 10/15 before lecture, time TBA, Dodd 300C",
+        "until": "2026-10-15"
+      },
       "email": "ptalma@humnet.ucla.edu"
     },
     "lecture": {

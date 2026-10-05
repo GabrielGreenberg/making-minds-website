@@ -115,6 +115,13 @@
   }
 
   // ---------- home page ----------
+  // Temporary office-hours change: {text, until: 'YYYY-MM-DD'}; hidden after `until`.
+  function ohNote(n) {
+    if (!n || !n.text) return '';
+    if (n.until && new Date().toLocaleDateString('en-CA', { timeZone: window.__course.course.timezone }) > n.until) return '';
+    return '<br><span class="dim">' + tba(n.text) + '</span>';
+  }
+
   function renderFacts(c) {
     var el = document.getElementById('facts');
     if (!el) return;
@@ -124,7 +131,7 @@
       ['Sections', esc(sec.day) + ' · ' + tba(sec.room) + (sec.list || []).map(function (x) {
         return '<br>' + esc(x.id) + ' ' + esc(x.time); }).join('')],
       ['Instructor', esc(c.instructor.title + ' ' + c.instructor.name) + (c.instructor.email ? '<br>' + link('mailto:' + c.instructor.email, c.instructor.email) : '') + '<br>office hours ' + tba(c.instructor.officeHours)],
-      ['TA', esc(c.ta.name) + (c.ta.email ? '<br>' + link('mailto:' + c.ta.email, c.ta.email) : '') + '<br>office hours ' + tba(c.ta.officeHours)],
+      ['TA', esc(c.ta.name) + (c.ta.email ? '<br>' + link('mailto:' + c.ta.email, c.ta.email) : '') + '<br>office hours ' + tba(c.ta.officeHours) + ohNote(c.ta.officeHoursNote)],
       ['Course book', '<b>' + esc(c.book.title) + '</b> (' + esc(c.book.abbrev) + ') — ' + (c.book.reader ? link(c.book.reader, 'online') + ' · ' : '') + link(c.book.pdf, 'PDF') + (c.book.drive ? ' · ' + link(c.book.drive, 'current version') : '') + (c.book.note ? ' <span class="dim">· ' + esc(c.book.note) + '</span>' : '')],
       ['Homework', words(c.homework.count) + ' problem sets, in the ' + link(c.app.url, c.app.label) + '<br>' + esc(c.homework.summary)],
     ];
