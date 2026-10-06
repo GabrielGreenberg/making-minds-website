@@ -1,14 +1,14 @@
 {
- "built": "2026-10-01T17:29:38Z",
+ "built": "2026-10-06T18:33:56Z",
  "pageSize": [
   1460,
   1888
  ],
- "bookPages": 180,
- "totalPages": 194,
+ "bookPages": 179,
+ "totalPages": 193,
  "wholeBook": "making-minds.pdf",
  "cover": "thumbs/cover.jpg",
- "coverHash": "3b23f3c6d805",
+ "coverHash": "feab05c8440d",
  "front": {
   "id": "front",
   "title": "Front matter",
@@ -18,10 +18,10 @@
    4
   ],
   "pageHashes": [
-   "3b23f3c6d805",
+   "feab05c8440d",
    "c44b79bd9160",
-   "ac75cbee1b2f",
-   "c93425a52060"
+   "a04187341f5f",
+   "3dcfb4da80c6"
   ]
  },
  "units": [
@@ -44,15 +44,15 @@
     12,
     13,
     14,
-    15,
-    16
+    15
    ]
   },
   {
    "n": 2,
    "name": "Levels",
-   "divider": 61,
+   "divider": 60,
    "chapters": [
+    16,
     17,
     18,
     19,
@@ -62,15 +62,15 @@
     23,
     24,
     25,
-    26,
-    27
+    26
    ]
   },
   {
    "n": 3,
    "name": "Cognition",
-   "divider": 115,
+   "divider": 114,
    "chapters": [
+    27,
     28,
     29,
     30,
@@ -83,8 +83,7 @@
     37,
     38,
     39,
-    40,
-    41
+    40
    ]
   }
  ],
@@ -133,10 +132,10 @@
    ],
    "pageHashes": [
     "3b59d054366a",
-    "4f9a0e46ec24",
-    "589d183e7be5",
-    "ece4471bafc7",
-    "fe528b4d8b8e"
+    "35036d655e82",
+    "78f555563758",
+    "461f50aff022",
+    "ad6374b10eeb"
    ]
   },
   {
@@ -177,10 +176,10 @@
     }
    ],
    "pageHashes": [
-    "0127cddd9cf0",
-    "2e200236e192",
-    "28c79e756ff1",
-    "9d934c6470fe"
+    "8d1502939ac6",
+    "8866fb741265",
+    "df74a3255988",
+    "0297e621d9e4"
    ]
   },
   {
@@ -231,10 +230,10 @@
     }
    ],
    "pageHashes": [
-    "f36b581c0999",
-    "70592b5eef5c",
-    "f9aa3147551c",
-    "ad26701a345e",
+    "9c6eef06df97",
+    "cb99bec67cd3",
+    "c793a19bfa46",
+    "3b3d31d193b6",
     "0e60ad0f3d6d"
    ]
   },
@@ -306,11 +305,11 @@
     }
    ],
    "pageHashes": [
-    "38959b46dc2a",
-    "4e9805ef25c2",
-    "2df76a420d0a",
-    "c1f3cd6d3731",
-    "5db422f7b8c6"
+    "47a727ee104d",
+    "be3234a5cd3e",
+    "afdf266f8ea9",
+    "2bd45ac932cc",
+    "d5135b864e33"
    ]
   },
   {
@@ -396,12 +395,12 @@
     }
    ],
    "pageHashes": [
-    "b25ce8bc8ccf",
-    "a72e83d4406a",
-    "e26cd74b5359",
-    "f90e2a864e26",
-    "4a9359f72e02",
-    "55d34d541958"
+    "659c33ac00f6",
+    "6b47ec60f5c8",
+    "9c4366be5a5d",
+    "95ff23bb1cbe",
+    "fcbc5af040bc",
+    "a1f6df3ab677"
    ]
   },
   {
@@ -412,12 +411,12 @@
    "unit": 1,
    "pages": [
     30,
-    36
+    35
    ],
    "file": "ch/06-defining-computation.pdf",
    "filePages": [
     30,
-    36
+    35
    ],
    "sections": [
     {
@@ -426,9 +425,9 @@
      "y": 176.2
     },
     {
-     "title": "The “tower bridge” model of computation",
+     "title": "Definition of computation",
      "page": 30,
-     "y": 1066.2
+     "y": 1162.5
     },
     {
      "title": "Examples of computation",
@@ -436,1634 +435,1608 @@
      "y": 86.2
     },
     {
-     "title": "Computing a value",
-     "page": 32,
-     "y": 86.2
-    },
-    {
-     "title": "Computing a function",
-     "page": 33,
-     "y": 86.2
-    },
-    {
      "title": "Bounded Functions",
-     "page": 34,
+     "page": 32,
      "y": 86.7
     },
     {
      "title": "Notation for functionally describing computers",
-     "page": 34,
+     "page": 32,
      "y": 912.8
     },
     {
      "title": "Inputs and Outputs",
-     "page": 35,
+     "page": 33,
+     "y": 86.2
+    },
+    {
+     "title": "Computation as a Three-part Relation",
+     "page": 34,
      "y": 86.2
     },
     {
      "title": "In-class Problems",
-     "page": 36,
+     "page": 35,
      "y": 85.2
     }
    ],
    "pageHashes": [
-    "006900b1fc61",
-    "5baff558af90",
-    "a098782fd388",
-    "a3ee5ff47ad5",
-    "47f26257cc8f",
-    "c662c941090a",
-    "6c59233d63b0"
-   ]
-  },
-  {
-   "id": "3104497",
-   "n": 7,
-   "slug": "computation-as-a-3-way-relation",
-   "title": "Computation as a 3-way Relation",
-   "unit": 1,
-   "pages": [
-    37,
-    37
-   ],
-   "file": "ch/07-computation-as-a-3-way-relation.pdf",
-   "filePages": [
-    37,
-    37
-   ],
-   "sections": [
-    {
-     "title": "The structure",
-     "page": 37,
-     "y": 176.2
-    }
-   ],
-   "pageHashes": [
-    "616316787f6a"
+    "21d7626fbf75",
+    "6700949c415d",
+    "ec16a00044a2",
+    "b291b45867c9",
+    "e45613781873",
+    "70e1ef7c35f4"
    ]
   },
   {
    "id": "1610391",
-   "n": 8,
+   "n": 7,
    "slug": "functional-abstraction",
    "title": "Functional Abstraction",
    "unit": 1,
    "pages": [
-    38,
-    38
+    36,
+    37
    ],
-   "file": "ch/08-functional-abstraction.pdf",
+   "file": "ch/07-functional-abstraction.pdf",
    "filePages": [
-    38,
-    38
+    36,
+    37
    ],
    "sections": [
     {
+     "title": "Describing a machine by its function",
+     "page": 36,
+     "y": 176.4
+    },
+    {
      "title": "Diagramming abstraction",
-     "page": 38,
-     "y": 164.7
+     "page": 37,
+     "y": 87.1
     }
    ],
    "pageHashes": [
-    "721801b1b683"
+    "b0994c432a70",
+    "0e7a1eb9ee6e"
    ]
   },
   {
    "id": "7130833",
-   "n": 9,
+   "n": 8,
    "slug": "function-composition",
    "title": "Function Composition",
    "unit": 1,
    "pages": [
-    39,
-    41
+    38,
+    40
    ],
-   "file": "ch/09-function-composition.pdf",
+   "file": "ch/08-function-composition.pdf",
    "filePages": [
-    39,
-    41
+    38,
+    40
    ],
    "sections": [
     {
      "title": "Machine Composition",
-     "page": 40,
+     "page": 39,
      "y": 85.6
     }
    ],
    "pageHashes": [
-    "fdfd3321da75",
-    "2f3ded479487",
-    "c69194b5c802"
+    "555bdf50f94e",
+    "4e4813d798c5",
+    "8bac6f002812"
    ]
   },
   {
    "id": "294834",
-   "n": 10,
+   "n": 9,
    "slug": "the-story-of-binary-successor",
    "title": "The Story of Binary Successor",
    "unit": 1,
    "pages": [
-    42,
-    44
+    41,
+    43
    ],
-   "file": "ch/10-the-story-of-binary-successor.pdf",
+   "file": "ch/09-the-story-of-binary-successor.pdf",
    "filePages": [
-    42,
-    44
+    41,
+    43
    ],
    "sections": [
     {
      "title": "The Problem: Binary Successor",
-     "page": 42,
+     "page": 41,
      "y": 164.7
     },
     {
      "title": "Intro: Long Addition in the Simplest Case",
-     "page": 42,
+     "page": 41,
      "y": 358.3
     },
     {
      "title": "Step 1. Identify a method (carrying)",
-     "page": 42,
+     "page": 41,
      "y": 959.0
     },
     {
      "title": "Step 2. Break it into parts",
-     "page": 43,
+     "page": 42,
      "y": 85.2
     },
     {
      "title": "Step 3. Analyze the parts",
-     "page": 43,
+     "page": 42,
      "y": 919.5
     },
     {
      "title": "Interlude: Half-Adder",
-     "page": 44,
+     "page": 43,
      "y": 86.7
     },
     {
      "title": "Step 4: A schematic solution",
-     "page": 44,
+     "page": 43,
      "y": 797.7
     }
    ],
    "pageHashes": [
-    "a1c946415474",
-    "640c8f106351",
-    "bf0441fe8d1d"
+    "78695ca07f82",
+    "0fab96d37c71",
+    "3d99dcebdf1d"
    ]
   },
   {
    "id": "2025664",
-   "n": 11,
+   "n": 10,
    "slug": "lessons-from-binary-successor",
    "title": "Lessons from Binary Successor",
    "unit": 1,
    "pages": [
-    45,
-    45
+    44,
+    44
    ],
-   "file": "ch/11-lessons-from-binary-successor.pdf",
+   "file": "ch/10-lessons-from-binary-successor.pdf",
    "filePages": [
-    45,
-    45
+    44,
+    44
    ],
    "sections": [
     {
      "title": "Fundamental lessons about the nature of computation",
-     "page": 45,
+     "page": 44,
      "y": 185.7
     }
    ],
    "pageHashes": [
-    "920d8ba917a3"
+    "affd5c137f47"
    ]
   },
   {
    "id": "1588813",
-   "n": 12,
+   "n": 11,
    "slug": "real-and-ideal-computers",
    "title": "Real and Ideal Computers",
    "unit": 1,
    "pages": [
-    46,
-    46
+    45,
+    45
    ],
-   "file": "ch/12-real-and-ideal-computers.pdf",
+   "file": "ch/11-real-and-ideal-computers.pdf",
    "filePages": [
-    46,
-    46
+    45,
+    45
    ],
    "sections": [],
    "pageHashes": [
-    "ae8bc8d45351"
+    "980ed83311e5"
    ]
   },
   {
    "id": "1765342",
-   "n": 13,
+   "n": 12,
    "slug": "introducing-turbots",
    "title": "Introducing Turbots",
    "unit": 1,
    "pages": [
-    47,
-    49
+    46,
+    48
    ],
-   "file": "ch/13-introducing-turbots.pdf",
+   "file": "ch/12-introducing-turbots.pdf",
    "filePages": [
-    47,
-    49
+    46,
+    48
    ],
    "sections": [
     {
      "title": "Embodied Computation",
-     "page": 47,
+     "page": 46,
      "y": 161.7
     },
     {
      "title": "Turbots",
-     "page": 47,
+     "page": 46,
      "y": 606.7
     },
     {
      "title": "Environment",
-     "page": 47,
+     "page": 46,
      "y": 1244.7
     },
     {
      "title": "Progression of time",
-     "page": 48,
+     "page": 47,
      "y": 385.2
     },
     {
      "title": "Input: perception",
-     "page": 48,
+     "page": 47,
      "y": 681.0
     },
     {
      "title": "Output: action",
-     "page": 48,
+     "page": 47,
      "y": 1061.0
     },
     {
      "title": "A Simple Example",
-     "page": 49,
+     "page": 48,
      "y": 85.2
     }
    ],
    "pageHashes": [
-    "85d47cff63d8",
-    "52ba0ab517e1",
-    "1c3092e5acf0"
+    "ca72f2b462bb",
+    "5a8e4fedbc8c",
+    "cdd5155a6b54"
    ]
   },
   {
    "id": "2042295",
-   "n": 14,
+   "n": 13,
    "slug": "thought-as-symbol-processing",
    "title": "Thought as symbol processing",
    "unit": 1,
    "pages": [
-    50,
-    52
+    49,
+    51
    ],
-   "file": "ch/14-thought-as-symbol-processing.pdf",
+   "file": "ch/13-thought-as-symbol-processing.pdf",
    "filePages": [
-    50,
-    52
+    49,
+    51
    ],
    "sections": [
     {
      "title": "Craik’s Hypothesis on the Nature of Cognition",
-     "page": 50,
+     "page": 49,
      "y": 185.2
     },
     {
      "title": "Physical Models of Reality",
-     "page": 50,
+     "page": 49,
      "y": 695.0
     },
     {
      "title": "Thought as a Model of Reality",
-     "page": 50,
+     "page": 49,
      "y": 1225.0
     },
     {
      "title": "Symbolic Models of Reality",
-     "page": 51,
+     "page": 50,
      "y": 85.2
     },
     {
      "title": "Mind as Input/Output Machine",
-     "page": 52,
+     "page": 51,
      "y": 85.2
     }
    ],
    "pageHashes": [
-    "0c62d8709e19",
-    "f5648a90dc8a",
-    "c3cdb264bb7b"
+    "ff81b99da906",
+    "d598ad666a56",
+    "0a97a2344248"
    ]
   },
   {
    "id": "304206",
-   "n": 15,
+   "n": 14,
    "slug": "artificial-and-natural-computers",
    "title": "Artificial and Natural Computers",
    "unit": 1,
    "pages": [
-    53,
-    56
+    52,
+    55
    ],
-   "file": "ch/15-artificial-and-natural-computers.pdf",
+   "file": "ch/14-artificial-and-natural-computers.pdf",
    "filePages": [
-    53,
-    56
+    52,
+    55
    ],
    "sections": [
     {
      "title": "The Invention of Computers",
-     "page": 53,
+     "page": 52,
      "y": 161.7
     },
     {
      "title": "Computer Science vs Nature",
-     "page": 54,
+     "page": 53,
      "y": 86.0
     },
     {
      "title": "Computer Science vs Cognitive Science",
-     "page": 54,
+     "page": 53,
      "y": 784.0
     },
     {
      "title": "Making Minds",
-     "page": 54,
+     "page": 53,
      "y": 1566.6
     },
     {
      "title": "Artificial and Natural Computers",
-     "page": 55,
+     "page": 54,
      "y": 86.3
     },
     {
      "title": "Original vs Derived Intentionality",
-     "page": 56,
+     "page": 55,
      "y": 85.7
     }
    ],
    "pageHashes": [
-    "b68015f326fb",
-    "53ecdeed92c8",
-    "be030b44a5ce",
-    "f8828f798d7f"
+    "2187ae953d4d",
+    "6eb8c7e1e295",
+    "37f7da2ae54d",
+    "0cb25cfabea7"
    ]
   },
   {
    "id": "311599",
-   "n": 16,
+   "n": 15,
    "slug": "the-computational-theory-of-mind",
    "title": "The Computational Theory of Mind",
    "unit": 1,
    "pages": [
-    57,
-    60
+    56,
+    59
    ],
-   "file": "ch/16-the-computational-theory-of-mind.pdf",
+   "file": "ch/15-the-computational-theory-of-mind.pdf",
    "filePages": [
-    57,
-    60
+    56,
+    59
    ],
    "sections": [
     {
      "title": "CTM Defined",
-     "page": 57,
+     "page": 56,
      "y": 151.8
     },
     {
      "title": "Computation beyond Combinatorial Circuits",
-     "page": 59,
+     "page": 58,
      "y": 85.7
     },
     {
      "title": "Further Notes",
-     "page": 60,
+     "page": 59,
      "y": 85.7
     }
    ],
    "pageHashes": [
-    "766c57a67d99",
-    "6fb7b7e7cdcc",
-    "7a3ae352959f",
-    "eac0c2b4336d"
+    "45fd86d64dbc",
+    "c45ddede6b28",
+    "25f345eb4852",
+    "e02af3404000"
    ]
   },
   {
    "id": "315848",
-   "n": 17,
+   "n": 16,
    "slug": "memory",
    "title": "Memory",
    "unit": 2,
    "pages": [
-    63,
-    63
+    62,
+    62
    ],
-   "file": "ch/17-memory.pdf",
+   "file": "ch/16-memory.pdf",
    "filePages": [
-    61,
-    63
+    60,
+    62
    ],
    "sections": [
     {
      "title": "Harnessing the Power of Time",
-     "page": 63,
+     "page": 62,
      "y": 160.4
     },
     {
      "title": "Memory",
-     "page": 63,
+     "page": 62,
      "y": 1270.4
     }
    ],
    "pageHashes": [
-    "561a135231a1",
-    "897bb00fc1c0",
-    "72e312adb445"
+    "17de165e882c",
+    "f8ab108f01a9",
+    "20dc741def56"
    ]
   },
   {
    "id": "5463569",
-   "n": 18,
+   "n": 17,
    "slug": "physical-memory",
    "title": "Physical Memory",
    "unit": 2,
    "pages": [
-    64,
-    67
+    63,
+    66
    ],
-   "file": "ch/18-physical-memory.pdf",
+   "file": "ch/17-physical-memory.pdf",
    "filePages": [
-    64,
-    67
+    63,
+    66
    ],
    "sections": [
     {
      "title": "Constructing a Memory Register",
-     "page": 64,
+     "page": 63,
      "y": 160.4
     }
    ],
    "pageHashes": [
-    "fc9066b11cfa",
-    "a69900d3be87",
-    "1d29a00dd004",
-    "be1b8230412d"
+    "c8a8a43116c9",
+    "b183d25a34e5",
+    "7f23de2fd267",
+    "aefe7fa71ae9"
    ]
   },
   {
    "id": "2177284",
-   "n": 19,
+   "n": 18,
    "slug": "machines-in-time-sequential-circuits",
    "title": "Machines in Time: Sequential Circuits",
    "unit": 2,
    "pages": [
-    68,
-    72
+    67,
+    71
    ],
-   "file": "ch/19-machines-in-time-sequential-circuits.pdf",
+   "file": "ch/18-machines-in-time-sequential-circuits.pdf",
    "filePages": [
-    68,
-    72
+    67,
+    71
    ],
    "sections": [
     {
      "title": "Sequential Circuits = Combinatorial Circuits + Memory",
-     "page": 68,
+     "page": 67,
      "y": 173.2
     },
     {
      "title": "Memory Registers",
-     "page": 69,
+     "page": 68,
      "y": 83.2
     },
     {
      "title": "The Clock",
-     "page": 69,
+     "page": 68,
      "y": 771.0
     },
     {
      "title": "Cycles of a Sequential Circuit",
-     "page": 70,
+     "page": 69,
      "y": 86.2
     },
     {
      "title": "Memoirs of a Sequential Circuit",
-     "page": 71,
+     "page": 70,
      "y": 86.2
     },
     {
      "title": "In-Class Problems",
-     "page": 72,
+     "page": 71,
      "y": 86.2
     }
    ],
    "pageHashes": [
-    "a321233e5ee9",
-    "e19cc15591da",
-    "0874b07840f8",
-    "8282bd35e746",
-    "273638d605cb"
+    "3ef6a0ede3ad",
+    "a2b1a9a7ee5f",
+    "a0778d2d0d62",
+    "5ab1799499e7",
+    "2368fc9f181c"
    ]
   },
   {
    "id": "2818766",
-   "n": 20,
+   "n": 19,
    "slug": "computing-in-time",
    "title": "Computing in Time",
    "unit": 2,
    "pages": [
-    73,
-    77
+    72,
+    76
    ],
-   "file": "ch/20-computing-in-time.pdf",
+   "file": "ch/19-computing-in-time.pdf",
    "filePages": [
-    73,
-    77
+    72,
+    76
    ],
    "sections": [
     {
      "title": "Inputs and Outputs",
-     "page": 73,
+     "page": 72,
      "y": 166.2
     },
     {
      "title": "Computing with Sequential Circuits",
-     "page": 74,
+     "page": 73,
      "y": 87.6
     },
     {
      "title": "+1 T: One more time with feeling….",
-     "page": 75,
+     "page": 74,
      "y": 87.4
     },
     {
      "title": "Binary +1",
-     "page": 76,
+     "page": 75,
      "y": 86.2
     },
     {
      "title": "In-Class Problems",
-     "page": 77,
+     "page": 76,
      "y": 86.2
     },
     {
      "title": "+2 T",
-     "page": 77,
+     "page": 76,
      "y": 176.2,
      "l": 3
     }
    ],
    "pageHashes": [
-    "ae18b8dd98e4",
-    "ea294da575a1",
-    "b0cac993dc2d",
-    "1028fb4569f5",
-    "d1fad7e3ef2b"
+    "f52503cb368c",
+    "0fcf594d4b43",
+    "3e81987f1fd4",
+    "f3b436d85f5b",
+    "528f666cd857"
    ]
   },
   {
    "id": "2773207",
-   "n": 21,
+   "n": 20,
    "slug": "computational-power",
    "title": "Computational Power",
    "unit": 2,
    "pages": [
-    78,
-    82
+    77,
+    81
    ],
-   "file": "ch/21-computational-power.pdf",
+   "file": "ch/20-computational-power.pdf",
    "filePages": [
-    78,
-    82
+    77,
+    81
    ],
    "sections": [
     {
      "title": "Differences in Computational Power: CCs vs  SCs",
-     "page": 78,
+     "page": 77,
      "y": 178.5
     },
     {
      "title": "Orders of Computational Power",
-     "page": 80,
+     "page": 79,
      "y": 85.7
     },
     {
      "title": "Memory and Cognitive Power",
-     "page": 81,
+     "page": 80,
      "y": 85.7
     },
     {
      "title": "A Map of Power and Abstraction",
-     "page": 82,
+     "page": 81,
      "y": 85.7
     }
    ],
    "pageHashes": [
-    "ff33bc9529f1",
-    "aa2a1ec1b2bc",
-    "eabe3a31805d",
-    "f06cd8fb3cb6",
-    "bb4c2e7110cd"
+    "8e67ea32941c",
+    "96a8e2847737",
+    "2503c87b2ce4",
+    "4e202ee946cd",
+    "730e8951f1aa"
    ]
   },
   {
    "id": "7228833",
-   "n": 22,
+   "n": 21,
    "slug": "the-method-of-state-analysis",
    "title": "The Method of State Analysis",
    "unit": 2,
    "pages": [
-    83,
-    87
+    82,
+    86
    ],
-   "file": "ch/22-the-method-of-state-analysis.pdf",
+   "file": "ch/21-the-method-of-state-analysis.pdf",
    "filePages": [
-    83,
-    87
+    82,
+    86
    ],
    "sections": [
     {
      "title": "Solving SC Computation Problems",
-     "page": 83,
+     "page": 82,
      "y": 166.2
     },
     {
      "title": "Histories and States",
-     "page": 83,
+     "page": 82,
      "y": 510.8
     },
     {
      "title": "Example 1: trip-wire",
-     "page": 84,
+     "page": 83,
      "y": 86.8
     },
     {
      "title": "+1 T: Step by step",
-     "page": 86,
+     "page": 85,
      "y": 87.4
     }
    ],
    "pageHashes": [
-    "1d209554fed5",
-    "d2c71f09d210",
-    "a68131409ab8",
-    "a73b7f4175d5",
-    "ba60e62900b7"
+    "bafbf4191531",
+    "edbb05f41a49",
+    "9e8cd54262d8",
+    "37c3734042b9",
+    "2d8992d59969"
    ]
   },
   {
    "id": "443994",
-   "n": 23,
+   "n": 22,
    "slug": "state-abstraction",
    "title": "State Abstraction",
    "unit": 2,
    "pages": [
-    88,
-    92
+    87,
+    91
    ],
-   "file": "ch/23-state-abstraction.pdf",
+   "file": "ch/22-state-abstraction.pdf",
    "filePages": [
-    88,
-    92
+    87,
+    91
    ],
    "sections": [
     {
      "title": "The Concept of State",
-     "page": 88,
+     "page": 87,
      "y": 134.9
     },
     {
      "title": "States of an SC",
-     "page": 89,
+     "page": 88,
      "y": 58.7
     },
     {
      "title": "State Tables",
-     "page": 90,
+     "page": 89,
      "y": 85.2
     },
     {
      "title": "From State Tables to State Diagrams",
-     "page": 92,
+     "page": 91,
      "y": 62.5
     }
    ],
    "pageHashes": [
-    "cba0344fc7a4",
-    "90ce48644013",
-    "2ecfda8bd308",
-    "61b793e3a3ff",
-    "c3377523487b"
+    "6bff7e89d685",
+    "8f67b924e52d",
+    "12ddd18973ea",
+    "1c816e58b1c9",
+    "89c1a277f7fd"
    ]
   },
   {
    "id": "3099574",
-   "n": 24,
+   "n": 23,
    "slug": "the-concept-of-abstraction",
    "title": "The Concept of Abstraction",
    "unit": 2,
    "pages": [
-    93,
-    100
+    92,
+    99
    ],
-   "file": "ch/24-the-concept-of-abstraction.pdf",
+   "file": "ch/23-the-concept-of-abstraction.pdf",
    "filePages": [
-    93,
-    100
+    92,
+    99
    ],
    "sections": [
     {
      "title": "Abstraction, the Very Idea",
-     "page": 93,
+     "page": 92,
      "y": 159.9
     },
     {
      "title": "Abstraction as Explanation",
-     "page": 94,
+     "page": 93,
      "y": 85.2
     },
     {
      "title": "Functional Abstraction",
-     "page": 95,
+     "page": 94,
      "y": 86.2
     },
     {
      "title": "Functional Abstraction 1: Input-output Abstraction",
-     "page": 95,
+     "page": 94,
      "y": 471.5
     },
     {
      "title": "Functional Abstraction II: Piecewise Abstraction",
-     "page": 96,
+     "page": 95,
      "y": 85.7
     },
     {
      "title": "Functional Abstraction III: State Abstraction",
-     "page": 97,
+     "page": 96,
      "y": 86.2
     },
     {
      "title": "State Machines and Sequential Circuits",
-     "page": 98,
+     "page": 97,
      "y": 87.8
     },
     {
      "title": "State Abstraction and the Mind-Body Problem",
-     "page": 99,
+     "page": 98,
      "y": 62.5
     }
    ],
    "pageHashes": [
-    "a0c2b26f859d",
-    "7c6dee3b1841",
-    "677e577eb01f",
-    "5d08e7fe558e",
-    "7fb6a09cf104",
-    "6bfd3937f157",
-    "8f57ea3b3494",
-    "7e669f35c64c"
+    "0ab2caded1b6",
+    "ba4ea66f5a8a",
+    "1b4487ed9bee",
+    "bd9024e57dcc",
+    "46bf5a3e96d2",
+    "70ee88b47284",
+    "e16926940285",
+    "a54b84957504"
    ]
   },
   {
    "id": "3160627",
-   "n": 25,
+   "n": 24,
    "slug": "finite-state-machines",
    "title": "Finite State Machines",
    "unit": 2,
    "pages": [
-    101,
-    105
+    100,
+    104
    ],
-   "file": "ch/25-finite-state-machines.pdf",
+   "file": "ch/24-finite-state-machines.pdf",
    "filePages": [
-    101,
-    105
+    100,
+    104
    ],
    "sections": [
     {
      "title": "Reading FSM Diagrams",
-     "page": 101,
+     "page": 100,
      "y": 170.5
     },
     {
      "title": "Constructing FSM Diagrams",
-     "page": 102,
+     "page": 101,
      "y": 85.5
     },
     {
      "title": "Computing with Finite State Machines",
-     "page": 103,
+     "page": 102,
      "y": 85.2
     },
     {
      "title": "Example: +1 T",
-     "page": 104,
+     "page": 103,
      "y": 85.2
     },
     {
      "title": "Example: +1 B",
-     "page": 105,
+     "page": 104,
      "y": 85.2
     }
    ],
    "pageHashes": [
-    "7c5a5900fc79",
-    "1f0ce3fbbcc6",
-    "569e9f1322c9",
-    "631cf398fd28",
-    "d95f22a6c8d5"
+    "b86afa60b6ec",
+    "6e5ca3a83a6d",
+    "a5543da22cd6",
+    "14b4342ab7aa",
+    "c4a385e15291"
    ]
   },
   {
    "id": "333939",
-   "n": 26,
+   "n": 25,
    "slug": "what-is-an-algorithm",
    "title": "What is an Algorithm?",
    "unit": 2,
    "pages": [
-    106,
-    108
+    105,
+    107
    ],
-   "file": "ch/26-what-is-an-algorithm.pdf",
+   "file": "ch/25-what-is-an-algorithm.pdf",
    "filePages": [
-    106,
-    108
+    105,
+    107
    ],
    "sections": [
     {
      "title": "The Algorithm Concept",
-     "page": 106,
+     "page": 105,
      "y": 134.9
     },
     {
      "title": "Algorithms and Local Logics",
-     "page": 107,
+     "page": 106,
      "y": 62.5
     },
     {
      "title": "Algorithms at Work",
-     "page": 108,
+     "page": 107,
      "y": 86.2
     }
    ],
    "pageHashes": [
-    "37a613ee33c5",
-    "4475c80c6467",
-    "9b5ebe0fbbec"
+    "a75a81df9742",
+    "05786f8f28d9",
+    "f1d34bdf9994"
    ]
   },
   {
    "id": "337277",
-   "n": 27,
+   "n": 26,
    "slug": "levels-of-abstraction",
    "title": "Levels of Abstraction",
    "unit": 2,
    "pages": [
-    109,
-    114
+    108,
+    113
    ],
-   "file": "ch/27-levels-of-abstraction.pdf",
+   "file": "ch/26-levels-of-abstraction.pdf",
    "filePages": [
-    109,
-    114
+    108,
+    113
    ],
    "sections": [
     {
      "title": "The Concept of Level",
-     "page": 109,
+     "page": 108,
      "y": 159.9
     },
     {
      "title": "Levels in Nature",
-     "page": 109,
+     "page": 108,
      "y": 510.1
     },
     {
      "title": "Levels in the Nervous System",
-     "page": 109,
+     "page": 108,
      "y": 1299.9
     },
     {
      "title": "Marr’s Three Levels",
-     "page": 110,
+     "page": 109,
      "y": 86.2
     },
     {
      "title": "An example: the humble cash register",
-     "page": 110,
+     "page": 109,
      "y": 721.7
     },
     {
      "title": "The Cognitive-Ecological Level",
-     "page": 111,
+     "page": 110,
      "y": 92.2
     },
     {
      "title": "Semantic Abstraction",
-     "page": 113,
+     "page": 112,
      "y": 86.2
     }
    ],
    "pageHashes": [
-    "1f96119d83c8",
-    "4dd8171eac1d",
-    "d95e96be1e64",
-    "452d340136c4",
-    "3513e525c0d8",
-    "1036d9517b55"
+    "4e5359c83a34",
+    "fb304c167e56",
+    "ade7c77a18a5",
+    "f038ee3e697b",
+    "058b1c1efbd7",
+    "d8efdb5da8c1"
    ]
   },
   {
    "id": "354733",
-   "n": 28,
+   "n": 27,
    "slug": "turing-machines",
    "title": "Turing Machines",
    "unit": 3,
    "pages": [
-    116,
-    123
-   ],
-   "file": "ch/28-turing-machines.pdf",
-   "filePages": [
     115,
-    123
+    122
+   ],
+   "file": "ch/27-turing-machines.pdf",
+   "filePages": [
+    114,
+    122
    ],
    "sections": [
     {
      "title": "Turing’s Idea",
-     "page": 116,
+     "page": 115,
      "y": 141.2
     },
     {
      "title": "Computing with Memory",
-     "page": 117,
+     "page": 116,
      "y": 61.2
     },
     {
      "title": "Turing Machine Architecture",
-     "page": 118,
+     "page": 117,
      "y": 85.7
     },
     {
      "title": "The Tape",
-     "page": 119,
+     "page": 118,
      "y": 60.7
     },
     {
      "title": "Machine-Tape Interface",
-     "page": 119,
+     "page": 118,
      "y": 711.7
     },
     {
      "title": "Turing Machine Diagrams",
-     "page": 120,
+     "page": 119,
      "y": 86.2
     },
     {
      "title": "Operation in Time",
-     "page": 120,
+     "page": 119,
      "y": 500.7
     },
     {
      "title": "Example: Cut and Paste",
-     "page": 121,
+     "page": 120,
      "y": 61.2
     },
     {
      "title": "Cut-and-paste:",
-     "page": 121,
+     "page": 120,
      "y": 1411.7,
      "l": 3
     },
     {
      "title": "In-Class Problems",
-     "page": 123,
+     "page": 122,
      "y": 86.2
     }
    ],
    "pageHashes": [
-    "62744ec5b370",
-    "6d4eccabfb45",
-    "420fa44260d3",
-    "cf188b01cea1",
-    "05c6e90bfaaa",
-    "2f07f435fb00",
-    "3f973de387a0",
-    "27056a337905",
-    "54c29491c021"
+    "0fa4c3a7d1ed",
+    "6cfbdaf69cda",
+    "20eec9ebb2da",
+    "1e8cdbfabe0a",
+    "8d7f43605483",
+    "5eaca87aa09c",
+    "b3b317413d74",
+    "9f8eeee330a8",
+    "c190092ff57b"
    ]
   },
   {
    "id": "7510308",
-   "n": 29,
+   "n": 28,
    "slug": "computing-with-turing-machines",
    "title": "Computing with Turing Machines",
    "unit": 3,
    "pages": [
-    124,
-    127
+    123,
+    126
    ],
-   "file": "ch/29-computing-with-turing-machines.pdf",
+   "file": "ch/28-computing-with-turing-machines.pdf",
    "filePages": [
-    124,
-    127
+    123,
+    126
    ],
    "sections": [
     {
      "title": "Computing with Read/Write Memory",
-     "page": 124,
+     "page": 123,
      "y": 141.2
     },
     {
      "title": "Computing in Tally with TMs",
-     "page": 125,
+     "page": 124,
      "y": 61.2
     },
     {
      "title": "Example: +1 T",
-     "page": 127,
+     "page": 126,
      "y": 61.2
     }
    ],
    "pageHashes": [
-    "1b0f8a7a2be3",
-    "460fa98478a7",
-    "3166edc92c35",
-    "3632b734f0be"
+    "7b3344eed734",
+    "3e8dc316b08d",
+    "e5869325cb5b",
+    "91700367c9f1"
    ]
   },
   {
    "id": "372220",
-   "n": 30,
+   "n": 29,
    "slug": "recursion",
    "title": "Recursion",
    "unit": 3,
    "pages": [
-    128,
-    133
+    127,
+    132
    ],
-   "file": "ch/30-recursion.pdf",
+   "file": "ch/29-recursion.pdf",
    "filePages": [
-    128,
-    133
+    127,
+    132
    ],
    "sections": [
     {
      "title": "The Concept of Recursion",
-     "page": 128,
+     "page": 127,
      "y": 162.7
     },
     {
      "title": "Recursion in Nature",
-     "page": 129,
+     "page": 128,
      "y": 86.2
     },
     {
      "title": "The Architecture of Recursion",
-     "page": 130,
+     "page": 129,
      "y": 88.8
     },
     {
      "title": "Case Study: 2x T",
-     "page": 131,
+     "page": 130,
      "y": 88.8
     },
     {
      "title": "Thinking through x+y T",
-     "page": 133,
+     "page": 132,
      "y": 976.2
     }
    ],
    "pageHashes": [
-    "dbbf98ef7daf",
-    "a641f4a12fee",
-    "84267c1987a6",
-    "61d65d8d04fd",
-    "51d5d94aa330",
-    "3546e2507553"
+    "7ef1b62b8e7a",
+    "a13bf0534758",
+    "91b7aa0914a0",
+    "68a6db72e99e",
+    "b8dd64ce68f0",
+    "8fdea7606948"
    ]
   },
   {
    "id": "381973",
-   "n": 31,
+   "n": 30,
    "slug": "turing-machine-abstraction-and-composition",
    "title": "Turing Machine Abstraction and Composition",
    "unit": 3,
    "pages": [
-    134,
-    136
+    133,
+    135
    ],
-   "file": "ch/31-turing-machine-abstraction-and-composition.pdf",
+   "file": "ch/30-turing-machine-abstraction-and-composition.pdf",
    "filePages": [
-    134,
-    136
+    133,
+    135
    ],
    "sections": [
     {
      "title": "Functional Abstraction for Subroutines",
-     "page": 134,
+     "page": 133,
      "y": 160.5
     },
     {
      "title": "Constraints on boxing",
-     "page": 135,
+     "page": 134,
      "y": 60.7
     },
     {
      "title": "Function Composition",
-     "page": 136,
+     "page": 135,
      "y": 60.7
     }
    ],
    "pageHashes": [
-    "2f95267714cc",
-    "b92f715f99e4",
-    "421ba45202f5"
+    "d85ad9bafc9f",
+    "6f7a0b9d6bd9",
+    "2e99de22cd63"
    ]
   },
   {
    "id": "4208836",
-   "n": 32,
+   "n": 31,
    "slug": "binary-turing-machines",
    "title": "Binary Turing Machines",
    "unit": 3,
    "pages": [
-    137,
-    138
+    136,
+    137
    ],
-   "file": "ch/32-binary-turing-machines.pdf",
+   "file": "ch/31-binary-turing-machines.pdf",
    "filePages": [
-    137,
-    138
+    136,
+    137
    ],
    "sections": [
     {
      "title": "Set-up",
-     "page": 137,
+     "page": 136,
      "y": 160.5
     },
     {
      "title": "Binary +1",
-     "page": 137,
+     "page": 136,
      "y": 845.2
     }
    ],
    "pageHashes": [
-    "a21a5e9f540a",
-    "fe9cc95753d7"
+    "94a98945c0a5",
+    "82de12a25ad6"
    ]
   },
   {
    "id": "4231616",
-   "n": 33,
+   "n": 32,
    "slug": "the-mathematical-tree",
    "title": "The Mathematical Tree",
    "unit": 3,
    "pages": [
-    139,
-    141
+    138,
+    140
    ],
-   "file": "ch/33-the-mathematical-tree.pdf",
+   "file": "ch/32-the-mathematical-tree.pdf",
    "filePages": [
-    139,
-    141
+    138,
+    140
    ],
    "sections": [
     {
      "title": "The Hyper-operation Sequence",
-     "page": 139,
+     "page": 138,
      "y": 174.2
     },
     {
      "title": "Recursion + Composition = Computable Mathematics",
-     "page": 140,
+     "page": 139,
      "y": 86.2
     },
     {
      "title": "Recursive Addition",
-     "page": 141,
+     "page": 140,
      "y": 86.2
     }
    ],
    "pageHashes": [
-    "9b062683a27a",
-    "b1a966c98e4b",
-    "a05b02b140a3"
+    "f6bce510f138",
+    "3e1724010dcc",
+    "1c04c71ec08b"
    ]
   },
   {
    "id": "388231",
-   "n": 34,
+   "n": 33,
    "slug": "computational-navigation",
    "title": "Computational Navigation",
    "unit": 3,
    "pages": [
-    142,
-    144
+    141,
+    143
    ],
-   "file": "ch/34-computational-navigation.pdf",
+   "file": "ch/33-computational-navigation.pdf",
    "filePages": [
-    142,
-    144
+    141,
+    143
    ],
    "sections": [
     {
      "title": "Turbots as Turing Machines",
-     "page": 142,
+     "page": 141,
      "y": 177.9
     },
     {
      "title": "Turbots: Operation",
-     "page": 143,
+     "page": 142,
      "y": 64.0
     },
     {
      "title": "Half-Max Machine",
-     "page": 144,
+     "page": 143,
      "y": 86.2
     },
     {
      "title": "Mad-Max Machine",
-     "page": 144,
+     "page": 143,
      "y": 711.7
     }
    ],
    "pageHashes": [
-    "d460767272ba",
-    "9632d983ebc2",
-    "6687365efce6"
+    "8488ccd01448",
+    "3d6260053ca9",
+    "b3c29b815091"
    ]
   },
   {
    "id": "4302210",
-   "n": 35,
+   "n": 34,
    "slug": "the-desert-ant",
    "title": "The Desert Ant",
    "unit": 3,
    "pages": [
-    145,
-    149
+    144,
+    148
    ],
-   "file": "ch/35-the-desert-ant.pdf",
+   "file": "ch/34-the-desert-ant.pdf",
    "filePages": [
-    145,
-    149
+    144,
+    148
    ],
    "sections": [
     {
      "title": "The Ant",
-     "page": 145,
+     "page": 144,
      "y": 177.9
     },
     {
      "title": "The Journey",
-     "page": 146,
+     "page": 145,
      "y": 86.2
     },
     {
      "title": "The Representational Hypothesis",
-     "page": 147,
+     "page": 146,
      "y": 64.0
     },
     {
      "title": "Testing the Representational Hypothesis",
-     "page": 147,
+     "page": 146,
      "y": 1004.0
     }
    ],
    "pageHashes": [
-    "f146f574c783",
-    "d3e217e7960f",
-    "637b79d5a85b",
-    "6e2aa67b8d00",
-    "74934418353a"
+    "75cb61eb4557",
+    "521b0042997e",
+    "5a073f52aa1f",
+    "0615ae01d039",
+    "6353dff421f3"
    ]
   },
   {
    "id": "6630990",
-   "n": 36,
+   "n": 35,
    "slug": "physical-cognition",
    "title": "Physical Cognition",
    "unit": 3,
    "pages": [
-    150,
-    159
+    149,
+    158
    ],
-   "file": "ch/36-physical-cognition.pdf",
+   "file": "ch/35-physical-cognition.pdf",
    "filePages": [
-    150,
-    159
+    149,
+    158
    ],
    "sections": [
     {
      "title": "From Object to Animal",
-     "page": 151,
+     "page": 150,
      "y": 86.2
     },
     {
      "title": "The Ecological View",
-     "page": 152,
+     "page": 151,
      "y": 85.9
     },
     {
      "title": "Observed Behavior",
-     "page": 152,
+     "page": 151,
      "y": 778.4
     },
     {
      "title": "Evolutionary Analysis",
-     "page": 152,
+     "page": 151,
      "y": 1488.4
     },
     {
      "title": "The Representational Hypothesis",
-     "page": 153,
+     "page": 152,
      "y": 85.7
     },
     {
      "title": "Testing the Representational Hypothesis",
-     "page": 153,
+     "page": 152,
      "y": 1069.5
     },
     {
      "title": "Neuroscience",
-     "page": 154,
+     "page": 153,
      "y": 86.2
     },
     {
      "title": "Cognitive Science",
-     "page": 154,
+     "page": 153,
      "y": 744.7
     },
     {
      "title": "Externalism",
-     "page": 155,
+     "page": 154,
      "y": 86.2
     },
     {
      "title": "Information semantics",
-     "page": 155,
+     "page": 154,
      "y": 792.5
     },
     {
      "title": "Mental Representation",
-     "page": 156,
+     "page": 155,
      "y": 86.2
     },
     {
      "title": "Mirroring",
-     "page": 156,
+     "page": 155,
      "y": 792.5
     },
     {
      "title": "Truth and Falsity",
-     "page": 156,
+     "page": 155,
      "y": 1302.3
     },
     {
      "title": "Mental Representation",
-     "page": 158,
+     "page": 157,
      "y": 86.2
     }
    ],
    "pageHashes": [
-    "a25e9c245de8",
-    "411a246f41b1",
-    "a0b34e8b8c7e",
-    "72dadb1d9089",
-    "e8f3284af69a",
-    "b29100098434",
-    "023dcc8a2eb0",
-    "4d3f58cd1525",
-    "e949ecc1619a",
-    "bf5a444b1761"
+    "58d9fb19e5b5",
+    "25242eac83dd",
+    "fcb666d323e0",
+    "c2e993b9ae34",
+    "498edd38b104",
+    "73ef65aaf1ac",
+    "437f4cb90f27",
+    "b9bac93f6485",
+    "ccfeaf17a19a",
+    "d1649932abd8"
    ]
   },
   {
    "id": "407361",
-   "n": 37,
+   "n": 36,
    "slug": "machines-and-programs",
    "title": "Machines and Programs",
    "unit": 3,
    "pages": [
-    160,
-    163
+    159,
+    162
    ],
-   "file": "ch/37-machines-and-programs.pdf",
+   "file": "ch/36-machines-and-programs.pdf",
    "filePages": [
-    160,
-    163
+    159,
+    162
    ],
    "sections": [
     {
      "title": "Multi-function Machines",
-     "page": 160,
+     "page": 159,
      "y": 201.6
     },
     {
      "title": "Universal Turing Machines: the idea",
-     "page": 161,
+     "page": 160,
      "y": 86.7
     },
     {
      "title": "Codes Numbers (aka Programs)",
-     "page": 162,
+     "page": 161,
      "y": 85.7
     },
     {
      "title": "Machines as Programs",
-     "page": 163,
+     "page": 162,
      "y": 86.2
     }
    ],
    "pageHashes": [
-    "abe7e4e9a2f0",
-    "b3dd7ad79e7b",
-    "c07e23d64f87",
-    "3dc33bc79295"
+    "1bb37f44d271",
+    "2b69f4b4726d",
+    "b714e40abcdf",
+    "cb275357d102"
    ]
   },
   {
    "id": "4597861",
-   "n": 38,
+   "n": 37,
    "slug": "the-universal-machine",
    "title": "The Universal Machine",
    "unit": 3,
    "pages": [
-    164,
-    169
+    163,
+    168
    ],
-   "file": "ch/38-the-universal-machine.pdf",
+   "file": "ch/37-the-universal-machine.pdf",
    "filePages": [
-    164,
-    169
+    163,
+    168
    ],
    "sections": [
     {
      "title": "The Idea",
-     "page": 164,
+     "page": 163,
      "y": 171.6
     },
     {
      "title": "Markers",
-     "page": 165,
+     "page": 164,
      "y": 86.2
     },
     {
      "title": "Matching",
-     "page": 166,
+     "page": 165,
      "y": 85.2
     },
     {
      "title": "Search",
-     "page": 167,
+     "page": 166,
      "y": 86.2
     },
     {
      "title": "Design for a Universal Turing Machine",
-     "page": 168,
+     "page": 167,
      "y": 86.2
     },
     {
      "title": "Operation of a Universal Turing Machine",
-     "page": 169,
+     "page": 168,
      "y": 86.2
     }
    ],
    "pageHashes": [
-    "3f83ed55bc81",
-    "5720984eca22",
-    "6fc04ade9bbc",
-    "b1df884b890e",
-    "d9c8f3ec99f4",
-    "7a7b65061103"
+    "102f5cc957bd",
+    "9f482eaedaba",
+    "7cab924f3ffa",
+    "4f0640dda894",
+    "102b0630c170",
+    "cc92138e0f32"
    ]
   },
   {
    "id": "413061",
-   "n": 39,
+   "n": 38,
    "slug": "cognitive-architecture",
    "title": "Cognitive Architecture",
    "unit": 3,
    "pages": [
-    170,
-    172
+    169,
+    171
    ],
-   "file": "ch/39-cognitive-architecture.pdf",
+   "file": "ch/38-cognitive-architecture.pdf",
    "filePages": [
-    170,
-    172
+    169,
+    171
    ],
    "sections": [
     {
      "title": "Implicit and Explicit Knowledge",
-     "page": 170,
+     "page": 169,
      "y": 168.2
     },
     {
      "title": "Cognitive Architecture",
-     "page": 171,
+     "page": 170,
      "y": 86.2
     },
     {
      "title": "Implicit and Explicit Knowledge",
-     "page": 172,
+     "page": 171,
      "y": 86.7
     }
    ],
    "pageHashes": [
-    "60aa7747f55b",
-    "6600246c1d30",
-    "2f2ef88a31e1"
+    "58ca4add9161",
+    "12421dcca26b",
+    "5762253c6f0d"
    ]
   },
   {
    "id": "4890986",
-   "n": 40,
+   "n": 39,
    "slug": "computation-as-consciousness",
    "title": "Computation as Consciousness",
    "unit": 3,
    "pages": [
-    173,
-    175
+    172,
+    174
    ],
-   "file": "ch/40-computation-as-consciousness.pdf",
+   "file": "ch/39-computation-as-consciousness.pdf",
    "filePages": [
-    173,
-    175
+    172,
+    174
    ],
    "sections": [
     {
      "title": "The Architecture of Human Cognition",
-     "page": 173,
+     "page": 172,
      "y": 183.7
     },
     {
      "title": "The Architecture of Turbot Cognition",
-     "page": 175,
+     "page": 174,
      "y": 85.7
     }
    ],
    "pageHashes": [
-    "882b4f1c8eac",
-    "220452117355",
-    "2e80e5719303"
+    "c1e7704188fe",
+    "743855c00002",
+    "a4249dc08a4b"
    ]
   },
   {
    "id": "416207",
-   "n": 41,
+   "n": 40,
    "slug": "computational-theory-of-mind-the-long-view",
    "title": "Computational Theory of Mind: The Long View",
    "unit": 3,
    "pages": [
-    176,
-    180
+    175,
+    179
    ],
-   "file": "ch/41-computational-theory-of-mind-the-long-view.pdf",
+   "file": "ch/40-computational-theory-of-mind-the-long-view.pdf",
    "filePages": [
-    176,
-    180
+    175,
+    179
    ],
    "sections": [
     {
      "title": "Cognition as Computation",
-     "page": 176,
+     "page": 175,
      "y": 204.8
     },
     {
      "title": "Orders of Computational Power",
-     "page": 177,
+     "page": 176,
      "y": 86.2
     },
     {
      "title": "Levels of Computational Abstraction",
-     "page": 178,
+     "page": 177,
      "y": 86.2
     },
     {
      "title": "Cognition as Natural Computation",
-     "page": 179,
+     "page": 178,
      "y": 861.6
     }
    ],
    "pageHashes": [
-    "760f4eaddf4e",
-    "e6a9512012bd",
-    "a7e98ef108e3",
-    "5087db55d4a5",
-    "bcb27947bf99"
+    "36d395f2f11a",
+    "110f34dc3a8a",
+    "adba3e196036",
+    "044bf902b542",
+    "118c6d64ef5d"
    ]
   }
  ],
@@ -2072,393 +2045,57 @@
   "title": "Problem Sets",
   "file": "ch/ps-problem-sets.pdf",
   "pages": [
-   181,
-   194
+   180,
+   193
   ],
   "sections": [
    {
     "title": "HW1. Basics: Circuits, Functions, and Representations",
-    "page": 182,
+    "page": 181,
     "y": 85.7
    },
    {
     "title": "HW2. Computing with CCs",
-    "page": 184,
+    "page": 183,
     "y": 85.2
    },
    {
     "title": "HW3. Computing with SCs",
-    "page": 186,
+    "page": 185,
     "y": 85.2
    },
    {
     "title": "HW4. Computing with FSMs",
-    "page": 188,
+    "page": 187,
     "y": 85.2
    },
    {
     "title": "HW5. Computing with TMs",
-    "page": 192,
+    "page": 191,
     "y": 85.2
    },
    {
     "title": "HW6. Navigation with Turbots",
-    "page": 194,
+    "page": 193,
     "y": 85.2
    }
   ],
   "pageHashes": [
-   "f24350991c29",
-   "941bfb372b0f",
-   "39413f2838e7",
-   "f02d2918d4e2",
-   "67b0ef8ff631",
-   "7673c4499e10",
-   "71c9be7af276",
-   "4ca61cdbb7f6",
-   "d45d6ae45759",
-   "bc8145970d3d",
-   "816c42ac0e07",
-   "b9f09637bb6a",
-   "e0146c30be60",
-   "16b69a4b9eb3"
+   "9528683408f6",
+   "e6b9be49eb3b",
+   "f92beb68febb",
+   "55574816d5bb",
+   "bd5ca7fe3cf4",
+   "673f6b782bf2",
+   "c8f40de71e3a",
+   "6793052c52f5",
+   "e0046507eb40",
+   "33663d44a50b",
+   "dd8df2885782",
+   "a34eb645b39a",
+   "611fba3728da",
+   "1758bdcd9b16"
   ]
  },
- "changelog": [
-  {
-   "date": "2026-09-21",
-   "chapters": [],
-   "other": [
-    "front",
-    "ps"
-   ],
-   "pages": [
-    1,
-    187,
-    188,
-    189,
-    190,
-    191,
-    192,
-    193
-   ]
-  },
-  {
-   "date": "2026-09-23",
-   "chapters": [
-    11,
-    12,
-    13,
-    14,
-    15,
-    16
-   ],
-   "other": [
-    "front"
-   ],
-   "pages": [
-    1,
-    2,
-    3,
-    45,
-    46,
-    47,
-    48,
-    49,
-    50,
-    52,
-    53,
-    54,
-    55,
-    56,
-    57,
-    58,
-    59
-   ]
-  },
-  {
-   "date": "2026-09-24",
-   "chapters": [
-    1,
-    2
-   ],
-   "other": [
-    "front"
-   ],
-   "pages": [
-    1,
-    6,
-    8,
-    9,
-    12,
-    13
-   ]
-  },
-  {
-   "date": "2026-09-28",
-   "chapters": [],
-   "other": [
-    "front",
-    "ps"
-   ],
-   "pages": [
-    1,
-    181,
-    182
-   ]
-  },
-  {
-   "date": "2026-09-29",
-   "chapters": [
-    1,
-    2,
-    3,
-    5,
-    6,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
-    25,
-    26,
-    27,
-    28,
-    29,
-    30,
-    31,
-    32,
-    33,
-    34,
-    35,
-    36,
-    37,
-    38,
-    39,
-    40,
-    41
-   ],
-   "other": [
-    "front",
-    "ps"
-   ],
-   "pages": [
-    1,
-    3,
-    4,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    28,
-    29,
-    35,
-    60,
-    61,
-    62,
-    63,
-    64,
-    65,
-    66,
-    67,
-    68,
-    69,
-    70,
-    71,
-    72,
-    73,
-    74,
-    75,
-    76,
-    77,
-    78,
-    79,
-    80,
-    81,
-    82,
-    83,
-    84,
-    85,
-    86,
-    87,
-    88,
-    89,
-    90,
-    91,
-    92,
-    93,
-    94,
-    95,
-    96,
-    97,
-    98,
-    99,
-    100,
-    101,
-    102,
-    103,
-    104,
-    105,
-    106,
-    107,
-    108,
-    109,
-    110,
-    111,
-    112,
-    113,
-    114,
-    115,
-    116,
-    117,
-    118,
-    119,
-    120,
-    122,
-    123,
-    124,
-    125,
-    126,
-    127,
-    128,
-    129,
-    130,
-    131,
-    132,
-    133,
-    134,
-    135,
-    136,
-    137,
-    138,
-    139,
-    140,
-    141,
-    142,
-    143,
-    144,
-    145,
-    146,
-    147,
-    148,
-    149,
-    150,
-    151,
-    152,
-    153,
-    154,
-    155,
-    156,
-    157,
-    158,
-    160,
-    161,
-    162,
-    163,
-    164,
-    165,
-    166,
-    167,
-    168,
-    169,
-    170,
-    171,
-    172,
-    173,
-    174,
-    175,
-    176,
-    177,
-    178,
-    179,
-    180,
-    181,
-    182,
-    183,
-    184,
-    185,
-    186,
-    187,
-    188,
-    189,
-    190,
-    191,
-    192,
-    193,
-    194
-   ]
-  },
-  {
-   "date": "2026-10-01",
-   "chapters": [
-    3,
-    4,
-    5,
-    21,
-    23,
-    41
-   ],
-   "other": [
-    "front"
-   ],
-   "pages": [
-    1,
-    14,
-    20,
-    21,
-    23,
-    26,
-    27,
-    28,
-    29,
-    79,
-    88,
-    178
-   ]
-  },
-  {
-   "date": "2026-10-01",
-   "chapters": [
-    4,
-    5
-   ],
-   "other": [
-    "front"
-   ],
-   "pages": [
-    1,
-    21,
-    22,
-    26,
-    27,
-    28,
-    29
-   ]
-  },
-  {
-   "date": "2026-10-01",
-   "chapters": [
-    5
-   ],
-   "other": [],
-   "pages": [
-    27,
-    28,
-    29
-   ]
-  }
- ]
+ "changelog": []
 }
