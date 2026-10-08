@@ -423,7 +423,7 @@
         {
           "mm": "Real and Ideal Computers",
           "n": 11,
-          "page": 45
+          "page": 47
         }
       ],
       "recommended": [
@@ -454,12 +454,12 @@
         {
           "mm": "Introducing Turbots",
           "n": 12,
-          "page": 46
+          "page": 48
         },
         {
           "mm": "Thought as symbol processing",
           "n": 13,
-          "page": 49
+          "page": 51
         },
         {
           "tag": "C*",
@@ -509,12 +509,12 @@
         {
           "mm": "Artificial and Natural Computers",
           "n": 14,
-          "page": 52
+          "page": 54
         },
         {
           "mm": "The Computational Theory of Mind",
           "n": 15,
-          "page": 56
+          "page": 58
         },
         {
           "tag": "C",
@@ -584,12 +584,12 @@
         {
           "mm": "Memory",
           "n": 16,
-          "page": 62
+          "page": 64
         },
         {
           "mm": "Physical Memory",
           "n": 17,
-          "page": 63
+          "page": 65
         }
       ],
       "recommended": [
@@ -613,12 +613,12 @@
         {
           "mm": "Machines in Time: Sequential Circuits",
           "n": 18,
-          "page": 67
+          "page": 69
         },
         {
           "mm": "Computing in Time",
           "n": 19,
-          "page": 72
+          "page": 74
         },
         {
           "tag": "T*",
@@ -667,12 +667,12 @@
         {
           "mm": "Computational Power",
           "n": 20,
-          "page": 77
+          "page": 79
         },
         {
           "mm": "The Method of State Analysis",
           "n": 21,
-          "page": 82
+          "page": 84
         }
       ]
     },
@@ -694,12 +694,12 @@
         {
           "mm": "State Abstraction",
           "n": 22,
-          "page": 87
+          "page": 89
         },
         {
           "mm": "The Concept of Abstraction",
           "n": 23,
-          "page": 92
+          "page": 94
         },
         {
           "tag": "C*",
@@ -763,12 +763,12 @@
         {
           "mm": "Finite State Machines",
           "n": 24,
-          "page": 100
+          "page": 102
         },
         {
           "mm": "What is an Algorithm?",
           "n": 25,
-          "page": 105
+          "page": 107
         },
         {
           "tag": "C*",
@@ -822,7 +822,7 @@
         {
           "mm": "Levels of Abstraction",
           "n": 26,
-          "page": 108
+          "page": 110
         },
         {
           "tag": "C*",
@@ -876,12 +876,12 @@
         {
           "mm": "Turing Machines",
           "n": 27,
-          "page": 115
+          "page": 117
         },
         {
           "mm": "Computing with Turing Machines",
           "n": 28,
-          "page": 123
+          "page": 125
         },
         {
           "tag": "C/T",
@@ -966,22 +966,22 @@
         {
           "mm": "Recursion",
           "n": 29,
-          "page": 127
+          "page": 129
         },
         {
           "mm": "Turing Machine Abstraction and Composition",
           "n": 30,
-          "page": 133
+          "page": 135
         },
         {
           "mm": "Binary Turing Machines",
           "n": 31,
-          "page": 136
+          "page": 138
         },
         {
           "mm": "The Mathematical Tree",
           "n": 32,
-          "page": 138
+          "page": 140
         }
       ],
       "recommended": [
@@ -1013,17 +1013,17 @@
         {
           "mm": "Computational Navigation",
           "n": 33,
-          "page": 141
+          "page": 143
         },
         {
           "mm": "The Desert Ant",
           "n": 34,
-          "page": 144
+          "page": 146
         },
         {
           "mm": "Physical Cognition",
           "n": 35,
-          "page": 149
+          "page": 151
         },
         {
           "cite": "Goldman (2012)",
@@ -1069,7 +1069,7 @@
         {
           "mm": "Machines and Programs",
           "n": 36,
-          "page": 159
+          "page": 161
         },
         {
           "tag": "C*",
@@ -1137,7 +1137,7 @@
         {
           "mm": "The Universal Machine",
           "n": 37,
-          "page": 163
+          "page": 165
         },
         {
           "tag": "C*",
@@ -1172,17 +1172,17 @@
         {
           "mm": "Cognitive Architecture",
           "n": 38,
-          "page": 169
+          "page": 171
         },
         {
           "mm": "Computation as Consciousness",
           "n": 39,
-          "page": 172
+          "page": 174
         },
         {
           "mm": "Computational Theory of Mind: The Long View",
           "n": 40,
-          "page": 175
+          "page": 177
         },
         {
           "tag": "C*",
