@@ -1,5 +1,5 @@
 /* Making Minds · Phil 133 — renders the site from data/course.json.
-   index.html: hero meta, course facts, the "up next" box, the syllabus table.
+   index.html: hero meta, course facts, the announcements strip, the "up next" box, the syllabus table.
    policies.html: a few bound values.  (resources.html now redirects to reader/, which renders the readings itself.)
    Dates in the JSON are ISO (YYYY-MM-DD); weekday labels and UCLA week
    numbers are computed here. Times are local to course.timezone. */
@@ -130,7 +130,7 @@
       ['Lecture', '<b>' + esc(c.lecture.days) + ' ' + esc(c.lecture.time) + '</b><br>' + esc(c.lecture.room)],
       ['Sections', esc(sec.day) + ' · ' + tba(sec.room) + (sec.list || []).map(function (x) {
         return '<br>' + esc(x.id) + ' ' + esc(x.time); }).join('')],
-      ['Instructor', esc(c.instructor.title + ' ' + c.instructor.name) + (c.instructor.email ? '<br>' + link('mailto:' + c.instructor.email, c.instructor.email) : '') + '<br>office hours ' + tba(c.instructor.officeHours)],
+      ['Instructor', esc(c.instructor.title + ' ' + c.instructor.name) + (c.instructor.email ? '<br>' + link('mailto:' + c.instructor.email, c.instructor.email) : '') + '<br>office hours ' + tba(c.instructor.officeHours) + ohNote(c.instructor.officeHoursNote)],
       ['TA', esc(c.ta.name) + (c.ta.email ? '<br>' + link('mailto:' + c.ta.email, c.ta.email) : '') + '<br>office hours ' + tba(c.ta.officeHours) + ohNote(c.ta.officeHoursNote)],
       ['Course book', '<b>' + esc(c.book.title) + '</b> (' + esc(c.book.abbrev) + ') — ' + (c.book.reader ? link(c.book.reader, 'online') + ' · ' : '') + link(c.book.pdf, 'PDF') + (c.book.drive ? ' · ' + link(c.book.drive, 'current version') : '') + (c.book.note ? ' <span class="dim">· ' + esc(c.book.note) + '</span>' : '')],
       ['Homework', words(c.homework.count) + ' problem sets, in the ' + link(c.app.url, c.app.label) + '<br>' + esc(c.homework.summary)],
@@ -231,6 +231,21 @@
     }
     box.innerHTML = html;
     box.hidden = false;
+  }
+
+  // The announcements strip above the up-next box: course.announcements = [{text, until, from}]. `until` / `from` are
+  // a date (through the end of / from the start of that day) or YYYY-MM-DDTHH:MM. No current announcement, no strip.
+  function renderAnnouncements(data) {
+    var el = document.getElementById('announce');
+    if (!el) return;
+    var now = nowIn(data.course.timezone);
+    var cur = (data.course.announcements || []).filter(function (a) {
+      if (!a || !a.text) return false;
+      if (a.from && now < (a.from.length === 10 ? a.from + 'T00:00' : a.from)) return false;
+      return !a.until || now <= (a.until.length === 10 ? a.until + 'T23:59' : a.until);
+    });
+    el.innerHTML = cur.map(function (a) { return '<p class="an">' + a.text + '</p>'; }).join('');
+    el.hidden = !cur.length;
   }
 
   // ---------- resources page ----------
@@ -340,6 +355,7 @@
       renderHeroMeta(data.course);
       renderFacts(data.course);
       renderSchedule(data);
+      renderAnnouncements(data);
       renderNext(data);
       renderResources(data);
       bindValues(data);

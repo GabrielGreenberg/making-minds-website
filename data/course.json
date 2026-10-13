@@ -1,5 +1,5 @@
 {
-  "_readme": "Source of truth for www.makingminds.org. index.html renders from this file (assets/site.js); so does the readings reader at reader/ (reader/reader.js). Dates are ISO (YYYY-MM-DD); times are 24h; week numbers and weekday labels are computed. Reading entries: {mm: chapter} for course-book chapters, or {tag, cite, url, linkText, note} where cite/note may contain <i>…</i>; {html} for anything irregular; optional label (e.g. 'Of interest:'). Outside readings: optional id (stable key, e.g. 'turing-1950'), file (a PDF on this site, shown in reader/) and filePage (page of that file to open at). An excerpt may carry full: {url, text} — the full text it is taken from (a PDF on this site or an outside URL); the Reader shows it as a button beside Download. Resources (the Reader's Background texts) may carry cover: an image (e.g. reader/thumbs/<name>.jpg, ~240px wide) shown on the Reader's landing shelf.",
+  "_readme": "Source of truth for www.makingminds.org. index.html renders from this file (assets/site.js); so does the readings reader at reader/ (reader/reader.js). Dates are ISO (YYYY-MM-DD); times are 24h; week numbers and weekday labels are computed. Reading entries: {mm: chapter} for course-book chapters, or {tag, cite, url, linkText, note} where cite/note may contain <i>…</i>; {html} for anything irregular; optional label (e.g. 'Of interest:'). Outside readings: optional id (stable key, e.g. 'turing-1950'), file (a PDF on this site, shown in reader/) and filePage (page of that file to open at). An excerpt may carry full: {url, text} — the full text it is taken from (a PDF on this site or an outside URL); the Reader shows it as a button beside Download. Resources (the Reader's Background texts) may carry cover: an image (e.g. reader/thumbs/<name>.jpg, ~240px wide) shown on the Reader's landing shelf. Announcements (course.announcements): [{text, until, from}] — text may contain HTML; each shows in the thin strip above the up-next box from `from` (optional) through `until` (a date = through the end of that day, or YYYY-MM-DDTHH:MM), and the strip disappears when none is current. officeHoursNote (instructor or ta): {text, until} — a temporary change shown under that person's office hours through `until`.",
   "course": {
     "code": "Phil 133",
     "title": "Making Minds",
@@ -11,17 +11,31 @@
       "name": "Gabriel Greenberg",
       "title": "Professor",
       "officeHours": "Tue 2–3pm, Dodd 331",
+      "officeHoursNote": {
+        "text": "This week also: Wed 10/14, 2–3pm",
+        "until": "2026-10-14"
+      },
       "email": "ggreenberg@humnet.ucla.edu"
     },
     "ta": {
       "name": "Paul Talma",
       "officeHours": "Thu 1:50–3:50pm, Dodd 300C",
       "officeHoursNote": {
-        "text": "Week of Oct 12 only: Thu 10/15 before lecture, time TBA, Dodd 300C",
+        "text": "This week only: Thu 10/15, 10:30am–12:30pm",
         "until": "2026-10-15"
       },
       "email": "ptalma@humnet.ucla.edu"
     },
+    "announcements": [
+      {
+        "text": "<b>Extra office hours:</b> Prof. Greenberg, Wed 10/14, 2–3pm, Dodd 331.",
+        "until": "2026-10-14T15:00"
+      },
+      {
+        "text": "<b>TA office hours move this week:</b> Paul is in Dodd 300C on Thu 10/15 from 10:30am to 12:30pm, before lecture, instead of after it.",
+        "until": "2026-10-15T12:30"
+      }
+    ],
     "lecture": {
       "days": "Tue & Thu",
       "time": "12:30–1:45pm",
