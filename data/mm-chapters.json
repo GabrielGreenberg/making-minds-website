@@ -8,7 +8,7 @@
   },
   {
    "n": 2,
-   "title": "What is a Computer?",
+   "title": "What Is a Computer?",
    "page": 10
   },
   {
@@ -63,7 +63,7 @@
   },
   {
    "n": 13,
-   "title": "Thought as symbol processing",
+   "title": "Thought as Symbol Processing",
    "page": 51
   },
   {
@@ -79,127 +79,127 @@
   {
    "n": 16,
    "title": "Memory",
-   "page": 65
+   "page": 64
   },
   {
    "n": 17,
    "title": "Physical Memory",
-   "page": 66
+   "page": 65
   },
   {
    "n": 18,
    "title": "Machines in Time: Sequential Circuits",
-   "page": 70
+   "page": 69
   },
   {
    "n": 19,
    "title": "Computing in Time",
-   "page": 75
+   "page": 74
   },
   {
    "n": 20,
    "title": "Computational Power",
-   "page": 80
+   "page": 79
   },
   {
    "n": 21,
    "title": "The Method of State Analysis",
-   "page": 85
+   "page": 84
   },
   {
    "n": 22,
    "title": "State Abstraction",
-   "page": 90
+   "page": 89
   },
   {
    "n": 23,
    "title": "The Concept of Abstraction",
-   "page": 95
+   "page": 94
   },
   {
    "n": 24,
    "title": "Finite State Machines",
-   "page": 103
+   "page": 102
   },
   {
    "n": 25,
-   "title": "What is an Algorithm?",
-   "page": 108
+   "title": "What Is an Algorithm?",
+   "page": 107
   },
   {
    "n": 26,
    "title": "Levels of Abstraction",
-   "page": 111
+   "page": 110
   },
   {
    "n": 27,
    "title": "Turing Machines",
-   "page": 118
+   "page": 117
   },
   {
    "n": 28,
    "title": "Computing with Turing Machines",
-   "page": 126
+   "page": 125
   },
   {
    "n": 29,
    "title": "Recursion",
-   "page": 130
+   "page": 129
   },
   {
    "n": 30,
    "title": "Turing Machine Abstraction and Composition",
-   "page": 136
+   "page": 135
   },
   {
    "n": 31,
    "title": "Binary Turing Machines",
-   "page": 139
+   "page": 138
   },
   {
    "n": 32,
    "title": "The Mathematical Tree",
-   "page": 141
+   "page": 140
   },
   {
    "n": 33,
    "title": "Computational Navigation",
-   "page": 144
+   "page": 143
   },
   {
    "n": 34,
    "title": "The Desert Ant",
-   "page": 147
+   "page": 146
   },
   {
    "n": 35,
    "title": "Physical Cognition",
-   "page": 152
+   "page": 151
   },
   {
    "n": 36,
    "title": "Machines and Programs",
-   "page": 162
+   "page": 161
   },
   {
    "n": 37,
    "title": "The Universal Machine",
-   "page": 166
+   "page": 165
   },
   {
    "n": 38,
    "title": "Cognitive Architecture",
-   "page": 172
+   "page": 171
   },
   {
    "n": 39,
    "title": "Computation as Consciousness",
-   "page": 175
+   "page": 174
   },
   {
    "n": 40,
    "title": "Computational Theory of Mind: The Long View",
-   "page": 178
+   "page": 177
   }
  ]
 }
