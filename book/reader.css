@@ -119,6 +119,7 @@ body.rb > .band { flex: none; }
 .rb-chapnav a .k { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
 .rb-chapnav a.next { margin-left: auto; text-align: right; align-items: flex-end; }
 .rb-status { text-align: center; color: var(--ink-3); font-size: 13px; padding: 40px 16px; }
+.pg-err { position: absolute; left: 0; right: 0; top: 40%; margin: 0; padding: 0 24px; text-align: center; color: var(--ink-3); font-size: 13px; }
 
 /* pdf.js 4.10 text layer (subset of web/pdf_viewer.css; the page div carries --scale-factor) */
 .textLayer { position: absolute; text-align: initial; inset: 0; overflow: clip; opacity: 1; line-height: 1;
