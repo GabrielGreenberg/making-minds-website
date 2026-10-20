@@ -601,12 +601,17 @@
           "page": 64
         },
         {
-          "mm": "Physical Memory",
-          "n": 17,
-          "page": 65
+          "mm": "Machines in Time: Sequential Circuits",
+          "n": 18,
+          "page": 69
         }
       ],
       "recommended": [
+        {
+          "mm": "Physical Memory",
+          "n": 17,
+          "page": 65
+        },
         {
           "tag": "C",
           "cite": "Braitenberg (1984) <i>Vehicles: Experiments in Synthetic Psychology</i>,",
@@ -624,11 +629,6 @@
       "unit": 2,
       "topic": "Computing in Time",
       "read": [
-        {
-          "mm": "Machines in Time: Sequential Circuits",
-          "n": 18,
-          "page": 69
-        },
         {
           "mm": "Computing in Time",
           "n": 19,
