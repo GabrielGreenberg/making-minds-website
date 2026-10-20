@@ -10,7 +10,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '../book/pdfjs/pdf.worker.min.mjs';
 const $ = (id) => document.getElementById(id);
 const el = { main: $('main'), side: $('side'), backdrop: $('backdrop'), menu: $('menu'), crumb: $('crumb'), pageno: $('pageno'),
   zoom: $('zoom'), zoomwrap: $('zoomwrap'), filelink: $('filelink'), list: $('list'), sidefoot: $('sidefoot'), sort: $('sort'), sidehead: $('sidehead'),
-  landing: $('landing'), doc: $('doc'), card: $('card'), pages: $('pages'), chapnav: $('chapnav'), status: $('status'), resume: $('resume') };
+  landing: $('landing'), doc: $('doc'), card: $('card'), pages: $('pages'), chapnav: $('chapnav'), status: $('status') };
 const PAGE_MAX = 1000;
 const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const store = {
@@ -296,7 +296,7 @@ function setTab(t) {
 
 // ---------------------------------------------------------------- landing
 function showLanding() {
-  savePlace(); hideResume();
+  savePlace();
   gen++; cur = null; curPage = null;
   if (observer) observer.disconnect();
   el.doc.hidden = true; el.status.hidden = true; el.landing.hidden = false;
@@ -412,9 +412,8 @@ function showPanelFor(w) {
     tab = tab === 'readings' ? 'background' : 'readings'; store.set('tab', tab); buildList();   // buildList marks it
   } else markCurrent(w);
 }
-// at: where to open it: null (the top, with the citation card), {page}, a remembered {page, f}, or 'stay' (where it is);
-// resume: {label, back} for the "picked up where you left off" note
-async function openWork(w, at, ctx, resume) {
+// at: where to open it: null (the top, with the citation card), {page}, a remembered {page, f}, or 'stay' (where it is)
+async function openWork(w, at, ctx) {
   const same = cur && cur.work === w;
   if (same) {          // another assignment of the same work (or a page link): keep the loaded PDF
     cur.row = ctx ? ctx.row : null;
@@ -422,7 +421,7 @@ async function openWork(w, at, ctx, resume) {
     if (at !== 'stay') goTo(at);
     return;
   }
-  savePlace(); hideResume();
+  savePlace();
   gen++; const g = gen;
   cur = { work: w, pdf: null, pages: [], gen: g, scale: 1, pw: 0, row: ctx ? ctx.row : null };
   curPage = null;
@@ -465,7 +464,6 @@ async function openWork(w, at, ctx, resume) {
     observer = new IntersectionObserver(onIntersect, { root: el.main, rootMargin: '120% 0px', threshold: 0 });
     cur.pages.forEach((pg) => observer.observe(pg.el));
     if (at) goTo(at); else onScroll();
-    if (resume) showResume(resume.label, resume.back);
   } catch (err) {
     if (gen !== g) return;
     el.status.hidden = false; el.status.innerHTML = 'Couldn’t load the PDF (' + esc(err && err.message || err) + '). <a href="../' + esc(w.file) + '">Open it directly</a>.';
@@ -611,14 +609,6 @@ function inPart(w, s, page) {
   const next = starts.filter((p) => p > page).sort((a, b) => a - b)[0];
   return next == null || s.page < next;
 }
-let resumeTimer = null;
-function showResume(label, back) {
-  el.resume.innerHTML = '<span>Picked up where you left off</span><button type="button">' + esc(label) + '</button>';
-  el.resume.querySelector('button').onclick = () => { hideResume(); back(); };
-  el.resume.hidden = false;
-  clearTimeout(resumeTimer); resumeTimer = setTimeout(hideResume, 8000);
-}
-function hideResume() { clearTimeout(resumeTimer); el.resume.hidden = true; }
 function goHome() { clickedAt = performance.now(); location.hash = ''; }
 
 // ---------------------------------------------------------------- routing
@@ -636,27 +626,23 @@ function route() {
   firstRoute = false;
   if (!h) {                   // reader/ itself: straight back to the last reading if it was just now, else the landing
     const last = first && store.get('last', null), w = last && byKey[last.key];
-    if (w && w.file && Date.now() - (last.t || 0) < RECENT) { const s = placeOf(w); openWork(w, s, ctxFor(w, s ? s.page : null), { label: 'Reader home', back: goHome }); }
+    if (w && w.file && Date.now() - (last.t || 0) < RECENT) { const s = placeOf(w); openWork(w, s, ctxFor(w, s ? s.page : null)); }
     else showLanding();
   }
   else if (m && byKey[m[1]]) {
     const w = byKey[m[1]], page = m[2] ? +m[2] : null;
     const ctx = ctxFor(w, page, pendingRow); pendingRow = null;
     const start = page ? { page } : null, open = cur && cur.work === w;
-    let at = start, resume = null;
+    let at = start;
     // a link from elsewhere (the syllabus reuses this tab) or to another reading: its remembered place, if the link
     // is to that part of it; a link to the open reading clicked here goes where it says
     if (!(here && open)) {
       if (open) savePlace();
       const s = placeOf(w);
       if (s && page != null && (s.shown === page || s.page === page)) at = open ? 'stay' : s;
-      else if (s && inPart(w, s, page)) {
-        at = open ? 'stay' : s;
-        if (!open && (start == null || s.page !== start.page || s.f > 0.25))
-          resume = { label: start ? 'Go to p. ' + start.page : 'Back to the top', back: () => goTo(start) };
-      }
+      else if (s && inPart(w, s, page)) at = open ? 'stay' : s;
     }
-    openWork(w, at, ctx, resume);
+    openWork(w, at, ctx);
   } else showLanding();
   if (window.innerWidth <= 900) openSide(false);
 }

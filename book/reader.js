@@ -11,7 +11,7 @@ const $ = (id) => document.getElementById(id);
 const el = { main: $('main'), side: $('side'), backdrop: $('backdrop'), menu: $('menu'), crumb: $('crumb'), pageno: $('pageno'),
   zoom: $('zoom'), q: $('q'), qclear: $('qclear'), toc: $('toc'), results: $('results'), sidefoot: $('sidefoot'),
   landing: $('landing'), cover: $('coverimg'), actions: $('actions'), updated: $('updated'), doc: $('doc'), pages: $('pages'),
-  chapnav: $('chapnav'), status: $('status'), resume: $('resume') };
+  chapnav: $('chapnav'), status: $('status') };
 const PW = 1460, PH = 1888, PAGE_MAX = 1000;
 const store = {
   get(k, d) { try { const v = localStorage.getItem('mm.' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
@@ -127,7 +127,7 @@ function openSide(on) { el.side.classList.toggle('open', on); el.backdrop.classL
 
 // ---------------------------------------------------------------- landing
 function showLanding() {
-  savePlace(); hideResume();
+  savePlace();
   gen++; cur = null; curPage = null; curSection = null;
   el.doc.hidden = true; el.status.hidden = true; el.landing.hidden = false;
   el.cover.src = M.cover;
@@ -163,7 +163,7 @@ function layout() {
 }
 async function openDoc(d, target) {
   if (cur && cur.doc === d) { scrollTo(target); return; }
-  savePlace(); hideResume();
+  savePlace();
   gen++; const g = gen;
   cur = { doc: d, pdf: null, pages: [], gen: g, scale: 1, pw: 0, ph: 0 };
   curPage = null; curSection = null;
@@ -328,24 +328,13 @@ function placeOf(d) {
   if (!s || !(s.i >= 0) || s.i > d.filePages[1] - d.filePages[0]) return null;
   return { page: d.filePages[0] + s.i, f: +s.f || 0, shown: d.filePages[0] + (s.n != null ? s.n : s.i) };
 }
-const moved = (s, start) => s.page !== start.page || s.f > 0.25;
-// a chapter's own link: its place, with a way back to its start. The chapter already open stays put when the link
-// comes from elsewhere (the syllabus reuses this tab), and goes back to its start when its title is clicked here.
+// a chapter's own link: its place. The chapter already open stays put when the link comes from elsewhere (the
+// syllabus reuses this tab), and goes back to its start when its title is clicked here.
 function openChapter(d, here) {
   const start = { page: d.pages[0] };
   if (cur && cur.doc === d) { if (here) openDoc(d, start); return; }
-  const s = placeOf(d);
-  if (s && moved(s, start)) { openDoc(d, s); showResume('Start of chapter', () => scrollTo(start)); }
-  else openDoc(d, start);
+  openDoc(d, placeOf(d) || start);
 }
-let resumeTimer = null;
-function showResume(label, back) {
-  el.resume.innerHTML = '<span>Picked up where you left off</span><button type="button">' + esc(label) + '</button>';
-  el.resume.querySelector('button').onclick = () => { hideResume(); back(); };
-  el.resume.hidden = false;
-  clearTimeout(resumeTimer); resumeTimer = setTimeout(hideResume, 8000);
-}
-function hideResume() { clearTimeout(resumeTimer); el.resume.hidden = true; }
 function updateCrumb(d, sec) {
   let h = '';
   if (d.kind === 'ch') h += '<a class="unit" style="--uc:var(--u' + d.unit + ')" href="#contents">Unit ' + d.unit + '</a><span class="sep">›</span>';
@@ -363,7 +352,7 @@ function route() {
   let m;
   if (!h && first) {          // book/ itself: straight back to the last place if it was just now, else the cover
     const last = store.get('lastPos', null), d = last && byId[last.id], s = d && placeOf(d);
-    if (s && Date.now() - (last.t || 0) < RECENT) { openDoc(d, s); showResume('Contents', () => { location.hash = 'contents'; }); }
+    if (s && Date.now() - (last.t || 0) < RECENT) openDoc(d, s);
     else showLanding();
   }
   else if (!h || h === 'contents') { showLanding(); }
