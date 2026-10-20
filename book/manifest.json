@@ -1,5 +1,5 @@
 {
- "built": "2026-10-18T16:00:24Z",
+ "built": "2026-10-20T18:38:36Z",
  "pageSize": [
   1460,
   1888
@@ -504,19 +504,24 @@
   {
    "id": "7130833",
    "n": 8,
-   "slug": "function-composition",
-   "title": "Function Composition",
+   "slug": "sequential-composition",
+   "title": "Sequential Composition",
    "unit": 1,
    "pages": [
     38,
     40
    ],
-   "file": "ch/08-function-composition.pdf",
+   "file": "ch/08-sequential-composition.pdf",
    "filePages": [
     38,
     40
    ],
    "sections": [
+    {
+     "title": "Function Composition",
+     "page": 38,
+     "y": 158.4
+    },
     {
      "title": "Machine Composition",
      "page": 39,
@@ -524,8 +529,8 @@
     }
    ],
    "pageHashes": [
-    "a9d3a68d1ce7",
-    "2b0f1ea23a6f",
+    "588dd2f344fb",
+    "164fdc67b747",
     "4c6bcd537d5c"
    ]
   },
@@ -582,7 +587,7 @@
     }
    ],
    "pageHashes": [
-    "be8a0162fb12",
+    "7799d907f504",
     "ba4b7e7d0b4a",
     "986ce95e5781"
    ]
@@ -950,7 +955,7 @@
     {
      "title": "Sequential Circuits = Combinatorial Circuits + Memory",
      "page": 69,
-     "y": 167.2
+     "y": 175.2
     },
     {
      "title": "Memory Registers",
@@ -960,7 +965,7 @@
     {
      "title": "The Clock",
      "page": 70,
-     "y": 771.0
+     "y": 1051.0
     },
     {
      "title": "Cycles of a Sequential Circuit",
@@ -979,8 +984,8 @@
     }
    ],
    "pageHashes": [
-    "bbe05f9533d1",
-    "223a8db066dc",
+    "5120d59bb372",
+    "864f2a0dff9b",
     "5cf4f77b4528",
     "fe0be10bd3cf",
     "1d654afd7724"
@@ -2644,6 +2649,22 @@
     193,
     194,
     195
+   ]
+  },
+  {
+   "date": "2026-10-20",
+   "chapters": [
+    8,
+    9,
+    18
+   ],
+   "other": [],
+   "pages": [
+    38,
+    39,
+    41,
+    69,
+    70
    ]
   }
  ]
