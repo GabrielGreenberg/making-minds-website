@@ -119,6 +119,15 @@ body.rb > .band { flex: none; }
 .rb-chapnav a .k { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
 .rb-chapnav a.next { margin-left: auto; text-align: right; align-items: flex-end; }
 .rb-status { text-align: center; color: var(--ink-3); font-size: 13px; padding: 40px 16px; }
+/* "Picked up where you left off" (10/19): shown for a few seconds when a link reopens a chapter or reading at its
+   remembered place, with one button back to the start; sits at the foot of the reading pane */
+.rb-resume { position: absolute; z-index: 12; bottom: 18px; left: calc(var(--rb-side-w) + (100% - var(--rb-side-w)) / 2); transform: translateX(-50%);
+  display: flex; align-items: center; gap: 12px; max-width: calc(100% - 32px); padding: 6px 6px 6px 16px; border-radius: 999px;
+  background: var(--navy); color: #fff; font-size: 13px; white-space: nowrap; box-shadow: 0 6px 24px rgba(3,13,36,.30); }
+.rb-resume[hidden] { display: none; }
+.rb-resume span { overflow: hidden; text-overflow: ellipsis; }
+.rb-resume button { flex: none; font: inherit; font-weight: 500; color: var(--navy); background: var(--lav); border: 0; border-radius: 999px; padding: 5px 13px; cursor: pointer; }
+.rb-resume button:hover { background: #fff; }
 
 /* pdf.js 4.10 text layer (subset of web/pdf_viewer.css; the page div carries --scale-factor) */
 .textLayer { position: absolute; text-align: initial; inset: 0; overflow: clip; opacity: 1; line-height: 1;
@@ -149,13 +158,14 @@ body.rb > .band { flex: none; }
   .rb-chapnav { flex-direction: column; }
   .rb-chapnav a { max-width: none; }
   .rb-chapnav a.next { margin-left: 0; align-items: flex-start; text-align: left; }
+  .rb-resume { left: 50%; bottom: 14px; }
 }
 @media (max-width: 600px) {
   .rb-crumb { font-size: 12.5px; }
   .rb-crumb .unit, .rb-crumb .unit + .sep { display: none; }
 }
 @media print {
-  .rb-side, .rb-top, .topbar, .band, .rb-chapnav, .rb-actions { display: none; }
+  .rb-side, .rb-top, .topbar, .band, .rb-chapnav, .rb-actions, .rb-resume { display: none; }
   body.rb { height: auto; overflow: visible; }
   .rb-main { overflow: visible; }
 }

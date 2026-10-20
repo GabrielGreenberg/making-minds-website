@@ -1,7 +1,8 @@
 /* Making Minds · web reader
    Reads book/manifest.json (structure, files, sections) and renders the chapter PDFs with pdf.js in a
    continuous, lazily rendered scroll with a selectable text layer. The sidebar is the live table of contents;
-   whole-book search runs over book/search.json. Position is in the URL hash and remembered in localStorage.
+   whole-book search runs over book/search.json. Position is in the URL hash and remembered in localStorage, per
+   chapter (see "remembered places"), so coming back to a chapter lands where the reader left it.
    Hash forms: #contents · #front · #ps · #ch12 · #p33 · #p22,683 (page + y in slide points from the top). */
 import * as pdfjsLib from './pdfjs/pdf.min.mjs';
 pdfjsLib.GlobalWorkerOptions.workerSrc = './pdfjs/pdf.worker.min.mjs';
@@ -10,7 +11,7 @@ const $ = (id) => document.getElementById(id);
 const el = { main: $('main'), side: $('side'), backdrop: $('backdrop'), menu: $('menu'), crumb: $('crumb'), pageno: $('pageno'),
   zoom: $('zoom'), q: $('q'), qclear: $('qclear'), toc: $('toc'), results: $('results'), sidefoot: $('sidefoot'),
   landing: $('landing'), cover: $('coverimg'), actions: $('actions'), updated: $('updated'), doc: $('doc'), pages: $('pages'),
-  chapnav: $('chapnav'), status: $('status') };
+  chapnav: $('chapnav'), status: $('status'), resume: $('resume') };
 const PW = 1460, PH = 1888, PAGE_MAX = 1000;
 const store = {
   get(k, d) { try { const v = localStorage.getItem('mm.' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
@@ -30,6 +31,8 @@ let searchIndex = null, searchLoading = null;
 let hl = null;                // {page, y, tokens}: what to highlight once that page renders (after a search click)
 let fromSearch = false;
 let curPage = null, curSection = null;
+let firstRoute = true;        // the page has just loaded (a bare book/ may go straight back to the last spot)
+let clickedAt = -1e9;         // when a link on this page was last followed (vs. a link from the syllabus's tab)
 
 // ---------------------------------------------------------------- manifest → model
 function buildModel(m) {
@@ -124,6 +127,7 @@ function openSide(on) { el.side.classList.toggle('open', on); el.backdrop.classL
 
 // ---------------------------------------------------------------- landing
 function showLanding() {
+  savePlace(); hideResume();
   gen++; cur = null; curPage = null; curSection = null;
   el.doc.hidden = true; el.status.hidden = true; el.landing.hidden = false;
   el.cover.src = M.cover;
@@ -159,6 +163,7 @@ function layout() {
 }
 async function openDoc(d, target) {
   if (cur && cur.doc === d) { scrollTo(target); return; }
+  savePlace(); hideResume();
   gen++; const g = gen;
   cur = { doc: d, pdf: null, pages: [], gen: g, scale: 1, pw: 0, ph: 0 };
   curPage = null; curSection = null;
@@ -199,7 +204,8 @@ function scrollTo(t) {
   let y;
   if (t && t.page) {
     y = pageTop(t.page);
-    if (t.y != null) y += t.y / PH * cur.ph - 110; else y -= 12;
+    if (t.f != null) y += t.f * cur.ph;                       // a remembered place: exactly where it was
+    else if (t.y != null) y += t.y / PH * cur.ph - 110; else y -= 12;
   } else y = pageTop(cur.doc.pages[0]) - 12;
   el.main.scrollTop = Math.max(0, y);
   onScroll();
@@ -281,16 +287,65 @@ function trackPosition() {
   if (page.p !== curPage) {
     curPage = page.p;
     el.pageno.textContent = 'p. ' + page.p + ' of ' + (d.kind === 'ps' ? M.totalPages : M.bookPages);
-    if (page.p >= d.pages[0]) {
-      store.set('lastPos', { id: d.id, page: page.p });
-      history.replaceState(null, '', '#p' + page.p);
-    } else history.replaceState(null, '', hashFor(d));
+    if (page.p >= d.pages[0]) history.replaceState(null, '', '#p' + page.p);
+    else history.replaceState(null, '', hashFor(d));
   }
   if (sec !== curSection || page.p !== curPage) {
     curSection = sec;
     updateCrumb(d, sec); markCurrent(d, secIndex);
   }
+  scheduleSave();
 }
+
+// ---------------------------------------------------------------- remembered places
+// Each chapter's place is kept in mm.places: the page at the top of the window (as an index into the chapter, so a
+// rebuild that shifts page numbers doesn't matter) and how far down it, as a fraction of the page height (so zoom and
+// window size don't either). mm.lastPos is the latest place in any chapter. A link to a chapter (the syllabus, the
+// contents, Previous / Next, a bookmark) opens it at its place; a #p33 that matches the place (a reload, Back,
+// Continue) restores it exactly; section and search links go where they say.
+const RECENT = 3 * 3600e3;    // book/ with no hash, this soon after reading, goes straight back to the last place
+let saveTimer = null;
+function placeNow() {
+  if (!cur || !cur.pages.length) return null;
+  const st = el.main.scrollTop;
+  let pg = cur.pages[0];
+  for (const x of cur.pages) { if (x.el.offsetTop <= st) pg = x; else break; }
+  return { i: pg.i, f: Math.round((st - pg.el.offsetTop) / Math.max(1, cur.ph) * 1000) / 1000 };
+}
+function scheduleSave() { if (!saveTimer) saveTimer = setTimeout(savePlace, 400); }
+function savePlace() {
+  clearTimeout(saveTimer); saveTimer = null;
+  const s = placeNow(); if (!s) return;
+  const d = cur.doc, t = Date.now();
+  const all = store.get('places', {});      // re-read: another tab may have saved other chapters meanwhile
+  all[d.id] = { i: s.i, f: s.f, n: curPage != null ? curPage - d.filePages[0] : s.i, t };   // n: the page shown in the bar
+  store.set('places', all);
+  store.set('lastPos', { id: d.id, page: Math.max(curPage || 0, d.pages[0]), t });
+}
+// d's remembered place as a scroll target, or null
+function placeOf(d) {
+  const s = store.get('places', {})[d.id];
+  if (!s || !(s.i >= 0) || s.i > d.filePages[1] - d.filePages[0]) return null;
+  return { page: d.filePages[0] + s.i, f: +s.f || 0, shown: d.filePages[0] + (s.n != null ? s.n : s.i) };
+}
+const moved = (s, start) => s.page !== start.page || s.f > 0.25;
+// a chapter's own link: its place, with a way back to its start. The chapter already open stays put when the link
+// comes from elsewhere (the syllabus reuses this tab), and goes back to its start when its title is clicked here.
+function openChapter(d, here) {
+  const start = { page: d.pages[0] };
+  if (cur && cur.doc === d) { if (here) openDoc(d, start); return; }
+  const s = placeOf(d);
+  if (s && moved(s, start)) { openDoc(d, s); showResume('Start of chapter', () => scrollTo(start)); }
+  else openDoc(d, start);
+}
+let resumeTimer = null;
+function showResume(label, back) {
+  el.resume.innerHTML = '<span>Picked up where you left off</span><button type="button">' + esc(label) + '</button>';
+  el.resume.querySelector('button').onclick = () => { hideResume(); back(); };
+  el.resume.hidden = false;
+  clearTimeout(resumeTimer); resumeTimer = setTimeout(hideResume, 8000);
+}
+function hideResume() { clearTimeout(resumeTimer); el.resume.hidden = true; }
 function updateCrumb(d, sec) {
   let h = '';
   if (d.kind === 'ch') h += '<a class="unit" style="--uc:var(--u' + d.unit + ')" href="#contents">Unit ' + d.unit + '</a><span class="sep">›</span>';
@@ -303,14 +358,23 @@ function updateCrumb(d, sec) {
 function route() {
   const h = decodeURIComponent(location.hash.slice(1));
   if (!fromSearch) hl = null; fromSearch = false;
+  const here = performance.now() - clickedAt < 1500, first = firstRoute;
+  firstRoute = false;
   let m;
-  if (!h || h === 'contents') { showLanding(); }
-  else if ((m = h.match(/^ch(\d+)$/))) { const d = chapterByN(+m[1]); if (d) openDoc(d, { page: d.pages[0] }); else showLanding(); }
-  else if (h === 'front' && byId.front) openDoc(byId.front, { page: byId.front.pages[0] });
-  else if (h === 'ps' && byId.ps) openDoc(byId.ps, { page: byId.ps.pages[0] });
+  if (!h && first) {          // book/ itself: straight back to the last place if it was just now, else the cover
+    const last = store.get('lastPos', null), d = last && byId[last.id], s = d && placeOf(d);
+    if (s && Date.now() - (last.t || 0) < RECENT) { openDoc(d, s); showResume('Contents', () => { location.hash = 'contents'; }); }
+    else showLanding();
+  }
+  else if (!h || h === 'contents') { showLanding(); }
+  else if ((m = h.match(/^ch(\d+)$/))) { const d = chapterByN(+m[1]); if (d) openChapter(d, here); else showLanding(); }
+  else if (h === 'front' && byId.front) openChapter(byId.front, here);
+  else if (h === 'ps' && byId.ps) openChapter(byId.ps, here);
   else if ((m = h.match(/^p(\d+)(?:,(\d+(?:\.\d+)?))?$/))) {
-    const p = +m[1], d = docByPage(p);
-    if (d) openDoc(d, { page: p, y: m[2] != null ? +m[2] : null }); else showLanding();
+    const p = +m[1], d = docByPage(p), s = d && m[2] == null && placeOf(d);
+    if (!d) showLanding();
+    else if (s && (s.shown === p || s.page === p)) openDoc(d, s);
+    else openDoc(d, { page: p, y: m[2] != null ? +m[2] : null });
   } else showLanding();
   if (window.innerWidth <= 900) openSide(false);
 }
@@ -410,6 +474,11 @@ function clearHighlights() { el.pages.querySelectorAll('.textLayer span.hl').for
 function wire() {
   window.addEventListener('hashchange', route);
   el.main.addEventListener('scroll', onScroll, { passive: true });
+  document.addEventListener('click', (e) => { if (e.target.closest && e.target.closest('a[href^="#"]')) clickedAt = performance.now(); }, true);
+  window.addEventListener('pagehide', savePlace);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') savePlace(); });
+  // "Course book" in the site menu, from inside the book: the cover (otherwise book/ would go straight back to the page)
+  document.querySelectorAll('.topbar nav a[aria-current]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); location.hash = 'contents'; }));
   new ResizeObserver(() => { if (cur) { const w = Math.round(fitWidth() * zoom); if (w !== cur.pw) rerenderAll(); } }).observe(el.main);
   el.zoom.value = String(zoom);
   el.zoom.addEventListener('change', () => { zoom = +el.zoom.value || 1; store.set('zoom', zoom); rerenderAll(); });

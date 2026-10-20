@@ -2,14 +2,15 @@
    Everything comes from ../data/course.json: the schedule's non-course-book readings (required and recommended,
    grouped into "works" by author + year) and the background lists under `resources`. A reading with a local PDF
    (`file`, or a non-http `url`) is rendered here with pdf.js; anything else gets a citation card that links out.
-   Sidebar: by due date (the schedule's spine) or by name (A–Z). Hash forms: #<key> · #<key>/p12. */
+   Sidebar: by due date (the schedule's spine) or by name (A–Z). Hash forms: #<key> · #<key>/p12.
+   Each reading's place is remembered in localStorage (see "remembered places"), so coming back to it lands there. */
 import * as pdfjsLib from '../book/pdfjs/pdf.min.mjs';
 pdfjsLib.GlobalWorkerOptions.workerSrc = '../book/pdfjs/pdf.worker.min.mjs';
 
 const $ = (id) => document.getElementById(id);
 const el = { main: $('main'), side: $('side'), backdrop: $('backdrop'), menu: $('menu'), crumb: $('crumb'), pageno: $('pageno'),
   zoom: $('zoom'), zoomwrap: $('zoomwrap'), filelink: $('filelink'), list: $('list'), sidefoot: $('sidefoot'), sort: $('sort'), sidehead: $('sidehead'),
-  landing: $('landing'), doc: $('doc'), card: $('card'), pages: $('pages'), chapnav: $('chapnav'), status: $('status') };
+  landing: $('landing'), doc: $('doc'), card: $('card'), pages: $('pages'), chapnav: $('chapnav'), status: $('status'), resume: $('resume') };
 const PAGE_MAX = 1000;
 const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const store = {
@@ -43,6 +44,8 @@ let cur = null;               // {work, pdf, pages:[…], gen, scale, pw}
 let gen = 0;
 let observer = null;
 let curPage = null;
+let firstRoute = true;        // the page has just loaded (a bare reader/ may go straight back to the last reading)
+let clickedAt = -1e9;         // when a link on this page was last followed (vs. a link from the syllabus's tab)
 
 // ---------------------------------------------------------------- readings → works
 // "Descartes (1637) <i>Discourse…</i>, Part V —" → {author:"Descartes", year:"1637", rest:"<i>Discourse…</i>, Part V"}
@@ -293,6 +296,7 @@ function setTab(t) {
 
 // ---------------------------------------------------------------- landing
 function showLanding() {
+  savePlace(); hideResume();
   gen++; cur = null; curPage = null;
   if (observer) observer.disconnect();
   el.doc.hidden = true; el.status.hidden = true; el.landing.hidden = false;
@@ -408,14 +412,17 @@ function showPanelFor(w) {
     tab = tab === 'readings' ? 'background' : 'readings'; store.set('tab', tab); buildList();   // buildList marks it
   } else markCurrent(w);
 }
-async function openWork(w, page, ctx) {
+// at: where to open it: null (the top, with the citation card), {page}, a remembered {page, f}, or 'stay' (where it is);
+// resume: {label, back} for the "picked up where you left off" note
+async function openWork(w, at, ctx, resume) {
   const same = cur && cur.work === w;
   if (same) {          // another assignment of the same work (or a page link): keep the loaded PDF
     cur.row = ctx ? ctx.row : null;
     el.card.innerHTML = cardHtml(w, ctx); chapNav(w); crumbFor(w, ctx); showPanelFor(w);
-    if (page) scrollToPage(page); else el.main.scrollTop = 0;
+    if (at !== 'stay') goTo(at);
     return;
   }
+  savePlace(); hideResume();
   gen++; const g = gen;
   cur = { work: w, pdf: null, pages: [], gen: g, scale: 1, pw: 0, row: ctx ? ctx.row : null };
   curPage = null;
@@ -429,7 +436,7 @@ async function openWork(w, page, ctx) {
   if (observer) observer.disconnect();
   el.main.scrollTop = 0;
   if (!w.file) return;
-  store.set('last', { key: w.key, page: page || null });
+  store.set('last', { key: w.key, page: at && at.page || null, t: Date.now() });
   el.status.hidden = false; el.status.textContent = 'Loading…';
   try {
     const pdf = await pdfjsLib.getDocument({ url: '../' + w.file }).promise;
@@ -445,11 +452,20 @@ async function openWork(w, page, ctx) {
       el.pages.appendChild(div);
       cur.pages.push({ i, p: i, el: div, pdfPage: i === 1 ? first : null, w: vp.width, h: vp.height, renderedScale: null, rendering: false, task: null, near: false });
     }
+    // reopening at a page further in: measure the pages above it first (scans vary in size), so it lands exactly
+    if (at && at.page > 1) {
+      await Promise.all(cur.pages.slice(0, at.page).map(async (pg) => {
+        if (!pg.pdfPage) pg.pdfPage = await pdf.getPage(pg.i);
+        const v = pg.pdfPage.getViewport({ scale: 1 }); pg.w = v.width; pg.h = v.height;
+      }));
+      if (gen !== g) return;
+    }
     el.status.hidden = true;
     layout();
     observer = new IntersectionObserver(onIntersect, { root: el.main, rootMargin: '120% 0px', threshold: 0 });
     cur.pages.forEach((pg) => observer.observe(pg.el));
-    if (page) scrollToPage(page); else onScroll();
+    if (at) goTo(at); else onScroll();
+    if (resume) showResume(resume.label, resume.back);
   } catch (err) {
     if (gen !== g) return;
     el.status.hidden = false; el.status.innerHTML = 'Couldn’t load the PDF (' + esc(err && err.message || err) + '). <a href="../' + esc(w.file) + '">Open it directly</a>.';
@@ -467,6 +483,15 @@ function sizePage(pg) {
   pg.el.style.setProperty('--pw', cur.pw + 'px'); pg.el.style.setProperty('--ph', Math.round(pg.h * s) + 'px'); pg.el.style.setProperty('--scale-factor', s);
 }
 function pageTop(p) { const pg = cur && cur.pages[p - 1]; return pg ? pg.el.offsetTop : 0; }
+function goTo(at) {
+  if (!cur) return;
+  if (!at) { el.main.scrollTop = 0; onScroll(); return; }
+  if (at.f == null) { scrollToPage(at.page); return; }
+  if (!cur.pages.length) return;
+  const pg = cur.pages[Math.max(1, Math.min(cur.pages.length, at.page)) - 1];
+  el.main.scrollTop = Math.max(0, pg.el.offsetTop + at.f * pg.el.offsetHeight);
+  onScroll();
+}
 function scrollToPage(p) {
   if (!cur || !cur.pages.length) return;
   p = Math.max(1, Math.min(cur.pages.length, p));
@@ -543,24 +568,95 @@ function trackPosition() {
   if (page.p !== curPage) {
     curPage = page.p;
     el.pageno.textContent = 'p. ' + page.p + ' of ' + cur.pages.length;
-    store.set('last', { key: cur.work.key, page: page.p });
     history.replaceState(null, '', hashFor(cur.work.key, page.p > 1 ? page.p : null));
   }
+  scheduleSave();
 }
+
+// ---------------------------------------------------------------- remembered places
+// Each reading's place is kept in rd.places: the page at the top of the window and how far down it, as a fraction of
+// that page's height (so zoom and window size don't matter); scrolled back up to the citation card, it is forgotten.
+// rd.last is the latest reading. A link to a reading (the syllabus, the sidebar, Previous / Next) opens it at its
+// place, and a link to an assigned part (#crane-2003/p96) does too when the place is inside that part; a page that
+// matches the place (a reload, Back, Continue) restores it exactly.
+const RECENT = 3 * 3600e3;    // reader/ with no hash, this soon after reading, goes straight back to the last reading
+let saveTimer = null;
+function placeNow() {
+  if (!cur || !cur.pdf || !cur.pages.length) return null;
+  const st = el.main.scrollTop;
+  if (st < cur.pages[0].el.offsetTop - 40) return { top: true };
+  let pg = cur.pages[0];
+  for (const x of cur.pages) { if (x.el.offsetTop <= st) pg = x; else break; }
+  return { p: pg.p, f: Math.round((st - pg.el.offsetTop) / Math.max(1, pg.el.offsetHeight) * 1000) / 1000 };
+}
+function scheduleSave() { if (!saveTimer) saveTimer = setTimeout(savePlace, 400); }
+function savePlace() {
+  clearTimeout(saveTimer); saveTimer = null;
+  const s = placeNow(); if (!s) return;
+  const w = cur.work, t = Date.now();
+  const all = store.get('places', {});      // re-read: another tab may have saved other readings meanwhile
+  if (s.top) delete all[w.key]; else all[w.key] = { p: s.p, f: s.f, n: curPage || s.p, t };   // n: the page shown in the bar
+  store.set('places', all);
+  store.set('last', { key: w.key, page: s.top ? null : curPage || s.p, t });
+}
+function placeOf(w) {
+  const s = store.get('places', {})[w.key];
+  return s && s.p >= 1 ? { page: s.p, f: +s.f || 0, shown: s.n || s.p } : null;
+}
+// is the place s inside the part a link points at? (no page: anywhere; an assignment's first page: up to the next one)
+function inPart(w, s, page) {
+  if (page == null) return true;
+  const starts = w.assignments.map((a) => a.page).filter((p) => p);
+  if (starts.indexOf(page) < 0 || s.page < page) return false;
+  const next = starts.filter((p) => p > page).sort((a, b) => a - b)[0];
+  return next == null || s.page < next;
+}
+let resumeTimer = null;
+function showResume(label, back) {
+  el.resume.innerHTML = '<span>Picked up where you left off</span><button type="button">' + esc(label) + '</button>';
+  el.resume.querySelector('button').onclick = () => { hideResume(); back(); };
+  el.resume.hidden = false;
+  clearTimeout(resumeTimer); resumeTimer = setTimeout(hideResume, 8000);
+}
+function hideResume() { clearTimeout(resumeTimer); el.resume.hidden = true; }
+function goHome() { clickedAt = performance.now(); location.hash = ''; }
 
 // ---------------------------------------------------------------- routing
 let pendingRow = null;        // sidebar/chapnav click → which row of the current order was chosen (for prev/next)
+function ctxFor(w, page, row) {
+  const list = rows[sort];
+  if (row == null || !list[row] || list[row].key !== w.key) row = list.findIndex((r) => r.key === w.key && (page == null || r.page == null || r.page === page));
+  const r = row >= 0 ? list[row] : null;
+  return { a: r && r.a ? r.a : (w.assignments[0] || null), row: row >= 0 ? row : null };
+}
 function route() {
   const h = decodeURIComponent(location.hash.slice(1));
   const m = h.match(/^([a-z0-9-]+)(?:\/p(\d+))?$/i);
-  if (!h) { showLanding(); }
+  const here = performance.now() - clickedAt < 1500, first = firstRoute;
+  firstRoute = false;
+  if (!h) {                   // reader/ itself: straight back to the last reading if it was just now, else the landing
+    const last = first && store.get('last', null), w = last && byKey[last.key];
+    if (w && w.file && Date.now() - (last.t || 0) < RECENT) { const s = placeOf(w); openWork(w, s, ctxFor(w, s ? s.page : null), { label: 'Reader home', back: goHome }); }
+    else showLanding();
+  }
   else if (m && byKey[m[1]]) {
     const w = byKey[m[1]], page = m[2] ? +m[2] : null;
-    let row = pendingRow; pendingRow = null;
-    const list = rows[sort];
-    if (row == null || !list[row] || list[row].key !== w.key) row = list.findIndex((r) => r.key === w.key && (page == null || r.page == null || r.page === page));
-    const r = row >= 0 ? list[row] : null;
-    openWork(w, page, { a: r && r.a ? r.a : (w.assignments[0] || null), row: row >= 0 ? row : null });
+    const ctx = ctxFor(w, page, pendingRow); pendingRow = null;
+    const start = page ? { page } : null, open = cur && cur.work === w;
+    let at = start, resume = null;
+    // a link from elsewhere (the syllabus reuses this tab) or to another reading: its remembered place, if the link
+    // is to that part of it; a link to the open reading clicked here goes where it says
+    if (!(here && open)) {
+      if (open) savePlace();
+      const s = placeOf(w);
+      if (s && page != null && (s.shown === page || s.page === page)) at = open ? 'stay' : s;
+      else if (s && inPart(w, s, page)) {
+        at = open ? 'stay' : s;
+        if (!open && (start == null || s.page !== start.page || s.f > 0.25))
+          resume = { label: start ? 'Go to p. ' + start.page : 'Back to the top', back: () => goTo(start) };
+      }
+    }
+    openWork(w, at, ctx, resume);
   } else showLanding();
   if (window.innerWidth <= 900) openSide(false);
 }
@@ -569,6 +665,11 @@ function route() {
 function wire() {
   window.addEventListener('hashchange', route);
   el.main.addEventListener('scroll', onScroll, { passive: true });
+  document.addEventListener('click', (e) => { if (e.target.closest && e.target.closest('a[href^="#"]')) clickedAt = performance.now(); }, true);
+  window.addEventListener('pagehide', savePlace);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') savePlace(); });
+  // "Reader" in the site menu, from inside the Reader: its landing (otherwise reader/ would go straight back to the reading)
+  document.querySelectorAll('.topbar nav a[aria-current]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); goHome(); }));
   new ResizeObserver(() => { if (cur && cur.pdf) { const w = Math.round(fitWidth() * zoom); if (w !== cur.pw) rerenderAll(); } }).observe(el.main);
   el.zoom.value = String(zoom);
   el.zoom.addEventListener('change', () => { zoom = +el.zoom.value || 1; store.set('zoom', zoom); rerenderAll(); });
@@ -601,7 +702,7 @@ function wire() {
     if (e.key === 'Escape') { openSide(false); return; }
     if (!cur) return;
     const list = rows[sort], i = cur.row != null ? cur.row : list.findIndex((r) => r.key === cur.work.key);
-    const go = (j) => { if (list[j]) { pendingRow = j; location.hash = hashFor(list[j].key, list[j].page); } };
+    const go = (j) => { if (list[j]) { pendingRow = j; clickedAt = performance.now(); location.hash = hashFor(list[j].key, list[j].page); } };
     if (e.key === 'ArrowRight' || e.key === 'j') { e.preventDefault(); if (cur.pdf && curPage < cur.pages.length) scrollToPage(curPage + 1); else go(i + 1); }
     else if (e.key === 'ArrowLeft' || e.key === 'k') { e.preventDefault(); if (cur.pdf && curPage > 1) scrollToPage(curPage - 1); else go(i - 1); }
     else if (e.key === ']') go(i + 1);
