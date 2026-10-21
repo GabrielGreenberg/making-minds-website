@@ -122,12 +122,22 @@
     return '<br><span class="dim">' + tba(n.text) + '</span>';
   }
 
+  // Lectures held on Zoom instead of in the room: course.lecture.zoom = {url, dates: ['YYYY-MM-DD', …]}.
+  // The lecture fact lists the ones still to come; the up-next box and the syllabus row carry the link.
+  function zoomUrl(x) {
+    var z = window.__course.course.lecture.zoom;
+    return z && z.url && x.type === 'lesson' && (z.dates || []).indexOf(x.date) >= 0 ? z.url : null;
+  }
+  function zoomLink(url) { return link(url, esc(url.replace(/^https?:\/\//, ''))).replace('<a ', '<a class="zoomlink" '); }
+
   function renderFacts(c) {
     var el = document.getElementById('facts');
     if (!el) return;
-    var sec = c.sections;
+    var sec = c.sections, now = nowIn(c.timezone);
+    var onZoom = window.__course.schedule.filter(function (x) { return zoomUrl(x) && x.endAt > now; });
     var facts = [
-      ['Lecture', '<b>' + esc(c.lecture.days) + ' ' + esc(c.lecture.time) + '</b><br>' + esc(c.lecture.room)],
+      ['Lecture', '<b>' + esc(c.lecture.days) + ' ' + esc(c.lecture.time) + '</b><br>' + esc(c.lecture.room) + (onZoom.length
+        ? '<div class="zoomnote"><span class="zl">On Zoom, not in person:</span> <b>' + onZoom.map(function (x) { return esc(x.d); }).join(', ') + '</b><br>' + zoomLink(c.lecture.zoom.url) + '</div>' : '')],
       ['Sections', esc(sec.day) + ' · ' + tba(sec.room) + (sec.list || []).map(function (x) {
         return '<br>' + esc(x.id) + ' ' + esc(x.time); }).join('')],
       ['Instructor', esc(c.instructor.title + ' ' + c.instructor.name) + (c.instructor.email ? '<br>' + link('mailto:' + c.instructor.email, c.instructor.email) : '') + '<br>office hours ' + tba(c.instructor.officeHours) + ohNote(c.instructor.officeHoursNote)],
@@ -179,7 +189,8 @@
           if (x.recommended && x.recommended.length) {
             ext += '<details class="rec"><summary>Recommended</summary>' + ul(x.recommended) + '</details>';
           }
-          rows.push('<tr class="u' + x.unit + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.topic) + '</td><td class="readings mmcol">' + (mm.length ? ul(mm, true) : '') + '</td><td class="readings extcol">' + ext + '</td></tr>');
+          var zu = zoomUrl(x);
+          rows.push('<tr class="u' + x.unit + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.topic) + (zu ? '<span class="sub zoomsub"><span class="zoomchip">Zoom</span>' + zoomLink(zu) + '</span>' : '') + '</td><td class="readings mmcol">' + (mm.length ? ul(mm, true) : '') + '</td><td class="readings extcol">' + ext + '</td></tr>');
         } else if (x.type === 'hw') {
           var note = esc(data.course.homework.dueLabel) + ' · covers ' + esc(x.covers) + (x.note ? ' · ' + esc(x.note) : '');
           rows.push('<tr class="hw" id="' + x.id + '">' + wkTd + '<td class="topic">' + (x.url ? '<a class="hwlink" href="' + esc(x.url) + '"' + tabAttr(x.url) + '>HW' + x.n + '</a>' : 'HW' + x.n) + ' due<span class="sub">' + esc(x.title) + '</span></td><td class="readings" colspan="2"><span class="note">' + note + '</span></td></tr>');
@@ -224,7 +235,10 @@
           var rd = next.read || [];
           var mmR = rd.filter(function (r) { return r.mm; }), outR = rd.filter(function (r) { return !r.mm; });
           var cols = (mmR.length ? '<div class="mmcol">' + ul(mmR, true) + '</div>' : '') + (outR.length ? '<div class="extcol">' + ul(outR) + '</div>' : '');
-          html += line(label, next, esc(next.topic), cols ? '<span class="rl">Read</span><div class="nx-reads' + (mmR.length && outR.length ? '' : ' one') + '">' + cols + '</div>' : '');
+          var zu = zoomUrl(next);
+          html += line(label, next, esc(next.topic) + (zu ? ' <span class="zoomchip">On Zoom</span>' : ''),
+            (zu ? '<div class="nx-zoom">On Zoom, not in person: ' + zoomLink(zu) + '</div>' : '') +
+            (cols ? '<span class="rl">Read</span><div class="nx-reads' + (mmR.length && outR.length ? '' : ' one') + '">' + cols + '</div>' : ''));
         }
       }
       if (due) html += line('Next due', due, 'HW' + due.n + ' due <span class="dim">· ' + esc(c.homework.dueLabel) + '</span>', '');
@@ -233,18 +247,22 @@
     box.hidden = false;
   }
 
-  // The announcements strip above the up-next box: course.announcements = [{text, until, from}]. `until` / `from` are
-  // a date (through the end of / from the start of that day) or YYYY-MM-DDTHH:MM. No current announcement, no strip.
+  // The announcements bar under the hero (laid out like the 286 page's): course.announcements = [{date, title, text,
+  // until, from}]; date ("10/21") and title are optional, text is the body. `until` / `from` are a date (through the end
+  // of / from the start of that day) or YYYY-MM-DDTHH:MM. No current announcement, no bar.
   function renderAnnouncements(data) {
     var el = document.getElementById('announce');
     if (!el) return;
     var now = nowIn(data.course.timezone);
     var cur = (data.course.announcements || []).filter(function (a) {
-      if (!a || !a.text) return false;
+      if (!a || !(a.text || a.title)) return false;
       if (a.from && now < (a.from.length === 10 ? a.from + 'T00:00' : a.from)) return false;
       return !a.until || now <= (a.until.length === 10 ? a.until + 'T23:59' : a.until);
     });
-    el.innerHTML = cur.map(function (a) { return '<p class="an">' + a.text + '</p>'; }).join('');
+    el.innerHTML = '<div class="page an-inner"><div class="eyebrow an-label">Announcements</div><div>' + cur.map(function (a) {
+      var head = a.date || a.title ? '<div class="an-head">' + (a.date ? '<span class="an-date mono">' + esc(a.date) + '</span>' : '') + (a.title || '') + '</div>' : '';
+      return '<div class="an">' + head + (a.text ? '<p class="an-body">' + a.text + '</p>' : '') + '</div>';
+    }).join('') + '</div></div>';
     el.hidden = !cur.length;
   }
 

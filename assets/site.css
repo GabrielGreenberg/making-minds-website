@@ -104,11 +104,30 @@ main > section:first-child, main > .withtoc:first-child { margin-top: 0; }
 .fact .k { color: var(--accent); font-weight: 600; }
 .fact .v { min-width: 0; }
 
-/* ---------- Announcements strip (sits on top of the up-next box; hidden when there are none) ---------- */
-.announce { background: var(--accent-soft); border: 1px solid #EDCBEA; border-left: 3px solid var(--accent); padding: 5px 14px; font-size: 13.5px; line-height: 1.45; color: var(--ink); }
-.announce .an { margin: 0; padding: 2px 0; }
-.announce b { color: var(--accent); }
-.announce:not([hidden]) + .next { margin-top: 8px; }
+/* ---------- Announcements bar (directly under the hero, as on the 286 page; hidden when there are none) ---------- */
+.announce { margin: 0; background: var(--navy); color: #D3D9E6; border-top: 1px solid rgba(255,255,255,.14); }
+.an-inner { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 8px 32px; padding-block: 20px 22px; }
+.an-label { color: var(--accent-2); letter-spacing: 0.16em; line-height: 24px; }
+.an + .an { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14); }
+.an-head { font-size: 16px; font-weight: 600; color: #fff; line-height: 24px; }
+.an-date { font-size: 13px; font-weight: 400; color: #8C96AE; margin-right: 10px; }
+.an-body { margin: 3px 0 0; max-width: 80ch; font-size: 14.5px; line-height: 1.55; }
+.announce b { color: #fff; }
+.announce a { color: var(--lav); }
+.announce a.zoom {   /* the Zoom link in an announcement, as a button */
+  display: inline-block; margin-top: 8px; padding: 6px 14px; border-radius: 3px;
+  background: var(--lav); color: var(--navy); font-weight: 600; text-decoration: none;
+}
+.announce a.zoom:hover { background: #fff; }
+
+/* ---------- Lectures on Zoom (lecture fact, up-next box, syllabus row) ---------- */
+.zoomnote { margin-top: 5px; padding-left: 9px; border-left: 3px solid var(--link); }
+.zoomnote .zl { color: var(--ink); font-weight: 600; }
+a.zoomlink { font-weight: 600; overflow-wrap: anywhere; }
+.zoomchip { display: inline-block; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: #fff; background: var(--link); padding: 1px 7px; margin-right: 6px; vertical-align: 1px; }
+.nx-main .zoomchip { margin: 0 0 0 6px; }
+.nx-zoom { margin: 1px 0 5px; color: var(--ink); font-weight: 600; font-size: 13.5px; }
+.sub.zoomsub { margin-top: 4px; font-size: 13px; }
 
 /* ---------- Up-next box (label left, compressed content right) ---------- */
 .next { background: var(--lav-soft); border: 1px solid var(--lav-line); padding: 4px 16px; }
@@ -271,6 +290,7 @@ footer.page { padding-block: 14px 40px; border-top: 1px solid var(--line); color
   .hero h1 { font-size: 34px; }
   .hero.slim .hero-img { height: 120px; }
   .hero.slim .hero-text { padding: 12px 0 20px; }
+  .an-inner { grid-template-columns: 1fr; gap: 6px; padding-block: 16px 18px; }
   .nx { grid-template-columns: 1fr; gap: 4px; }
   .nx-reads { grid-template-columns: 1fr; row-gap: 3px; }
   .facts { grid-template-columns: 1fr; column-gap: 0; }

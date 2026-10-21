@@ -36,7 +36,15 @@
         "until": "2026-10-15T12:30"
       },
       {
-        "text": "<b>Schedule change:</b> HW3 is now due Sun 11/1, and the midterm moves to Thu 11/5. HW4–6 move later too (Sun 11/15, Sun 11/29, Mon 12/7), and State Abstraction and FSMs move up to Thu 10/29 and Tue 11/3. The schedule below has the new dates.",
+        "date": "10/21",
+        "title": "Thursday’s class (10/22) is on Zoom.",
+        "text": "Class is on Zoom for Thursday, at the normal time 12:30–1:45pm.<br><a class=\"zoom\" href=\"https://ucla.zoom.us/my/gjgreenberg\" target=\"_blank\" rel=\"noopener\">Join on Zoom: ucla.zoom.us/my/gjgreenberg</a>",
+        "until": "2026-10-22T13:45"
+      },
+      {
+        "date": "10/21",
+        "title": "HW3 and the midterm have moved.",
+        "text": "HW3 is now due Sun 11/1. The midterm is now Thurs 11/5.",
         "until": "2026-11-05"
       }
     ],
@@ -45,7 +53,13 @@
       "time": "12:30–1:45pm",
       "start": "12:30",
       "end": "13:45",
-      "room": "Public Affairs 1222"
+      "room": "Public Affairs 1222",
+      "zoom": {
+        "url": "https://ucla.zoom.us/my/gjgreenberg",
+        "dates": [
+          "2026-10-22"
+        ]
+      }
     },
     "sections": {
       "day": "Wed",
