@@ -633,16 +633,6 @@
           "mm": "Computing in Time",
           "n": 19,
           "page": 74
-        },
-        {
-          "tag": "T*",
-          "cite": "Moore (1956)",
-          "id": "moore-1956",
-          "file": "reader/files/moore-1956.pdf",
-          "url": "https://www.cs.cmu.edu/~cdm/resources/Moore1956-gedanken-experiments.pdf",
-          "linkText": "“Gedanken-Experiments on Sequential Machines”",
-          "note": "— §§1–5 (stop at §6)",
-          "short": "Moore (1956), “Gedanken-Experiments on Sequential Machines,” §§1–5"
         }
       ],
       "recommended": [
@@ -687,6 +677,18 @@
           "mm": "The Method of State Analysis",
           "n": 21,
           "page": 84
+        }
+      ],
+      "recommended": [
+        {
+          "tag": "T*",
+          "cite": "Moore (1956)",
+          "id": "moore-1956",
+          "file": "reader/files/moore-1956.pdf",
+          "url": "https://www.cs.cmu.edu/~cdm/resources/Moore1956-gedanken-experiments.pdf",
+          "linkText": "“Gedanken-Experiments on Sequential Machines”",
+          "note": "— §§1–5 (stop at §6)",
+          "short": "Moore (1956), “Gedanken-Experiments on Sequential Machines,” §§1–5"
         }
       ]
     },
