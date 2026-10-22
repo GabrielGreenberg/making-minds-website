@@ -27,6 +27,7 @@
   --exam-soft: #EFE2FF;
   --hol: #9A9A9A;
   --orange: #F5A623;
+  --now-soft: #EAEEF6;        /* this week's week/date cells (the bar and chip are --navy) */
   --u1: #24678D;
   --u2: #C255B9;
   --u3: #F5A623;
@@ -201,6 +202,15 @@ tr.hw td.topic .sub { color: var(--hw); opacity: .85; }
 tr.hw td.readings { color: var(--hw); }
 .sub { display: block; font-size: 12.5px; color: var(--ink-3); margin-top: 2px; font-weight: 400; }
 tr:target td { outline: 2px solid var(--accent); outline-offset: -2px; }
+/* This week (computed from the date, as on the 286 page): a bar down the left of its rows, the week and date
+   cells tinted, and a "This week" chip under the first date. */
+tr.now td.wk, tr.now td.date { background: var(--now-soft); }
+tr.now td.wk { box-shadow: inset 4px 0 0 var(--navy); color: var(--navy); font-weight: 600; }
+.nowchip {
+  display: block; width: max-content; margin-top: 6px; padding: 1px 6px 0;
+  background: var(--navy); color: #fff; font-family: "IBM Plex Sans", sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; line-height: 17px;
+}
 
 /* reading lists inside a cell */
 ul.rlist { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; }
@@ -322,6 +332,9 @@ footer.page { padding-block: 14px 40px; border-top: 1px solid var(--line); color
   table.sched tr.hw td, table.sched tr.exam td { background: transparent; }
   table.sched tr.hw td.topic { border-left-color: var(--uc, var(--u1)); }
   table.sched tr.exam td.topic { border-left-color: var(--uc, var(--u1)); }
+  table.sched tr.now { box-shadow: inset 4px 0 0 var(--navy); }
+  table.sched tr.now td.wk, table.sched tr.now td.date { background: transparent; box-shadow: none; }
+  .nowchip { display: inline-block; margin: 0 0 0 8px; vertical-align: 1px; }
   table.sched td.readings { margin-top: 6px; }
   table.sched tr.unit td { padding: 7px 12px; margin: 0 -12px; }
   table.sched td.readings + td.readings { margin-top: 4px; }
@@ -331,7 +344,9 @@ footer.page { padding-block: 14px 40px; border-top: 1px solid var(--line); color
 /* ---------- Print ---------- */
 @media print {
   body { font-size: 11.5px; background: #fff; }
-  .topbar nav, .band, .announce, .next, footer { display: none; }
+  .topbar nav, .band, .announce, .next, footer, .nowchip { display: none; }
+  tr.now td.wk, tr.now td.date { background: none; box-shadow: none; }
+  tr.now td.wk { color: var(--ink-3); font-weight: 400; }
   .hero { background: none; color: #000; }
   .hero-img { display: none; }
   .hero h1, .hero .tagline, .hero .hero-meta { color: #000; text-shadow: none; }

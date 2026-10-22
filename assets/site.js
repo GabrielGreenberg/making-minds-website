@@ -23,9 +23,13 @@
     return ((h + 11) % 12 + 1) + ':' + m + (h < 12 ? 'am' : 'pm');
   }
   function timeRange(a, b) { return ampm(a).replace(/[ap]m$/, '') + '–' + ampm(b); }
-  function weekOf(iso, mondayOfWeek1) {
+  // Mon–Sun weeks counted from week 1's Monday (0 = that week, -1 = the week before, …); whole days, so DST can't tip it.
+  function weekIndex(iso, mondayOfWeek1) {
     var d = new Date(iso + 'T12:00:00'), w1 = new Date(mondayOfWeek1 + 'T12:00:00');
-    var n = Math.floor((d - w1) / (7 * 864e5)) + 1;
+    return Math.floor(Math.round((d - w1) / 864e5) / 7);
+  }
+  function weekOf(iso, mondayOfWeek1) {
+    var n = weekIndex(iso, mondayOfWeek1) + 1;
     return n < 1 ? '0' : (n > 10 ? 'F' : String(n));
   }
   // Where a link opens. Outside sites: a new tab. The Reader and the course book: one named tab each, so the
@@ -107,6 +111,7 @@
     data.schedule.forEach(function (x) {
       x.d = dateLabel(x.date);
       x.wk = weekOf(x.date, c.calendar.weekOneMonday);
+      x.wi = weekIndex(x.date, c.calendar.weekOneMonday);
       if (x.type === 'lesson') { x.id = 'l' + (++lessonNo); x.endAt = x.date + 'T' + (x.end || c.lecture.end); }
       else if (x.type === 'exam') { x.id = x.title.toLowerCase().replace(/[^a-z]+/g, '-').replace(/-$/, ''); x.endAt = x.date + 'T' + x.end; }
       else if (x.type === 'hw') { x.id = 'hw' + (x.n || ++hwNo); x.dueAt = x.date + 'T' + (x.dueTime || c.homework.dueTime); }
@@ -168,6 +173,9 @@
     var html = ['<table class="sched sched-head" aria-hidden="true">' + cols + '<thead><tr><th>Wk</th><th>Date</th><th>Topic</th><th>Making Minds readings</th><th>Outside readings</th></tr></thead></table>'];
     var units = {};
     data.units.forEach(function (u) { units[u.n] = u; });
+    // this week (Mon–Sun, in the course timezone): its rows get a bar down the left and its first row a "This week"
+    // chip, like the 286 page's next-session row. Nothing to edit; it moves with the date.
+    var thisWeek = weekIndex(nowIn(data.course.timezone).slice(0, 10), data.course.calendar.weekOneMonday), chipped = false;
     // group entries into unit blocks: an entry belongs to the current unit until the next lesson with a new unit
     var blocks = [], cur = null;
     data.schedule.forEach(function (x) {
@@ -181,7 +189,9 @@
       var lastWk = null;
       b.rows.forEach(function (x) {
         var wk = x.wk === lastWk ? '' : x.wk; if (wk) lastWk = x.wk;
-        var wkTd = '<td class="wk mono">' + wk + '</td><td class="date mono">' + esc(x.d) + '</td>';
+        var now = x.wi === thisWeek, nc = now ? ' now' : '', chip = now && !chipped ? '<span class="nowchip">This week</span>' : '';
+        if (now) chipped = true;
+        var wkTd = '<td class="wk mono">' + wk + '</td><td class="date mono">' + esc(x.d) + chip + '</td>';
         if (x.type === 'lesson') {
           // course-book chapters in one column, everything else (required, then folded recommended) in the next
           var mm = (x.read || []).filter(function (r) { return r.mm; }), other = (x.read || []).filter(function (r) { return !r.mm; });
@@ -190,15 +200,15 @@
             ext += '<details class="rec"><summary>Recommended</summary>' + ul(x.recommended) + '</details>';
           }
           var zu = zoomUrl(x);
-          rows.push('<tr class="u' + x.unit + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.topic) + (zu ? '<span class="sub zoomsub"><span class="zoomchip">Zoom</span>' + zoomLink(zu) + '</span>' : '') + '</td><td class="readings mmcol">' + (mm.length ? ul(mm, true) : '') + '</td><td class="readings extcol">' + ext + '</td></tr>');
+          rows.push('<tr class="u' + x.unit + nc + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.topic) + (zu ? '<span class="sub zoomsub"><span class="zoomchip">Zoom</span>' + zoomLink(zu) + '</span>' : '') + '</td><td class="readings mmcol">' + (mm.length ? ul(mm, true) : '') + '</td><td class="readings extcol">' + ext + '</td></tr>');
         } else if (x.type === 'hw') {
           var note = esc(data.course.homework.dueLabel) + ' · covers ' + esc(x.covers) + (x.note ? ' · ' + esc(x.note) : '');
-          rows.push('<tr class="hw" id="' + x.id + '">' + wkTd + '<td class="topic">' + (x.url ? '<a class="hwlink" href="' + esc(x.url) + '"' + tabAttr(x.url) + '>HW' + x.n + '</a>' : 'HW' + x.n) + ' due<span class="sub">' + esc(x.title) + '</span></td><td class="readings" colspan="2"><span class="note">' + note + '</span></td></tr>');
+          rows.push('<tr class="hw' + nc + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + (x.url ? '<a class="hwlink" href="' + esc(x.url) + '"' + tabAttr(x.url) + '>HW' + x.n + '</a>' : 'HW' + x.n) + ' due<span class="sub">' + esc(x.title) + '</span></td><td class="readings" colspan="2"><span class="note">' + note + '</span></td></tr>');
         } else if (x.type === 'exam') {
           var sub = x.where === 'in class' ? 'in class, ' + timeRange(x.start, x.end) : timeRange(x.start, x.end) + ' · ' + x.where;
-          rows.push('<tr class="exam" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.title) + '<span class="sub">' + esc(sub) + '</span></td><td class="readings" colspan="2"><span class="note">' + esc(x.note || '') + '</span></td></tr>');
+          rows.push('<tr class="exam' + nc + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.title) + '<span class="sub">' + esc(sub) + '</span></td><td class="readings" colspan="2"><span class="note">' + esc(x.note || '') + '</span></td></tr>');
         } else if (x.type === 'holiday') {
-          rows.push('<tr class="holiday">' + wkTd + '<td class="topic">' + esc(x.title) + '</td><td class="readings" colspan="2"></td></tr>');
+          rows.push('<tr class="holiday' + nc + '">' + wkTd + '<td class="topic">' + esc(x.title) + '</td><td class="readings" colspan="2"></td></tr>');
         }
       });
       html.push('<div class="tablewrap schedwrap"><table class="sched" style="--uc:var(--u' + u.n + ')">' + cols + '<tbody>' + rows.join('') + '</tbody></table></div>');
