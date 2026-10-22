@@ -111,12 +111,17 @@
     data.schedule.forEach(function (x) {
       x.d = dateLabel(x.date);
       x.wk = weekOf(x.date, c.calendar.weekOneMonday);
-      x.wi = weekIndex(x.date, c.calendar.weekOneMonday);
       if (x.type === 'lesson') { x.id = 'l' + (++lessonNo); x.endAt = x.date + 'T' + (x.end || c.lecture.end); }
       else if (x.type === 'exam') { x.id = x.title.toLowerCase().replace(/[^a-z]+/g, '-').replace(/-$/, ''); x.endAt = x.date + 'T' + x.end; }
       else if (x.type === 'hw') { x.id = 'hw' + (x.n || ++hwNo); x.dueAt = x.date + 'T' + (x.dueTime || c.homework.dueTime); }
     });
     return data;
+  }
+
+  // The class (lecture or exam) on now or next up: the first whose end time hasn't passed.
+  function nextClass(schedule, now) {
+    for (var i = 0; i < schedule.length; i++) if (schedule[i].endAt && schedule[i].endAt > now) return schedule[i];
+    return null;
   }
 
   // ---------- home page ----------
@@ -173,9 +178,9 @@
     var html = ['<table class="sched sched-head" aria-hidden="true">' + cols + '<thead><tr><th>Wk</th><th>Date</th><th>Topic</th><th>Making Minds readings</th><th>Outside readings</th></tr></thead></table>'];
     var units = {};
     data.units.forEach(function (u) { units[u.n] = u; });
-    // this week (Mon–Sun, in the course timezone): its rows get a bar down the left and its first row a "This week"
-    // chip, like the 286 page's next-session row. Nothing to edit; it moves with the date.
-    var thisWeek = weekIndex(nowIn(data.course.timezone).slice(0, 10), data.course.calendar.weekOneMonday), chipped = false;
+    // the class on today or next up (the one the up-next box shows) gets a bar down the left and a "Today" / "Next"
+    // chip, like the 286 page's next-session row. Nothing to edit; it moves with the clock.
+    var now = nowIn(data.course.timezone), next = nextClass(data.schedule, now);
     // group entries into unit blocks: an entry belongs to the current unit until the next lesson with a new unit
     var blocks = [], cur = null;
     data.schedule.forEach(function (x) {
@@ -189,8 +194,8 @@
       var lastWk = null;
       b.rows.forEach(function (x) {
         var wk = x.wk === lastWk ? '' : x.wk; if (wk) lastWk = x.wk;
-        var now = x.wi === thisWeek, nc = now ? ' now' : '', chip = now && !chipped ? '<span class="nowchip">This week</span>' : '';
-        if (now) chipped = true;
+        var nc = x === next ? ' is-next' : '';
+        var chip = nc ? '<span class="nextchip">' + (x.date === now.slice(0, 10) ? 'Today' : 'Next') + '</span>' : '';
         var wkTd = '<td class="wk mono">' + wk + '</td><td class="date mono">' + esc(x.d) + chip + '</td>';
         if (x.type === 'lesson') {
           // course-book chapters in one column, everything else (required, then folded recommended) in the next
@@ -220,11 +225,8 @@
     var box = document.getElementById('next');
     if (!box) return;
     var c = data.course, now = nowIn(c.timezone), today = now.slice(0, 10);
-    var next = null, due = null;
-    data.schedule.forEach(function (x) {
-      if (!next && x.endAt && x.endAt > now) next = x;
-      if (!due && x.dueAt && x.dueAt > now) due = x;
-    });
+    var next = nextClass(data.schedule, now), due = null;
+    data.schedule.forEach(function (x) { if (!due && x.dueAt && x.dueAt > now) due = x; });
     function line(label, x, mainHtml, detailHtml) {
       return '<div class="nx"><span class="chip">' + esc(label) + '</span><div class="nx-body">' +
         '<a class="nx-main" href="#' + x.id + '"><span class="mono nx-date">' + esc(x.d) + '</span> ' + mainHtml + '</a>' +
