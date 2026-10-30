@@ -44,6 +44,12 @@
     if (br && u.indexOf(br) === 0) return ' target="mm-book"';
     return '';
   }
+  // Optional links on an exam (e.g. the prep sheet): x.links = [{url, text}], shown after its note.
+  function examLinks(x) {
+    return (x.links || []).map(function (a) {
+      return ' · <a class="examlink" href="' + esc(a.url) + '"' + tabAttr(a.url) + '>' + esc(a.text) + '</a>';
+    }).join('');
+  }
   function link(url, text) {
     return '<a href="' + esc(url) + '"' + tabAttr(url) + '>' + text + '</a>';
   }
@@ -211,7 +217,7 @@
           rows.push('<tr class="hw' + nc + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + (x.url ? '<a class="hwlink" href="' + esc(x.url) + '"' + tabAttr(x.url) + '>HW' + x.n + '</a>' : 'HW' + x.n) + ' due<span class="sub">' + esc(x.title) + '</span></td><td class="readings" colspan="2"><span class="note">' + note + '</span></td></tr>');
         } else if (x.type === 'exam') {
           var sub = x.where === 'in class' ? 'in class, ' + timeRange(x.start, x.end) : timeRange(x.start, x.end) + ' · ' + x.where;
-          rows.push('<tr class="exam' + nc + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.title) + '<span class="sub">' + esc(sub) + '</span></td><td class="readings" colspan="2"><span class="note">' + esc(x.note || '') + '</span></td></tr>');
+          rows.push('<tr class="exam' + nc + '" id="' + x.id + '">' + wkTd + '<td class="topic">' + esc(x.title) + '<span class="sub">' + esc(sub) + '</span></td><td class="readings" colspan="2"><span class="note">' + esc(x.note || '') + '</span>' + examLinks(x) + '</td></tr>');
         } else if (x.type === 'holiday') {
           rows.push('<tr class="holiday' + nc + '">' + wkTd + '<td class="topic">' + esc(x.title) + '</td><td class="readings" colspan="2"></td></tr>');
         }
@@ -241,7 +247,7 @@
         var label = isExam ? (isToday ? 'Today' : 'Next up') : (isToday ? 'Today’s class' : 'Next class');
         if (isExam) {
           var sub = next.where === 'in class' ? 'in class, ' + timeRange(next.start, next.end) : timeRange(next.start, next.end) + ' · ' + next.where;
-          html += line(label, next, esc(next.title) + ' <span class="dim">· ' + esc(sub) + '</span>', esc(next.note || ''));
+          html += line(label, next, esc(next.title) + ' <span class="dim">· ' + esc(sub) + '</span>', esc(next.note || '') + examLinks(next));
         } else {
           // the readings as two columns, like the syllabus table: course-book chapters | outside readings
           var rd = next.read || [];
