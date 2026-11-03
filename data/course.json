@@ -12,17 +12,17 @@
       "title": "Professor",
       "officeHours": "Tue 2–3pm, Dodd 331",
       "officeHoursNote": {
-        "text": "This week also: Wed 10/14, 2–3pm",
-        "until": "2026-10-14"
+        "text": "This week only: Wed 11/4, 3–4pm, Dodd 331 (no Tuesday hours)",
+        "until": "2026-11-04"
       },
       "email": "ggreenberg@humnet.ucla.edu"
     },
     "ta": {
       "name": "Paul Talma",
-      "officeHours": "Thu 1:50–3:50pm, Dodd 300C",
+      "officeHours": "Thu 1:50–3:50pm, Bunche 1265",
       "officeHoursNote": {
-        "text": "This week only: Thu 10/15, 10:30am–12:30pm",
-        "until": "2026-10-15"
+        "text": "This week only: Wed 11/4, 11am–12:30pm, Dodd 300C (no Thursday hours)",
+        "until": "2026-11-05"
       },
       "email": "ptalma@humnet.ucla.edu"
     },
@@ -52,6 +52,12 @@
         "title": "Midterm prep sheet is posted.",
         "text": "The midterm is Thu 11/5, in class, 12:30–1:45pm. To prepare, make sure you can solve the problems on the <a href=\"files/midterm-prep-11.5.26.pdf\">midterm prep sheet (PDF)</a> with just pencil and paper.",
         "until": "2026-11-05T13:45"
+      },
+      {
+        "date": "11/2",
+        "title": "Office hours move to Wednesday this week.",
+        "text": "<b>Prof. Greenberg:</b> Wed 11/4, 3–4pm, Dodd 331 (no Tuesday office hours this week).<br><b>Paul:</b> Wed 11/4, 11am–12:30pm, Dodd 300C (no Thursday office hours this week, since Thursday is the midterm).",
+        "until": "2026-11-04T16:00"
       }
     ],
     "lecture": {
@@ -751,11 +757,6 @@
           "page": 102
         },
         {
-          "mm": "What Is an Algorithm?",
-          "n": 25,
-          "page": 107
-        },
-        {
           "tag": "C*",
           "cite": "Putnam (1975) \"Philosophy and Our Mental Life\" —",
           "id": "putnam-1975",
@@ -851,6 +852,11 @@
       "unit": 2,
       "topic": "Levels of Abstraction",
       "read": [
+        {
+          "mm": "What Is an Algorithm?",
+          "n": 25,
+          "page": 107
+        },
         {
           "mm": "Levels of Abstraction",
           "n": 26,
