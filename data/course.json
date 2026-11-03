@@ -50,19 +50,19 @@
       {
         "date": "10/29",
         "title": "Midterm prep sheet is posted.",
-        "text": "The midterm is Thu 11/5, in class, 12:30–1:45pm. To prepare, make sure you can solve the problems on the <a href=\"files/midterm-prep-11.5.26.pdf\">midterm prep sheet (PDF)</a> with just pencil and paper.",
+        "text": "The midterm is Thu 11/5, in class, 12:30–1:45pm.<br>Here is <a href=\"files/midterm-prep-11.5.26.pdf\">a worksheet (PDF)</a> for preparing for the exam.<br>Bring your own pencil, pen, and eraser. (We’ll supply paper.) No notes.",
         "until": "2026-11-05T13:45"
       },
       {
         "date": "11/2",
         "title": "Office hours move to Wednesday this week.",
-        "text": "<b>Prof. Greenberg:</b> Wed 11/4, 3–4pm, Dodd 331 (no Tuesday office hours this week).<br><b>Paul:</b> Wed 11/4, 11am–12:30pm, Dodd 300C (no Thursday office hours this week, since Thursday is the midterm).",
+        "text": "<b>Prof. Greenberg: Wed 11/4, 3–4pm,</b> Dodd 331 (no Tuesday office hours this week).<br><b>Paul Talma: Wed 11/4, 11am–12:30pm</b>, Dodd 300C (no Thursday office hours this week).",
         "until": "2026-11-04T16:00"
       },
       {
         "date": "11/2",
-        "title": "Conference on consciousness and machines, this Thursday and Friday.",
-        "text": "“Biological Naturalism about Consciousness” asks whether non-biological systems, such as AI, could be conscious. Talks by Ned Block, Peter Godfrey-Smith, Rosa Cao, Jonathan Birch and others, Thu 11/5 and Fri 11/6, 9am–5pm, Royce Hall 306. Undergraduates are welcome; please RSVP.<br><a href=\"https://philosophy.ucla.edu/event/biological-naturalism-about-consciousness/\" target=\"_blank\" rel=\"noopener\">Program</a> · <a href=\"https://forms.gle/jaZkm7Lmac4e6v1f9\" target=\"_blank\" rel=\"noopener\">RSVP</a>",
+        "title": "Conference on consciousness and machines",
+        "text": "“Biological Naturalism about Consciousness” is a conference about AI and consciousness. This Thursday and Friday.<br><br>Thu 11/5 and Fri 11/6, 9am–5pm, Royce Hall 306. Undergraduates are welcome; please RSVP.<br><a href=\"https://philosophy.ucla.edu/event/biological-naturalism-about-consciousness/\" target=\"_blank\" rel=\"noopener\">Program</a> · <a href=\"https://forms.gle/jaZkm7Lmac4e6v1f9\" target=\"_blank\" rel=\"noopener\">RSVP</a>",
         "until": "2026-11-06T16:15"
       }
     ],
