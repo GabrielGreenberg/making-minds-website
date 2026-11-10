@@ -883,7 +883,9 @@
           "linkText": "\"Understanding Complex Information-Processing Systems\"",
           "note": "— <i>Vision</i> ch. 1, §1.2",
           "short": "Marr (1982), “Understanding Complex Information-Processing Systems”"
-        },
+        }
+      ],
+      "recommended": [
         {
           "tag": "C*",
           "cite": "Newell (1982)",
@@ -897,18 +899,6 @@
             "url": "reader/files/newell-1982.pdf",
             "text": "full paper"
           }
-        }
-      ],
-      "recommended": [
-        {
-          "tag": "C*",
-          "cite": "Newell (1982)",
-          "id": "newell-1982-full",
-          "file": "reader/files/newell-1982.pdf",
-          "url": "reader/files/newell-1982.pdf",
-          "linkText": "“The Knowledge Level”",
-          "note": "— the full paper",
-          "short": "Newell (1982), “The Knowledge Level,” full paper"
         }
       ]
     },
