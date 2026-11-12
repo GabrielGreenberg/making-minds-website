@@ -932,7 +932,9 @@
           "linkText": "\"An Elementary Linguistic Theory\"",
           "note": "(<i>Syntactic Structures</i> ch. 3, pp. 18–25 — the whole chapter)",
           "short": "Chomsky (1957), “An Elementary Linguistic Theory”"
-        },
+        }
+      ],
+      "recommended": [
         {
           "tag": "C/T",
           "cite": "Fitch and Friederici (2012)",
@@ -946,18 +948,6 @@
             "url": "reader/files/fitch-friederici-2012.pdf",
             "text": "full paper"
           }
-        }
-      ],
-      "recommended": [
-        {
-          "tag": "C/T",
-          "cite": "Fitch and Friederici (2012)",
-          "id": "fitch-friederici-2012-full",
-          "file": "reader/files/fitch-friederici-2012.pdf",
-          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3367694/",
-          "linkText": "“Artificial grammar learning meets formal language theory: an overview”",
-          "note": "— the full paper",
-          "short": "Fitch and Friederici (2012), “Artificial Grammar Learning Meets Formal Language Theory,” full paper"
         },
         {
           "cite": "Gallistel and King (2009) <i>Memory and the Computational Brain</i>, Preface",
