@@ -1111,12 +1111,57 @@
       "type": "lesson",
       "date": "2026-11-24",
       "unit": 3,
-      "topic": "Machines & Programs",
+      "topic": "Turbots & Physical Cognition",
+      "read": [
+        {
+          "mm": "Computational Navigation",
+          "n": 33,
+          "page": 142
+        },
+        {
+          "mm": "Physical Cognition",
+          "n": 35,
+          "page": 150
+        }
+      ]
+    },
+    {
+      "type": "holiday",
+      "date": "2026-11-26",
+      "title": "Thanksgiving — no class"
+    },
+    {
+      "type": "hw",
+      "date": "2026-11-29",
+      "n": 5,
+      "title": "Computing with TMs",
+      "covers": "11/10–11/17"
+    },
+    {
+      "type": "lesson",
+      "date": "2026-12-01",
+      "unit": 3,
+      "topic": "The Universal Machine",
       "read": [
         {
           "mm": "Machines and Programs",
           "n": 36,
           "page": 160
+        },
+        {
+          "mm": "The Universal Machine",
+          "n": 37,
+          "page": 164
+        },
+        {
+          "tag": "C*",
+          "cite": "Turing (1950)",
+          "id": "turing-1950",
+          "file": "reader/files/turing-1950.pdf",
+          "url": "https://www.cs.mcgill.ca/~dprecup/courses/AI/Materials/turing1950.pdf",
+          "linkText": "“Computing Machinery and Intelligence”",
+          "note": "— §§1–5",
+          "short": "Turing (1950), “Computing Machinery and Intelligence,” §§1–5"
         }
       ],
       "recommended": [
@@ -1157,44 +1202,7 @@
           "linkText": "\"Computation and Cognition: Issues in the Foundations of Cognitive Science\"",
           "note": "— sections 1–6",
           "short": "Pylyshyn (1980), “Computation and Cognition,” §§1–6"
-        }
-      ]
-    },
-    {
-      "type": "holiday",
-      "date": "2026-11-26",
-      "title": "Thanksgiving — no class"
-    },
-    {
-      "type": "hw",
-      "date": "2026-11-29",
-      "n": 5,
-      "title": "Computing with TMs",
-      "covers": "11/10–11/17"
-    },
-    {
-      "type": "lesson",
-      "date": "2026-12-01",
-      "unit": 3,
-      "topic": "The Universal Machine",
-      "read": [
-        {
-          "mm": "The Universal Machine",
-          "n": 37,
-          "page": 164
         },
-        {
-          "tag": "C*",
-          "cite": "Turing (1950)",
-          "id": "turing-1950",
-          "file": "reader/files/turing-1950.pdf",
-          "url": "https://www.cs.mcgill.ca/~dprecup/courses/AI/Materials/turing1950.pdf",
-          "linkText": "“Computing Machinery and Intelligence”",
-          "note": "— §§1–5",
-          "short": "Turing (1950), “Computing Machinery and Intelligence,” §§1–5"
-        }
-      ],
-      "recommended": [
         {
           "tag": "C*",
           "cite": "Pylyshyn (1980)",
