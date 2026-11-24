@@ -1117,7 +1117,9 @@
           "mm": "Machines and Programs",
           "n": 36,
           "page": 160
-        },
+        }
+      ],
+      "recommended": [
         {
           "tag": "C*",
           "cite": "Lovelace (1843)",
@@ -1145,18 +1147,6 @@
             "url": "reader/files/colburn-1999.pdf",
             "text": "full paper"
           }
-        }
-      ],
-      "recommended": [
-        {
-          "tag": "C",
-          "cite": "Colburn (1999)",
-          "id": "colburn-1999-full",
-          "file": "reader/files/colburn-1999.pdf",
-          "url": "reader/files/colburn-1999.pdf",
-          "linkText": "“Software, Abstraction, and Ontology”",
-          "note": "— the full paper",
-          "short": "Colburn (1999), “Software, Abstraction, and Ontology,” full paper"
         },
         {
           "tag": "C*",
