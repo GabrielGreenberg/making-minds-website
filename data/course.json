@@ -70,6 +70,12 @@
         "title": "Homework 4 is up.",
         "text": "HW4 (Computing with FSMs) is now up on the <a href=\"https://making-minds.pages.dev\" target=\"_blank\" rel=\"noopener\">course app</a>. It’s due Sun 11/15.",
         "until": "2026-11-09"
+      },
+      {
+        "date": "11/23",
+        "title": "Tuesday’s class (11/24) is on Zoom.",
+        "text": "Class is on Zoom for Tuesday, at the normal time 12:30–1:45pm.<br><a class=\"zoom\" href=\"https://ucla.zoom.us/my/gjgreenberg\" target=\"_blank\" rel=\"noopener\">Join on Zoom: ucla.zoom.us/my/gjgreenberg</a>",
+        "until": "2026-11-24T13:45"
       }
     ],
     "lecture": {
@@ -81,7 +87,8 @@
       "zoom": {
         "url": "https://ucla.zoom.us/my/gjgreenberg",
         "dates": [
-          "2026-10-22"
+          "2026-10-22",
+          "2026-11-24"
         ]
       }
     },
